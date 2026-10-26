@@ -1,0 +1,4 @@
+legacy/*.html -text
+*.png binary
+*.jpg binary
+*.jar binary
