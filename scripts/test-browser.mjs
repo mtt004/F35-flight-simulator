@@ -31,7 +31,8 @@ try {
   await check('pause stops flight time and resume restarts it', async () => {
     await page.keyboard.press('Escape'); const a = await snapshot(page); assert.ok(a.paused);
     await page.waitForTimeout(500); const b = await snapshot(page); assert.equal(a.flightT, b.flightT);
-    await page.locator('#btnResume').click(); await page.waitForTimeout(500); const c = await snapshot(page);
+    await page.locator('#btnResume').click();
+    await page.waitForFunction(t => !paused && flightT > t, b.flightT, {timeout:15000}); const c = await snapshot(page);
     assert.ok(!c.paused && c.flightT > b.flightT); return { pausedTime: b.flightT, resumedTime: c.flightT };
   });
   await check('camera and instrumentation controls respond', async () => {

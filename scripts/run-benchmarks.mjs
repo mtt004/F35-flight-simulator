@@ -1,5 +1,7 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import os from 'node:os';
+import { createHash } from 'node:crypto';
 import { browserSession, snapshot, startFlight, captureScene } from '../tests/helpers/browser.mjs';
 import { repositoryRoot, baselineFile } from '../tests/helpers/source.mjs';
 
@@ -18,7 +20,8 @@ const scenarios = [
   { name: 'night-approach', start: 'AIR', hour: 23.3, scenarioName: 'NIGHT LANDING', camera: 1 },
 ];
 if (args.includes('--sustained')) scenarios.splice(0, scenarios.length, { name: 'sustained-flight', start: 'AIR', camera: 0, altitude: 5000 });
-const report = { date: new Date().toISOString(), source: path.relative(repositoryRoot, file), status: 'NOT TESTED', secondsPerScenario: seconds,
+const sourceSha256=createHash('sha256').update(await readFile(file)).digest('hex');
+const report = { sourceSha256, host:{cpu:os.cpus()[0]?.model,logicalCpuCount:os.cpus().length,platform:os.platform(),arch:os.arch()}, date: new Date().toISOString(), source: path.relative(repositoryRoot, file), status: 'NOT TESTED', secondsPerScenario: seconds,
   methodology: '1280×720 CSS viewport, DPR 1, fixed seed 4201, MED baseline/default final. Frame durations are intervals between actual renderer.render calls after 3s warm-up. CPU render submission duration is synchronous JS wall time, not GPU execution time. 1% low = 1000 / mean slowest ceil(1%) frame intervals. Browser heap is not Android PSS.',
   realDeviceStatus: 'NOT TESTED', androidPssMb: null, gpuTimeMs: null, battery: null, thermal: null, inputLatencyMs: null, scenarios: [] };
 const outDir = path.join(repositoryRoot, `benchmarks/${label}`), shotDir = path.join(repositoryRoot, `screenshots/${label === 'baseline' ? 'before' : 'after'}`);
@@ -41,7 +44,7 @@ try {
   for (const scene of visualScenes) {
     await captureScene(page, scene); await page.screenshot({ path: path.join(shotDir, scene.name + '.png') });
   }
-  await writeFile(path.join(shotDir, 'capture-settings.json'), JSON.stringify({ environment: report.environment, seed: 4201, scenes: visualScenes, note: 'Actual simulator captures, 1.5 seconds after respawn. Aircraft is not frozen; compare silhouette/materials rather than exact pixel positions.' }, null, 2) + '\n');
+  await writeFile(path.join(shotDir, 'capture-settings.json'), JSON.stringify({ sourceSha256, environment: report.environment, seed: 4201, scenes: visualScenes, note: 'Actual simulator captures, 1.5 seconds after respawn. Aircraft is not frozen; compare silhouette/materials rather than exact pixel positions.' }, null, 2) + '\n');
   await page.evaluate(() => {
     const original = renderer.render.bind(renderer);
     window.__benchmark = { active: false, previous: null, intervals: [], submissions: [], frames: 0 };
