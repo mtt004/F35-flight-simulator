@@ -399,7 +399,7 @@ function buildingTextures(seed,warm){const c=document.createElement('canvas'),e=
  const map=new THREE.CanvasTexture(c),em=new THREE.CanvasTexture(e);for(const t of[map,em]){t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(1.8,3.5);t.minFilter=THREE.LinearMipMapLinearFilter;}return{map,em};}
 const glowT=radialTex([[0,'rgba(255,255,255,1)'],[0.25,'rgba(255,255,255,0.6)'],[1,'rgba(255,255,255,0)']]);
 const shadowBlob=new THREE.Mesh(new THREE.PlaneGeometry(17,12),new THREE.MeshBasicMaterial({
-  color:0x081018,transparent:true,opacity:0.25,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-2
+  color:0x081018,map:radialTex([[0,'rgba(255,255,255,.9)'],[.48,'rgba(255,255,255,.45)'],[1,'rgba(255,255,255,0)']]),transparent:true,opacity:0.25,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-2
 }));
 shadowBlob.geometry.rotateX(-Math.PI/2);scene.add(shadowBlob);
 let cTex=cloudTex(mulberry32(1));

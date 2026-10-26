@@ -8,7 +8,10 @@ let html=await read('src/index.template.html');
 const css=await read('src/ui/base.css')+'\n'+await read('src/ui/lightning.css');
 const paths=['src/vendor/three-r128.min.js','src/rendering/mobile-policy.js','src/aircraft/detail.js','src/cockpit/detail.js','src/terrain/scenery.js','src/simulator.js','src/ui/runtime.js'];
 const js=await Promise.all(paths.map(read));
-html=html.replace('<!-- LIGHTNING_STYLES -->',()=>'<style>\n'+css+'\n</style>').replace('<!-- LIGHTNING_SCRIPTS -->',()=>js.map(s=>'<script>\n'+s.replace(/<\/script/gi,'<\\/script')+'\n</script>').join('\n'));
+// Keep simulator and runtime integration in one parser task: no animation frame
+// can run between scheduling the simulator loop and defining its UI hooks.
+const scriptSources=[...js.slice(0,-2),js.slice(-2).join('\n')];
+html=html.replace('<!-- LIGHTNING_STYLES -->',()=>'<style>\n'+css+'\n</style>').replace('<!-- LIGHTNING_SCRIPTS -->',()=>scriptSources.map(s=>'<script>\n'+s.replace(/<\/script/gi,'<\\/script')+'\n</script>').join('\n'));
 if(/<(script|link)[^>]+(?:src|href)=/i.test(html))throw Error('Offline package cannot reference external scripts/styles');
 await fs.mkdir(path.join(root,'dist'),{recursive:true});
 await fs.writeFile(path.join(root,'dist/index.html'),html);await fs.writeFile(path.join(root,'dist/Lightning-F35B.html'),html);
