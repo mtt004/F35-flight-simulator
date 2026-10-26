@@ -10,7 +10,7 @@
   material.fragmentShader=material.fragmentShader.replace('float diff=max(dot(n,l),0.);',`float field=h21(floor((globalXZ+vec2(490.,170.))/420.));float meadow=smoothstep(.18,.76,field);vec3 regional=mix(uP0,uP1,meadow);regional=mix(regional,uP2,smoothstep(.18,.65,slope));col=mix(col,regional*(.9+macro*.16),uPalette*smoothstep(2.,20.,vW.y));
   float strata=.5+.5*sin(vW.y*.21+sin(globalXZ.x*.001)*2.);col*=1.-strata*.085*smoothstep(.30,.75,slope);
   float diff=max(dot(n,l),0.);`);
-  const c=document.createElement('canvas');c.width=c.height=128;const x=c.getContext('2d');x.fillStyle='#47494a';x.fillRect(0,0,128,128);let seed=17;for(let i=0;i<2600;i++){seed=(Math.imul(seed,1664525)+1013904223)|0;const px=(seed>>>0)%128;seed=(Math.imul(seed,1664525)+1013904223)|0;const py=(seed>>>0)%128;x.fillStyle=i%2?'#515252':'#3d3f40';x.fillRect(px,py,1,1);}asphalt=new T.CanvasTexture(c);asphalt.wrapS=asphalt.wrapT=T.RepeatWrapping;asphalt.repeat.set(2,28);asphalt.userData.shared=true;
+  const c=document.createElement('canvas');c.width=c.height=128;const x=c.getContext('2d');x.fillStyle='#47494a';x.fillRect(0,0,128,128);let seed=17;for(let i=0;i<2600;i++){seed=(Math.imul(seed,1664525)+1013904223)|0;const px=(seed>>>0)%128;seed=(Math.imul(seed,1664525)+1013904223)|0;const py=(seed>>>0)%128;x.fillStyle=i%2?'#515252':'#3d3f40';x.fillRect(px,py,1,1);}asphalt=new T.CanvasTexture(c);asphalt.wrapS=asphalt.wrapT=T.RepeatWrapping;asphalt.repeat.set(2,28);
   glassMat=new T.MeshStandardMaterial({color:0x4b6878,metalness:.3,roughness:.38,emissive:0x6e8c98,emissiveIntensity:.12});glassMat.userData.shared=true;
   hangarMat=new T.MeshLambertMaterial({color:0x71797b});hangarMat.userData.shared=true;box=new T.BoxGeometry(1,1,1);box.userData.shared=true;
  };

@@ -1,7 +1,7 @@
 /* UI/lifecycle integration follows simulator classic globals; no native bridge. */
 let meterTime=0;
 function saveLightningOptions(){try{localStorage.setItem('lightning_options_v1',JSON.stringify(L));}catch(_){toast('SETTINGS STORAGE UNAVAILABLE','warn');}}
-function applyLightningLayout(){$('touchui').style.opacity=L.opacity;const dy=-L.stickY;const dir=S.hand==='R'?1:-1;tstick.style.transform=`translate(${L.stickX*dir}vw,${dy}vh) scale(${S.tSz})`;}
+function applyLightningLayout(){S.tOp=L.opacity;$('tOp').value=L.opacity;$('touchui').style.opacity=L.opacity;const dy=-L.stickY;const dir=S.hand==='R'?1:-1;tstick.style.transform=`translate(${L.stickX*dir}vw,${dy}vh) scale(${S.tSz})`;}
 function updateLightningMeter(now){if(now-meterTime<500)return;meterTime=now;const e=$('lightningMeter');if(!e)return;e.style.display=L.diagnostics?'block':'none';if(!L.diagnostics)return;const sorted=workSamples.slice().sort((a,b)=>a-b),p95=sorted[Math.floor(sorted.length*.95)]||0;e.textContent=`${(1000/frameEMA).toFixed(1)} FPS · ${frameEMA.toFixed(1)} ms cadence\nJS + GPU submission ${lastWorkMs.toFixed(1)}ms · p95 ${p95.toFixed(1)}ms\n${renderer.domElement.width} × ${renderer.domElement.height} · Q${qlLevel}\n${renderer.info.render.calls} draws · ${Math.round(renderer.info.render.triangles/1000)}k tris\n${renderer.info.memory.geometries} geometry · ${renderer.info.memory.textures} textures`;}
 (function setupLightningUI(){
  const host=document.createElement('section');host.id='lightningPanel';host.innerHTML='<h4>LIGHTNING GRAPHICS & CAMERA</h4>';const drawer=$('drawer');drawer.appendChild(host);
@@ -19,6 +19,7 @@ function updateLightningMeter(now){if(now-meterTime<500)return;meterTime=now;con
  const meter=document.createElement('div');meter.id='lightningMeter';document.body.appendChild(meter);
  const error=document.createElement('div');error.id='lightningError';error.innerHTML='<p id="lightningErrorText"></p><button type="button">Reload simulator</button>';error.querySelector('button').addEventListener('click',()=>location.reload());document.body.appendChild(error);
  applyLightningLayout();
+ $('tOp').addEventListener('input',()=>{L.opacity=S.tOp;saveLightningOptions();});
  ['hR','hL','tSz'].forEach(id=>$(id).addEventListener('click',applyLightningLayout));$('tSz').addEventListener('input',applyLightningLayout);
 })();
 function suspendLightning(){

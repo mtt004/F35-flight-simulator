@@ -40,4 +40,4 @@ cd android
 bash ./gradlew connectedDebugAndroidTest
 ```
 
-The instrumentation test launches the real bundled WebView and presses the actual flight-start button. It needs working WebGL2 and is separate from package/archive verification.
+The instrumentation test runs the internal simulator validation suite, presses the actual flight-start button, dismisses the first-run tutorial through its close button, requires an unpaused live flight with finite aircraft position and nonzero WebGL draw calls, then verifies fixed-step count and simulation time advance over 1.2 seconds. It needs working WebGL2 and is separate from package/archive verification.

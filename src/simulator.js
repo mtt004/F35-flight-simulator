@@ -3395,7 +3395,7 @@ $('gDz').addEventListener('input',e=>S.gDz=parseFloat(e.target.value));
   $(id).addEventListener('click',()=>{gpThrAxis=!v;S.gThrBtn=v;
     $('gTb').classList.toggle('on',v);$('gTa').classList.toggle('on',!v);});});
 [['qA','AUTO'],['qL','LOW'],['qM','MED'],['qH','HIGH']].forEach(([id,v])=>{
-  $(id).addEventListener('click',()=>{S.quality=v;L.profile={AUTO:'BALANCED',LOW:'BATTERY',MED:'BALANCED',HIGH:'HIGH'}[v];localStorage.setItem('lightning_options_v1',JSON.stringify(L));if($('lightningProfile'))$('lightningProfile').value=L.profile;
+  $(id).addEventListener('click',()=>{S.quality=v;L.profile={AUTO:'BALANCED',LOW:'BATTERY',MED:'BALANCED',HIGH:'HIGH'}[v];saveLightningOptions();if($('lightningProfile'))$('lightningProfile').value=L.profile;
     document.querySelectorAll('#qA,#qL,#qM,#qH').forEach(c=>c.classList.remove('on'));$(id).classList.add('on');applyQuality();});});
 [['vR','REDUCED'],['vN','NORMAL'],['vE','ENHANCED']].forEach(([id,v])=>{
   $(id).addEventListener('click',()=>{S.vapour=v;
@@ -3658,8 +3658,8 @@ function loop(now){
   requestAnimationFrame(loop);
   if(contextLost||document.hidden||!cadence.ready(now))return;
   frameStart=performance.now();
-  let dt=Math.min((now-last)/1000,0.05);last=now;
-  frameEMA=lerp(frameEMA,dt*1000,0.05);
+  const wallDt=(now-last)/1000;let dt=Math.min(wallDt,0.05);last=now;
+  frameEMA=lerp(frameEMA,wallDt*1000,0.05);
   if(!running)drawBootBg(now);
   pollGamepad();gyroSample();
   stepsLast=0;

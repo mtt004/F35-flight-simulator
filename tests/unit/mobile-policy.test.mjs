@@ -26,3 +26,9 @@ test('pack parser accepts palettes but forbids executable or malformed assets',(
  const p=validatePack({schema:1,id:'hampshire-inspired',name:'Hampshire inspired',palette:['#344f31','#a1a070','#747d60'],referenceOnly:true});
  assert.equal(p.palette.length,3);assert.throws(()=>validatePack({schema:1,id:'x',name:'x',palette:['url(js)']}));assert.throws(()=>validatePack({schema:1,id:'x',name:'x',palette:['#ffffff','#aaaaaa','#000000'],script:'x'}));
 });
+test('inherited property names cannot become rendering profiles',()=>{
+ for(const profile of ['constructor','toString','__proto__']){
+  assert.equal(cleanOptions({profile}).profile,'BALANCED');
+  const r=bufferSize(1280,720,1,profile,1);assert.ok(Number.isFinite(r.width)&&Number.isFinite(r.height));
+ }
+});

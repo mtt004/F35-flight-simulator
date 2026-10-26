@@ -25,7 +25,7 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "0.1.0-experimental"
-        testInstrumentationRunner = "android.test.InstrumentationTestRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     sourceSets.getByName("main").assets.srcDir(bundledWeb)
     buildTypes {
@@ -44,4 +44,9 @@ android {
     lint { abortOnError = true }
 }
 tasks.named("preBuild") { dependsOn(bundleWeb) }
-dependencies { implementation("androidx.webkit:webkit:1.12.1") }
+dependencies {
+    implementation("androidx.webkit:webkit:1.12.1")
+    androidTestImplementation("androidx.test:core:1.6.1")
+    androidTestImplementation("androidx.test:runner:1.6.2")
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+}

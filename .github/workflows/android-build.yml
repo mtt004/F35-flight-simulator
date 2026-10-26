@@ -25,8 +25,12 @@ jobs:
         with:
           distribution: temurin
           java-version: '17.0.15+6'
-      - name: Install pinned Android SDK packages
-        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Provision pinned Android command-line tools and SDK
+        uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407
+        with:
+          cmdline-tools-version: '12266719'
+          packages: 'platform-tools platforms;android-35 build-tools;35.0.0'
+          log-accepted-android-sdk-licenses: 'false'
       - run: npm test
       - run: bash scripts/build-android.sh
       - name: Permit hardware acceleration for the isolated emulator runner

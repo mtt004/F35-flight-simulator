@@ -19,8 +19,10 @@ Settings use the bundled page's existing local storage. App data and settings pe
 | CI Temurin JDK | 17.0.15+6 |
 | Compile / target SDK | 35 / 35 |
 | Build tools | 35.0.0 |
+| Android command-line tools | 12266719 (explicitly provisioned by pinned setup-android action) |
 | Minimum Android | API 26 (Android 8.0) |
 | AndroidX WebKit | 1.12.1 |
+| AndroidX test core / runner / JUnit extension | 1.6.1 / 1.6.2 / 1.2.1 (test APK only) |
 | Application ID | `com.mtt004.lightning` |
 | Version name / code | `0.1.0-experimental` / 1 |
 
@@ -76,3 +78,9 @@ The delivered experimental APK uses the standard Android debug signing mechanism
 Command attempted: `bash android/gradlew --version` using installed OpenJDK 17.0.20. The wrapper launched, then failed downloading `https://services.gradle.org/distributions/gradle-8.9-bin.zip` with `java.net.SocketException: Network is unreachable`. No Android SDK, `adb`, emulator or physical device was present in this cloud workspace.
 
 Therefore this local attempt did **not** compile, sign, install or run an APK. GitHub Actions must provide those build results separately. Successful Actions runs, APK hashes and release links are recorded in the final audit; the presence of a workflow alone is not evidence that it ran.
+
+### First Actions setup failure and correction
+
+The first Android Actions attempt failed before compilation because `sdkmanager` was absent from the runner PATH. Both Android and release workflows now provision the Android SDK explicitly through `android-actions/setup-android` at commit `9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407`, pinning command-line tools `12266719` and the required packages. This fixes an observed setup assumption; success still requires a subsequent actual run.
+
+The emulator smoke test uses AndroidX `ActivityScenario` and `AndroidJUnitRunner`, avoiding reliance on deprecated optional `android.test` platform libraries. It verifies internal validation, tutorial dismissal, live rendering and fixed-step progression; menu closure alone is not accepted as game functionality.
