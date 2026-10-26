@@ -1,0 +1,133 @@
+name: Verified experimental release
+on:
+  push:
+    branches: ['release/v*']
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'New immutable experimental release tag'
+        type: string
+        required: true
+        default: v0.1.0-experimental
+permissions:
+  contents: read
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  build-and-release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22.16.0'
+      - run: npm ci
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with:
+          distribution: temurin
+          java-version: '17.0.15+6'
+      - name: Install pinned Android SDK packages
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - run: npm test
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - name: Actual browser launch and internal regression checks
+        run: node scripts/test-browser.mjs dist/index.html
+      - name: Build and verify signed APK archive
+        run: bash scripts/build-android.sh
+      - name: Permit hardware acceleration for the isolated emulator runner
+        run: if [ -e /dev/kvm ]; then sudo chmod a+rw /dev/kvm; fi
+      - name: Install and launch the actual game on an Android API 33 emulator
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
+        with:
+          api-level: 33
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: cd android && bash ./gradlew --no-daemon connectedDebugAndroidTest
+      - name: Record genuine emulator installation and launch evidence
+        run: |
+          python3 - <<'PYTHON'
+          from pathlib import Path
+          import json, xml.etree.ElementTree as ET
+          reports = list(Path('android/app/build/outputs/androidTest-results/connected').rglob('TEST-*.xml'))
+          assert reports, 'Instrumentation XML results are missing'
+          cases = [case for report in reports for case in ET.parse(report).iter('testcase')]
+          assert cases, 'No Android instrumentation tests ran'
+          failures = [case.attrib for case in cases if any(case.find(kind) is not None for kind in ['failure', 'error', 'skipped'])]
+          assert not failures, failures
+          result = {'status': 'PASS', 'environment': 'GitHub Actions Android API 33 x86_64 emulator, software GPU', 'actualInstallationAndLaunch': True, 'tests': len(cases), 'reports': [str(p) for p in reports], 'galaxyA51': 'NOT TESTED'}
+          Path('dist/android-installation.json').write_text(json.dumps(result, indent=2) + '\n')
+          PYTHON
+      - name: Baseline cloud benchmark and screenshots
+        run: node scripts/run-benchmarks.mjs legacy/F35B_Offline_Open_World_Simulator_Advanced_Physics_Overhaul.html --seconds 10
+      - name: Final cloud benchmark and screenshots
+        run: node scripts/run-benchmarks.mjs dist/index.html --seconds 10
+      - name: Package evidence and checksums
+        run: |
+          python3 - <<'PYTHON'
+          from pathlib import Path
+          import hashlib, json, os, zipfile
+          evidence = Path('dist/Lightning-F35B-Evidence.zip')
+          with zipfile.ZipFile(evidence, 'w', zipfile.ZIP_DEFLATED) as z:
+              for folder in ['benchmarks', 'screenshots']:
+                  for path in sorted(Path(folder).rglob('*')):
+                      if path.is_file(): z.write(path, path.as_posix())
+              z.write('dist/android-verification.json', 'android-verification.json')
+              z.write('dist/android-installation.json', 'android-installation.json')
+              for path in sorted(Path('android/app/build/outputs/androidTest-results/connected').rglob('*')):
+                  if path.is_file(): z.write(path, path.as_posix())
+          manifest = {'sourceCommit': os.environ['GITHUB_SHA'], 'workflowRun': os.environ['GITHUB_RUN_ID'], 'androidVersion': '0.1.0-experimental', 'signing': 'debug; ephemeral CI key', 'galaxyA51': 'NOT TESTED', 'installation': 'PASS: Android API 33 emulator installed APK and launched actual bundled flight; see android-installation.json'}
+          Path('dist/build-manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
+          names = ['Lightning-F35B-Android.apk', 'Lightning-F35B-Web.zip', 'Lightning-F35B-Evidence.zip', 'android-verification.json', 'android-installation.json', 'build-manifest.json']
+          for name in names:
+              assert Path('dist', name).is_file(), 'Missing release artifact: ' + name
+          Path('dist/SHA256SUMS.txt').write_text(''.join(hashlib.sha256(Path('dist', n).read_bytes()).hexdigest() + '  ' + n + '\n' for n in names))
+          PYTHON
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: lightning-release-${{ github.sha }}
+          if-no-files-found: warn
+          retention-days: 90
+          path: |
+            dist/
+            android/app/build/reports/
+            android/app/build/outputs/androidTest-results/
+            benchmarks/
+            screenshots/
+      - name: Publish immutable prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_REF: ${{ github.ref_name }}
+          REQUESTED_TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+          release_tag="${REQUESTED_TAG:-${RELEASE_REF#release/}}"
+          [[ "$release_tag" =~ ^v[0-9]+\.[0-9]+\.[0-9]+[A-Za-z0-9.-]*$ ]] || { echo 'Invalid version tag'; exit 1; }
+          if gh release view "$release_tag" >/dev/null 2>&1; then
+            echo 'Release already exists; refusing to replace assets or change its source commit.'
+            exit 1
+          fi
+          cat > dist/RELEASE_NOTES.md <<NOTES
+          # Project Lightning — experimental F-35B mobile simulator
+
+          Source commit: $GITHUB_SHA
+          APK: Lightning-F35B-Android.apk (com.mtt004.lightning, version 0.1.0-experimental, Android 8.0/API 26+ with WebGL2).
+          Browser: Lightning-F35B-Web.zip; extract and open Lightning-F35B.html offline.
+          Integrity: see SHA256SUMS.txt and android-verification.json.
+
+          Automated browser checks and a signed APK archive verification passed in this workflow. Benchmarks use a cloud CPU software renderer and do not establish Galaxy A51 performance. An Android API 33 emulator installed the APK and launched the actual bundled flight successfully; see android-installation.json and evidence ZIP. Galaxy A51 installation, gyroscope, battery, thermal behaviour and 20-minute device stability are NOT TESTED.
+
+          This is a debug-signed experimental build. The CI signing key is ephemeral: later builds may require uninstalling the previous APK, deleting its stored data. No private signing key is committed. Regional scenery packs and the full requested visual overhaul may remain incomplete; see docs/known-issues.md and docs/development-log.md at the source commit.
+          NOTES
+          gh release create "$release_tag" dist/Lightning-F35B-Android.apk dist/Lightning-F35B-Web.zip dist/Lightning-F35B-Evidence.zip dist/SHA256SUMS.txt dist/android-verification.json dist/android-installation.json dist/build-manifest.json --target "$GITHUB_SHA" --title "Project Lightning $release_tag" --notes-file dist/RELEASE_NOTES.md --prerelease
+          gh release view "$release_tag" --json url,tagName,targetCommitish,assets

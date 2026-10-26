@@ -1,0 +1,94 @@
+TAP version 13
+# Subtest: preserved baseline: ISA density and sound speed decrease with altitude
+ok 1 - preserved baseline: ISA density and sound speed decrease with altitude
+  ---
+  duration_ms: 0.862118
+  type: 'test'
+  ...
+# Subtest: preserved baseline: seeded noise repeats with the same seed and differs with another
+ok 2 - preserved baseline: seeded noise repeats with the same seed and differs with another
+  ---
+  duration_ms: 1.054348
+  type: 'test'
+  ...
+# Subtest: preserved baseline: post-stall lift falls and full nose-down retains recovery moment
+ok 3 - preserved baseline: post-stall lift falls and full nose-down retains recovery moment
+  ---
+  duration_ms: 0.320673
+  type: 'test'
+  ...
+# Subtest: preserved baseline: wave drag rises through transonic and published envelope
+ok 4 - preserved baseline: wave drag rises through transonic and published envelope
+  ---
+  duration_ms: 0.15927
+  type: 'test'
+  ...
+# Subtest: preserved baseline: fuel tank sequencing conserves fuel and inertia remains positive
+ok 5 - preserved baseline: fuel tank sequencing conserves fuel and inertia remains positive
+  ---
+  duration_ms: 0.489697
+  type: 'test'
+  ...
+# Subtest: preserved baseline: hover thrust supports recovery load but not full fuel mass
+ok 6 - preserved baseline: hover thrust supports recovery load but not full fuel mass
+  ---
+  duration_ms: 0.11909
+  type: 'test'
+  ...
+# Subtest: preserved baseline: rudder yaw damping opposes rate and sideslip
+ok 7 - preserved baseline: rudder yaw damping opposes rate and sideslip
+  ---
+  duration_ms: 0.128884
+  type: 'test'
+  ...
+# Subtest: current simulator: ISA density and sound speed decrease with altitude
+ok 8 - current simulator: ISA density and sound speed decrease with altitude
+  ---
+  duration_ms: 1.098093
+  type: 'test'
+  ...
+# Subtest: current simulator: seeded noise repeats with the same seed and differs with another
+ok 9 - current simulator: seeded noise repeats with the same seed and differs with another
+  ---
+  duration_ms: 1.155559
+  type: 'test'
+  ...
+# Subtest: current simulator: post-stall lift falls and full nose-down retains recovery moment
+ok 10 - current simulator: post-stall lift falls and full nose-down retains recovery moment
+  ---
+  duration_ms: 0.221404
+  type: 'test'
+  ...
+# Subtest: current simulator: wave drag rises through transonic and published envelope
+ok 11 - current simulator: wave drag rises through transonic and published envelope
+  ---
+  duration_ms: 0.126029
+  type: 'test'
+  ...
+# Subtest: current simulator: fuel tank sequencing conserves fuel and inertia remains positive
+ok 12 - current simulator: fuel tank sequencing conserves fuel and inertia remains positive
+  ---
+  duration_ms: 0.16587
+  type: 'test'
+  ...
+# Subtest: current simulator: hover thrust supports recovery load but not full fuel mass
+ok 13 - current simulator: hover thrust supports recovery load but not full fuel mass
+  ---
+  duration_ms: 0.041252
+  type: 'test'
+  ...
+# Subtest: current simulator: rudder yaw damping opposes rate and sideslip
+ok 14 - current simulator: rudder yaw damping opposes rate and sideslip
+  ---
+  duration_ms: 0.034642
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 116.562742

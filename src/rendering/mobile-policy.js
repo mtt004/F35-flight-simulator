@@ -1,0 +1,13 @@
+/* Project Lightning: pure mobile policy. No browser globals needed by tests. */
+(function(root){
+ 'use strict';
+ const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+ const profiles=Object.freeze({BATTERY:{fps:30,height:540,cap:0},BALANCED:{fps:30,height:648,cap:1},HIGH:{fps:30,height:900,cap:3},FAST:{fps:60,height:648,cap:1}});
+ function finite(v,d,a,b){return Number.isFinite(v)?clamp(v,a,b):d;}
+ function cleanOptions(o={}){return {profile:profiles[o.profile]?o.profile:'BALANCED',zoom:finite(o.zoom,1,.65,1.6),shake:finite(o.shake,.25,0,1),stickX:finite(o.stickX,0,-30,30),stickY:finite(o.stickY,0,-20,20),opacity:finite(o.opacity,.85,.25,1),instrument:['MILITARY','MINIMAL','LANDING'].includes(o.instrument)?o.instrument:'MILITARY',camera:['STANDARD','PRECISION','CINEMATIC','FIXED'].includes(o.camera)?o.camera:'STANDARD',palette:['AUTO','HAMPSHIRE','CAPPADOCIA','CUSTOM'].includes(o.palette)?o.palette:'AUTO',diagnostics:o.diagnostics===true};}
+ function bufferSize(w,h,dpr,profile,level){const p=profiles[profile]||profiles.BALANCED;w=Math.max(1,w);h=Math.max(1,h);const y=Math.min(h*Math.max(1,dpr||1),p.height*[.84,1,1.06,1.12][clamp(level|0,0,3)]),scale=Math.min(y/h,Math.sqrt(1200000/(w*h)));return {width:Math.max(1,Math.round(w*scale)),height:Math.max(1,Math.floor(h*scale)),ratio:scale};}
+ class QualityGovernor{constructor(cap){this.cap=cap;this.level=cap;this.slow=0;this.fast=0;}sample(frameMs,workMs){if(frameMs>38||workMs>31){this.slow++;this.fast=0;}else if(frameMs<35&&workMs<23){this.fast++;this.slow=0;}else {this.slow=Math.max(0,this.slow-1);this.fast=0;}if(this.slow>=3&&this.level>0){this.level--;this.slow=0;}else if(this.fast>=5&&this.level<this.cap){this.level++;this.fast=0;}return this.level;}}
+ class FrameCadence{constructor(fps){this.interval=1000/fps;this.next=null;}ready(now){if(this.next===null||now-this.next>1000){this.next=now+this.interval;return true;}if(now+.25<this.next)return false;this.next+=Math.max(1,Math.floor((now-this.next+.25)/this.interval)+1)*this.interval;return true;}reset(){this.next=null;}}
+ function validatePack(p){if(!p||typeof p!=='object'||Array.isArray(p)||p.schema!==1||!/^[-a-z0-9]{1,48}$/.test(p.id)||typeof p.name!=='string'||p.name.length>80||!Array.isArray(p.palette)||p.palette.length!==3||!p.palette.every(v=>/^#[0-9a-f]{6}$/i.test(v)))throw Error('Invalid palette pack');const keys=new Set(['schema','id','name','palette','referenceOnly','licence','description']);if(Object.keys(p).some(k=>!keys.has(k)))throw Error('Unsupported pack field');return {schema:1,id:p.id,name:p.name,palette:p.palette.slice(),referenceOnly:true};}
+ root.Lightning={profiles,cleanOptions,bufferSize,QualityGovernor,FrameCadence,validatePack};
+})(typeof window==='undefined'?globalThis:window);

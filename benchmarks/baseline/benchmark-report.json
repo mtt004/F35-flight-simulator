@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-26T21:09:41.347Z",
+  "source": "legacy/F35B_Offline_Open_World_Simulator_Advanced_Physics_Overhaul.html",
+  "status": "BLOCKED",
+  "secondsPerScenario": 30,
+  "methodology": "1280×720 CSS viewport, DPR 1, fixed seed 4201, MED baseline/default final. Frame durations are intervals between actual renderer.render calls after 3s warm-up. CPU render submission duration is synchronous JS wall time, not GPU execution time. 1% low = 1000 / mean slowest ceil(1%) frame intervals. Browser heap is not Android PSS.",
+  "realDeviceStatus": "NOT TESTED",
+  "androidPssMb": null,
+  "gpuTimeMs": null,
+  "battery": null,
+  "thermal": null,
+  "inputLatencyMs": null,
+  "scenarios": [],
+  "blocker": "Error: browserType.launch: Executable doesn't exist at /root/.cache/ms-playwright/chromium_headless_shell-1234/chrome-headless-shell-linux64/chrome-headless-shell\n╔════════════════════════════════════════════════════════════╗\n║ Looks like Playwright was just installed or updated.       ║\n║ Please run the following command to download new browsers: ║\n║                                                            ║\n║     npx playwright install                                 ║\n║                                                            ║\n║ <3 Playwright Team                                         ║\n╚════════════════════════════════════════════════════════════╝"
+}
