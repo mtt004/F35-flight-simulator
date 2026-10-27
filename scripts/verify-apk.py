@@ -28,9 +28,25 @@ with zipfile.ZipFile(args.apk) as archive:
     bad = archive.testzip()
     if bad:
         raise SystemExit(f"APK archive corruption: {bad}")
-    required = {"AndroidManifest.xml", "classes.dex", "assets/www/index.html"}
+    licence_sources = {
+        "assets/www/THIRD_PARTY_NOTICES.txt": Path("android/THIRD_PARTY_NOTICES.txt"),
+        "assets/www/LICENSE-2.0.txt": Path("android/LICENSE-2.0.txt"),
+        "assets/www/LICENSES.md": Path("LICENSES.md"),
+    }
+    required = {"AndroidManifest.xml", "classes.dex", "assets/www/index.html", *licence_sources}
     if not required.issubset(archive.namelist()):
         raise SystemExit(f"APK lacks {sorted(required-set(archive.namelist()))}")
+    licence_checksums = {}
+    for bundled_path, source_path in licence_sources.items():
+        if not source_path.is_file() or archive.read(bundled_path) != source_path.read_bytes():
+            raise SystemExit(f"Bundled licence differs from checked-in source: {bundled_path}")
+        licence_checksums[bundled_path] = hashlib.sha256(archive.read(bundled_path)).hexdigest()
+    apache = archive.read("assets/www/LICENSE-2.0.txt")
+    if hashlib.sha256(apache).hexdigest() != "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30":
+        raise SystemExit("APK lacks the exact full Apache 2.0 licence (including appendix)")
+    notices = archive.read("assets/www/THIRD_PARTY_NOTICES.txt")
+    if apache not in notices or b"JetBrains" not in notices or b"Android Open Source Project" not in notices:
+        raise SystemExit("APK lacks Kotlin/AndroidX notices and their full licence copy")
     bundled = archive.read("assets/www/index.html")
     browser = Path("dist/index.html")
     if not browser.is_file() or bundled != browser.read_bytes():
@@ -60,6 +76,7 @@ print(json.dumps({
     "signing": "debug (ephemeral CI key; verify certificate output below)",
     "archiveIntegrity": "PASS",
     "bundledBrowserMatches": True,
+    "thirdPartyLicenceChecksums": licence_checksums,
     "permissions": permissions,
     "badging": badging,
     "signatureVerification": signature,

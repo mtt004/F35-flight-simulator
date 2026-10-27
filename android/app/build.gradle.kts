@@ -6,10 +6,16 @@ plugins {
 val bundledWeb = layout.buildDirectory.dir("generated/lightningAssets")
 val bundleWeb by tasks.registering(Sync::class) {
     from(rootProject.file("../dist/index.html"))
+    from(rootProject.file("THIRD_PARTY_NOTICES.txt"))
+    from(rootProject.file("LICENSE-2.0.txt"))
+    from(rootProject.file("../LICENSES.md"))
     into(bundledWeb.map { it.dir("www") })
     doFirst {
         check(rootProject.file("../dist/index.html").isFile) {
             "Browser build missing: run node scripts/build-web.mjs from the repository root first"
+        }
+        for (notice in listOf("THIRD_PARTY_NOTICES.txt", "LICENSE-2.0.txt", "../LICENSES.md")) {
+            check(rootProject.file(notice).isFile) { "Redistribution licence missing: $notice" }
         }
     }
 }
