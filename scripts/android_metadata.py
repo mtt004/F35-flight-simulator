@@ -61,9 +61,11 @@ def validate_instrumentation_xml(reports, installation):
         report_cases = list(document.iter('testcase'))
         if not report_cases:
             raise ValueError('No actual instrumentation test cases')
-        for suite in document.iter('testsuite'):
-            direct_cases = suite.findall('testcase')
-            if direct_cases and int(suite.get('tests', '-1')) != len(direct_cases):
+        for suite in document.iter():
+            if suite.tag not in {'testsuite', 'testsuites'}:
+                continue
+            actual_count = len(list(suite.iter('testcase')))
+            if (suite.tag == 'testsuite' or 'tests' in suite.attrib) and int(suite.get('tests', '-1')) != actual_count:
                 raise ValueError('Instrumentation suite test count differs from XML cases')
             if any(int(suite.get(key, '0')) != 0 for key in ['failures', 'errors', 'skipped']):
                 raise ValueError('Instrumentation suite records a failed, errored or skipped test')
@@ -94,7 +96,13 @@ def self_test():
         except (ValueError, ET.ParseError):
             return
         raise AssertionError('Invalid evidence unexpectedly passed')
+    incomplete = b'<testsuites tests="2">' + xml + b'<testsuite name="incomplete" tests="1" failures="0" errors="0" skipped="0"/></testsuites>'
+    aggregate_wrong = b'<testsuites tests="2">' + xml + b'</testsuites>'
+    nested_valid = b'<testsuites tests="1"><testsuite tests="1">' + xml + b'</testsuite></testsuites>'
     checks = [
+        lambda: must_fail(lambda: validate_instrumentation_xml({path: incomplete}, evidence(incomplete))),
+        lambda: must_fail(lambda: validate_instrumentation_xml({path: aggregate_wrong}, evidence(aggregate_wrong))),
+        lambda: validate_instrumentation_xml({path: nested_valid}, evidence(nested_valid)),
         lambda: validate_badging(badging, expected),
         lambda: must_fail(lambda: validate_badging(badging.replace("versionCode='2'", "versionCode='1'"), expected)),
         lambda: must_fail(lambda: validate_badging(badging.replace('0.2.0-experimental', '0.1.0-experimental'), expected)),

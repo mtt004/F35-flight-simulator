@@ -56,3 +56,9 @@ Source inspection confirms no changes to `src/simulator.js`, flight physics, col
 Before/after screenshots and shader compilation for this new geometry must be captured by the browser harness against source-identified builds. At this handoff they are **NOT TESTED** for the new geometry. Galaxy A51 frame rate, GPU timing, thermals, Android PSS and sustained behavior remain **NOT TESTED**. Existing physics tests cannot establish visual realism or real aircraft accuracy.
 
 The smooth body follows the source's approximate section envelope. Fairings and intake depths are artist-authored approximations and need inspection from front, rear and low-side views for overlap artifacts. The adaptive layer refines the existing model; it does not claim to deliver the full requested production-quality F-35B exterior or a validated aircraft skin. Wheel/landing-gear reconstruction remains future work.
+
+## Actual visual inspection
+
+Captured and inspected four before/after pairs with the real WebGL simulator: front-quarter, rear-quarter, lower-side and cockpit. v0.1 HTML d4ade981… and nextHTML8529330d53723356463319a96469da80fb9fc87a48ce5449abd1f47b59ed56f4. Source hashes, fixed seed/hour/camera offsets, pose and rendering counters are in screenshots/aircraft-v0.2/*/capture-settings.json; reproducible script scripts/capture-aircraft.mjs. These are paused geometry-inspection captures, not flight-lifecycle proof.
+
+No blocking new exterior holes or cockpit occlusion was observed. The body has smoother shading and blended shoulders; the rear engine has a recessed opaque cavity. This is a bounded refinement to the existing authored model. Original blocky gear/doors and much of the silhouette remain; cities/terrain have not been reconstructed in this milestone. No photorealism or manufacturer-CAD claim follows.

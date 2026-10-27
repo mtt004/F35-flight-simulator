@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/e9db2680cfd4/F35-flight-simulator/scripts/android_metadata.py", line 121, in <module>
+    self_test()
+  File "/workspace/scratch/e9db2680cfd4/F35-flight-simulator/scripts/android_metadata.py", line 116, in self_test
+    check()
+  File "/workspace/scratch/e9db2680cfd4/F35-flight-simulator/scripts/android_metadata.py", line 101, in <lambda>
+    lambda: must_fail(lambda: validate_instrumentation_xml({path: incomplete}, evidence(incomplete))),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/e9db2680cfd4/F35-flight-simulator/scripts/android_metadata.py", line 96, in must_fail
+    raise AssertionError('Invalid evidence unexpectedly passed')
+AssertionError: Invalid evidence unexpectedly passed

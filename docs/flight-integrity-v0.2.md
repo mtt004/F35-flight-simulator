@@ -19,3 +19,9 @@ Replay captures/restores every live field actually overwritten by playback, incl
 ## Verification boundary
 
 The22 targeted Node tests passed after correcting the three reproduced replay failures and17 save-corruption failures. Actual normal save/UI-continue plus replay and malformed-record browser tests run against the rebuilt next version; results have explicit build hashes. This does not certify a complete takeoff/hover/transition/landing lifecycle, native/device stability, or GalaxyA51 performance. Those gates remain separate.
+
+## Independent review corrections
+
+Review reproduced a second Replay click replacing the original restoration snapshot and found stale heading/body basis after restoring a paused replay. New tests use actual production updateAttitudeData and repeated playback calls:3/3 initiallyfailed, thenpassed after an active-replay guard and derived attitude/aircraft/cockpit/camera/visibility refresh. Protected physics/record/updateReplay functions remain unchanged. The camera returns to its selected mode anchored to the restored aircraft; filters reset. Full visible-view behavior is verified by the fresh browser harness rather than the Node rendering stubs.
+
+The release-proof parser also accepted a nested empty suite declaring an uncompleted test. Preserved actual failing self-check in xml-evidence-red.txt; now validates each declared suite/aggregate count against all descendant cases, including zero-child suites. All54Node+10JSconfig+13Pythonmetadata checks pass. This closes an evidence-validation defect; it does not imply the earlier successful native reports were false.

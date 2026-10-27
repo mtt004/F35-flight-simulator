@@ -56,3 +56,9 @@ Retained full latest release raw benchmarks separately under benchmarks/release-
 ## v0.2 continuation — flight/save integrity
 
 Starting mainc53506ad59e7aad46904c3a648b0f06d6015dafd. Created feature/aircraft-and-flight-integrity without modifying releasedv0.1. Reproduced17 malformed-save failures using actual production functions/Three;2 valid legacy records passed. Actualv0.1 UI replay then reproduced changedgear/instruments andlostpause. Corrected full-vector validation before mutation, invalidcandidate writerguard, fullplayback-field/pause restoration and replay-save isolation. Targeted22/22NodeGREEN; rawRED/GREEN committed with rationale in flight-integrity-v0.2.md. No protected physics/STOVL/collision/recordReplay/updateReplay function changed. Broader geometry/version work proceeds in separate commits; realnextbrowser/native gates pending.
+
+## Independent-review corrections and visible comparison
+
+Source checkpoint4b52187f9008abfeaadf3827068cde0931644f08 passed Android+browserpush/PRCI. Review then reproduced stale derivedattitude/modelpose afterpausedreplay, repeatedReplayoverwritingrestoresnapshot, and nestedemptyXMLsuiteacceptance. AddedactualREDregressions andcorrectedall3;54Node+10JS+13Python checksPASS. Source-reviewreport independent-review-v0.2.md; protected16functions remainbyteidentical.
+
+BuiltnextHTML8529330d53723356463319a96469da80fb9fc87a48ce5449abd1f47b59ed56f4 andcaptured4actualpairs againstv0.1 withsource/cameras/settings. Inspectedfront/rearquarter,underside,cockpit: boundedbody/intake/nozzlerefinement, no newblockingocclusion. Existinggear/terrain/citiesremainstylized. FreshactualUIderived/replay/corruptsave andcontrol-onlyflightQA pending; nofull-lifecycle/A51claim.

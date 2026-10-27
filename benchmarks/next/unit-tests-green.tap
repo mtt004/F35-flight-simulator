@@ -1,0 +1,69 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> lightning-f35b@0.2.0-experimental test
+> node --test tests/unit/*.test.mjs && node scripts/project-config.mjs --self-test && python3 scripts/android_metadata.py --self-test
+
+✔ adaptive aircraft surface keeps public-sized envelope with outward triangle winding (64.337644ms)
+✔ adaptive LOD restores the original fuselage and follows the animated nozzle parent (39.245325ms)
+✔ exhaust has opaque recessed closure and bounded authored surface budgets (27.851919ms)
+✔ preserved baseline: ISA density and sound speed decrease with altitude (1.245271ms)
+✔ preserved baseline: seeded noise repeats with the same seed and differs with another (1.324498ms)
+✔ preserved baseline: post-stall lift falls and full nose-down retains recovery moment (0.55433ms)
+✔ preserved baseline: wave drag rises through transonic and published envelope (0.287274ms)
+✔ preserved baseline: fuel tank sequencing conserves fuel and inertia remains positive (0.633086ms)
+✔ preserved baseline: hover thrust supports recovery load but not full fuel mass (0.203261ms)
+✔ preserved baseline: rudder yaw damping opposes rate and sideslip (0.198354ms)
+✔ current simulator: ISA density and sound speed decrease with altitude (1.096922ms)
+✔ current simulator: seeded noise repeats with the same seed and differs with another (1.066617ms)
+✔ current simulator: post-stall lift falls and full nose-down retains recovery moment (0.200667ms)
+✔ current simulator: wave drag rises through transonic and published envelope (0.10129ms)
+✔ current simulator: fuel tank sequencing conserves fuel and inertia remains positive (0.318641ms)
+✔ current simulator: hover thrust supports recovery load but not full fuel mass (0.066829ms)
+✔ current simulator: rudder yaw damping opposes rate and sideslip (0.056854ms)
+✔ Balanced bounds physical buffer independent of DPR and preserves aspect (0.930186ms)
+✔ profile validation rejects nonfinite controls and unknown fields (0.232044ms)
+✔ governor needs sustained overload and delays recovery (0.174238ms)
+✔ 30 FPS cadence services exactly 30 frames at 60 Hz (0.361294ms)
+✔ pack parser accepts palettes but forbids executable or malformed assets (0.567059ms)
+✔ inherited property names cannot become rendering profiles (0.280165ms)
+✔ replay restores all mutated live state and original pause mode: false (27.767315ms)
+✔ replay restores all mutated live state and original pause mode: true (6.607269ms)
+✔ a second replay start cannot replace the original live-flight snapshot (8.266553ms)
+✔ restore rejects short velocity without changing the flight (26.239906ms)
+✔ restore rejects short angular rate without changing the flight (6.389637ms)
+✔ restore rejects missing velocity without changing the flight (7.008953ms)
+✔ restore rejects numeric-string position without changing the flight (6.718223ms)
+✔ restore rejects null quaternion without changing the flight (13.266595ms)
+✔ restore rejects nonfinite velocity without changing the flight (5.99902ms)
+✔ restore rejects NaN angular rate without changing the flight (4.56562ms)
+✔ restore rejects zero quaternion without changing the flight (5.058729ms)
+✔ restore rejects overflow quaternion without changing the flight (4.574173ms)
+✔ restore rejects invalid seed without changing the flight (5.325434ms)
+✔ restore rejects out of range seed without changing the flight (6.083564ms)
+✔ restore rejects extreme position without changing the flight (4.841037ms)
+✔ restore rejects extreme velocity without changing the flight (5.197845ms)
+✔ restore rejects extreme angular rate without changing the flight (7.262598ms)
+✔ restore rejects extra vector components without changing the flight (7.634588ms)
+✔ valid existing save restores numeric state and normalizes orientation (5.983177ms)
+✔ valid save in another seeded world restores its absolute coordinates (7.44044ms)
+✔ save retains last valid flight when live orientation/rates are invalid: P.quat.set(0,NaN,0,1) (8.895683ms)
+✔ save retains last valid flight when live orientation/rates are invalid: P.om.set(0,Infinity,0) (5.339775ms)
+✔ saving during replay preserves the last live-flight save (4.660961ms)
+✔ original uploaded bytes retain their recorded SHA-256 (5.72847ms)
+✔ core flight, STOVL and terrain collision implementations remain byte identical (11.333827ms)
+✔ authored visual geometry stays finite, indexed correctly and within a small draw/atlas budget (70.022559ms)
+✔ rebuilding visual details is idempotent and moving lift-door details remain parented (35.984789ms)
+✔ aircraft close detail uses distance hysteresis and quality gating (23.975638ms)
+✔ cockpit animation bounds corrupt input and follows processed control values (13.182581ms)
+✔ terrain and airport materials initialise on the pinned Three version (9.764176ms)
+✔ cockpit display centre is unobstructed from the pilot eye (16.159201ms)
+ℹ tests 54
+ℹ suites 0
+ℹ pass 54
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 293.815669
+Project configuration self-test: 10/10 passed
+Android metadata/evidence self-test: 13/13 passed

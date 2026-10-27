@@ -1,0 +1,449 @@
+{
+  "date": "2026-10-27T18:37:55.103Z",
+  "source": "/workspace/scratch/e9db2680cfd4/F35-flight-simulator/dist/index.html",
+  "sourceSha256": "8529330d53723356463319a96469da80fb9fc87a48ce5449abd1f47b59ed56f4",
+  "method": "Real WebGL simulator. Fixed seed4201/hour13.2; configured normal spawns, paused for geometry inspection. Test-only camera override, no rigid-body pose changes. These captures do not prove a flight lifecycle.",
+  "shots": [
+    {
+      "settings": {
+        "name": "front-quarter",
+        "start": "PARK",
+        "offset": [
+          12,
+          4,
+          -14
+        ],
+        "look": [
+          0,
+          0.15,
+          -1
+        ],
+        "fov": 43
+      },
+      "details": {
+        "camera": {
+          "position": [
+            6259.876167461988,
+            24.49189492167229,
+            -5044.941334411148
+          ],
+          "quaternion": [
+            -0.04948494721777353,
+            -0.7864194502110099,
+            -0.06354454416901636,
+            0.6124196104265596
+          ],
+          "fov": 43
+        },
+        "model": {
+          "modelVersion": 2,
+          "draws": 9,
+          "geometryVertices": 4264,
+          "geometryTriangles": 7968,
+          "atlasWidth": 512,
+          "atlasHeight": 256,
+          "visualOnly": true
+        }
+      },
+      "state": {
+        "running": true,
+        "paused": true,
+        "crashed": false,
+        "simT": 1.4318333333333175,
+        "flightT": 0.8333333333333328,
+        "stepCount": 100,
+        "position": [
+          6278.092730133157,
+          21.507088551440642,
+          -5041.036494417036
+        ],
+        "velocity": [
+          -0.21626003862393237,
+          0.32581851410908125,
+          0.11519563033408392
+        ],
+        "quaternion": [
+          0.018485050403415193,
+          -0.8566118016041894,
+          -0.030813990070194957,
+          -0.5147086770979891
+        ],
+        "fuel": 3267.8611728403844,
+        "stolMode": "CONV",
+        "nozzle": 0,
+        "gearD": 1,
+        "camMode": 2,
+        "frameEMA": 225.06603128119087,
+        "graphicsLevel": 1,
+        "settings": {
+          "fbw": "ASSIST",
+          "fail": "OFF",
+          "sens": 1,
+          "expo": 0.3,
+          "dz": 0.07,
+          "invPitch": false,
+          "coord": true,
+          "hoverAssist": true,
+          "hmds": "FULL",
+          "tOp": 0.85,
+          "tSz": 1,
+          "hand": "R",
+          "rudSlider": false,
+          "gyro": false,
+          "gDz": 0.12,
+          "gThrBtn": true,
+          "quality": "MED",
+          "vapour": "ENHANCED",
+          "volume": 0,
+          "scan": false,
+          "structure": "REAL",
+          "targetMarker": false
+        },
+        "drawingBuffer": [
+          1152,
+          648
+        ],
+        "renderer": {
+          "calls": 595,
+          "triangles": 357120,
+          "textures": 13,
+          "geometries": 548
+        },
+        "replaySeconds": 0.6666666666666666
+      }
+    },
+    {
+      "settings": {
+        "name": "rear-quarter",
+        "start": "PARK",
+        "offset": [
+          4,
+          3,
+          16
+        ],
+        "look": [
+          0,
+          0.1,
+          4
+        ],
+        "fov": 42
+      },
+      "details": {
+        "camera": {
+          "position": [
+            6290.252563012235,
+            25.462658542099025,
+            -5052.032066553589
+          ],
+          "quaternion": [
+            -0.052541744944210184,
+            0.9200912630385136,
+            0.1325020117057985,
+            0.3648488037698994
+          ],
+          "fov": 42
+        },
+        "model": {
+          "modelVersion": 2,
+          "draws": 9,
+          "geometryVertices": 4264,
+          "geometryTriangles": 7968,
+          "atlasWidth": 512,
+          "atlasHeight": 256,
+          "visualOnly": true
+        }
+      },
+      "state": {
+        "running": true,
+        "paused": true,
+        "crashed": false,
+        "simT": 1.831833333333316,
+        "flightT": 1.2333333333333314,
+        "stepCount": 148,
+        "position": [
+          6278.201529986883,
+          21.445236980793048,
+          -5041.094382748477
+        ],
+        "velocity": [
+          -0.3963754164717989,
+          -0.3596428363817595,
+          0.21108146096043778
+        ],
+        "quaternion": [
+          0.016466258721070076,
+          -0.8567267522234334,
+          -0.027436727019275783,
+          -0.5147770006118068
+        ],
+        "fuel": 3267.9734116548593,
+        "stolMode": "CONV",
+        "nozzle": 0,
+        "gearD": 1,
+        "camMode": 2,
+        "frameEMA": 242.57107723281496,
+        "graphicsLevel": 1,
+        "settings": {
+          "fbw": "ASSIST",
+          "fail": "OFF",
+          "sens": 1,
+          "expo": 0.3,
+          "dz": 0.07,
+          "invPitch": false,
+          "coord": true,
+          "hoverAssist": true,
+          "hmds": "FULL",
+          "tOp": 0.85,
+          "tSz": 1,
+          "hand": "R",
+          "rudSlider": false,
+          "gyro": false,
+          "gDz": 0.12,
+          "gThrBtn": true,
+          "quality": "MED",
+          "vapour": "ENHANCED",
+          "volume": 0,
+          "scan": false,
+          "structure": "REAL",
+          "targetMarker": false
+        },
+        "drawingBuffer": [
+          1152,
+          648
+        ],
+        "renderer": {
+          "calls": 465,
+          "triangles": 355472,
+          "textures": 13,
+          "geometries": 554
+        },
+        "replaySeconds": 0.3333333333333333
+      }
+    },
+    {
+      "settings": {
+        "name": "lower-side",
+        "start": "AIR",
+        "offset": [
+          13,
+          -3,
+          1
+        ],
+        "look": [
+          0,
+          -0.1,
+          0
+        ],
+        "fov": 48
+      },
+      "details": {
+        "camera": {
+          "position": [
+            -25.482112966904232,
+            434.6457795389829,
+            -1.1640254208037621
+          ],
+          "quaternion": [
+            -0.022384721272674497,
+            0.9730751154148563,
+            -0.10747950596769307,
+            -0.20266203347161377
+          ],
+          "fov": 48
+        },
+        "model": {
+          "modelVersion": 2,
+          "draws": 9,
+          "geometryVertices": 4264,
+          "geometryTriangles": 7968,
+          "atlasWidth": 512,
+          "atlasHeight": 256,
+          "visualOnly": true
+        }
+      },
+      "state": {
+        "running": true,
+        "paused": true,
+        "crashed": false,
+        "simT": 2.181833333333315,
+        "flightT": 1.5833333333333302,
+        "stepCount": 190,
+        "position": [
+          -20.27825296102331,
+          437.66087350712013,
+          10.787085381230305
+        ],
+        "velocity": [
+          -67.95160937239558,
+          -5.263937823108874,
+          36.158081643690316
+        ],
+        "quaternion": [
+          0.00039325277025145937,
+          -0.8568291282239606,
+          0.0004458484891496832,
+          -0.515600127616694
+        ],
+        "fuel": 3267.8468917057353,
+        "stolMode": "CONV",
+        "nozzle": 0,
+        "gearD": 0,
+        "camMode": 2,
+        "frameEMA": 291.46651179280343,
+        "graphicsLevel": 1,
+        "settings": {
+          "fbw": "ASSIST",
+          "fail": "OFF",
+          "sens": 1,
+          "expo": 0.3,
+          "dz": 0.07,
+          "invPitch": false,
+          "coord": true,
+          "hoverAssist": true,
+          "hmds": "FULL",
+          "tOp": 0.85,
+          "tSz": 1,
+          "hand": "R",
+          "rudSlider": false,
+          "gyro": false,
+          "gDz": 0.12,
+          "gThrBtn": true,
+          "quality": "MED",
+          "vapour": "ENHANCED",
+          "volume": 0,
+          "scan": false,
+          "structure": "REAL",
+          "targetMarker": false
+        },
+        "drawingBuffer": [
+          1152,
+          648
+        ],
+        "renderer": {
+          "calls": 639,
+          "triangles": 358986,
+          "textures": 13,
+          "geometries": 658
+        },
+        "replaySeconds": 0.3333333333333333
+      }
+    },
+    {
+      "settings": {
+        "name": "cockpit",
+        "start": "PARK",
+        "camera": 1
+      },
+      "details": {
+        "camera": {
+          "position": [
+            -8890.518462481587,
+            22.353009588010845,
+            4789.463592238061
+          ],
+          "quaternion": [
+            0.0055788323956620246,
+            -0.8571168886283111,
+            -0.009284933472834097,
+            -0.5150080638860226
+          ],
+          "fov": 65.0315273126218
+        },
+        "model": {
+          "modelVersion": 2,
+          "draws": 9,
+          "geometryVertices": 4264,
+          "geometryTriangles": 7968,
+          "atlasWidth": 512,
+          "atlasHeight": 256,
+          "visualOnly": true
+        }
+      },
+      "state": {
+        "running": true,
+        "paused": true,
+        "crashed": false,
+        "simT": 2.2318333333333147,
+        "flightT": 1.63333333333333,
+        "stepCount": 196,
+        "position": [
+          -8888.592397100796,
+          21.556568002717427,
+          4788.439645385015
+        ],
+        "velocity": [
+          -0.04598309968132498,
+          -0.11743789765784239,
+          0.024483258342398007
+        ],
+        "quaternion": [
+          0.00042855865175466337,
+          -0.8571668809282578,
+          -0.000713443195846562,
+          -0.5150381010915701
+        ],
+        "fuel": 3268.0846875081043,
+        "stolMode": "CONV",
+        "nozzle": 0,
+        "gearD": 1,
+        "camMode": 1,
+        "frameEMA": 264.97890188640355,
+        "graphicsLevel": 1,
+        "settings": {
+          "fbw": "ASSIST",
+          "fail": "OFF",
+          "sens": 1,
+          "expo": 0.3,
+          "dz": 0.07,
+          "invPitch": false,
+          "coord": true,
+          "hoverAssist": true,
+          "hmds": "FULL",
+          "tOp": 0.85,
+          "tSz": 1,
+          "hand": "R",
+          "rudSlider": false,
+          "gyro": false,
+          "gDz": 0.12,
+          "gThrBtn": true,
+          "quality": "MED",
+          "vapour": "ENHANCED",
+          "volume": 0,
+          "scan": false,
+          "structure": "REAL",
+          "targetMarker": false
+        },
+        "drawingBuffer": [
+          1152,
+          648
+        ],
+        "renderer": {
+          "calls": 349,
+          "triangles": 371730,
+          "textures": 15,
+          "geometries": 678
+        },
+        "replaySeconds": 0
+      }
+    }
+  ],
+  "status": "PASS",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+    "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "viewport": [
+      1280,
+      720
+    ],
+    "devicePixelRatio": 1,
+    "drawingBuffer": [
+      1152,
+      648
+    ],
+    "hardware": "Cloud Linux Chromium using SwiftShader software rasterizer; NOT Galaxy A51",
+    "realDevice": false
+  },
+  "errors": [],
+  "warnings": []
+}

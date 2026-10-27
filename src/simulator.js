@@ -3528,6 +3528,7 @@ const REPLAY_HZ=12,REPLAY_MAX=REPLAY_HZ*60;let replayFrames=[],replayAcc=0,repla
 function resetReplay(){replayFrames=[];replayAcc=0;replayActive=false;replayClock=0;replayWall=0;replayRestore=null;}
 function recordReplay(dt){if(replayActive||crashed)return;replayAcc+=dt;if(replayAcc<1/REPLAY_HZ)return;replayAcc%=1/REPLAY_HZ;replayFrames.push({p:[P.pos.x,P.pos.y,P.pos.z],q:[P.quat.x,P.quat.y,P.quat.z,P.quat.w],v:[P.vel.x,P.vel.y,P.vel.z],om:[P.om.x,P.om.y,P.om.z],ias,mach,g:gNz,st:stolMode,n:nozzle,gear:gearD,thr});if(replayFrames.length>REPLAY_MAX)replayFrames.shift();}
 function startReplay(){
+  if(replayActive)return;
   if(replayFrames.length<REPLAY_HZ*2){toast('NOT ENOUGH FLIGHT DATA FOR REPLAY','warn');return;}
   closeTransientMenus();$('pauseOv').classList.remove('on');$('sumOv').classList.remove('on');
   replayRestore={p:P.pos.clone(),q:P.quat.clone(),v:P.vel.clone(),om:P.om.clone(),cam:camMode,paused,ias,mach,gNz,nozzle,gearD,thr};
@@ -3543,7 +3544,8 @@ function stopReplay(){
   }
   replayRestore=null;$('btnReplay').classList.remove('replay-live');
   $('pauseOv').classList.toggle('on',paused);$('pauseOv').setAttribute('aria-hidden',String(!paused));
-  snapCameraToAircraft();toast('REPLAY COMPLETE');
+  updateAttitudeData();updateAcSurfaces(0);snapCameraToAircraft();updateCamera(0);applyVisibility();
+  toast('REPLAY COMPLETE');
 }
 function updateReplay(dt){if(!replayActive)return;replayClock=(performance.now()-replayWall)/1000;const f=replayClock*REPLAY_HZ;if(f>=replayFrames.length-1){stopReplay();return;}const i=Math.floor(f),t=f-i,a=replayFrames[i],b=replayFrames[i+1];P.pos.set(lerp(a.p[0],b.p[0],t),lerp(a.p[1],b.p[1],t),lerp(a.p[2],b.p[2],t));_q1.fromArray(a.q);_q2.fromArray(b.q);P.quat.copy(_q1).slerp(_q2,t);P.vel.set(lerp(a.v[0],b.v[0],t),lerp(a.v[1],b.v[1],t),lerp(a.v[2],b.v[2],t));ias=lerp(a.ias,b.ias,t);mach=lerp(a.mach,b.mach,t);gNz=lerp(a.g,b.g,t);nozzle=lerp(a.n,b.n,t);gearD=lerp(a.gear,b.gear,t);thr=lerp(a.thr,b.thr,t);updateAttitudeData();updateAcSurfaces(dt);updateCamera(dt);drawHMDS();renderer.render(scene,camera);}
 
