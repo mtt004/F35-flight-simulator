@@ -1,0 +1,523 @@
+{
+  "date": "2026-10-27T14:01:52.157Z",
+  "source": "dist/index.html",
+  "sourceSha256": "d4ade981c06f483c2d0a5d529c290c9bae3dc12724ffb03ca7937d245f00f198",
+  "referenceMainCommit": "c53506ad59e7aad46904c3a648b0f06d6015dafd",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+    "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "viewport": [
+      1280,
+      720
+    ],
+    "devicePixelRatio": 1,
+    "drawingBuffer": [
+      1152,
+      648
+    ],
+    "hardware": "Cloud Linux Chromium using SwiftShader software rasterizer; NOT Galaxy A51",
+    "realDevice": false
+  },
+  "checks": [
+    {
+      "name": "normal save → UI respawn → new launch UI Continue restores exact saved state",
+      "status": "PASS",
+      "wallSeconds": 30.234,
+      "details": {
+        "saved": {
+          "seed": 4201,
+          "pos": [
+            15093.733448676769,
+            432.72102724606333,
+            -9790.655221466472
+          ],
+          "vel": [
+            -69.98380289431489,
+            -7.506757608300692,
+            37.220453476870524
+          ],
+          "quat": [
+            0.002765682072633936,
+            -0.8544516520482568,
+            0.0025060789683419267,
+            -0.5195175116229311
+          ],
+          "om": [
+            -0.0007994381703427364,
+            -0.010732543815844736,
+            -0.0061436001043779324
+          ],
+          "fuel": 3267.244924194782,
+          "thr": 0.68,
+          "thrT": 0.68,
+          "N1": 81.69883872892837,
+          "N2": 87.37430129012043,
+          "abSpool": 0,
+          "gearD": 0,
+          "gearT": 0,
+          "parkBrake": false,
+          "stolMode": "CONV",
+          "lfDoor": 0,
+          "lfSpool": 0,
+          "nozzle": 0,
+          "simT": 1.5115666666666754,
+          "flightT": 1.1166666666666651,
+          "camMode": 1,
+          "wxPreset": "cavok",
+          "simHours": 13.221111666666658
+        },
+        "respawned": {
+          "running": true,
+          "paused": true,
+          "crashed": false,
+          "replayActive": false,
+          "simT": 1.778233333333341,
+          "flightT": 1.3833333333333309,
+          "stepCount": 166,
+          "pos": [
+            15152.254911020824,
+            438.08683273496047,
+            -9821.800773138584
+          ],
+          "localPos": [
+            -16.303423369656556,
+            438.08683273496047,
+            8.671554297403974
+          ],
+          "vel": [
+            -67.745559598302,
+            -4.952004524558008,
+            36.04152417210042
+          ],
+          "quat": [
+            0.00024289850703700555,
+            -0.8569727738593853,
+            0.00024656657461667806,
+            -0.5153615673185091
+          ],
+          "om": [
+            0.0021474339537821004,
+            -0.005312136613464042,
+            -0.00448663456304947
+          ],
+          "fuel": 3267.9087279939718,
+          "thr": 0.68,
+          "thrT": 0.68,
+          "N1": 79.34829026273651,
+          "N2": 83.90552712889766,
+          "abSpool": 0,
+          "gearD": 0,
+          "gearT": 0,
+          "parkBrake": false,
+          "stolMode": "CONV",
+          "lfDoor": 0,
+          "lfSpool": 0,
+          "nozzle": 0,
+          "camMode": 1,
+          "ias": 152.27041754047676,
+          "mach": 0.236284440454718,
+          "gNz": 0.5906784557155867,
+          "ralt": 105.66228253758959,
+          "pitchDeg": 0.009868657897271467,
+          "rollDeg": 0.03841434141053147,
+          "hdgDeg": 242.04325885746277,
+          "wheelsOn": false,
+          "landings": 0,
+          "replayFrames": 3,
+          "touchdown": {
+            "sink": 0,
+            "score": 0,
+            "grade": "—"
+          },
+          "seed": 4201,
+          "weather": "cavok"
+        },
+        "restored": {
+          "running": true,
+          "paused": false,
+          "crashed": false,
+          "replayActive": false,
+          "simT": 1.5115666666666754,
+          "flightT": 1.1166666666666651,
+          "stepCount": 0,
+          "pos": [
+            15093.733448676769,
+            432.72102724606333,
+            -9790.655221466472
+          ],
+          "localPos": [
+            15093.733448676769,
+            432.72102724606333,
+            -9790.655221466472
+          ],
+          "vel": [
+            -69.98380289431489,
+            -7.506757608300692,
+            37.220453476870524
+          ],
+          "quat": [
+            0.002765682072633936,
+            -0.8544516520482568,
+            0.0025060789683419267,
+            -0.5195175116229311
+          ],
+          "om": [
+            -0.0007994381703427364,
+            -0.010732543815844736,
+            -0.0061436001043779324
+          ],
+          "fuel": 3267.244924194782,
+          "thr": 0.68,
+          "thrT": 0.68,
+          "N1": 81.69883872892837,
+          "N2": 87.37430129012043,
+          "abSpool": 0,
+          "gearD": 0,
+          "gearT": 0,
+          "parkBrake": false,
+          "stolMode": "CONV",
+          "lfDoor": 0,
+          "lfSpool": 0,
+          "nozzle": 0,
+          "camMode": 1,
+          "ias": 0,
+          "mach": 0,
+          "gNz": 1,
+          "ralt": 0,
+          "pitchDeg": 0.08073012913196914,
+          "rollDeg": 0.41999254227672533,
+          "hdgDeg": 242.60056653187644,
+          "wheelsOn": false,
+          "landings": 0,
+          "replayFrames": 0,
+          "touchdown": {
+            "sink": 0,
+            "score": 0,
+            "grade": "—"
+          },
+          "seed": 4201,
+          "weather": "cavok"
+        },
+        "method": "Saved via actual savePrefs; pause Restart button, separate same-origin page retaining localStorage, actual Continue button click. Captured in same click after restore before physics."
+      }
+    },
+    {
+      "name": "natural replay completion restores paused live flight and every playback-mutated field",
+      "status": "FAIL",
+      "wallSeconds": 13.8,
+      "error": "AssertionError [ERR_ASSERTION]: gearD: 0.7138888888888869 != 0.6800222222222086",
+      "state": {
+        "running": true,
+        "paused": false,
+        "crashed": false,
+        "replayActive": false,
+        "simT": 6.044900000000101,
+        "flightT": 5.6500000000000705,
+        "stepCount": 544,
+        "pos": [
+          14741.696104795443,
+          390.3124016149748,
+          -9605.97564311771
+        ],
+        "localPos": [
+          -348.5340208127317,
+          390.3124016149748,
+          182.81652744589323
+        ],
+        "vel": [
+          -88.54771713669525,
+          -8.675432578221535,
+          45.6716544157128
+        ],
+        "quat": [
+          0.020895427729463574,
+          -0.8514674573917093,
+          0.005969790562533222,
+          -0.523956975049994
+        ],
+        "om": [
+          -0.0054689732789966585,
+          -0.012497237664558894,
+          -0.022126652797885293
+        ],
+        "fuel": 3260.5595608967246,
+        "thr": 1,
+        "thrT": 1,
+        "N1": 94.32999706623802,
+        "N2": 98.63377475085329,
+        "abSpool": 0.9472547658605553,
+        "gearD": 0.6800222222222086,
+        "gearT": 1,
+        "parkBrake": false,
+        "stolMode": "CONV",
+        "lfDoor": 0,
+        "lfSpool": 0,
+        "nozzle": 0,
+        "camMode": 1,
+        "ias": 194.40286487844918,
+        "mach": 0.30081853514966095,
+        "gNz": 1.1469924446539381,
+        "ralt": 93.6246194099935,
+        "pitchDeg": -0.6395873152946401,
+        "rollDeg": 2.2725454832642664,
+        "hdgDeg": 243.12977823925854,
+        "wheelsOn": false,
+        "landings": 0,
+        "replayFrames": 54,
+        "touchdown": {
+          "sink": 0,
+          "score": 0,
+          "grade": "—"
+        },
+        "seed": 4201,
+        "weather": "cavok"
+      }
+    },
+    {
+      "name": "takeoff / complete hover-transition-landing lifecycle",
+      "status": "NOT TESTED",
+      "reason": "Extended automated flight control is opt-in (--extended); basic save/replay tests do not establish a complete flight lifecycle."
+    }
+  ],
+  "status": "FAIL",
+  "limitations": [
+    "Cloud Chromium/SwiftShader functional tests; not Galaxy A51 evidence.",
+    "Normal UI start/scenario selection may position an aircraft at its configured spawn; tests label such starts. No lifecycle is inferred from teleporting aircraft state.",
+    "Replay stop is observed synchronously using a wrapper that calls the original function unchanged, before any later live physics step.",
+    "No Android installation, gyro, battery or thermal claim."
+  ],
+  "runSettings": {
+    "viewport": [
+      640,
+      360
+    ],
+    "profile": "BATTERY",
+    "softwareRenderer": true
+  },
+  "replayEvidence": {
+    "before": {
+      "running": true,
+      "paused": true,
+      "crashed": false,
+      "replayActive": false,
+      "simT": 6.044900000000101,
+      "flightT": 5.6500000000000705,
+      "stepCount": 544,
+      "pos": [
+        14741.696104795443,
+        390.3124016149748,
+        -9605.97564311771
+      ],
+      "localPos": [
+        -348.5340208127317,
+        390.3124016149748,
+        182.81652744589323
+      ],
+      "vel": [
+        -88.54771713669525,
+        -8.675432578221535,
+        45.6716544157128
+      ],
+      "quat": [
+        0.020895427729463574,
+        -0.8514674573917093,
+        0.005969790562533222,
+        -0.523956975049994
+      ],
+      "om": [
+        -0.0054689732789966585,
+        -0.012497237664558894,
+        -0.022126652797885293
+      ],
+      "fuel": 3260.5595608967246,
+      "thr": 1,
+      "thrT": 1,
+      "N1": 94.32999706623802,
+      "N2": 98.63377475085329,
+      "abSpool": 0.9472547658605553,
+      "gearD": 0.7138888888888869,
+      "gearT": 1,
+      "parkBrake": false,
+      "stolMode": "CONV",
+      "lfDoor": 0,
+      "lfSpool": 0,
+      "nozzle": 0,
+      "camMode": 1,
+      "ias": 195.86939505591795,
+      "mach": 0.3030717204335588,
+      "gNz": 1.1558757623883427,
+      "ralt": 93.6246194099935,
+      "pitchDeg": -0.6721204297784301,
+      "rollDeg": 2.3979198596487032,
+      "hdgDeg": 243.19869161076775,
+      "wheelsOn": false,
+      "landings": 0,
+      "replayFrames": 54,
+      "touchdown": {
+        "sink": 0,
+        "score": 0,
+        "grade": "—"
+      },
+      "seed": 4201,
+      "weather": "cavok"
+    },
+    "playback": {
+      "running": true,
+      "paused": false,
+      "crashed": false,
+      "replayActive": true,
+      "simT": 6.044900000000101,
+      "flightT": 5.6500000000000705,
+      "stepCount": 544,
+      "pos": [
+        15076.587651986842,
+        430.8206636895555,
+        -9781.540185124533
+      ],
+      "localPos": [
+        -13.642473621331359,
+        430.8206636895555,
+        7.251985439069931
+      ],
+      "vel": [
+        -70.68290324961956,
+        -8.04626910475863,
+        37.56093773639943
+      ],
+      "quat": [
+        0.003500172187195,
+        -0.8538306961746598,
+        0.0025937723996858524,
+        -0.5205325767032208
+      ],
+      "om": [
+        -0.0054689732789966585,
+        -0.012497237664558894,
+        -0.022126652797885293
+      ],
+      "fuel": 3260.5595608967246,
+      "thr": 0.68,
+      "thrT": 1,
+      "N1": 94.32999706623802,
+      "N2": 98.63377475085329,
+      "abSpool": 0.9472547658605553,
+      "gearD": 0,
+      "gearT": 1,
+      "parkBrake": false,
+      "stolMode": "CONV",
+      "lfDoor": 0,
+      "lfSpool": 0,
+      "nozzle": 0,
+      "camMode": 0,
+      "ias": 158.90151770553817,
+      "mach": 0.24646733964358358,
+      "gNz": 0.7956008574927644,
+      "ralt": 93.6246194099935,
+      "pitchDeg": 0.04499883172848052,
+      "rollDeg": 0.4971843486171,
+      "hdgDeg": 242.7368231180629,
+      "wheelsOn": false,
+      "landings": 0,
+      "replayFrames": 54,
+      "touchdown": {
+        "sink": 0,
+        "score": 0,
+        "grade": "—"
+      },
+      "seed": 4201,
+      "weather": "cavok"
+    },
+    "after": {
+      "running": true,
+      "paused": false,
+      "crashed": false,
+      "replayActive": false,
+      "simT": 6.044900000000101,
+      "flightT": 5.6500000000000705,
+      "stepCount": 544,
+      "pos": [
+        14741.696104795443,
+        390.3124016149748,
+        -9605.97564311771
+      ],
+      "localPos": [
+        -348.5340208127317,
+        390.3124016149748,
+        182.81652744589323
+      ],
+      "vel": [
+        -88.54771713669525,
+        -8.675432578221535,
+        45.6716544157128
+      ],
+      "quat": [
+        0.020895427729463574,
+        -0.8514674573917093,
+        0.005969790562533222,
+        -0.523956975049994
+      ],
+      "om": [
+        -0.0054689732789966585,
+        -0.012497237664558894,
+        -0.022126652797885293
+      ],
+      "fuel": 3260.5595608967246,
+      "thr": 1,
+      "thrT": 1,
+      "N1": 94.32999706623802,
+      "N2": 98.63377475085329,
+      "abSpool": 0.9472547658605553,
+      "gearD": 0.6800222222222086,
+      "gearT": 1,
+      "parkBrake": false,
+      "stolMode": "CONV",
+      "lfDoor": 0,
+      "lfSpool": 0,
+      "nozzle": 0,
+      "camMode": 1,
+      "ias": 194.40286487844918,
+      "mach": 0.30081853514966095,
+      "gNz": 1.1469924446539381,
+      "ralt": 93.6246194099935,
+      "pitchDeg": -0.6395873152946401,
+      "rollDeg": 2.2725454832642664,
+      "hdgDeg": 243.12977823925854,
+      "wheelsOn": false,
+      "landings": 0,
+      "replayFrames": 54,
+      "touchdown": {
+        "sink": 0,
+        "score": 0,
+        "grade": "—"
+      },
+      "seed": 4201,
+      "weather": "cavok"
+    },
+    "changed": {
+      "gearD": {
+        "before": 0.7138888888888869,
+        "after": 0.6800222222222086
+      },
+      "ias": {
+        "before": 195.86939505591795,
+        "after": 194.40286487844918
+      },
+      "mach": {
+        "before": 0.3030717204335588,
+        "after": 0.30081853514966095
+      },
+      "gNz": {
+        "before": 1.1558757623883427,
+        "after": 1.1469924446539381
+      },
+      "paused": {
+        "before": true,
+        "after": false
+      }
+    },
+    "method": "Real recorded frames; UI replay launched from paused menu; natural end observed before next live physics step."
+  },
+  "errors": [],
+  "warnings": []
+}

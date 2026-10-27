@@ -3262,21 +3262,30 @@ function startSortie(){
   toast(`CLEARED — ${a.name} · RWY ${a.num}${parkBrake?' · PARKING BRAKE SET (P)':''}`);
   if(!SAVED.tutorialSeen){SAVED.tutorialSeen=true;showHelp();savePrefs(false);}
 }
+/* Saved-flight input boundary, before any world/flight mutation. Limits are
+   corruption guards, deliberately wider than the simulated aircraft envelope. */
+function validSavedFlight(f){
+  if(!f||typeof f!=='object'||Array.isArray(f)||!Number.isInteger(f.seed)||f.seed<1||f.seed>999999)return false;
+  const vector=(a,n,max)=>Array.isArray(a)&&a.length===n&&Array.from(a).every(v=>Number.isFinite(v)&&Math.abs(v)<=max);
+  if(!vector(f.pos,3,1e12)||f.pos[1]<-12000||f.pos[1]>1e7||!vector(f.vel,3,10000)||!vector(f.om,3,100)||!vector(f.quat,4,1e6))return false;
+  const norm=Math.hypot(...f.quat);return norm>1e-6&&norm<=1e6;
+}
 function savePrefs(withFlight=true){
   const apt=selectedAirport()||airports[0],fuelEl=$('selFuel');
   const payload={seed:SEED,settings:Object.assign({},S),wxPreset,simHours,startType,scenario,tutorialSeen:!!SAVED.tutorialSeen,
     fuelLoad:fuelEl?fuelEl.value:'.55',aptIcao:apt&&apt.icao,flight:SAVED.flight||null};
-  if(withFlight&&running&&!crashed&&[P.pos.x,P.pos.y,P.pos.z,P.vel.x,P.vel.y,P.vel.z].every(Number.isFinite)){
-    payload.flight={seed:SEED,pos:[P.pos.x+OX,P.pos.y,P.pos.z+OZ],vel:P.vel.toArray(),quat:P.quat.toArray(),om:P.om.toArray(),
-      fuel,thr,thrT,N1,N2,abSpool,gearD,gearT,parkBrake,stolMode,lfDoor,lfSpool,nozzle,simT,flightT,camMode,wxPreset,simHours};}
+  if(withFlight&&running&&!crashed&&!replayActive){
+    const candidate={seed:SEED,pos:[P.pos.x+OX,P.pos.y,P.pos.z+OZ],vel:P.vel.toArray(),quat:P.quat.toArray(),om:P.om.toArray(),
+      fuel,thr,thrT,N1,N2,abSpool,gearD,gearT,parkBrake,stolMode,lfDoor,lfSpool,nozzle,simT,flightT,camMode,wxPreset,simHours};
+    if(validSavedFlight(candidate))payload.flight=candidate;}
   SAVED=payload;
   try{localStorage.setItem(SAVE_KEY,JSON.stringify(payload));}catch(e){}
   $('continue').style.display=payload.flight?'block':'none';
 }
 function continueSavedFlight(){
-  const f=SAVED.flight,vecOK=(a,n)=>Array.isArray(a)&&a.length>=n&&a.slice(0,n).every(v=>Number.isFinite(Number(v)));
-  if(!f||!vecOK(f.pos,3)||!vecOK(f.quat,4)){toast('NO VALID SAVED FLIGHT','warn');return;}
-  const finite=(v,d)=>Number.isFinite(Number(v))?Number(v):d;
+  const f=SAVED.flight;
+  if(!validSavedFlight(f)){toast('INVALID SAVED FLIGHT — START NEW OR CLEAR SAVED DATA','warn');return false;}
+  const finite=(v,d)=>Number.isFinite(v)?v:d;
   if(f.seed!==SEED)newWorld(f.seed);
   startSortie();OX=0;OZ=0;worldGroup.position.set(0,0,0);
   P.pos.fromArray(f.pos);P.vel.fromArray(f.vel||[0,0,0]);P.quat.fromArray(f.quat).normalize();P.om.fromArray(f.om||[0,0,0]);
@@ -3286,7 +3295,7 @@ function continueSavedFlight(){
   simT=Math.max(0,finite(f.simT,0));flightT=Math.max(0,finite(f.flightT,0));simHours=finite(f.simHours,simHours);camMode=clamp(f.camMode|0,0,4);
   const sh=surfaceH(P.pos.x,P.pos.z);if(P.pos.y<sh+1.2){P.pos.y=sh+80;P.vel.y=Math.max(0,P.vel.y);}
   crashed=false;paused=false;hovAlt=-1;clearVapour();updateAttitudeData();ensureRegionalFeatures(0,true);applyVisibility();
-  toast('SAVED FLIGHT RESTORED');
+  toast('SAVED FLIGHT RESTORED');return true;
 }
 function syncMenuShade(){
   const open=$('drawer').classList.contains('on')||$('infoPan').classList.contains('on');
@@ -3518,8 +3527,24 @@ function checkTrafficCollision(){if(replayActive)return;const px=P.pos.x+OX,py=P
 const REPLAY_HZ=12,REPLAY_MAX=REPLAY_HZ*60;let replayFrames=[],replayAcc=0,replayActive=false,replayClock=0,replayWall=0,replayRestore=null;
 function resetReplay(){replayFrames=[];replayAcc=0;replayActive=false;replayClock=0;replayWall=0;replayRestore=null;}
 function recordReplay(dt){if(replayActive||crashed)return;replayAcc+=dt;if(replayAcc<1/REPLAY_HZ)return;replayAcc%=1/REPLAY_HZ;replayFrames.push({p:[P.pos.x,P.pos.y,P.pos.z],q:[P.quat.x,P.quat.y,P.quat.z,P.quat.w],v:[P.vel.x,P.vel.y,P.vel.z],om:[P.om.x,P.om.y,P.om.z],ias,mach,g:gNz,st:stolMode,n:nozzle,gear:gearD,thr});if(replayFrames.length>REPLAY_MAX)replayFrames.shift();}
-function startReplay(){if(replayFrames.length<REPLAY_HZ*2){toast('NOT ENOUGH FLIGHT DATA FOR REPLAY','warn');return;}closeTransientMenus();$('pauseOv').classList.remove('on');$('sumOv').classList.remove('on');replayRestore={p:P.pos.clone(),q:P.quat.clone(),v:P.vel.clone(),om:P.om.clone(),cam:camMode,paused};replayActive=true;paused=false;replayClock=0;replayWall=performance.now();camMode=0;document.getElementById('btnReplay').classList.add('replay-live');missionBanner('REPLAY — LAST '+Math.round(replayFrames.length/REPLAY_HZ)+' SECONDS','warn');}
-function stopReplay(){if(!replayActive)return;replayActive=false;if(replayRestore){P.pos.copy(replayRestore.p);P.quat.copy(replayRestore.q);P.vel.copy(replayRestore.v);P.om.copy(replayRestore.om);camMode=replayRestore.cam;paused=false;}replayRestore=null;$('btnReplay').classList.remove('replay-live');snapCameraToAircraft();toast('REPLAY COMPLETE');}
+function startReplay(){
+  if(replayFrames.length<REPLAY_HZ*2){toast('NOT ENOUGH FLIGHT DATA FOR REPLAY','warn');return;}
+  closeTransientMenus();$('pauseOv').classList.remove('on');$('sumOv').classList.remove('on');
+  replayRestore={p:P.pos.clone(),q:P.quat.clone(),v:P.vel.clone(),om:P.om.clone(),cam:camMode,paused,ias,mach,gNz,nozzle,gearD,thr};
+  replayActive=true;paused=false;replayClock=0;replayWall=performance.now();camMode=0;
+  document.getElementById('btnReplay').classList.add('replay-live');missionBanner('REPLAY — LAST '+Math.round(replayFrames.length/REPLAY_HZ)+' SECONDS','warn');
+}
+function stopReplay(){
+  if(!replayActive)return;replayActive=false;
+  if(replayRestore){
+    P.pos.copy(replayRestore.p);P.quat.copy(replayRestore.q);P.vel.copy(replayRestore.v);P.om.copy(replayRestore.om);
+    camMode=replayRestore.cam;paused=replayRestore.paused;
+    ({ias,mach,gNz,nozzle,gearD,thr}=replayRestore);
+  }
+  replayRestore=null;$('btnReplay').classList.remove('replay-live');
+  $('pauseOv').classList.toggle('on',paused);$('pauseOv').setAttribute('aria-hidden',String(!paused));
+  snapCameraToAircraft();toast('REPLAY COMPLETE');
+}
 function updateReplay(dt){if(!replayActive)return;replayClock=(performance.now()-replayWall)/1000;const f=replayClock*REPLAY_HZ;if(f>=replayFrames.length-1){stopReplay();return;}const i=Math.floor(f),t=f-i,a=replayFrames[i],b=replayFrames[i+1];P.pos.set(lerp(a.p[0],b.p[0],t),lerp(a.p[1],b.p[1],t),lerp(a.p[2],b.p[2],t));_q1.fromArray(a.q);_q2.fromArray(b.q);P.quat.copy(_q1).slerp(_q2,t);P.vel.set(lerp(a.v[0],b.v[0],t),lerp(a.v[1],b.v[1],t),lerp(a.v[2],b.v[2],t));ias=lerp(a.ias,b.ias,t);mach=lerp(a.mach,b.mach,t);gNz=lerp(a.g,b.g,t);nozzle=lerp(a.n,b.n,t);gearD=lerp(a.gear,b.gear,t);thr=lerp(a.thr,b.thr,t);updateAttitudeData();updateAcSurfaces(dt);updateCamera(dt);drawHMDS();renderer.render(scene,camera);}
 
 /* Pooled STOVL downwash and touchdown dust/smoke. */
@@ -3626,7 +3651,7 @@ function runValidation(){
   add('Offline package has no external resources',external.length===0,external);
   const passed=tests.filter(t=>t.pass).length;return{passed,total:tests.length,tests};
 }
-window.__F35B_SIM__={version:'0.1.0-experimental',runValidation,get snapshot(){return {running,paused,crashed,simT,flightT,stepCount,position:P.pos.toArray(),velocity:P.vel.toArray(),quaternion:P.quat.toArray(),fuel,stolMode,nozzle,gearD,camMode,profile:L.profile,quality:qlLevel,drawingBuffer:[renderer.domElement.width,renderer.domElement.height],workMs:lastWorkMs,renderer:{...renderer.info.render,...renderer.info.memory}};},get diagnostics(){return SELF_TEST;},
+window.__F35B_SIM__={version:globalThis.__LIGHTNING_BUILD__?.version||'0.1.0-experimental',runValidation,get snapshot(){return {running,paused,crashed,simT,flightT,stepCount,position:P.pos.toArray(),velocity:P.vel.toArray(),quaternion:P.quat.toArray(),fuel,stolMode,nozzle,gearD,camMode,profile:L.profile,quality:qlLevel,drawingBuffer:[renderer.domElement.width,renderer.domElement.height],workMs:lastWorkMs,renderer:{...renderer.info.render,...renderer.info.memory}};},get diagnostics(){return SELF_TEST;},
   get world(){const kinds={};for(const a of airports)kinds[a.kind]=(kinds[a.kind]||0)+1;return{airports:airports.length,cities:cities.length,kinds,regions:featureRegions.size,airportBins:airportBins.size,visualAirports:aptGroups.size};},
   get traffic(){let roadVehicles=0,trainConsists=0,trainCars=0;for(const [,g] of roadGroups){if(!g)continue;const r=g.userData.roadTraffic,t=g.userData.train;if(r)roadVehicles+=r.data.length;if(t){trainConsists+=t.consistCount;trainCars+=t.n;}}const lr=localTrafficHub&&localTrafficHub.userData.localCars,lt=localTrafficHub&&localTrafficHub.userData.train;return{ambientAircraft:ambientAir?ambientAir.mesh.count:0,routeAircraft:civAir.length,totalAircraft:civAir.length+(ambientAir?ambientAir.mesh.count:0),roadVehicles,localRoadVehicles:lr?lr.cars.length:0,trainConsists,trainCars,localTrainConsists:lt?lt.consistCount:0,localTrainCars:lt?lt.n:0};},
   get effects(){return{condWing,vortexStrength,condTrans,contrail,particles:vapourCount,vortexNodes:vortNodeCount,setting:S.vapour,wingSheet:!!(wingVapMesh&&wingVapMesh.visible),transonicShell:!!(transVapMesh&&transVapMesh.visible)};},

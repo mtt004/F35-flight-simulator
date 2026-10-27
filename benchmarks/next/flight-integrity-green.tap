@@ -1,0 +1,30 @@
+✔ replay restores all mutated live state and original pause mode: false (22.681972ms)
+✔ replay restores all mutated live state and original pause mode: true (4.447147ms)
+✔ restore rejects short velocity without changing the flight (20.868658ms)
+✔ restore rejects short angular rate without changing the flight (4.255008ms)
+✔ restore rejects missing velocity without changing the flight (6.612003ms)
+✔ restore rejects numeric-string position without changing the flight (4.261118ms)
+✔ restore rejects null quaternion without changing the flight (5.82776ms)
+✔ restore rejects nonfinite velocity without changing the flight (3.702635ms)
+✔ restore rejects NaN angular rate without changing the flight (6.314064ms)
+✔ restore rejects zero quaternion without changing the flight (4.251534ms)
+✔ restore rejects overflow quaternion without changing the flight (4.60755ms)
+✔ restore rejects invalid seed without changing the flight (4.318173ms)
+✔ restore rejects out of range seed without changing the flight (5.727469ms)
+✔ restore rejects extreme position without changing the flight (3.952943ms)
+✔ restore rejects extreme velocity without changing the flight (4.41523ms)
+✔ restore rejects extreme angular rate without changing the flight (3.997229ms)
+✔ restore rejects extra vector components without changing the flight (6.92761ms)
+✔ valid existing save restores numeric state and normalizes orientation (4.743135ms)
+✔ valid save in another seeded world restores its absolute coordinates (4.17023ms)
+✔ save retains last valid flight when live orientation/rates are invalid: P.quat.set(0,NaN,0,1) (3.959262ms)
+✔ save retains last valid flight when live orientation/rates are invalid: P.om.set(0,Infinity,0) (3.755816ms)
+✔ saving during replay preserves the last live-flight save (4.416942ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 211.598543

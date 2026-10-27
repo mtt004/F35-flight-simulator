@@ -16,8 +16,8 @@ Retain bundled Three.js r128 and original six-DOF physics for this experimental 
 - [x] Improve exterior surface detailing, cockpit, airport and terrain shading without changing physics. Run original validation and screenshot matching scenes.
 - [x] Add persistent camera/control/instrument options, local preset-pack validation and import; label all authored scenery accurately.
 - [x] Build Kotlin Android host/API26+, local assets, fullscreen, lifecycle, origin lockdown, no native bridge. Compile/sign/verify actual APK.
-- [ ] Run regression/offline/context-loss tests, matched cloud benchmarks and independent code review; resolve release-blocking regressions. Browser checks pass; final endurance and Android installation gates pending. Inherited corrupt-save gap tracked separately.
-- [ ] Commit notes/research/source/evidence; create PR, integrate verified work, publish experimental release artifacts and verify checksums.
+- [x] v0.1 regression/offline/context-loss, cloud benchmarks/endurance and independent review completed. Actual API33 emulator installed and ran a live flight; A51 remains untested.
+- [x] v0.1 source/evidence committed, PR1 merged, experimental APK/browser/evidence released and checksums independently verified.
 
 ## Review focus
 
@@ -30,3 +30,13 @@ scripts/build-web.mjs produces dist/index.html, Lightning-F35B.html and browser 
 ## Acceptance honesty
 
 All requested features remain scope, but each incomplete or unavailable gate must be marked in docs/known-issues.md and final audit. No empty placeholder regional packs. No stable v1.0 until APK/offline/playability gates and device benchmarks pass.
+
+## v0.2 continuation — actual work, not full-scope completion
+
+- [ ] Fix issue4 saved-flight corruption and observed replay restoration/save defects; RED/GREEN plus realUI regressions.
+- [ ] Improve adaptive fuselage/intake/exhaust geometry; verify bounds, LOD, draw budget and actual comparison captures.
+- [ ] Centralize version0.2.0-experimental/code2 and bind native XML/APK/source evidence in release checks.
+- [ ] Exercise genuine control-only flight lifecycle; report actual passes/failures without teleporting and claiming a lifecycle.
+- [ ] Obtain independent review, build/test APK/browser, publish new tag without rewriting v0.1, then integrate safe changes.
+
+Starting main c53506ad59e7aad46904c3a648b0f06d6015dafd. Accurate regional geodata, full audio/world reconstruction and physicalA51 qualification remain open.
