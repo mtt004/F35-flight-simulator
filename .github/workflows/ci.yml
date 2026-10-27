@@ -25,6 +25,8 @@ jobs:
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: node scripts/test-browser.mjs dist/index.html
+      - name: Saved flight, repeated replay and malformed-record recovery through actual UI
+        run: node scripts/test-flight-lifecycle.mjs dist/index.html --label=ci-flight-integrity
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:

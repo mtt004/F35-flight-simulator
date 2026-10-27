@@ -62,3 +62,7 @@ Starting mainc53506ad59e7aad46904c3a648b0f06d6015dafd. Created feature/aircraft-
 Source checkpoint4b52187f9008abfeaadf3827068cde0931644f08 passed Android+browserpush/PRCI. Review then reproduced stale derivedattitude/modelpose afterpausedreplay, repeatedReplayoverwritingrestoresnapshot, and nestedemptyXMLsuiteacceptance. AddedactualREDregressions andcorrectedall3;54Node+10JS+13Python checksPASS. Source-reviewreport independent-review-v0.2.md; protected16functions remainbyteidentical.
 
 BuiltnextHTML8529330d53723356463319a96469da80fb9fc87a48ce5449abd1f47b59ed56f4 andcaptured4actualpairs againstv0.1 withsource/cameras/settings. Inspectedfront/rearquarter,underside,cockpit: boundedbody/intake/nozzlerefinement, no newblockingocclusion. Existinggear/terrain/citiesremainstylized. FreshactualUIderived/replay/corruptsave andcontrol-onlyflightQA pending; nofull-lifecycle/A51claim.
+
+## Fresh realUI integrity gate
+
+CorrectednextHTML8529330…passed6actualUIchecks: normalroundtrip, replayview/derivedstate, autosavereplayisolation,3corruptrecordrejections+recovery. Originalhandlercapture requiredDOMcapturelisteners innewharness; itsinitialinstrumentationFAIL isretained, then6GREEN withzeroerrors. Addednewchecks tobrowserCI/release mandatorygates. No claim ofcomplete safeSTOVLconversion followsfromaV-only mode-transitiontrace; realcontrol-onlyflightoutcomes recordedseparately. Nextproductsourcecheckpoint998f7be04faf046a71b2603a5af5748c5391017b containsreviewfixes+actualgeometrycaptures.
