@@ -54,8 +54,14 @@ jobs:
           api-level: 33
           arch: x86_64
           profile: pixel_2
+          disk-size: 2048M
+          ram-size: 2048M
+          heap-size: 256M
           disable-animations: true
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back none
+          pre-emulator-launch-script: |
+            df -h "$ANDROID_AVD_HOME"
+            grep -E '^(disk.dataPartition.size|hw.ramSize|hw.cpu.ncore)=' "$ANDROID_AVD_HOME/test.avd/config.ini"
           script: cd android && bash ./gradlew --no-daemon connectedDebugAndroidTest
       - name: Record genuine emulator installation and launch evidence
         run: |

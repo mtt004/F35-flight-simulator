@@ -1494,8 +1494,8 @@ function buildCockpit(){
   const glass=new THREE.Mesh(new THREE.SphereGeometry(0.62,12,8),new THREE.MeshPhongMaterial({color:0x88aabb,transparent:true,opacity:0.08,shininess:120,specular:0xffffff,side:THREE.DoubleSide,depthWrite:false}));
   glass.scale.set(0.9,0.75,2.6);glass.position.set(0,0.68,-3.2);cockpitGrp.add(glass);AC_SURF.cockpitGlass=glass;
   /* instrument panel / coaming */
-  const panel=new THREE.Mesh(new THREE.BoxGeometry(1.1,0.25,0.9),frame);panel.position.set(0,0.42,-3.9);panel.rotation.x=-0.3;cockpitGrp.add(panel);
-  const coam=new THREE.Mesh(new THREE.BoxGeometry(1.0,0.12,1.6),frame);coam.position.set(0,0.35,-2.8);cockpitGrp.add(coam);
+  const panel=new THREE.Mesh(new THREE.BoxGeometry(1.1,0.52,0.12),frame);panel.position.set(0,0.45,-3.87);panel.rotation.x=-0.3;cockpitGrp.add(panel);
+  const coam=new THREE.Mesh(new THREE.BoxGeometry(1.0,0.08,1.2),frame);coam.position.set(0,0.10,-2.8);cockpitGrp.add(coam);
   const consoleMat=new THREE.MeshLambertMaterial({color:0x171c20}),padMat=new THREE.MeshBasicMaterial({color:0x20333a});
   for(const side of[-1,1]){const con=new THREE.Mesh(new THREE.BoxGeometry(.48,.28,1.85),consoleMat);con.position.set(side*.67,.16,-2.86);con.rotation.z=-side*.09;con.rotation.x=-.12;cockpitGrp.add(con);
     for(let i=0;i<4;i++){const pad=new THREE.Mesh(new THREE.BoxGeometry(.16,.012,.22),padMat);pad.position.set(side*(.57+(i%2)*.17),.315,-3.40+Math.floor(i/2)*.34);pad.rotation.x=-.12;cockpitGrp.add(pad);}}

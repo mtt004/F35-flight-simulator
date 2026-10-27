@@ -19,7 +19,8 @@ const scenarios = [
   { name: 'stovl-hover', start: 'HOVER', scenarioName: 'HOVER PRACTICE', camera: 0 },
   { name: 'night-approach', start: 'AIR', hour: 23.3, scenarioName: 'NIGHT LANDING', camera: 1 },
 ];
-if (args.includes('--sustained')) scenarios.splice(0, scenarios.length, { name: 'sustained-flight', start: 'AIR', camera: 0, altitude: 5000 });
+const sustained=args.includes('--sustained');
+if (sustained) scenarios.splice(0, scenarios.length, { name: 'sustained-flight', start: 'AIR', camera: 0, altitude: 5000 });
 const sourceSha256=createHash('sha256').update(await readFile(file)).digest('hex');
 const report = { sourceSha256, host:{cpu:os.cpus()[0]?.model,logicalCpuCount:os.cpus().length,platform:os.platform(),arch:os.arch()}, date: new Date().toISOString(), source: path.relative(repositoryRoot, file), status: 'NOT TESTED', secondsPerScenario: seconds,
   methodology: '1280×720 CSS viewport, DPR 1, fixed seed 4201, MED baseline/default final. Frame durations are intervals between actual renderer.render calls after 3s warm-up. CPU render submission duration is synchronous JS wall time, not GPU execution time. 1% low = 1000 / mean slowest ceil(1%) frame intervals. Browser heap is not Android PSS.',
@@ -32,7 +33,7 @@ try {
   const { page } = session;
   await startFlight(page, { start: 'PARK' });
   await mkdir(shotDir, { recursive: true }); await mkdir(outDir, { recursive: true });
-  const visualScenes = [
+  const visualScenes = sustained ? [] : [
     { name: 'parked', start: 'PARK', camera: 2 },
     { name: 'cockpit', start: 'PARK', camera: 1 },
     { name: 'chase', start: 'AIR', camera: 0 },
@@ -44,7 +45,7 @@ try {
   for (const scene of visualScenes) {
     await captureScene(page, scene); await page.screenshot({ path: path.join(shotDir, scene.name + '.png') });
   }
-  await writeFile(path.join(shotDir, 'capture-settings.json'), JSON.stringify({ sourceSha256, environment: report.environment, seed: 4201, scenes: visualScenes, note: 'Actual simulator captures, 1.5 seconds after respawn. Aircraft is not frozen; compare silhouette/materials rather than exact pixel positions.' }, null, 2) + '\n');
+  if(!sustained)await writeFile(path.join(shotDir, 'capture-settings.json'), JSON.stringify({ sourceSha256, environment: report.environment, seed: 4201, scenes: visualScenes, note: 'Actual simulator captures, 1.5 seconds after respawn. Aircraft is not frozen; compare silhouette/materials rather than exact pixel positions.' }, null, 2) + '\n');
   await page.evaluate(() => {
     const original = renderer.render.bind(renderer);
     window.__benchmark = { active: false, previous: null, intervals: [], submissions: [], frames: 0 };
@@ -81,7 +82,7 @@ try {
 } catch (error) { report.status = 'BLOCKED'; report.blocker = String(error); process.exitCode = 1; }
 finally {
   if (session) await session.close();
-  await mkdir(outDir, { recursive: true }); await writeFile(path.join(outDir, 'benchmark-report.json'), JSON.stringify(report, null, 2) + '\n');
+  await mkdir(outDir, { recursive: true }); await writeFile(path.join(outDir, sustained?'sustained-report.json':'benchmark-report.json'), JSON.stringify(report, null, 2) + '\n');
 }
-console.log(JSON.stringify({ report: path.relative(repositoryRoot, path.join(outDir, 'benchmark-report.json')), status: report.status, scenarios: report.scenarios.length, blocker: report.blocker }, null, 2));
+console.log(JSON.stringify({ report: path.relative(repositoryRoot, path.join(outDir, sustained?'sustained-report.json':'benchmark-report.json')), status: report.status, scenarios: report.scenarios.length, blocker: report.blocker }, null, 2));
 if (!['MEASURED'].includes(report.status)) process.exitCode = 1;

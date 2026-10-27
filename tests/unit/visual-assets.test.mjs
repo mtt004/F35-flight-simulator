@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { repositoryRoot } from '../helpers/source.mjs';
+import { repositoryRoot, extractFunction } from '../helpers/source.mjs';
 
 async function visualEnvironment() {
   // Only 2D paint methods are stubbed: geometry, transforms, materials, textures
@@ -17,7 +17,7 @@ async function visualEnvironment() {
   for (const file of ['src/vendor/three-r128.min.js', 'src/aircraft/detail.js', 'src/cockpit/detail.js','src/terrain/scenery.js']) {
     vm.runInContext(await readFile(path.join(repositoryRoot, file), 'utf8'), context, { filename: file, timeout: 3000 });
   }
-  return { T: context.THREE, visual: context.LightningVisuals, scenery:context.LightningScenery };
+  return { T: context.THREE, visual: context.LightningVisuals, scenery:context.LightningScenery, context };
 }
 
 test('authored visual geometry stays finite, indexed correctly and within a small draw/atlas budget', async () => {
@@ -72,4 +72,12 @@ test('terrain and airport materials initialise on the pinned Three version',asyn
  scenery.init(T,material);scenery.setPalette(T,material,'HAMPSHIRE');assert.equal(material.uniforms.uPalette.value,1);
  const group=new T.Group();const airport={elev:20,rwyW:40,rwyLen:2000,size:'M',nHangars:3,num:'36',numB:'18'};scenery.enhanceAirport(T,airport,group);assert.equal(group.children.length,3);
  assert.ok(group.children.some(o=>o.material.userData.ownedTextures?.length===1));
+});
+
+test('cockpit display centre is unobstructed from the pilot eye',async()=>{
+ const {T,context}=await visualEnvironment();const source=await readFile('src/simulator.js','utf8');
+ vm.runInContext('let cockpitGrp,pcdCanvas,pcdTex;const AC_SURF={};const scene=new THREE.Scene();'+extractFunction(source,'buildCockpit')+';buildCockpit();this.cockpit=cockpitGrp;this.display=cockpitGrp.children.find(o=>o.material?.map===pcdTex);',context);
+ context.cockpit.updateMatrixWorld(true);const eye=new T.Vector3(0,.8,-2.18),target=context.display.getWorldPosition(new T.Vector3());
+ const hits=new T.Raycaster(eye,target.clone().sub(eye).normalize()).intersectObjects(context.cockpit.children,true).filter(h=>!h.object.material.transparent||h.object.material.opacity>.3);
+ assert.ok(hits.length);assert.ok(hits[0].object===context.display,'Opaque cockpit geometry blocks the flight display');
 });
