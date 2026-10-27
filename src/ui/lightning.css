@@ -1,0 +1,16 @@
+/* Project Lightning — readable touch-first controls and restrained glass panels. */
+:root{--bg:#101d2b;--ink:#edf2f5;--grn:#c3e7d3;--cyn:#9cceee;--line:#30485e}
+#boot{background:linear-gradient(90deg,rgba(8,18,30,.95),rgba(8,18,30,.58))}
+.pan{border-radius:10px;background:linear-gradient(145deg,rgba(27,45,62,.97),rgba(12,26,39,.97));box-shadow:0 12px 32px #0003}
+.chip,.schip,.stgl,.obtn,.menu-close,.tbtn{border-radius:6px}
+#start{border-radius:8px;background:linear-gradient(160deg,#b7dce8,#83c4d8);color:#11212e;box-shadow:none}
+#boot h1{letter-spacing:-.035em;text-shadow:none}#boot h1 .hollow{-webkit-text-stroke:0;color:#b9cedc}
+.tagline{line-height:1.6;font-size:14px}.tag{border-radius:4px}
+#lightningPanel{border-top:1px solid #30485e;margin-top:16px;padding-top:4px}
+#lightningPanel label{display:block;font:11px var(--mono);color:#b7cbd8;margin:10px 0 5px}
+#lightningPanel select,#lightningPanel input[type=file]{width:100%;padding:8px;background:#122333;color:#d7e8f2;border:1px solid #3c5d75;border-radius:5px;font:11px var(--mono)}
+#lightningPanel input[type=range]{width:100%;accent-color:#a7cfdc}
+#lightningMeter{display:none;position:fixed;top:58px;right:12px;z-index:22;pointer-events:none;background:#0b1a27de;color:#cee1eb;font:10px/1.5 var(--mono);padding:8px;border:1px solid #41627a;border-radius:6px;white-space:pre}
+#lightningError{display:none;position:fixed;inset:0;z-index:60;background:#0b1729ee;color:#fff;text-align:center;padding:20vh 8vw;font:16px/1.7 system-ui}#lightningError button{display:block;margin:20px auto;padding:14px 24px}
+#tstick{border-color:#b3d8e077;background:radial-gradient(circle,#95b5bd1a,#11243166);box-shadow:inset 0 0 20px #a3cee011}#tknob{border-color:#bddde6;background:#bbd5de25}
+@media(orientation:landscape) and (max-height:500px){.bwrap{grid-template-columns:minmax(280px,1fr) minmax(300px,1fr);gap:14px;padding:18px 22px}.bwrap h1{font-size:32px}.pan{padding:12px}#boot .tags{display:none}.tagline{font-size:12px}#log{font-size:10px;min-height:unset}.eyebrow{font-size:9px}#boot .statusbar{font-size:8px}#tstick{width:138px;height:138px}#tknob{width:48px;height:48px;margin:-24px}#tthr{width:48px}#tbtns{bottom:65px;grid-template-columns:repeat(2,54px);gap:5px}.tbtn{height:38px}.ped{width:68px;height:44px}#missionBox{max-width:34vw}}

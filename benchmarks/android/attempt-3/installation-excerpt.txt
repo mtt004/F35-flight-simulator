@@ -1,0 +1,4 @@
+INFO: Installing [/home/runner/work/F35-flight-simulator/F35-flight-simulator/android/app/build/outputs/apk/debug/app-debug.apk] on device emulator-5554.
+INFO: Installing [/home/runner/work/F35-flight-simulator/F35-flight-simulator/android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk] on device emulator-5554.
+Message: Exception thrown during onAfterAll invocation of plugin AndroidTestApkInstallerPlugin: device 'emulator-5554' not found
+Caused by: com.android.ddmlib.AdbCommandRejectedException: device 'emulator-5554' not found

@@ -1,0 +1,211 @@
+{
+  "name": "airport-approach",
+  "settings": {
+    "name": "airport-approach",
+    "start": "AIR",
+    "scenarioName": "ILS APPROACH",
+    "camera": 1
+  },
+  "status": "MEASURED",
+  "frames": 23,
+  "meanFps": 2.2152408570968367,
+  "medianFps": 2.1953896816684964,
+  "onePercentLowFps": 0.9707795359674037,
+  "frameMs": {
+    "p50": 455.5,
+    "p95": 852.1000000000931,
+    "p99": 1030.0999999999767
+  },
+  "renderSubmissionMs": {
+    "mean": 6.417391304341752
+  },
+  "stuttersOver100ms": 20,
+  "heapBytes": 39600000,
+  "before": {
+    "running": true,
+    "paused": false,
+    "crashed": false,
+    "simT": 14.734566666666439,
+    "flightT": 13.816666666666523,
+    "stepCount": 1658,
+    "position": [
+      -23.600643006911053,
+      437.4166756173704,
+      12.555317278686125
+    ],
+    "velocity": [
+      -67.67646520124136,
+      -5.301218625181684,
+      36.016801986605905
+    ],
+    "quaternion": [
+      -0.002768822261184436,
+      -0.8567216244489211,
+      0.005454227279865316,
+      -0.5157428072495704
+    ],
+    "fuel": 3267.860593818275,
+    "stolMode": "CONV",
+    "nozzle": 0,
+    "gearD": 1,
+    "camMode": 1,
+    "frameEMA": 49.975003736534745,
+    "graphicsLevel": 0,
+    "settings": {
+      "fbw": "ASSIST",
+      "fail": "OFF",
+      "sens": 1,
+      "expo": 0.3,
+      "dz": 0.07,
+      "invPitch": false,
+      "coord": true,
+      "hoverAssist": true,
+      "hmds": "FULL",
+      "tOp": 0.85,
+      "tSz": 1,
+      "hand": "R",
+      "rudSlider": false,
+      "gyro": false,
+      "gDz": 0.12,
+      "gThrBtn": true,
+      "quality": "MED",
+      "vapour": "ENHANCED",
+      "volume": 0,
+      "scan": false,
+      "structure": "REAL",
+      "targetMarker": false
+    },
+    "drawingBuffer": [
+      1280,
+      720
+    ],
+    "renderer": {
+      "calls": 441,
+      "triangles": 365188,
+      "textures": 7,
+      "geometries": 561
+    },
+    "replaySeconds": 0.3333333333333333
+  },
+  "after": {
+    "running": true,
+    "paused": false,
+    "crashed": false,
+    "simT": 15.884566666666373,
+    "flightT": 14.966666666666457,
+    "stepCount": 1796,
+    "position": [
+      -102.18808366499427,
+      430.4448740005635,
+      54.418681685911594
+    ],
+    "velocity": [
+      -68.79555002520897,
+      -5.9282162336085475,
+      36.68628345496602
+    ],
+    "quaternion": [
+      -0.02785368366834126,
+      -0.8521589151746181,
+      0.030148783369636504,
+      -0.5216707835942633
+    ],
+    "fuel": 3267.153979611788,
+    "stolMode": "CONV",
+    "nozzle": 0,
+    "gearD": 1,
+    "camMode": 1,
+    "frameEMA": 49.99231722675649,
+    "graphicsLevel": 0,
+    "settings": {
+      "fbw": "ASSIST",
+      "fail": "OFF",
+      "sens": 1,
+      "expo": 0.3,
+      "dz": 0.07,
+      "invPitch": false,
+      "coord": true,
+      "hoverAssist": true,
+      "hmds": "FULL",
+      "tOp": 0.85,
+      "tSz": 1,
+      "hand": "R",
+      "rudSlider": false,
+      "gyro": false,
+      "gDz": 0.12,
+      "gThrBtn": true,
+      "quality": "MED",
+      "vapour": "ENHANCED",
+      "volume": 0,
+      "scan": false,
+      "structure": "REAL",
+      "targetMarker": false
+    },
+    "drawingBuffer": [
+      1280,
+      720
+    ],
+    "renderer": {
+      "calls": 441,
+      "triangles": 365188,
+      "textures": 7,
+      "geometries": 561
+    },
+    "replaySeconds": 1.5
+  },
+  "samples": {
+    "active": false,
+    "previous": 168759.59999999998,
+    "intervals": [
+      453.5999999999767,
+      594.8000000000466,
+      513.7999999999302,
+      455.5,
+      577.6000000000931,
+      1030.0999999999767,
+      507.79999999993015,
+      500.70000000006985,
+      515.4000000000233,
+      521.1999999999534,
+      448.30000000004657,
+      74.79999999993015,
+      518.4000000000233,
+      165.80000000004657,
+      197.19999999995343,
+      103.69999999995343,
+      852.1000000000931,
+      445.39999999990687,
+      441.5,
+      513.3000000000466,
+      441.69999999995343,
+      58.5
+    ],
+    "submissions": [
+      3.099999999976717,
+      7.900000000023283,
+      6.5,
+      9.20000000006985,
+      6.400000000023283,
+      5.099999999976717,
+      7.299999999930151,
+      7.5,
+      8,
+      8.399999999906868,
+      8.699999999953434,
+      7.299999999930151,
+      6.099999999976717,
+      3.099999999976717,
+      3.699999999953434,
+      8.199999999953434,
+      6.400000000023283,
+      3.699999999953434,
+      5.800000000046566,
+      6.100000000093132,
+      7.699999999953434,
+      7.700000000069849,
+      3.700000000069849
+    ],
+    "frames": 23,
+    "heapBytes": 39600000
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "id": "cappadocia-inspired",
+  "name": "Cappadocia inspired appearance",
+  "palette": [
+    "#aa896b",
+    "#ceb28a",
+    "#96725c"
+  ],
+  "referenceOnly": true,
+  "licence": "Project authored",
+  "description": "Stylized terrain colours. Contains no elevation, roads, airport geodata or geographic accuracy."
+}

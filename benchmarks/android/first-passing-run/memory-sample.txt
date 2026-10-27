@@ -1,0 +1,1 @@
+10-27 13:09:39.515  2392  2407 I LightningQA: {"metric":"instrumented_target_process_pss","pssKB":98699,"deviceModel":"Android SDK built for x86_64","androidApi":33,"peakMeasurement":false,"scope":"One active-flight snapshot; includes instrumentation, excludes separate WebView renderer processes; CI emulator result is not Galaxy A51 evidence"}

@@ -1,0 +1,8 @@
+{
+  "sourceCommit": "dd433f611b3911f49a914d65024c0e5cbe63269f",
+  "workflowRun": "40508826040",
+  "androidVersion": "0.1.0-experimental",
+  "signing": "debug; ephemeral CI key",
+  "galaxyA51": "NOT TESTED",
+  "installation": "PASS: Android API 33 emulator installed APK and launched actual bundled flight; see android-installation.json"
+}

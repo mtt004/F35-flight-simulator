@@ -1,0 +1,6 @@
+10-27 05:12:16.684  2402  2402 D LifecycleMonitor: Lifecycle status change: com.mtt004.lightning.MainActivity@212404c in: PRE_ON_CREATE
+10-27 05:12:18.697  2402  2402 D LifecycleMonitor: Lifecycle status change: com.mtt004.lightning.MainActivity@212404c in: CREATED
+10-27 05:12:18.699  2402  2402 D LifecycleMonitor: Lifecycle status change: com.mtt004.lightning.MainActivity@212404c in: STARTED
+10-27 05:12:18.702  2402  2402 D LifecycleMonitor: Lifecycle status change: com.mtt004.lightning.MainActivity@212404c in: RESUMED
+10-27 05:12:19.567   560   586 I ActivityTaskManager: Displayed com.mtt004.lightning/.MainActivity: +3s48ms
+10-27 05:12:23.098  2402  2402 I chromium: [INFO:CONSOLE(4385)] "[F35B] self-test 36/36 passed", source: https://appassets.androidplatform.net/assets/www/index.html (4385)

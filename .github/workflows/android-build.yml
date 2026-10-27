@@ -1,0 +1,104 @@
+name: Android Build
+on:
+  push:
+    branches: [main, 'feature/**', 'fix/**']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  android:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22.16.0'
+      - run: npm ci
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with:
+          distribution: temurin
+          java-version: '17.0.15+6'
+      - name: Provision pinned Android command-line tools and SDK
+        uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407
+        with:
+          cmdline-tools-version: '12266719'
+          packages: 'platform-tools platforms;android-35 build-tools;35.0.0'
+          log-accepted-android-sdk-licenses: 'false'
+      - run: npm test
+      - run: bash scripts/build-android.sh
+      - name: Compile the test APK before starting the memory-intensive emulator
+        run: |
+          cd android
+          bash ./gradlew --no-daemon --max-workers=2 assembleDebugAndroidTest
+      - name: Reclaim only unused SDK-managed NDK packages on the disposable runner
+        if: runner.environment == 'github-hosted'
+        run: |
+          df -h "$ANDROID_HOME"
+          python3 - <<'PYTHON'
+          from pathlib import Path
+          import json, os, re, shutil, subprocess
+          sdk = Path(os.environ['ANDROID_HOME']).resolve()
+          before = shutil.disk_usage(sdk)
+          listing = subprocess.run(['sdkmanager', '--list_installed'], check=True, capture_output=True, text=True).stdout
+          packages = sorted({line.split('|', 1)[0].strip() for line in listing.splitlines()
+                             if re.fullmatch(r'ndk;[0-9]+(?:\.[0-9]+)+', line.split('|', 1)[0].strip())})
+          for package in packages:
+              print('Uninstalling unused SDK package:', package, flush=True)
+              subprocess.run(['sdkmanager', '--uninstall', package], check=True)
+          after = shutil.disk_usage(sdk)
+          result = {'runner': 'GitHub-hosted disposable ubuntu-24.04', 'sdk': str(sdk),
+                    'removedSdkPackages': packages, 'freeBytesBefore': before.free,
+                    'freeBytesAfter': after.free, 'reclaimedBytes': after.free - before.free,
+                    'scope': 'SDK-managed ndk packages only; app has no native C++ build'}
+          Path('dist/runner-storage.json').write_text(json.dumps(result, indent=2) + '\n')
+          print(json.dumps(result, indent=2))
+          PYTHON
+          df -h "$ANDROID_HOME"
+      - name: Permit hardware acceleration for the isolated emulator runner
+        run: if [ -e /dev/kvm ]; then sudo chmod a+rw /dev/kvm; fi
+      - name: Install and launch the actual game on an Android API 33 emulator
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
+        with:
+          api-level: 33
+          arch: x86_64
+          profile: pixel_2
+          disk-size: 2048M
+          ram-size: 2048M
+          heap-size: 256M
+          disable-animations: true
+          emulator-options: -no-window -gpu lavapipe -no-snapshot -noaudio -no-boot-anim -camera-back none
+          pre-emulator-launch-script: |
+            df -h "$ANDROID_AVD_HOME"
+            grep -E '^(disk.dataPartition.size|hw.ramSize|hw.cpu.ncore)=' "$ANDROID_AVD_HOME/test.avd/config.ini"
+          script: bash android/run-instrumentation.sh
+      - name: Record genuine emulator installation and launch evidence
+        run: |
+          python3 - <<'PYTHON'
+          from pathlib import Path
+          import json, xml.etree.ElementTree as ET
+          reports = list(Path('android/app/build/outputs/androidTest-results/connected').rglob('TEST-*.xml'))
+          assert reports, 'Instrumentation XML results are missing'
+          cases = [case for report in reports for case in ET.parse(report).iter('testcase')]
+          assert cases, 'No Android instrumentation tests ran'
+          failures = [case.attrib for case in cases if any(case.find(kind) is not None for kind in ['failure', 'error', 'skipped'])]
+          assert not failures, failures
+          result = {'status': 'PASS', 'environment': 'GitHub Actions Android API 33 x86_64 emulator, software GPU', 'actualInstallationAndLaunch': True, 'tests': len(cases), 'reports': [str(p) for p in reports], 'galaxyA51': 'NOT TESTED'}
+          Path('dist/android-installation.json').write_text(json.dumps(result, indent=2) + '\n')
+          PYTHON
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: lightning-android-${{ github.sha }}
+          if-no-files-found: warn
+          retention-days: 30
+          path: |
+            dist/
+            android/app/build/reports/
+            android/app/build/outputs/androidTest-results/

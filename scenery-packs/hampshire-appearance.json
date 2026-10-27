@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "id": "hampshire-inspired",
+  "name": "Hampshire inspired appearance",
+  "palette": [
+    "#6b7a4a",
+    "#a0a071",
+    "#485f42"
+  ],
+  "referenceOnly": true,
+  "licence": "Project authored",
+  "description": "Stylized terrain colours. Contains no elevation, roads, airport geodata or geographic accuracy."
+}

@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "files": {
+    "Lightning-F35B-Android.apk": {
+      "bytes": 1593761,
+      "sha256": "c8d2f351327ead8179105f36ae51c3996cc7bd1a8b43a41d4ab290eecc26e453"
+    },
+    "Lightning-F35B-Web.zip": {
+      "bytes": 980572,
+      "sha256": "ce6a4d2a6b4bd5a922be18029daeaff9d5afbe0b3635509b5eaa3574a9f4d4a8"
+    },
+    "Lightning-F35B-Evidence.zip": {
+      "bytes": 6076943,
+      "sha256": "6784824f616c140d7a5e5a5d14c6858caf4e65036a7290743a4f06d709fd8f3b"
+    },
+    "android-verification.json": {
+      "bytes": 6920,
+      "sha256": "782b2f3f6967234c99c72c8444078f035f5e86ce29a1b7abe79e706c2231f510"
+    },
+    "android-installation.json": {
+      "bytes": 307,
+      "sha256": "f1116cb529a508cf98f69930bd02384cb50cb983fe537d90e1e8b74a36a185d7"
+    },
+    "build-manifest.json": {
+      "bytes": 339,
+      "sha256": "eb1179282199dced6b4b8c814b686a3d0cab992ab8b40bbb5f5538842566290b"
+    }
+  },
+  "sourceCommit": "dd433f611b3911f49a914d65024c0e5cbe63269f",
+  "browserHtmlSha256": "d4ade981c06f483c2d0a5d529c290c9bae3dc12724ffb03ca7937d245f00f198",
+  "githubAssetDigestsMatch": true,
+  "signatureVerification": "CI apksigner record; not independently rerun without Android SDK",
+  "installation": {
+    "status": "PASS",
+    "environment": "GitHub Actions Android API 33 x86_64 emulator, software GPU",
+    "actualInstallationAndLaunch": true,
+    "tests": 1,
+    "reports": [
+      "android/app/build/outputs/androidTest-results/connected/debug/TEST-emulator-5554 - 13-_app-.xml"
+    ],
+    "galaxyA51": "NOT TESTED"
+  },
+  "galaxyA51": "NOT TESTED"
+}

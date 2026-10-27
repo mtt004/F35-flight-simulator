@@ -1,0 +1,13 @@
+{
+  "runner": "GitHub-hosted disposable ubuntu-24.04",
+  "sdk": "/usr/local/lib/android/sdk",
+  "removedSdkPackages": [
+    "ndk;27.3.13750724",
+    "ndk;29.0.14206865",
+    "ndk;30.0.16248370"
+  ],
+  "freeBytesBefore": 10044186624,
+  "freeBytesAfter": 17012506624,
+  "reclaimedBytes": 6968320000,
+  "scope": "SDK-managed ndk packages only; app has no native C++ build"
+}

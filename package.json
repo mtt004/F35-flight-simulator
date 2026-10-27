@@ -1,0 +1,18 @@
+{
+  "name": "lightning-f35b",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build-web.mjs",
+    "test": "node --test tests/unit/*.test.mjs",
+    "test:browser": "node scripts/test-browser.mjs",
+    "benchmark": "node scripts/run-benchmarks.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

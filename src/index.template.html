@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; media-src data: blob:; font-src data:; connect-src 'none'; worker-src blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<!-- Bundled Three.js r128: MIT. Copyright 2010-2021 Three.js Authors. Full notice follows in embedded vendor source/repository LICENSES.md. -->
+<title>Project Lightning — F-35B</title>
+<!-- LIGHTNING_STYLES -->
+</head>
+<body>
+<canvas id="hud"></canvas><canvas id="canopyRain"></canvas><div id="missionBox"><div id="missionTitle">FREE FLIGHT</div><div id="missionMeta"><span id="missionPhase">OPERATION</span><span id="missionScore">100</span></div><div id="missionObjective">No active objective</div><div id="missionProgress"><i></i></div><div id="missionSub"></div></div><div id="missionBanner"></div><div id="trafficCue"></div><div id="targetMarker"><i class="ret"></i><i class="dot"></i><span class="lab">TARGET</span></div>
+<div id="vig"></div>
+<div id="toast"></div><div id="dbg"></div>
+<button id="btnFull" aria-label="Enter fullscreen" title="Fullscreen (F)">⛶</button><button id="btnHelp" aria-label="Open flight guide" aria-expanded="false">?</button><button id="btnInfo" aria-label="Open navigation panel" aria-expanded="false">▤</button><button id="btnSet" aria-label="Open settings" aria-expanded="false">⚙</button>
+<div id="menuShade" aria-hidden="true"></div>
+<div id="infoPan" role="dialog" aria-label="Navigation and aircraft information" aria-hidden="true"><div class="info-head"><span>NAV COMPUTER</span><button class="menu-close" id="btnInfoClose" aria-label="Close navigation panel">CLOSE</button></div><div id="infoBody"></div></div>
+
+<div id="touchui">
+  <div id="tstick" class="r"><div id="tknob"></div></div>
+  <div id="tpedals"><div class="ped" id="rudL">◀ RUD</div><div class="ped" id="rudR">RUD ▶</div></div>
+  <div id="trud"><div id="trudk"></div></div>
+  <div id="tthr" class="l"><span id="tthrpct">20%</span><div id="tthrfill"></div><i class="mil"></i><i class="ab"></i></div>
+  <div id="tbtns" class="r">
+    <div class="tbtn" id="tbGear">GEAR</div><div class="tbtn" id="tbPark">PARK</div>
+    <div class="tbtn" id="tbBrake">BRAKE</div><div class="tbtn" id="tbLights">LIGHTS</div>
+    <div class="tbtn" id="tbStol">STOVL</div><div class="tbtn" id="tbAp">AP</div>
+    <div class="tbtn" id="tbCam">CAM</div><div class="tbtn" id="tbHmds">HMDS</div>
+    <div class="tbtn" id="tbTarget">TGT</div><div class="tbtn" id="tbRecenter">CTR</div>
+    <div class="tbtn" id="tbPause">❚❚</div>
+  </div>
+</div>
+
+<div id="portraitWarn"><div>⟳ ROTATE TO LANDSCAPE<br><span style="font-family:var(--mono);font-size:11px;color:#8aa6bc">THIS COCKPIT FLIES SIDEWAYS</span></div></div>
+
+<div id="boot">
+  <canvas id="bootbg"></canvas>
+  <div class="bwrap">
+    <div>
+      <div class="eyebrow">PROJECT LIGHTNING · OFFLINE FLIGHT</div>
+      <h1>F-35B<span class="hollow">LIGHTNING II</span></h1>
+      <p class="tagline">Explore a seeded open world with a six-degree-of-freedom F-35B-inspired aircraft, civilian traffic, changing weather and STOVL flight. Designed for touch, gamepad and keyboard.</p>
+      <div class="tags">
+        <span class="tag g">6-DOF FORCE-BASED AERO</span><span class="tag">STOVL CONVERSION</span>
+        <span class="tag">SEEDED WORLD</span><span class="tag">ILS AUTOLAND</span>
+        <span class="tag">COCKPIT + HMDS</span><span class="tag g">HIGH-DENSITY TRAFFIC</span><span class="tag">MULTI-TRAIN RAIL</span><span class="tag">GAMEPAD</span><span class="tag g">LIVING OPERATIONS</span><span class="tag">60S REPLAY</span>
+      </div>
+      <div class="pan"><h3>SYSTEM POWER-UP</h3><div id="log"></div></div>
+    </div>
+    <div>
+      <div class="pan">
+        <h3>FLIGHT SETUP</h3>
+        <div class="lbl">WORLD SEED</div>
+        <div class="seedrow"><input id="seed" maxlength="6" inputmode="numeric"><button id="dice">⟳ RND</button></div>
+        <div class="lbl">START LOCATION</div>
+        <select class="sel" id="selApt"></select>
+        <div class="lbl">FUEL LOAD</div>
+        <select class="sel" id="selFuel"><option value="0.35">STOVL TRAINING · 35%</option><option value="0.55" selected>TRAINING · 55%</option><option value="1">LONG RANGE · 100%</option></select>
+        <div class="chips t4" style="margin-top:7px">
+          <div class="chip on" id="stPark">PARKED</div><div class="chip" id="stRunway">RUNWAY</div>
+          <div class="chip" id="stAir">AIRBORNE</div><div class="chip" id="stHover">HOVER</div>
+        </div>
+        <div class="lbl">ENVIRONMENT</div>
+        <div class="chips" id="wxchips">
+          <div class="chip wchip on" data-w="cavok">CAVOK</div><div class="chip wchip" data-w="sct">SCATTERED</div>
+          <div class="chip wchip" data-w="bkn">OVERCAST</div><div class="chip wchip" data-w="ts">T-STORM</div>
+          <div class="chip wchip" data-w="fog">FOG</div><div class="chip wchip" data-w="night">NIGHT IFR</div>
+        </div>
+        <div class="chips t4" style="margin-top:7px" id="tchips">
+          <div class="chip tchip" data-t="6.4">DAWN</div><div class="chip tchip on" data-t="13.2">DAY</div>
+          <div class="chip tchip" data-t="18.7">DUSK</div><div class="chip tchip" data-t="23.3">NIGHT</div>
+        </div>
+        <div class="lbl">ASSISTANCE</div>
+        <div class="chips t4">
+          <div class="chip on" id="asA">ASSIST</div><div class="chip" id="asS">STANDARD</div>
+          <div class="chip" id="asE">ADVANCED</div><div class="chip" id="asF">FAILURES</div>
+        </div>
+        <div class="lbl">SCENARIO</div>
+        <select class="sel" id="selScen"></select>
+        <button id="start">▶ BEGIN FLIGHT</button>
+        <button id="bootFull" class="obtn" style="margin-top:7px">⛶ ENTER FULLSCREEN</button>
+        <button id="continue" class="obtn" style="display:none;margin-top:7px">CONTINUE SAVED FLIGHT</button>
+        <div class="hint">PRESS ENTER · ⚙ FOR ADVANCED SETTINGS</div>
+      </div>
+    </div>
+    <div class="statusbar"><span><i class="led"></i>ALL SYSTEMS NOMINAL</span><span id="statSeed">SEED ----</span><span id="statWx">WX CAVOK</span><span id="metar">METAR INITIALISING</span><span id="offlineState" style="margin-left:auto;color:var(--grn)">OFFLINE STANDALONE · NETWORK BLOCKED</span></div>
+  </div>
+</div>
+
+<div class="ovl" id="pauseOv"><div class="pan"><div class="panel-head"><h2>PAUSED</h2><button class="menu-close" id="btnPauseClose" aria-label="Close pause menu and resume flight">CLOSE</button></div>
+  <div id="pauseStats"></div>
+  <button class="obtn pri" id="btnResume">RESUME — ESC</button>
+  <button class="obtn" id="btnEndFlight">END FLIGHT — SUMMARY</button><button class="obtn" id="btnReplay">REPLAY LAST 60 SECONDS</button>
+  <button class="obtn" id="btnRestart">RESTART FLIGHT</button>
+  <button class="obtn" id="btnNewWorld">NEW WORLD</button>
+</div></div>
+
+<div class="ovl" id="crashOv"><div class="pan"><div class="panel-head"><h2>✚ AIRCRAFT LOST</h2><button class="menu-close" id="btnCrashClose" aria-label="Close aircraft lost screen and respawn">CLOSE</button></div>
+  <div id="crashCause"></div><div id="crashStats"></div>
+  <button class="obtn pri" id="btnRespawn">RESPAWN — R</button>
+  <button class="obtn" id="btnNewWorld2">NEW WORLD</button>
+</div></div>
+
+<div class="ovl" id="sumOv"><div class="pan"><div class="panel-head"><h2 style="color:var(--grn)">FLIGHT SUMMARY</h2><button class="menu-close" id="btnSummaryClose" aria-label="Close flight summary">CLOSE</button></div>
+  <div id="sumStats"></div><div id="sumGrade" style="font-family:var(--mono);color:var(--amb);margin:6px 0"></div>
+  <button class="obtn" id="btnSumReplay">REPLAY LAST 60 SECONDS</button><button class="obtn pri" id="btnSumClose">CONTINUE</button>
+</div></div>
+
+<div class="ovl" id="helpOv"><div class="pan"><div class="panel-head"><h2 style="color:var(--cyn)">FLIGHT GUIDE</h2><button class="menu-close" id="btnHelpTopClose" aria-label="Close flight guide">CLOSE</button></div>
+  <div class="guide-copy" style="font-family:var(--mono);color:#a9c2d2;font-size:12px;line-height:1.75;white-space:pre-wrap">DESKTOP  W/S pitch · A/D roll · Q/E rudder · Shift/Ctrl throttle
+Space wheel brakes · P parking brake · G gear · B speed brake
+V STOVL conversion · T autopilot/approach · C camera · I navigation · J next airport
+L lights · H HMDS mode · K traffic target marker · N recenter look · F fullscreen · Esc pause · F9 diagnostics
+
+TAKE-OFF  Release parking brake, advance power, rotate smoothly near 145–165 kt.
+LANDING   Gear down, stabilise near 135–150 kt, follow the velocity marker/PAPI.
+FLIGHT CONTROL   ASSIST commands G/roll rate with high-AoA protection; STANDARD is softer; ADVANCED is near-direct and can depart.
+STOVL     Use a light fuel load. Press V below 200 kt, wait for 90° nozzle/fan,
+then control height with throttle. Full fuel or hot/high conditions may prevent hover.
+
+MISSIONS  New Living Operations show objectives at upper left. Replay the last 60 seconds from Pause or Debrief.
+
+TOUCH  Left stick flies, side slider controls thrust, pedals control yaw.
+BRAKE is hold-to-use. All essential systems have dedicated large buttons.</div>
+  <button class="obtn pri" id="btnHelpClose">RETURN TO FLIGHT</button>
+</div></div>
+
+<div id="drawer" role="dialog" aria-label="Advanced settings" aria-hidden="true">
+  <div class="drawer-head"><h4>ADVANCED SETTINGS</h4><button class="menu-close" id="btnDrawerClose" aria-label="Close settings">CLOSE</button></div>
+  <div class="srow"><span>FBW MODE</span><span class="schips"><span class="schip on" id="sfA">ASSIST</span><span class="schip" id="sfS">STD</span><span class="schip" id="sfE">ADV</span></span></div>
+  <div class="srow"><span>FAILURES</span><span class="schips"><span class="schip on" id="ffO">OFF</span><span class="schip" id="ffB">BASIC</span><span class="schip" id="ffR">REAL</span></span></div>
+  <div class="srow"><span>STRUCTURE</span><span class="schips"><span class="schip" id="psA">RELAXED</span><span class="schip on" id="psS">REAL</span></span></div>
+  <div class="srow"><span>SENSITIVITY</span><input type="range" id="sSens" min="0.6" max="1.5" step="0.05" value="1"></div>
+  <div class="srow"><span>EXPO</span><input type="range" id="sExpo" min="0" max="0.8" step="0.05" value="0.3"></div>
+  <div class="srow"><span>DEADZONE</span><input type="range" id="sDz" min="0" max="0.2" step="0.01" value="0.07"></div>
+  <div class="srow"><span>INVERT PITCH</span><span class="stgl" id="sInv">OFF</span></div>
+  <div class="srow"><span>COORD TURN</span><span class="stgl on" id="sCo">ON</span></div>
+  <div class="srow"><span>HOVER ASSIST</span><span class="stgl on" id="sHa">ON</span></div>
+  <div class="srow"><span>HMDS MODE</span><span class="schips"><span class="schip on" id="hmF">FULL</span><span class="schip" id="hmN">NAV</span><span class="schip" id="hmL">LAND</span><span class="schip" id="hmM">MIN</span></span></div>
+  <div class="srow"><span>TRAFFIC TARGET</span><span class="stgl" id="sTarget">OFF</span></div>
+  <h4>TOUCH</h4>
+  <div class="srow"><span>OPACITY</span><input type="range" id="tOp" min="0.3" max="1" step="0.05" value="0.85"></div>
+  <div class="srow"><span>SIZE</span><input type="range" id="tSz" min="0.8" max="1.4" step="0.05" value="1"></div>
+  <div class="srow"><span>HANDEDNESS</span><span class="schips"><span class="schip on" id="hR">RIGHT</span><span class="schip" id="hL">LEFT</span></span></div>
+  <div class="srow"><span>RUDDER SLIDER</span><span class="stgl" id="tRud">OFF</span></div>
+  <div class="srow"><span>GYRO</span><span class="stgl" id="sGy">ENABLE</span><span class="stgl" id="sGc">CAL</span></div>
+  <h4>GAMEPAD</h4>
+  <div class="srow"><span>DEADZONE</span><input type="range" id="gDz" min="0" max="0.3" step="0.02" value="0.12"></div>
+  <div class="srow"><span>THROTTLE AXIS</span><span class="schips"><span class="schip on" id="gTb">BUTTONS</span><span class="schip" id="gTa">AXIS</span></span></div>
+  <h4>SYSTEM</h4>
+  <div class="srow"><span>QUALITY</span><span class="schips"><span class="schip on" id="qA">AUTO</span><span class="schip" id="qL">LOW</span><span class="schip" id="qM">MED</span><span class="schip" id="qH">HIGH</span></span></div>
+  <div class="srow"><span>VAPOUR</span><span class="schips"><span class="schip" id="vR">REDUCED</span><span class="schip" id="vN">NORMAL</span><span class="schip on" id="vE">ENHANCED</span></span></div>
+  <div class="srow"><span>VOLUME</span><input type="range" id="sVol" min="0" max="1" step="0.05" value="0.5"></div>
+  <div class="srow"><span>SCANLINES</span><span class="stgl" id="sScan">OFF</span></div>
+  <button class="obtn" id="resetSave" style="margin-top:12px">RESET SAVED DATA</button>
+</div>
+
+
+<!-- LIGHTNING_SCRIPTS -->
+</body>
+</html>

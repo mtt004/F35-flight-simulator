@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "assets": [
+    {"id":"three-r128","source":"src/vendor/three-r128.min.js","licence":"MIT; LICENSES.md","embedded":true},
+    {"id":"aircraft-cockpit-atlases","source":["src/aircraft/detail.js","src/cockpit/detail.js"],"type":"procedurally generated","provenance":"Project authored","externalFiles":false},
+    {"id":"terrain-airport-materials","source":"src/terrain/scenery.js","type":"procedurally generated","provenance":"Project authored","externalFiles":false},
+    {"id":"baseline-audio-weather-world","source":"src/simulator.js","type":"procedurally generated","provenance":"Preserved from owner supplied simulator","externalFiles":false}
+  ],
+  "geographicScenery": "NOT IMPLEMENTED"
+}
