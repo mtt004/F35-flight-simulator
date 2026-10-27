@@ -86,7 +86,7 @@ jobs:
           ram-size: 2048M
           heap-size: 256M
           disable-animations: true
-          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back none
+          emulator-options: -no-window -gpu lavapipe -no-snapshot -noaudio -no-boot-anim -camera-back none
           pre-emulator-launch-script: |
             df -h "$ANDROID_AVD_HOME"
             grep -E '^(disk.dataPartition.size|hw.ramSize|hw.cpu.ncore)=' "$ANDROID_AVD_HOME/test.avd/config.ini"

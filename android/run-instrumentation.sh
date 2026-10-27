@@ -43,10 +43,10 @@ if source.is_dir():
         shutil.copy2(path, target)
         remaining -= size
 PYTHON
-  adb -s emulator-5554 get-state > "$diagnostics_dir/emulator-final-state.txt" 2>&1 || true
-  adb -s emulator-5554 logcat -d -t 1200 > "$diagnostics_dir/android-logcat-final.txt" 2>&1 || true
+  timeout 15s adb -s emulator-5554 get-state > "$diagnostics_dir/emulator-final-state.txt" 2>&1 || true
+  timeout 20s adb -s emulator-5554 logcat -d -t 1200 > "$diagnostics_dir/android-logcat-final.txt" 2>&1 || true
 }
 trap collect_diagnostics EXIT
 cd android
-bash ./gradlew --no-daemon --max-workers=1 connectedDebugAndroidTest
+timeout --signal=TERM --kill-after=20s 10m bash ./gradlew --no-daemon --max-workers=1 connectedDebugAndroidTest
 exit "$?"

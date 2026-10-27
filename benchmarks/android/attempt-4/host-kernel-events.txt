@@ -1,0 +1,1 @@
+[Tue Oct 27 05:27:46 2026] RenderThread[4854]: segfault at 559124e1a520 ip 00005590f9b061a7 sp 00007fe2d4748b20 error 4 likely on CPU 1 (core 0, socket 0)

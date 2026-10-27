@@ -1,0 +1,520 @@
+2026-10-27T05:27:00Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        3678         214          51        4411        4259
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 2814152
+   1756 provjobd5828800 167244
+   1829 Runner.Worker   115540
+   1809 Runner.Listener 84864
+    962 dockerd         70868
+   4041 MainThread      68244
+   3213 php-fpm8.3      51544
+    842 containerd      46496
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   3230 php-fpm8.3      21428
+   3229 php-fpm8.3      21424
+   4443 netsimd         21040
+    727 networkd-dispat 20904
+2026-10-27T05:27:05Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        3874         213          51        4215        4063
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 2814260
+   4685 java            173548
+   1756 provjobd5828800 157952
+   1829 Runner.Worker   115540
+   4646 java            114488
+   1809 Runner.Listener 84864
+    962 dockerd         70868
+   4041 MainThread      68244
+   3213 php-fpm8.3      51544
+    842 containerd      46496
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   3230 php-fpm8.3      21428
+   3229 php-fpm8.3      21424
+2026-10-27T05:27:10Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4014         167          51        4123        3924
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 2814260
+   4685 java            291464
+   1756 provjobd5828800 159032
+   1829 Runner.Worker   115540
+   4646 java            113836
+   1809 Runner.Listener 84872
+    962 dockerd         70868
+   4041 MainThread      68244
+   3213 php-fpm8.3      51544
+    842 containerd      46504
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   3230 php-fpm8.3      21428
+   3229 php-fpm8.3      21424
+2026-10-27T05:27:15Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4087         165          51        4050        3850
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 2814260
+   4685 java            384532
+   1756 provjobd5828800 159176
+   1829 Runner.Worker   115736
+   4646 java            113888
+   1809 Runner.Listener 85252
+    962 dockerd         70868
+   4041 MainThread      68244
+   3213 php-fpm8.3      51544
+    842 containerd      46504
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   3230 php-fpm8.3      21428
+   3229 php-fpm8.3      21424
+2026-10-27T05:27:20Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4224         217          51        3862        3713
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 2814260
+   4685 java            523372
+   1756 provjobd5828800 160524
+   1829 Runner.Worker   115740
+   4646 java            114444
+   1809 Runner.Listener 85252
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      51544
+    842 containerd      46504
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   3230 php-fpm8.3      21428
+   3229 php-fpm8.3      21424
+2026-10-27T05:27:25Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4316         207          51        3779        3621
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 2813692
+   4685 java            613032
+   1756 provjobd5828800 161364
+   4646 java            119316
+   1829 Runner.Worker   115740
+   1809 Runner.Listener 85256
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      51544
+    842 containerd      46504
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   3230 php-fpm8.3      21428
+   3229 php-fpm8.3      21424
+2026-10-27T05:27:30Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4328         188          51        3788        3610
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 2813756
+   4685 java            622448
+   1756 provjobd5828800 162888
+   4646 java            119372
+   1829 Runner.Worker   115740
+   1809 Runner.Listener 85224
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      51544
+    842 containerd      46504
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   3230 php-fpm8.3      21428
+   3229 php-fpm8.3      21424
+2026-10-27T05:27:35Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4507         205          51        3591        3430
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 2830004
+   4685 java            640656
+   4795 java            172188
+   1756 provjobd5828800 155220
+   4646 java            119396
+   1829 Runner.Worker   115740
+   1809 Runner.Listener 85224
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      51544
+    842 containerd      46504
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   3230 php-fpm8.3      21428
+2026-10-27T05:27:40Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4671         149          51        3483        3267
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 3000468
+   4685 java            640656
+   4795 java            165752
+   1756 provjobd5828800 155256
+   4646 java            116544
+   1829 Runner.Worker   115740
+   1809 Runner.Listener 85224
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      51544
+    842 containerd      46504
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   4443 netsimd         22000
+2026-10-27T05:27:45Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4784         140          51        3379        3154
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 3113344
+   4685 java            640728
+   4795 java            165760
+   1756 provjobd5828800 155256
+   4646 java            116548
+   1829 Runner.Worker   116120
+   1809 Runner.Listener 92384
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      51544
+    842 containerd      46504
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   4443 netsimd         22000
+2026-10-27T05:27:50Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4766         157          51        3380        3171
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 3113980
+   4685 java            640732
+   4795 java            165760
+   1756 provjobd5828800 144344
+   4646 java            116548
+   1829 Runner.Worker   116120
+   1809 Runner.Listener 92384
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      51544
+    842 containerd      46440
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   4443 netsimd         22000
+2026-10-27T05:27:55Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4796         214          76        3318        3141
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 3141328
+   4685 java            640736
+   4795 java            165764
+   1756 provjobd5828800 144344
+   4646 java            116548
+   1829 Runner.Worker   116116
+   1809 Runner.Listener 92384
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      51544
+    842 containerd      46440
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   4443 netsimd         22000
+2026-10-27T05:28:00Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4881         126         155        3400        3057
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 3218836
+   4685 java            640748
+   4795 java            165768
+   1756 provjobd5828800 144344
+   4646 java            116548
+   1829 Runner.Worker   116116
+   1809 Runner.Listener 92384
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      51544
+    842 containerd      46440
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   4443 netsimd         22004
+2026-10-27T05:28:05Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4873         124         155        3410        3064
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 3218836
+   4685 java            640768
+   4795 java            165768
+   1756 provjobd5828800 144344
+   4646 java            116548
+   1829 Runner.Worker   116116
+   1809 Runner.Listener 92384
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      51544
+    842 containerd      46440
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   4443 netsimd         22004
+2026-10-27T05:28:10Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4873         147         155        3387        3064
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 3218836
+   4685 java            640768
+   4795 java            165768
+   1756 provjobd5828800 145108
+   4646 java            116560
+   1829 Runner.Worker   116116
+   1809 Runner.Listener 91496
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      51544
+    842 containerd      46440
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   4443 netsimd         22008
+2026-10-27T05:28:16Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4872         147         155        3388        3065
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 3218836
+   4685 java            640768
+   4795 java            165768
+   1756 provjobd5828800 145772
+   1829 Runner.Worker   117000
+   4646 java            116560
+   1809 Runner.Listener 91684
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      51544
+    842 containerd      46440
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   4443 netsimd         22000
+2026-10-27T05:28:21Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4888         143         156        3376        3049
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 3219368
+   4685 java            640768
+   4795 java            165768
+   1756 provjobd5828800 147436
+   1829 Runner.Worker   117000
+   4646 java            116560
+   1809 Runner.Listener 91676
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      51544
+    842 containerd      46440
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   4443 netsimd         21992
+2026-10-27T05:28:26Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4904         133         172        3387        3033
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 3236644
+   4685 java            640772
+   4795 java            165768
+   1756 provjobd5828800 148108
+   1829 Runner.Worker   117000
+   4646 java            116564
+   1809 Runner.Listener 91676
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      51544
+    842 containerd      46440
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   4443 netsimd         21992
+2026-10-27T05:28:31Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4892         365         172        3168        3046
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 3236644
+   4685 java            640772
+   4795 java            165768
+   1756 provjobd5828800 149848
+   1829 Runner.Worker   117000
+   4646 java            116564
+   1809 Runner.Listener 91676
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      51544
+    842 containerd      46440
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   4443 netsimd         21996
+2026-10-27T05:28:36Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4891         301         172        3232        3046
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 3236644
+   4685 java            640676
+   4795 java            165460
+   1756 provjobd5828800 150532
+   1829 Runner.Worker   117000
+   4646 java            116564
+   1809 Runner.Listener 91676
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      50996
+    842 containerd      46440
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   4443 netsimd         21996
+2026-10-27T05:28:41Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4885         218         172        3322        3052
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 3236644
+   4685 java            640676
+   4795 java            165488
+   1756 provjobd5828800 142076
+   1829 Runner.Worker   117000
+   4646 java            116564
+   1809 Runner.Listener 91676
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      50996
+    842 containerd      46440
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   4443 netsimd         22000
+2026-10-27T05:28:46Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4900         164         172        3370        3038
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 3236644
+   4685 java            640676
+   4795 java            165488
+   1756 provjobd5828800 142076
+   1829 Runner.Worker   117140
+   4646 java            116564
+   1809 Runner.Listener 91676
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      50996
+    842 containerd      46440
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   4443 netsimd         22000
+2026-10-27T05:28:51Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        4884         186         172        3355        3053
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4376 qemu-system-x86 3236644
+   4685 java            640676
+   4795 java            165488
+   1756 provjobd5828800 141756
+   1829 Runner.Worker   117136
+   4646 java            116564
+   1809 Runner.Listener 91676
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      50996
+    842 containerd      46440
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   4443 netsimd         22000
+2026-10-27T05:28:56Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        1802        4899          51        1594        6135
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4685 java            641124
+   4795 java            170232
+   1756 provjobd5828800 145356
+   1829 Runner.Worker   117176
+   4646 java            116564
+   1809 Runner.Listener 91732
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      50996
+    842 containerd      46440
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   3230 php-fpm8.3      21416
+   3229 php-fpm8.3      21412
+2026-10-27T05:29:01Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        1803        4898          51        1594        6135
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4685 java            641124
+   4795 java            170232
+   1756 provjobd5828800 145356
+   1829 Runner.Worker   117176
+   4646 java            116580
+   1809 Runner.Listener 91728
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      50996
+    842 containerd      46440
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   3230 php-fpm8.3      21416
+   3229 php-fpm8.3      21412
+2026-10-27T05:29:06Z
+               total        used        free      shared  buff/cache   available
+Mem:            7938        1803        4894          51        1598        6134
+Swap:           3071           0        3071
+    PID COMMAND           RSS
+   4685 java            643928
+   4795 java            175048
+   1756 provjobd5828800 145356
+   1829 Runner.Worker   117176
+   4646 java            116612
+   1809 Runner.Listener 91728
+    962 dockerd         70868
+   4041 MainThread      68420
+   3213 php-fpm8.3      50996
+    842 containerd      46440
+    198 multipathd      43684
+   1181 python3         37280
+    757 python3         31672
+   3230 php-fpm8.3      21416
+   3229 php-fpm8.3      21412

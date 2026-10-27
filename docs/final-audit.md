@@ -98,3 +98,7 @@ Actions artifact12711166312 from release run40451484190/sourceca0decc9 was downl
 
 
 See benchmarks/final/endurance-summary.md for environment and interpretation. No device-thermal/PSS or leak-free claim is made.
+
+## Native test failures retained
+
+Runs40453171144 and40454725990 installed/started the Android host but did not complete live-flight instrumentation. Attempt4 host kernel evidence establishes a RenderThread segmentation fault and disconnected emulator. The precise offending native library is not identified; this is not a proven app assertion or Galaxy A51 failure. Tests have not been waived. Selected installation/XML/kernel/memory evidence is committed under benchmarks/android/attempt-3 and attempt-4. A controlled Lavapipe software-backend retry is pending. No GitHub Release existed when this entry was written.
