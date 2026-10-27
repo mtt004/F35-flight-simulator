@@ -1,0 +1,61 @@
+{
+  "sourceSha256": "cf3b450a2aaf6fe03d95207a7a9b9a33f1179bf7868b03b805cda1a8d55f3435",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+    "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "viewport": [
+      1280,
+      720
+    ],
+    "devicePixelRatio": 1,
+    "drawingBuffer": [
+      1280,
+      720
+    ],
+    "hardware": "Cloud Linux Chromium using SwiftShader software rasterizer; NOT Galaxy A51",
+    "realDevice": false
+  },
+  "seed": 4201,
+  "scenes": [
+    {
+      "name": "parked",
+      "start": "PARK",
+      "camera": 2
+    },
+    {
+      "name": "cockpit",
+      "start": "PARK",
+      "camera": 1
+    },
+    {
+      "name": "chase",
+      "start": "AIR",
+      "camera": 0
+    },
+    {
+      "name": "hover",
+      "start": "HOVER",
+      "camera": 2
+    },
+    {
+      "name": "sunset",
+      "start": "AIR",
+      "camera": 0,
+      "hour": 18.3
+    },
+    {
+      "name": "overcast",
+      "start": "AIR",
+      "camera": 0,
+      "weather": "bkn"
+    },
+    {
+      "name": "night",
+      "start": "AIR",
+      "camera": 1,
+      "hour": 23.3
+    }
+  ],
+  "note": "Actual simulator captures, 1.5 seconds after respawn. Aircraft is not frozen; compare silhouette/materials rather than exact pixel positions."
+}

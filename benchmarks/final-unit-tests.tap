@@ -1,31 +1,40 @@
-✔ preserved baseline: ISA density and sound speed decrease with altitude (1.095131ms)
-✔ preserved baseline: seeded noise repeats with the same seed and differs with another (0.944444ms)
-✔ preserved baseline: post-stall lift falls and full nose-down retains recovery moment (0.264279ms)
-✔ preserved baseline: wave drag rises through transonic and published envelope (0.14566ms)
-✔ preserved baseline: fuel tank sequencing conserves fuel and inertia remains positive (0.451681ms)
-✔ preserved baseline: hover thrust supports recovery load but not full fuel mass (0.216586ms)
-✔ preserved baseline: rudder yaw damping opposes rate and sideslip (0.138058ms)
-✔ current simulator: ISA density and sound speed decrease with altitude (0.660977ms)
-✔ current simulator: seeded noise repeats with the same seed and differs with another (0.927969ms)
-✔ current simulator: post-stall lift falls and full nose-down retains recovery moment (0.108493ms)
-✔ current simulator: wave drag rises through transonic and published envelope (0.102565ms)
-✔ current simulator: fuel tank sequencing conserves fuel and inertia remains positive (0.241083ms)
-✔ current simulator: hover thrust supports recovery load but not full fuel mass (0.047151ms)
-✔ current simulator: rudder yaw damping opposes rate and sideslip (0.038207ms)
-✔ Balanced bounds physical buffer independent of DPR and preserves aspect (0.841579ms)
-✔ profile validation rejects nonfinite controls and unknown fields (0.344619ms)
-✔ governor needs sustained overload and delays recovery (0.291159ms)
-✔ 30 FPS cadence services exactly 30 frames at 60 Hz (0.432052ms)
-✔ pack parser accepts palettes but forbids executable or malformed assets (4.070157ms)
-✔ authored visual geometry stays finite, indexed correctly and within a small draw/atlas budget (48.277141ms)
-✔ rebuilding visual details is idempotent and moving lift-door details remain parented (15.495734ms)
-✔ aircraft close detail uses distance hysteresis and quality gating (11.047961ms)
-✔ cockpit animation bounds corrupt input and follows processed control values (15.442624ms)
-ℹ tests 23
+
+> lightning-f35b@0.1.0 test
+> node --test tests/unit/*.test.mjs
+
+✔ preserved baseline: ISA density and sound speed decrease with altitude (1.142764ms)
+✔ preserved baseline: seeded noise repeats with the same seed and differs with another (1.437508ms)
+✔ preserved baseline: post-stall lift falls and full nose-down retains recovery moment (0.310689ms)
+✔ preserved baseline: wave drag rises through transonic and published envelope (0.201754ms)
+✔ preserved baseline: fuel tank sequencing conserves fuel and inertia remains positive (0.645373ms)
+✔ preserved baseline: hover thrust supports recovery load but not full fuel mass (0.115454ms)
+✔ preserved baseline: rudder yaw damping opposes rate and sideslip (0.13254ms)
+✔ current simulator: ISA density and sound speed decrease with altitude (2.551778ms)
+✔ current simulator: seeded noise repeats with the same seed and differs with another (0.694578ms)
+✔ current simulator: post-stall lift falls and full nose-down retains recovery moment (0.107993ms)
+✔ current simulator: wave drag rises through transonic and published envelope (0.118328ms)
+✔ current simulator: fuel tank sequencing conserves fuel and inertia remains positive (0.461036ms)
+✔ current simulator: hover thrust supports recovery load but not full fuel mass (0.053481ms)
+✔ current simulator: rudder yaw damping opposes rate and sideslip (0.036405ms)
+✔ Balanced bounds physical buffer independent of DPR and preserves aspect (1.092097ms)
+✔ profile validation rejects nonfinite controls and unknown fields (0.21872ms)
+✔ governor needs sustained overload and delays recovery (0.21928ms)
+✔ 30 FPS cadence services exactly 30 frames at 60 Hz (0.294304ms)
+✔ pack parser accepts palettes but forbids executable or malformed assets (0.661618ms)
+✔ inherited property names cannot become rendering profiles (0.228594ms)
+✔ original uploaded bytes retain their recorded SHA-256 (7.700852ms)
+✔ core flight, STOVL and terrain collision implementations remain byte identical (7.031694ms)
+✔ authored visual geometry stays finite, indexed correctly and within a small draw/atlas budget (38.479666ms)
+✔ rebuilding visual details is idempotent and moving lift-door details remain parented (13.293826ms)
+✔ aircraft close detail uses distance hysteresis and quality gating (11.481314ms)
+✔ cockpit animation bounds corrupt input and follows processed control values (20.694166ms)
+✔ terrain and airport materials initialise on the pinned Three version (12.062321ms)
+✔ cockpit display centre is unobstructed from the pilot eye (18.309871ms)
+ℹ tests 28
 ℹ suites 0
-ℹ pass 23
+ℹ pass 28
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 188.259611
+ℹ duration_ms 212.694585

@@ -10,13 +10,13 @@ Retain bundled Three.js r128 and original six-DOF physics for this experimental 
 
 - [x] Verify private repository/admin access and empty main; establish repository.
 - [x] Preserve exact original and checksum in legacy; baseline checkpoint.
-- [ ] Extract HTML/CSS/vendor/game without changing simulation; deterministic build script and checksum regression test.
-- [ ] Capture original validation/browser/visual/performance evidence.
-- [ ] Add bounded resolution/frame cadence profiles, hysteresis and transparent runtime measurements. Test policy against overload, sustained headroom, background/resume and invalid saved values.
-- [ ] Improve exterior surface detailing, cockpit, airport and terrain shading without changing physics. Run original validation and screenshot matching scenes.
-- [ ] Add persistent camera/control/instrument options, local preset-pack validation and import; label all authored scenery accurately.
-- [ ] Build Kotlin Android host/API26+, local assets, fullscreen, lifecycle, origin lockdown, no native bridge. Compile/sign/verify actual APK.
-- [ ] Run regression/offline/context-loss tests, matched cloud benchmarks and independent code review; fix confirmed regressions.
+- [x] Extract HTML/CSS/vendor/game without changing simulation; deterministic build script and checksum regression test.
+- [x] Capture original validation/browser/visual/performance evidence.
+- [x] Add bounded resolution/frame cadence profiles, hysteresis and transparent runtime measurements. Test policy against overload, sustained headroom, background/resume and invalid saved values.
+- [x] Improve exterior surface detailing, cockpit, airport and terrain shading without changing physics. Run original validation and screenshot matching scenes.
+- [x] Add persistent camera/control/instrument options, local preset-pack validation and import; label all authored scenery accurately.
+- [x] Build Kotlin Android host/API26+, local assets, fullscreen, lifecycle, origin lockdown, no native bridge. Compile/sign/verify actual APK.
+- [ ] Run regression/offline/context-loss tests, matched cloud benchmarks and independent code review; resolve release-blocking regressions. Browser checks pass; final endurance and Android installation gates pending. Inherited corrupt-save gap tracked separately.
 - [ ] Commit notes/research/source/evidence; create PR, integrate verified work, publish experimental release artifacts and verify checksums.
 
 ## Review focus

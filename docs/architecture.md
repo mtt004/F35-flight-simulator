@@ -6,7 +6,7 @@
 
 - `src/rendering/mobile-policy.js`: pure buffer bounds, frame cadence, profile validation, hysteresis and appearance schema. Render cadence is 30Hz default; original 120Hz fixed-step accumulator executes unchanged within each accepted frame, subject to its existing50ms delta clamp/8-step ceiling. Long stalls still slow simulation rather than simulating unlimited catchup.
 - `src/aircraft/detail.js`, `src/cockpit/detail.js`: original procedural visual extensions and bounded animation. Existing aircraft geometry/STOVL surfaces remain.
-- `src/terrain/scenery.js`: origin-stable terrain shading, palette/strata studies, shared asphalt, directional runway designators and instanced airport details. Terrain height/collision functions are unchanged.
+- `src/terrain/scenery.js`: world-aligned primary terrain shading, palette/strata studies, shared asphalt, directional runway designators and instanced airport details. Terrain height/collision functions are unchanged.
 - `src/ui/runtime.js`: settings, optional palette import, lifecycle save/pause/reset, context restoration and diagnostic overlay. Stored in a separate options key to preserve baseline saves.
 - `android/`: Kotlin restricted origin shell. No Internet permission, arbitrary file URL access or native bridge. Android uses the system WebView, which must support WebGL2.
 
