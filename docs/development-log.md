@@ -25,3 +25,5 @@ Cockpit ray casting reproduced the screenshot-confirmed display occlusion by the
 
 ## Repeated emulator disk floor and focused remediation
 Release40451484190 compiled and signature-verified the actual current APK; root downloaded artifact12711166312, verified ZIP integrity and exact bundled HTML, package/version/permissions and matching SHA. Emulator boot again failed, requiring7372.80MB despite2048M requested and5533.82MB free. Added GitHub-hosted-only SDK-managed unused NDK package removal after APK build, with exact package/filter/free-space evidence. No user/repository/host-library cleanup. Actual installation remains unclaimed until the next run passes.
+
+Cloud endurance complete on current source d4ade981…:1200s requested,9176frames,7.65meanFPS/2.46FPS1%low, p95frame254ms, no crash/JS/shader errors. Simulated time advanced425.94s because inherited50ms clamp under software-renderer overload. Geometries428→532/textures11→14, finalbrowserheap35.1MB; not proof of no leaks or native/device memory. Raw samples and summary committed next.

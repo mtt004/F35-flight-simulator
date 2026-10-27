@@ -81,3 +81,20 @@ Source/research/evidence checkpoint: ceb209d39be636ac33effb14314e987fce3fdd48 on
 ## Retrieved APK checkpoint (before installation success)
 
 Actions artifact12711166312 from release run40451484190/sourceca0decc9 was downloaded and checked locally. APK archive integrity passed; bundled HTML exactly matched the current980436-byte browser build. APK package com.mtt004.lightning, version0.1.0-experimental/code1, minAPI26/target35, no permissions. APK1581529bytes/SHA256 `5ad4aae15c58e6474027db33452ecd6b6b1f364d5529e3fbd95fc5656be3c32e`. CI apksigner verified APK Signature Schemev2 with a2048-bit RSA Android Debug certificate. This is real APK build/signing evidence, not installation evidence. The emulator gate failed and no release was published at this checkpoint. A later final successful build, if different, supersedes these binary/hash details.
+
+## Twenty-minute cloud endurance completed
+
+ `d4ade981c06f483c2d0a5d529c290c9bae3dc12724ffb03ca7937d245f00f198`.
+
+- Requested wall duration:1200seconds; recorded first-to-last render interval coverage:1199.465seconds.
+- Actual rendered frames:9176; mean7.65FPS; median8.10FPS;1% low2.46FPS.
+- Frame time p50/p95/p99:123.5/254.0/332.6ms.
+- First five-minute mean:6.72FPS; last five-minute mean:7.70FPS. No claim of thermal stability follows from a CPU cloud host.
+- Crash at endpoint:False; recorded JavaScript/shader errors:0; warnings:0.
+- Simulated time advanced:425.94seconds. The inherited50ms per-frame clamp slows simulation under severe overload; this was20minutes of continuous operation, not20minutes of real-time-accurate flight.
+- Geometry counter:428→532; textures:11→14; scenery streaming changes these counts. Endpoint counters cannot prove a plateau or absence of leaks.
+- Reported browser JS heap at endpoint:35.1MB. This is not process PSS, native/GPU memory or peak allocation.
+- A51 FPS/PSS/battery/temperature/gyro/touch-latency:NOT TESTED.
+
+
+See benchmarks/final/endurance-summary.md for environment and interpretation. No device-thermal/PSS or leak-free claim is made.
