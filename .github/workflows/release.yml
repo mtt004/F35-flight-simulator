@@ -46,6 +46,10 @@ jobs:
         run: node scripts/test-browser.mjs dist/index.html
       - name: Build and verify signed APK archive
         run: bash scripts/build-android.sh
+      - name: Compile the test APK before starting the memory-intensive emulator
+        run: |
+          cd android
+          bash ./gradlew --no-daemon --max-workers=2 assembleDebugAndroidTest
       - name: Reclaim only unused SDK-managed NDK packages on the disposable runner
         if: runner.environment == 'github-hosted'
         run: |
@@ -86,7 +90,7 @@ jobs:
           pre-emulator-launch-script: |
             df -h "$ANDROID_AVD_HOME"
             grep -E '^(disk.dataPartition.size|hw.ramSize|hw.cpu.ncore)=' "$ANDROID_AVD_HOME/test.avd/config.ini"
-          script: cd android && bash ./gradlew --no-daemon connectedDebugAndroidTest
+          script: bash android/run-instrumentation.sh
       - name: Record genuine emulator installation and launch evidence
         run: |
           python3 - <<'PYTHON'
@@ -118,6 +122,8 @@ jobs:
               z.write('dist/android-verification.json', 'android-verification.json')
               z.write('dist/android-installation.json', 'android-installation.json')
               if Path('dist/runner-storage.json').is_file(): z.write('dist/runner-storage.json', 'runner-storage.json')
+              for path in sorted(Path('dist/android-host-diagnostics').rglob('*')):
+                  if path.is_file(): z.write(path, path.relative_to('dist').as_posix())
               for path in sorted(Path('android/app/build/outputs/androidTest-results/connected').rglob('*')):
                   if path.is_file(): z.write(path, path.as_posix())
           manifest = {'sourceCommit': os.environ['GITHUB_SHA'], 'workflowRun': os.environ['GITHUB_RUN_ID'], 'androidVersion': '0.1.0-experimental', 'signing': 'debug; ephemeral CI key', 'galaxyA51': 'NOT TESTED', 'installation': 'PASS: Android API 33 emulator installed APK and launched actual bundled flight; see android-installation.json'}

@@ -1,5 +1,8 @@
 package com.mtt004.lightning
 
+import android.os.Build
+import android.os.Debug
+import android.util.Log
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -93,6 +96,16 @@ class OfflineLaunchTest {
         assertLiveFlight(later)
         assertTrue("Fixed-step physics did not advance during the live flight", later.getLong("stepCount") > initialSteps)
         assertTrue("Simulation time did not advance during the live flight", later.getDouble("simT") > initialTime)
+        val memory = Debug.MemoryInfo()
+        Debug.getMemoryInfo(memory)
+        Log.i("LightningQA", JSONObject()
+            .put("metric", "instrumented_target_process_pss")
+            .put("pssKB", memory.totalPss)
+            .put("deviceModel", Build.MODEL)
+            .put("androidApi", Build.VERSION.SDK_INT)
+            .put("peakMeasurement", false)
+            .put("scope", "One active-flight snapshot; includes instrumentation, excludes separate WebView renderer processes; CI emulator result is not Galaxy A51 evidence")
+            .toString())
         }
     }
 }

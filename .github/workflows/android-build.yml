@@ -33,6 +33,10 @@ jobs:
           log-accepted-android-sdk-licenses: 'false'
       - run: npm test
       - run: bash scripts/build-android.sh
+      - name: Compile the test APK before starting the memory-intensive emulator
+        run: |
+          cd android
+          bash ./gradlew --no-daemon --max-workers=2 assembleDebugAndroidTest
       - name: Reclaim only unused SDK-managed NDK packages on the disposable runner
         if: runner.environment == 'github-hosted'
         run: |
@@ -73,7 +77,7 @@ jobs:
           pre-emulator-launch-script: |
             df -h "$ANDROID_AVD_HOME"
             grep -E '^(disk.dataPartition.size|hw.ramSize|hw.cpu.ncore)=' "$ANDROID_AVD_HOME/test.avd/config.ini"
-          script: cd android && bash ./gradlew --no-daemon connectedDebugAndroidTest
+          script: bash android/run-instrumentation.sh
       - name: Record genuine emulator installation and launch evidence
         run: |
           python3 - <<'PYTHON'
