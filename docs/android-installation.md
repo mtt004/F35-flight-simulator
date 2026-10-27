@@ -12,7 +12,7 @@ The package targets the Samsung Galaxy A51 SM-A515F but has not been physically 
 
 ## Debug signing and updates
 
-The experimental APK is debug-signed. The package is `com.mtt004.lightning`, version `0.1.0-experimental` (version code 1). Debug signing permits sideloading but is unsuitable for a production store release. Separate CI builds may use different private debug certificates; if Android rejects an update due to signature mismatch, uninstall the old build before installing the new one. **Uninstalling deletes that application's local settings and flight saves.** Preserve any exported data first.
+The experimental APK is debug-signed. The package is `com.mtt004.lightning`. The next source configuration is version `0.2.0-experimental` (version code 2), with actual built values recorded in `android-verification.json`; the existing `v0.1.0-experimental` release remains available separately. Debug signing permits sideloading but is unsuitable for a production store release. Separate CI builds may use different private debug certificates; if Android rejects an update due to signature mismatch, uninstall the old build before installing the new one. **Uninstalling deletes that application's local settings and flight saves.** Preserve any exported data first.
 
 The application requests no internet, storage, location, microphone or camera permissions. Appearance JSON imports use Android’s system document picker for one small JSON file. The host restricts the picker request and returned document type; the game validates its JSON data. Document selection and import still require a real-device test; choosing a file never enables remote navigation. An optional gyro uses web motion events when supported by the installed WebView and device.
 

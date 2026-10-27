@@ -82,14 +82,23 @@ jobs:
         run: |
           python3 - <<'PYTHON'
           from pathlib import Path
-          import json, xml.etree.ElementTree as ET
-          reports = list(Path('android/app/build/outputs/androidTest-results/connected').rglob('TEST-*.xml'))
-          assert reports, 'Instrumentation XML results are missing'
-          cases = [case for report in reports for case in ET.parse(report).iter('testcase')]
-          assert cases, 'No Android instrumentation tests ran'
-          failures = [case.attrib for case in cases if any(case.find(kind) is not None for kind in ['failure', 'error', 'skipped'])]
-          assert not failures, failures
-          result = {'status': 'PASS', 'environment': 'GitHub Actions Android API 33 x86_64 emulator, software GPU', 'actualInstallationAndLaunch': True, 'tests': len(cases), 'reports': [str(p) for p in reports], 'galaxyA51': 'NOT TESTED'}
+          import hashlib, json, os
+          from scripts.android_metadata import validate_instrumentation_xml
+          paths = sorted(Path('android/app/build/outputs/androidTest-results/connected').rglob('TEST-*.xml'))
+          contents = {str(path): path.read_bytes() for path in paths}
+          verification = json.loads(Path('dist/android-verification.json').read_text())
+          import xml.etree.ElementTree as ET
+          tests = sum(len(list(ET.fromstring(content).iter('testcase'))) for content in contents.values())
+          installed_apk_sha = hashlib.sha256(Path('android/app/build/outputs/apk/debug/app-debug.apk').read_bytes()).hexdigest()
+          assert installed_apk_sha == hashlib.sha256(Path('dist/Lightning-F35B-Android.apk').read_bytes()).hexdigest(), 'UTP-installed APK differs from deliverable'
+          result = {'status': 'PASS', 'environment': 'GitHub Actions Android API 33 x86_64 emulator, software GPU',
+                    'actualInstallationAndLaunch': True, 'tests': tests, 'reports': list(contents),
+                    'reportChecksums': {name: hashlib.sha256(content).hexdigest() for name, content in contents.items()},
+                    'apkSha256': installed_apk_sha,
+                    'sourceCommit': os.environ['GITHUB_SHA'], 'versionName': verification['versionName'],
+                    'versionCode': verification['versionCode'], 'galaxyA51': 'NOT TESTED'}
+          validate_instrumentation_xml(contents, result)
+          assert result['apkSha256'] == verification['sha256'], 'Installed build record and verified APK differ'
           Path('dist/android-installation.json').write_text(json.dumps(result, indent=2) + '\n')
           PYTHON
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
