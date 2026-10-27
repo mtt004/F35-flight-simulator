@@ -139,3 +139,7 @@ Full raw per-scene samples and environment metadata: benchmarks/release-run-4050
 Remaining acceptance gaps: accurate Hampshire/Cappadocia, full high-detail exterior/world/atmosphere/hybrid recorded audio,12-scene visual evidence, full takeoff/hover/transition/landing certification, corrupt-save vectors, and physicalA51 qualification. Issues2–5 remain open. The code/Android build sources/assets used for the release are unchanged by the final post-build documentation, retained reports and standalone QA-script additions. No stable1.0 or completed full-overhaul claim is made.
 
 Final integration check: all51 existing product/build files outside documentation/research/benchmark/screenshot paths match the released source's Git blob hashes. Post-build additions are standalone QA scripts and retained evidence. A fresh browser rebuild still emits identical d4ade981…HTML. See benchmarks/android/release-v0.1.0/integration-source-check.json. Repeated Android recompilation is unnecessary for these documentation/evidence-only additions; runtime/signing/install evidence is tied to the exact released source above.
+
+## Subsequent release
+
+This file retains the historical v0.1 audit. See [v0.2 delivery audit](delivery-v0.2.md) for the current experimental APK, immutable source, test evidence and limitations.

@@ -33,10 +33,13 @@ All requested features remain scope, but each incomplete or unavailable gate mus
 
 ## v0.2 continuation — actual work, not full-scope completion
 
-- [ ] Fix issue4 saved-flight corruption and observed replay restoration/save defects; RED/GREEN plus realUI regressions.
-- [ ] Improve adaptive fuselage/intake/exhaust geometry; verify bounds, LOD, draw budget and actual comparison captures.
-- [ ] Centralize version0.2.0-experimental/code2 and bind native XML/APK/source evidence in release checks.
-- [ ] Exercise genuine control-only flight lifecycle; report actual passes/failures without teleporting and claiming a lifecycle.
-- [ ] Obtain independent review, build/test APK/browser, publish new tag without rewriting v0.1, then integrate safe changes.
+- [x] Fix issue4 saved-flight corruption and observed replay restoration/save defects; RED/GREEN plus realUI regressions.
+- [x] Improve adaptive fuselage/intake/exhaust geometry; verify bounds, LOD, draw budget and actual comparison captures.
+- [x] Centralize version0.2.0-experimental/code2 and bind native XML/APK/source evidence in release checks.
+- [x] Exercise genuine control-only flight lifecycle; report actual passes/failures without teleporting and claiming a lifecycle.
+- [x] Obtain independent review, build/test APK/browser, and publish new tag without rewriting v0.1.
+- [ ] Integrate PR6 and complete the separate v0.2 cloud endurance record.
 
 Starting main c53506ad59e7aad46904c3a648b0f06d6015dafd. Accurate regional geodata, full audio/world reconstruction and physicalA51 qualification remain open.
+
+The flight exercise task means actual trials and honest outcomes: safe conversion and vertical landing failed their bounded automated attempts and remain open in issue7. See docs/delivery-v0.2.md for release provenance.

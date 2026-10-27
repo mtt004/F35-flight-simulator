@@ -5,7 +5,7 @@ import {browserSession,startFlight,captureScene,snapshot} from '../tests/helpers
 const file=path.resolve(process.argv[2]||'dist/index.html'),label=process.argv[3]||'v020-after';
 if(!/^[a-z0-9-]+$/.test(label))throw Error('Invalid capture label');
 const output=path.resolve('screenshots/aircraft-v0.2',label);await mkdir(output,{recursive:true});
-const report={date:new Date().toISOString(),source:file,sourceSha256:createHash('sha256').update(await readFile(file)).digest('hex'),method:'Real WebGL simulator. Fixed seed4201/hour13.2; configured normal spawns, paused for geometry inspection. Test-only camera override, no rigid-body pose changes. These captures do not prove a flight lifecycle.',shots:[],status:'FAIL'};
+const report={date:new Date().toISOString(),source:file,sourceSha256:createHash('sha256').update(await readFile(file)).digest('hex'),method:'Real WebGL simulator. Fixed seed4201/hour13.2; configured normal spawns, paused for geometry inspection. Test-only camera override and near aircraft LOD forced on with quality1 for geometry inspection; no rigid-body pose changes. These captures do not prove a flight lifecycle or default sustained quality.',shots:[],status:'FAIL'};
 let session;
 try{
  session=await browserSession({file});report.environment=session.environment;const{page}=session;await startFlight(page,{start:'PARK'});

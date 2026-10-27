@@ -1,0 +1,102 @@
+{
+  "status": "INTERRUPTED",
+  "sourceSha256": "8529330d53723356463319a96469da80fb9fc87a48ce5449abd1f47b59ed56f4",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+    "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "viewport": [
+      1280,
+      720
+    ],
+    "devicePixelRatio": 1,
+    "drawingBuffer": [
+      1152,
+      648
+    ],
+    "hardware": "Cloud Linux Chromium using SwiftShader software rasterizer; NOT Galaxy A51",
+    "realDevice": false
+  },
+  "secondsRequested": 1200,
+  "samples": [
+    {
+      "frames": 292,
+      "heapBytes": 44700000,
+      "geometry": 435,
+      "textures": 11,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 15.041666666666453,
+      "crashed": false,
+      "elapsedWallSeconds": 60.009
+    },
+    {
+      "frames": 643,
+      "heapBytes": 44700000,
+      "geometry": 436,
+      "textures": 11,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 31.383333333332192,
+      "crashed": false,
+      "elapsedWallSeconds": 120.014
+    },
+    {
+      "frames": 1067,
+      "heapBytes": 44700000,
+      "geometry": 438,
+      "textures": 11,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 51.09999999999774,
+      "crashed": false,
+      "elapsedWallSeconds": 180.02
+    },
+    {
+      "frames": 1547,
+      "heapBytes": 44700000,
+      "geometry": 434,
+      "textures": 11,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 73.76666666667144,
+      "crashed": false,
+      "elapsedWallSeconds": 240.033
+    },
+    {
+      "frames": 2031,
+      "heapBytes": 44700000,
+      "geometry": 431,
+      "textures": 11,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 96.15000000002259,
+      "crashed": false,
+      "elapsedWallSeconds": 300.045
+    },
+    {
+      "frames": 2514,
+      "heapBytes": 44700000,
+      "geometry": 430,
+      "textures": 11,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 118.56666666670709,
+      "crashed": false,
+      "elapsedWallSeconds": 360.056
+    },
+    {
+      "frames": 2997,
+      "heapBytes": 44700000,
+      "geometry": 431,
+      "textures": 11,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 140.83333333336958,
+      "crashed": false,
+      "elapsedWallSeconds": 420.069
+    }
+  ],
+  "note": "Minute samples: browser JS heap and Three counters, not Android process/GPU/PSS or leak certification.",
+  "interruption": "Execution session no longer retained running process on continuation; seven minute samples retained. This is not a completed 20-minute run."
+}

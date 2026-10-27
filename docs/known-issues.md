@@ -14,6 +14,9 @@ Experimental implementation. No Galaxy A51 device is connected. Do not label as 
 - Debug APK signing uses ephemeral CI identity. Future CI builds may require uninstalling, losing app data. Stable release signing requires owner-controlled secrets; no private key committed.
 - Screenshot/benchmark coverage reflects only the environments actually present in reports. Cloud software rendering is not Mali-G72 evidence.
 
-- Inherited corrupt-save robustness gap: continueSavedFlight validates position/quaternion but not every velocity/angular-rate component before loading. Normal simulator-generated saves pass runtime checks; a manually malformed localStorage flight can poison numeric state. Clear the saved flight if restoration fails. Strict full-vector validation remains deferred.
+- Saved-flight corruption and normal paused-replay restoration were corrected in the v0.2 branch with production-function and actualUI regressions. Use v0.2 or later for the fix; historical v0.1 retains the recorded gap. See docs/flight-integrity-v0.2.md.
 - Terrain palette's primary coordinates include the floating origin, but some secondary colour-warp terms still use render-local coordinates; long-distance rebasing may produce a subtle material phase change. Terrain height/collision remain unchanged.
 - Available visual evidence covers seven paired scenes. The entire requested12-scene acceptance suite and independent manufacturer/CAD comparison are incomplete.
+
+- Safe STOVL conversion/vertical landing remains unqualified. Actual control-only takeoff passed, but exploratory conversion/landing pilots failed stated quality criteria or timed out without touchdown. No unavoidable model defect or new regression is inferred; cause between pilot/controller and inherited model remains unresolved. Raw source-identified traces are under benchmarks/next and issue7.
+- v0.2 improves close aircraft surface/exhaust geometry and save/replay integrity; cities, geographic scenery, recorded hybrid audio and the requested full visual reconstruction remain unfinished.

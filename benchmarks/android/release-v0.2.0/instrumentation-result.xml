@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.mtt004.lightning.OfflineLaunchTest" tests="1" failures="0" errors="0" skipped="0" time="28.748" timestamp="2026-10-27T18:55:14" hostname="localhost">
+  <properties>
+    <property name="device" value="emulator-5554 - 13" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="testBundledSimulatorLoadsAndStarts" classname="com.mtt004.lightning.OfflineLaunchTest" time="27.813" />
+</testsuite>

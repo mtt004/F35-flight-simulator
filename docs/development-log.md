@@ -66,3 +66,7 @@ BuiltnextHTML8529330d53723356463319a96469da80fb9fc87a48ce5449abd1f47b59ed56f4 an
 ## Fresh realUI integrity gate
 
 CorrectednextHTML8529330…passed6actualUIchecks: normalroundtrip, replayview/derivedstate, autosavereplayisolation,3corruptrecordrejections+recovery. Originalhandlercapture requiredDOMcapturelisteners innewharness; itsinitialinstrumentationFAIL isretained, then6GREEN withzeroerrors. Addednewchecks tobrowserCI/release mandatorygates. No claim ofcomplete safeSTOVLconversion followsfromaV-only mode-transitiontrace; realcontrol-onlyflightoutcomes recordedseparately. Nextproductsourcecheckpoint998f7be04faf046a71b2603a5af5748c5391017b containsreviewfixes+actualgeometrycaptures.
+
+## Actual flight trials and v0.2 endurance
+
+SourceHTML8529330…: input-only conventional takeoff passed(14.56simseconds,12.09mAGL). Safe conversion/vertical landing NOT established by bounded quality pilots; hard contact/mode-only observations are explicitly separated from qualityFAILs. Later controlled hover remaineduncrashed near5–7m but timedout; cause notisolated, no newphysicsregressionclaim. Rawtraces/parameters committed with issue7 followup. Exactofflinefile/network-disabledlaunchPASS36/36withzeroHTTPrequests/pageerrors. Startedfresh20minutecloudendurancewithminuteJS-heap/Threecounter/LOD-visibilitysamples; no inheritedv0.1endurancepassappliedtov0.2.

@@ -3,10 +3,15 @@ import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { browserSession, startFlight } from '../tests/helpers/browser.mjs';
-import { takeoffWithKeyboard, landHoverWithTouchThrottle } from '../tests/helpers/flight-controls.mjs';
+import { takeoffWithKeyboard, landHoverWithTouchThrottle, convertHoverWithControls } from '../tests/helpers/flight-controls.mjs';
 import { repositoryRoot } from '../tests/helpers/source.mjs';
 
 const args = process.argv.slice(2);
+const pilotBudgetArg=args.find(a=>a.startsWith('--pilot-budget='));
+const pilotBudgetSeconds=pilotBudgetArg?Number(pilotBudgetArg.split('=')[1]):null;
+if(pilotBudgetSeconds!==null&&(!Number.isFinite(pilotBudgetSeconds)||pilotBudgetSeconds<=0))throw Error('Pilot budget must be positive seconds');
+const pilotDeadline=pilotBudgetSeconds===null?Infinity:Date.now()+pilotBudgetSeconds*1000;
+const pilotTimeout=maximum=>Math.max(1,Math.min(maximum,pilotDeadline-Date.now()));
 const source = path.resolve(args.find(a => !a.startsWith('--')) || 'dist/index.html');
 const nameArg = args.find(a => a.startsWith('--label='));
 const label = nameArg ? nameArg.slice(8) : 'flight-lifecycle';
@@ -14,7 +19,7 @@ if (!/^[a-z0-9-]+$/i.test(label)) throw Error('Report label must contain letters
 const hash = createHash('sha256').update(await readFile(source)).digest('hex');
 const output = path.join(repositoryRoot, 'benchmarks/next', label + '-' + hash.slice(0,12) + '.json');
 const report = { date: new Date().toISOString(), source: path.relative(repositoryRoot, source), sourceSha256: hash,
-  referenceMainCommit: 'c53506ad59e7aad46904c3a648b0f06d6015dafd', environment: null, segments:[], checks: [], status: 'NOT TESTED',
+  referenceMainCommit: 'c53506ad59e7aad46904c3a648b0f06d6015dafd', pilotBudgetSeconds, environment: null, segments:[], checks: [], status: 'NOT TESTED',
   limitations: ['Cloud Chromium/SwiftShader functional tests; not Galaxy A51 evidence.',
     'Normal UI start/scenario selection may position an aircraft at its configured spawn; tests label such starts. No lifecycle is inferred from teleporting aircraft state.',
     'Replay stop is observed synchronously using a wrapper that calls the original function unchanged, before any later live physics step.',
@@ -205,8 +210,11 @@ try {
     return {...result,recovery:'Actual Start New, then Settings → Reset Saved Data buttons succeeded'};
   });
   }
+  let hasScenario=!args.includes('--flight-only');
   async function freshScenario(scenarioName) {
-    await session.close();report.segments.push({errors:[...session.errors],warnings:[...session.warnings]}); session=await browserSession({file:source,mobile:true});page=session.page;
+    assert.ok(Date.now()<pilotDeadline,'Shared control-pilot wall budget exhausted');
+    if(hasScenario){await session.close();report.segments.push({errors:[...session.errors],warnings:[...session.warnings]}); session=await browserSession({file:source,mobile:true});page=session.page;}
+    hasScenario=true;
     await page.setViewportSize({width:640,height:360});await attachObservers(page);
     await page.evaluate(() => {const e=document.getElementById('lightningProfile');e.value='BATTERY';e.dispatchEvent(new Event('change',{bubbles:true}));});
     await page.locator('#selFuel').selectOption('0.35');
@@ -214,21 +222,9 @@ try {
     await page.waitForFunction(() => running&&!paused,null,{timeout:30000});
   }
   if(args.includes('--extended')) {
-    await check('hover scenario sustains real physics, then actual STOVL forward conversion completes', async () => {
-      // A configured HOVER spawn is explicitly a scenario start, not proof of takeoff.
+    await check('actual controlled hover acceleration and conversion meets five-second recovery endpoint', async () => {
       await freshScenario('HOVER PRACTICE');
-      const evidence={initial:await state(),inputs:[],method:'Scenario HOVER spawn, 3 simulated seconds untouched hover, keyboard V, wait for physical fan/nozzle/door transition; read-only trace every 0.25 simulated seconds; no direct state teleport after spawn.'};
-      report.conversionEvidence=evidence;
-      await page.evaluate(()=>{window.__qaConversionTrace=[window.__flightQaState()];window.__qaConversionTimer=setInterval(()=>{const s=window.__flightQaState(),last=window.__qaConversionTrace.at(-1);if(s.flightT-last.flightT>=.25||s.crashed&&!last.crashed)window.__qaConversionTrace.push(s);},100);});
-      try {
-        await advanceSim(3); evidence.hover=await state();
-        assert.equal(evidence.hover.stolMode,'HOVER'); assert.ok(evidence.hover.ralt>10); assert.ok(Math.abs(evidence.hover.vel[1])<12);
-        evidence.inputs.push({flightT:evidence.hover.flightT,key:'V',action:'press'});await page.keyboard.press('v');
-        await page.waitForFunction(() => crashed || stolMode==='CONV',null,{timeout:90000}); evidence.conventional=await state();
-        assert.equal(evidence.conventional.crashed,false);assert.equal(evidence.conventional.stolMode,'CONV');assert.ok(evidence.conventional.nozzle<1&&evidence.conventional.lfSpool<.03);
-        return evidence;
-      }catch(error){error.evidence=evidence;throw error;}
-      finally {evidence.trace=await page.evaluate(()=>{clearInterval(window.__qaConversionTimer);return window.__qaConversionTrace;});} 
+      return convertHoverWithControls(page,{timeout:pilotTimeout(pilotBudgetSeconds===null?150000:100000)});
     });
   } else report.checks.push({name:'complete hover forward-conversion scenario',status:'NOT TESTED',reason:'Extended automated flight control is opt-in (--extended); basic save/replay tests do not establish a complete flight lifecycle.'});
   if(args.includes('--takeoff')) await check('actual runway acceleration and liftoff through keyboard inputs',async()=>{
@@ -237,9 +233,9 @@ try {
     return takeoffWithKeyboard(page);
   });
   else report.checks.push({name:'conventional runway takeoff',status:'NOT TESTED',reason:'Run with --takeoff; no takeoff is inferred from an airborne spawn.'});
-  if(args.includes('--hover-landing')) await check('actual descent from configured hover to scored wheels-on touchdown',async()=>{
+  if(args.includes('--hover-landing')) await check('actual controlled hover descent to quality scored vertical touchdown',async()=>{
     await freshScenario('HOVER PRACTICE');await advanceSim(2);
-    return landHoverWithTouchThrottle(page);
+    return landHoverWithTouchThrottle(page,{timeout:pilotTimeout(180000)});
   });
   else report.checks.push({name:'vertical landing from hover scenario',status:'NOT TESTED',reason:'Run with --hover-landing; a configured hover spawn does not establish a landing.'});
   report.errors=[...report.segments.flatMap(s=>s.errors),...session.errors]; report.warnings=[...report.segments.flatMap(s=>s.warnings),...session.warnings];

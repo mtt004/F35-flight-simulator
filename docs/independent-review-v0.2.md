@@ -4,7 +4,7 @@
 
 ## Gate
 
-**Source-review gate clear; release gate remains pending fresh final-build browser/render and native gates.** All three confirmed findings below are resolved in the reviewed working tree. No additional blocker found in the saved-flight boundary, adaptive geometry, version plumbing or replay correction. This review does not qualify the full requested overhaul or Galaxy A51 behavior.
+**Independent gate clear for the published experimental v0.2 scope.** All three confirmed findings below are resolved, and the released artifact checkpoint below closes the browser/native/provenance gates. No additional blocker found in the saved-flight boundary, adaptive geometry, version plumbing or replay correction. This review does not qualify the full requested overhaul, safe STOVL/full-flight lifecycle, or Galaxy A51 behavior.
 
 ## Findings
 
@@ -23,4 +23,21 @@
 
 Reviewed working-tree source SHA-256 at this checkpoint: simulator `11e0f8ce95ced73597ba043d8f324d1494edf44b99f9eabfcd7edcc233c88697`; aircraft detail `72a316437f7db40f492409af7975c6387b3fbde19efe64589b7e4442163c4050`; Android metadata `7da52f5f05090449566e96c7da6bf7a97484b361118fb1f205665b92be2c0872`.
 
-Fresh tests/build/browser captures and CI/emulator evidence must identify the final committed source. No physical A51, gyroscope, thermal, battery, sustained native-memory or full-lifecycle pass is inferred here.
+At the initial source-review checkpoint, final-build browser/native evidence was still pending; the released checkpoint below supersedes that pending status. No physical A51, gyroscope, thermal, battery, sustained native-memory or full-lifecycle pass is inferred here.
+
+## Independent released-binary checkpoint
+
+Published experimental tag `v0.2.0-experimental`, source `488ea110cb57e5e0ba59605547f6da0687706f41`, workflow run `40562932868`, downloaded artifact `12762154949`. Independently inspected downloaded files under `.tmp/v020-release`, reran `verify-release.py` with the expected source and retained published asset metadata, and performed additional direct ZIP/binary-XML checks. No browser or emulator was launched by this reviewer.
+
+- **PASS:** all six release checksums and all seven retained GitHub API asset sizes/SHA-256 digests match downloaded bytes. APK is **1,597,089 bytes**, SHA-256 `5631dac54e02193fda98483e54a4f54f48cfbd8d497f159aab584896bc2e44cd`.
+- **PASS:** independently decoded the actual APK's binary `AndroidManifest.xml`, rather than relying only on JSON/badging text. Observed package `com.mtt004.lightning`, version name `0.2.0-experimental`, version code **2**, minimum SDK **26**, target SDK **35**. These values match the verification, installation and build-manifest records.
+- **PASS:** APK `assets/www/index.html`, browser ZIP's `Lightning-F35B.html` and downloaded standalone HTML are byte-identical: **988,851 bytes**, SHA-256 `8529330d53723356463319a96469da80fb9fc87a48ce5449abd1f47b59ed56f4`. Reconstructed the complete web HTML in memory from the current checked-out product inputs and build composition; it matches those released bytes exactly. Subsequent optional pilot/benchmark tooling and documentation changes do not alter the product HTML. The remote release SHA is recorded by the verified provenance sidecars; no future integration/main SHA is asserted here.
+- **PASS:** all three APK licence/notice assets equal checked-in source bytes. Full Apache 2.0 licence SHA-256 is `cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30`; notices and `LICENSES.md` also match their verification hashes.
+- **PASS:** raw instrumentation XML extracted from the evidence ZIP matches the retained XML and installation-record checksum `1ab85df7f24605e09e747c2fc6de30e5125f111f27844c8603efde8468f6b4c0`. It contains exactly **one passing** `com.mtt004.lightning.OfflineLaunchTest.testBundledSimulatorLoadsAndStarts`, **0 failures, 0 errors, 0 skipped**. XML, installation record, APK digest/version and source/build-manifest correspondence all agree. This is recorded API 33 x86_64 emulator installation/live-flight evidence.
+- **PASS:** retained final browser report has nine passing checks. Released `release-flight-integrity-8529330d5372.json` has six actual UI integrity passes, zero errors, and correctly marks the three separate full-flight scenarios NOT TESTED. This closes the previous final-build evidence gap, including the derived attitude/pose and repeated Replay UI checks. It does not turn the other retained RED/harness-failure reports into product failures.
+
+Signature verification remains the retained CI `apksigner` record (v2 signature verified); this reviewer did not rerun SDK signature tooling. Native device/Galaxy A51 installation, PSS, battery, thermal behavior and gyro remain **NOT TESTED**.
+
+Reviewed the optional control-only pilot additions and raw outcomes. They issue existing keyboard/touch commands without assigning rigid-body state. The runway takeoff trial passes at **12.087 m AGL**, **14.558 simulated seconds**, off wheels. It does not establish a complete circuit. Mode-only conversion and touchdown observations are insufficient: the first touchdown is **HARD**, score **35**, recorded sink **−20.568 m/s**; the first conversion reaches CONV while descending at **−31.780 m/s**. Later quality-controlled attempts fail or time out. Their source-identified reports and documentation correctly leave safe conversion/vertical landing unqualified and the pilot/controller-versus-model cause unresolved; they establish neither impossibility nor a new physics regression. The optional conversion helper currently checks its five-second recovery endpoint; continuous bounds would be needed before a future pass could establish safety throughout that interval.
+
+The separate 1,200-second cloud endurance run was still **IN PROGRESS** at this checkpoint. Inspected minute samples show no crash, quality **0**, adaptive aircraft model **hidden**, approximately **44.7 MB** reported browser heap and bounded observed Three counters. These partial wall-time observations are not completed endurance evidence, proof against memory leaks, detailed-model endurance, or Android/native PSS measurements. No final endurance or future merge result is presumed.

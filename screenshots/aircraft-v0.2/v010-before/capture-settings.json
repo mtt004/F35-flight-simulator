@@ -433,5 +433,9 @@
     "realDevice": false
   },
   "errors": [],
-  "warnings": []
+  "warnings": [],
+  "detailLodInspectionOverride": {
+    "quality": 1,
+    "reason": "Force near geometry on equally in both versions for visual inspection; independent from adaptive qlLevel reported in the snapshot."
+  }
 }

@@ -1,0 +1,73 @@
+{
+  "sourceCommit": "488ea110cb57e5e0ba59605547f6da0687706f41",
+  "baselineHtmlSha256": "cf3b450a2aaf6fe03d95207a7a9b9a33f1179bf7868b03b805cda1a8d55f3435",
+  "finalHtmlSha256": "8529330d53723356463319a96469da80fb9fc87a48ce5449abd1f47b59ed56f4",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+    "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "viewport": [
+      1280,
+      720
+    ],
+    "devicePixelRatio": 1,
+    "drawingBuffer": [
+      1152,
+      648
+    ],
+    "hardware": "Cloud Linux Chromium using SwiftShader software rasterizer; NOT Galaxy A51",
+    "realDevice": false
+  },
+  "host": {
+    "cpu": "AMD EPYC 9V45 96-Core Processor",
+    "logicalCpuCount": 2,
+    "platform": "linux",
+    "arch": "x64"
+  },
+  "methodology": "1280\u00d7720 CSS viewport, DPR 1, fixed seed 4201, MED baseline/default final. Frame durations are intervals between actual renderer.render calls after 3s warm-up. CPU render submission duration is synchronous JS wall time, not GPU execution time. 1% low = 1000 / mean slowest ceil(1%) frame intervals. Browser heap is not Android PSS.",
+  "rows": [
+    {
+      "scenario": "runway-takeoff",
+      "baselineFPS": 2.5427176566314076,
+      "finalFPS": 3.12692175399465,
+      "finalP95Ms": 643
+    },
+    {
+      "scenario": "high-altitude",
+      "baselineFPS": 2.3061763595957956,
+      "finalFPS": 3.1369596586988195,
+      "finalP95Ms": 654.7000000000698
+    },
+    {
+      "scenario": "countryside",
+      "baselineFPS": 1.8202649020804467,
+      "finalFPS": 2.2603049356840614,
+      "finalP95Ms": 840.1999999999534
+    },
+    {
+      "scenario": "airport-approach",
+      "baselineFPS": 2.0648571635057094,
+      "finalFPS": 2.7420086267810277,
+      "finalP95Ms": 869.8000000000466
+    },
+    {
+      "scenario": "heavy-weather",
+      "baselineFPS": 2.1164447759088265,
+      "finalFPS": 2.673356913712239,
+      "finalP95Ms": 772.0999999998603
+    },
+    {
+      "scenario": "stovl-hover",
+      "baselineFPS": 1.9651513166513872,
+      "finalFPS": 2.973788181316158,
+      "finalP95Ms": 597.1000000000931
+    },
+    {
+      "scenario": "night-approach",
+      "baselineFPS": 2.304055137041214,
+      "finalFPS": 3.273285475642207,
+      "finalP95Ms": 834.1000000000931
+    }
+  ],
+  "galaxyA51": "NOT TESTED"
+}
