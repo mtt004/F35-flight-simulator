@@ -21,6 +21,6 @@ Browser runtime QA: `npx playwright install --with-deps chromium`, then `node sc
 - [Architecture](docs/architecture.md), [plan](docs/implementation-plan.md), [development log](docs/development-log.md)
 - [Preserved original/checksum](docs/original-source.md), [baseline audit](docs/baseline-audit.md)
 - [Research](research/), [dependency pins](docs/dependencies.md), [asset licences](LICENSES.md)
-- [Benchmarks](benchmarks/), [controls](docs/controls.md), [known limitations](docs/known-issues.md)
+- [Benchmarks](benchmarks/), [controls](docs/controls.md), [known limitations](docs/known-issues.md), [28-decision acceptance map](docs/acceptance-matrix.md)
 
 Status is experimental/PARTIAL against the full overhaul. Available APK/browser release gates passed; physical-device and remaining-feature gates are incomplete. Accurate geographic scenery and the full requested visual reconstruction remain unfinished. No Galaxy A51 testing is claimed.

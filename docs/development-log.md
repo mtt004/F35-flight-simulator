@@ -70,3 +70,15 @@ CorrectednextHTML8529330…passed6actualUIchecks: normalroundtrip, replayview/de
 ## Actual flight trials and v0.2 endurance
 
 SourceHTML8529330…: input-only conventional takeoff passed(14.56simseconds,12.09mAGL). Safe conversion/vertical landing NOT established by bounded quality pilots; hard contact/mode-only observations are explicitly separated from qualityFAILs. Later controlled hover remaineduncrashed near5–7m but timedout; cause notisolated, no newphysicsregressionclaim. Rawtraces/parameters committed with issue7 followup. Exactofflinefile/network-disabledlaunchPASS36/36withzeroHTTPrequests/pageerrors. Startedfresh20minutecloudendurancewithminuteJS-heap/Threecounter/LOD-visibilitysamples; no inheritedv0.1endurancepassappliedtov0.2.
+
+## v0.2 published evidence checkpoint
+
+Remote9107d4edfba2916f8f1da8c86cfdb96bf792915a commits actual release/native/browser/offline/control-trial evidence, short cloud benchmarks and delivery/independent audits. All225 remote file bytes match the local tracked tree; the remote Gradle wrapper executable bit was already correct and the local checkout was aligned. Postrelease verification again passed all published digest/source/XML checks and54+10+13local checks. PR6 is ready for review, not yet merged at this checkpoint. Product HTML remains exact released8529330… .
+
+The prior sustained process disappeared with its execution session after seven minutes; the retained progress file is now explicitly INTERRUPTED. Started a fresh1,200second run in benchmarks/v020-endurance-complete. Completion and detailed-model/native/device qualification are not inferred from partial samples. No second heavy browser runs concurrently.
+
+## v0.2 integration and completed sustained observation
+
+PR6 merged as6f1b0d034a83af49f9ab0884b14932aa4dec1ae8 after both browser and both Android runs plus CodeRabbit status passed at checkpoint9107d4e. Actual225-file checkpoint byte audit and31-file released product/build input comparison found no product changes. Independent source/artifact review remains in docs/independent-review-v0.2.md; later endurance summary is implementer-generated, not an additional independent device test.
+
+Restarted source8529330… run completed1200.020wall seconds/9171frames/425.717simseconds with no observed crash or recorded JS/shader errors. Mean7.643FPS, median8.065,1%low2.547,p95/p99 251.7/323.2ms, quality0and near-detail hidden at all20minute samples. Coarse heap50.4MB; sampled geometry425–538/textures11–14, ending above initial counts. No leak-free/resource-ceiling, full-detail, GPU/native/PSS/A51/thermal claim. Rawreports, progress, fullframe samples and reproducible summary script are committed separately from the interrupted7-minute attempt. Fullscope remainsPARTIAL; safeSTOVL and physical-device gates remainopen.

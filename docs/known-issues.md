@@ -20,3 +20,5 @@ Experimental implementation. No Galaxy A51 device is connected. Do not label as 
 
 - Safe STOVL conversion/vertical landing remains unqualified. Actual control-only takeoff passed, but exploratory conversion/landing pilots failed stated quality criteria or timed out without touchdown. No unavoidable model defect or new regression is inferred; cause between pilot/controller and inherited model remains unresolved. Raw source-identified traces are under benchmarks/next and issue7.
 - v0.2 improves close aircraft surface/exhaust geometry and save/replay integrity; cities, geographic scenery, recorded hybrid audio and the requested full visual reconstruction remain unfinished.
+
+- Completed v0.2 cloud endurance:30FPS target not met (7.64mean), quality0hid adaptive detail, and resource counters ended above their initial values during streaming. Cache/retention/leak causes and sustained high-detail/native/device behavior remain unresolved; see benchmarks/v020-endurance-complete/summary.json.

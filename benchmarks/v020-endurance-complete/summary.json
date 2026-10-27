@@ -1,0 +1,90 @@
+{
+  "status": "MEASURED",
+  "sourceSha256": "8529330d53723356463319a96469da80fb9fc87a48ce5449abd1f47b59ed56f4",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+    "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "viewport": [
+      1280,
+      720
+    ],
+    "devicePixelRatio": 1,
+    "drawingBuffer": [
+      1152,
+      648
+    ],
+    "hardware": "Cloud Linux Chromium using SwiftShader software rasterizer; NOT Galaxy A51",
+    "realDevice": false
+  },
+  "host": {
+    "cpu": "AMD EPYC 9V74 80-Core Processor",
+    "logicalCpuCount": 9,
+    "platform": "linux",
+    "arch": "x64"
+  },
+  "elapsedWallSeconds": 1200.02,
+  "simulatedSeconds": 425.7166666664424,
+  "frames": 9171,
+  "intervals": 9170,
+  "meanFps": 7.642814362623455,
+  "medianFps": 8.064516129032258,
+  "onePercentLowFps": 2.547037131371687,
+  "frameMs": {
+    "p50": 124,
+    "p95": 251.6999999997206,
+    "p99": 323.1999999997206
+  },
+  "renderSubmissionMs": {
+    "mean": 5.347857376513043
+  },
+  "stuttersOver100ms": 7634,
+  "firstApproximatelyFiveMinuteFps": 6.542133942110613,
+  "lastApproximatelyFiveMinuteFps": 7.825712770322337,
+  "sampledHeapBytes": {
+    "min": 50400000,
+    "max": 50400000
+  },
+  "sampledGeometries": {
+    "min": 425,
+    "max": 538
+  },
+  "sampledTextures": {
+    "min": 11,
+    "max": 14
+  },
+  "firstSampleResources": {
+    "geometry": 435,
+    "textures": 11,
+    "heapBytes": 50400000
+  },
+  "lastSampleResources": {
+    "geometry": 538,
+    "textures": 14,
+    "heapBytes": 50400000
+  },
+  "resourceTrendLimit": "Counters fluctuate and may end above the first sample during streaming; this run cannot distinguish retained scenery/cache growth from a leak.",
+  "sampledQualityLevels": [
+    0
+  ],
+  "adaptiveDetailVisibleSamples": 0,
+  "minuteSamples": 20,
+  "crashObserved": false,
+  "javascriptOrShaderErrors": [],
+  "target30FpsMetOnThisHost": false,
+  "galaxyA51": "NOT TESTED",
+  "physicalDeviceMetrics": {
+    "androidPssMb": null,
+    "gpuTimeMs": null,
+    "battery": null,
+    "thermal": null,
+    "inputLatencyMs": null
+  },
+  "limits": [
+    "Cloud software renderer only; wall-time renderer operation is not equal simulated flight duration.",
+    "Minute samples are not continuous high-water marks. Browser heap may be quantized; neither heap nor Three counters establish absence of leaks or whole-app/native/GPU/PSS memory.",
+    "If detail is hidden at every minute sample, this is fallback/default-governor endurance, not sustained high-detail-model qualification.",
+    "Submission timing is synchronous JavaScript/driver submission, not asynchronous GPU execution. No A51 thermal/battery/FPS inference.",
+    "Summary is implementer-generated from retained raw data, not an additional independent device test."
+  ]
+}

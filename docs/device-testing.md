@@ -20,3 +20,7 @@ Measurements are actual intervals between renderer calls. Render-submission timi
 ## Physical A51 acceptance (remaining)
 
 Install the tagged APK, enable airplane mode, launch a complete flight, test multi-touch/gyro calibration/JSON picker, switch all profiles and instrument/camera layouts, background/resume, and fly20minutes. Capture actual frame intervals, PSS via adb dumpsys meminfo, OS/WebView versions, battery/thermal observations and source/APK checksums. Targets:30FPS and provisional600MB PSS, subject to evidence. Store results without inferring absent metrics. Tracked in GitHub issue2.
+
+## Completed v0.2 cloud observation
+
+`benchmarks/v020-endurance-complete/summary.json` summarizes the actual1200.020wall-second/9171frame run, source8529330… . Mean7.643FPS, median8.065,1%low2.547,p95/p99 251.7/323.2ms, no observed crash/recorded JS orshader errors. Quality0at all20minute samples and no near-detail visible samples. Only425.717simseconds advanced under inherited overload clamping. Reported JSheap50.4MB is coarse; geometry425–538 and textures11–14 fluctuate/end above initial counts, without isolating cache versus leak. These are Chrome153/9logicalCPU/SwiftShader observations, separate from the Chrome151/2CPU short comparisons and historicalv0.1 data. No physical thermal/native/PSS/full-detail qualification. The earlier seven-minute process interruption is retained separately as INTERRUPTED.

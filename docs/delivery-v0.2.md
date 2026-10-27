@@ -31,7 +31,7 @@ For offline browser use, extract `Lightning-F35B.html` and open it in a WebGL2 b
 - `scripts/project-config.mjs`, `scripts/android_metadata.py`, Gradle and workflows: version/source/lock consistency, raw native XML case-count validation, mandatory actual UI integrity and release provenance gates.
 - Browser/Android runtime source, build scripts/dependency locks, authored assets/licences and research are in Git. Distributable binaries live in the release.
 
-[Architecture](architecture.md), [development log](development-log.md), [dependencies](dependencies.md), [research](../research/), [flight corrections](flight-integrity-v0.2.md), [geometry](aircraft-v0.2.md), [independent review](independent-review-v0.2.md), [known issues](known-issues.md).
+[Architecture](architecture.md), [development log](development-log.md), [dependencies](dependencies.md), [research](../research/), [flight corrections](flight-integrity-v0.2.md), [geometry](aircraft-v0.2.md), [independent review](independent-review-v0.2.md), [known issues](known-issues.md), [28-decision acceptance map](acceptance-matrix.md).
 
 ## Genuine verification
 
@@ -67,7 +67,7 @@ Source-bound raw data: `benchmarks/release-run-40562932868/`. Chrome151 / Linux 
 | Hover | 1.97 | 2.97 | 597.1 |
 | Night approach | 2.30 | 3.27 | 834.1 |
 
-The30FPS target is **not met in this cloud environment**. Per-scenario median/1% low/p99/CPU submission/heap samples are in the raw JSON. GPU duration, Android PSS during sustained gameplay, battery, thermals and touch latency are unavailable. The separate current Chrome15320-minute run is recorded under `benchmarks/v020-endurance/`; see its status and later outcome below. Older v0.1 endurance is not v0.2 evidence.
+The30FPS target is **not met in this cloud environment**. Per-scenario median/1% low/p99/CPU submission/heap samples are in the raw JSON. GPU duration, Android PSS during sustained gameplay, battery, thermals and touch latency are unavailable. A seven-minute attempt under `benchmarks/v020-endurance/` was interrupted when its execution session ended; its partial samples are explicitly marked INTERRUPTED. A fresh current Chrome15320-minute run is recorded under `benchmarks/v020-endurance-complete/`; see its status and later outcome below. Older v0.1 endurance is not v0.2 evidence.
 
 ## Actual visual evidence
 
@@ -88,3 +88,28 @@ The visible improvement is modest smoothing, fairings/recessed intakes and a dar
 - Twenty-minute cloud observations cannot establish physical battery/heat behavior, whole-app PSS or absence of all resource leaks; low-quality fallback also prevents inferring detailed-model endurance.
 
 All finished source/evidence is to be integrated through PR6. Final integration and endurance evidence are recorded below once verified. No stable1.0 or full-project PASS is claimed.
+
+
+## Completed v0.2 wall-time endurance and integration
+
+PR6 merged after **all five** observed integration checks passed (two browser, two Android and CodeRabbit status). Merge commit **6f1b0d034a83af49f9ab0884b14932aa4dec1ae8**. Actual check IDs/URLs and source/build-input comparison are retained in `benchmarks/next/v020-integration-checks.json`. No duplicate-run test counts are added together. All31 compared product/Android/build/config/licence inputs match immutable release488ea110…; later changes are QA/documentation/data.
+
+The restarted run completed **1200.020 wall seconds**, **9171 rendered frames**, **20 minute samples**, with **no crash observed** and **zero recorded JavaScript/shader errors**. Source HTML8529330… exactly matches the release. Actual host: Chrome153/ANGLE SwiftShader, Linux x64, AMD EPYC9V74, **9logical CPUs**; this differs from the2CPU/Chrome151 short comparison above.
+
+| Metric | Observed |
+| --- | ---: |
+| Mean / median FPS | 7.643 / 8.065 |
+| 1% low FPS | 2.547 |
+| Frame-time p95 / p99 | 251.7 / 323.2ms |
+| Synchronous render submission mean | 5.348ms |
+| Intervals over100ms | 7634 of9170 |
+| Simulated time advanced | 425.717seconds |
+| Coarse reported JS heap samples | 50.4MB throughout |
+| Minute-sampled geometries / textures | 425–538 / 11–14 |
+| Near-detail visible minute samples | 0of20; quality0throughout |
+
+Raw renderer intervals, flight snapshots and counters: `benchmarks/v020-endurance-complete/`. Reproduce the summary with `python3 scripts/summarize-endurance.py benchmarks/v020-endurance-complete`. Original interrupted7-minute attempt remains separate and marked INTERRUPTED.
+
+This establishes completed **wall-time fallback-renderer observation**, not target performance:30FPS was **not met**. The inherited50ms physics clamp explains why simulated duration is shorter than wall time. Geometry/texture counts fluctuate and finish above their initial values during streaming; cache growth versus a leak is not isolated. Constant coarse heap reporting cannot establish leak-free operation. No sustained high-detail-model, GPU-time, whole-app PSS, native-memory, input-latency, A51 thermal/battery or physical-device qualification follows.
+
+Final documentation/data integration follows the tested merge without changing the delivered game. The authoritative final main SHA is reported in the handover/API; this file does not attempt to embed its own future commit hash. Overall full-project status remains **PARTIAL**.

@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-27",
+  "integrationCheckpoint": "9107d4edfba2916f8f1da8c86cfdb96bf792915a",
+  "mergeCommit": "6f1b0d034a83af49f9ab0884b14932aa4dec1ae8",
+  "pullRequest": "https://github.com/mtt004/F35-flight-simulator/pull/6",
+  "checks": [
+    {
+      "id": 122414540353,
+      "name": "CodeRabbit",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/mtt004/F35-flight-simulator/runs/122414540353",
+      "startedAt": "2026-10-27T19:19:26Z",
+      "completedAt": "2026-10-27T19:20:44Z"
+    },
+    {
+      "id": 122414100990,
+      "name": "browser",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/mtt004/F35-flight-simulator/actions/runs/40567936942/job/122414100990",
+      "startedAt": "2026-10-27T19:18:39Z",
+      "completedAt": "2026-10-27T19:24:46Z"
+    },
+    {
+      "id": 122414098921,
+      "name": "android",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/mtt004/F35-flight-simulator/actions/runs/40567936994/job/122414098921",
+      "startedAt": "2026-10-27T19:18:39Z",
+      "completedAt": "2026-10-27T19:26:37Z"
+    },
+    {
+      "id": 122414066309,
+      "name": "android",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/mtt004/F35-flight-simulator/actions/runs/40567927221/job/122414066309",
+      "startedAt": "2026-10-27T19:18:34Z",
+      "completedAt": "2026-10-27T19:25:07Z"
+    },
+    {
+      "id": 122414064718,
+      "name": "browser",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/mtt004/F35-flight-simulator/actions/runs/40567927071/job/122414064718",
+      "startedAt": "2026-10-27T19:18:35Z",
+      "completedAt": "2026-10-27T19:32:35Z"
+    }
+  ],
+  "runtimeInputAudit": {
+    "releaseSource": "488ea110cb57e5e0ba59605547f6da0687706f41",
+    "integrationCheckpoint": "9107d4edfba2916f8f1da8c86cfdb96bf792915a",
+    "filesCompared": 31,
+    "differences": [],
+    "note": "Product source, Android and build/config/licence inputs unchanged; QA tooling/docs/evidence may differ."
+  },
+  "repository": {
+    "fullName": "mtt004/F35-flight-simulator",
+    "private": true,
+    "defaultBranch": "main"
+  },
+  "notes": [
+    "Checks read from actual GitHub check-runs API after all completed; no duplicate-run test counts are summed.",
+    "All 225 checkpoint file contents matched local bytes; remote Gradle executable mode was correct and local checkout was aligned.",
+    "Final documentation/endurance records follow without changing released product inputs."
+  ]
+}

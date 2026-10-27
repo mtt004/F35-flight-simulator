@@ -38,7 +38,8 @@ All requested features remain scope, but each incomplete or unavailable gate mus
 - [x] Centralize version0.2.0-experimental/code2 and bind native XML/APK/source evidence in release checks.
 - [x] Exercise genuine control-only flight lifecycle; report actual passes/failures without teleporting and claiming a lifecycle.
 - [x] Obtain independent review, build/test APK/browser, and publish new tag without rewriting v0.1.
-- [ ] Integrate PR6 and complete the separate v0.2 cloud endurance record.
+- [x] Integrate PR6 after actual browser/Android CI passes (merge6f1b0d034a83af49f9ab0884b14932aa4dec1ae8).
+- [x] Complete the separate v0.2 cloud wall-time endurance record; no crash/errors observed,30FPS target not met, quality0fallback. Physical-device/full-detail qualification remains open.
 
 Starting main c53506ad59e7aad46904c3a648b0f06d6015dafd. Accurate regional geodata, full audio/world reconstruction and physicalA51 qualification remain open.
 

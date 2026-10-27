@@ -1,0 +1,244 @@
+{
+  "status": "COMPLETE",
+  "sourceSha256": "8529330d53723356463319a96469da80fb9fc87a48ce5449abd1f47b59ed56f4",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+    "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "viewport": [
+      1280,
+      720
+    ],
+    "devicePixelRatio": 1,
+    "drawingBuffer": [
+      1152,
+      648
+    ],
+    "hardware": "Cloud Linux Chromium using SwiftShader software rasterizer; NOT Galaxy A51",
+    "realDevice": false
+  },
+  "secondsRequested": 1200,
+  "samples": [
+    {
+      "frames": 291,
+      "heapBytes": 50400000,
+      "geometry": 435,
+      "textures": 11,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 14.991666666666456,
+      "crashed": false,
+      "elapsedWallSeconds": 60.004
+    },
+    {
+      "frames": 634,
+      "heapBytes": 50400000,
+      "geometry": 436,
+      "textures": 11,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 30.958333333332217,
+      "crashed": false,
+      "elapsedWallSeconds": 120.012
+    },
+    {
+      "frames": 1044,
+      "heapBytes": 50400000,
+      "geometry": 438,
+      "textures": 11,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 49.95833333333114,
+      "crashed": false,
+      "elapsedWallSeconds": 180.021
+    },
+    {
+      "frames": 1476,
+      "heapBytes": 50400000,
+      "geometry": 434,
+      "textures": 11,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 70.20833333333528,
+      "crashed": false,
+      "elapsedWallSeconds": 240.039
+    },
+    {
+      "frames": 1963,
+      "heapBytes": 50400000,
+      "geometry": 425,
+      "textures": 11,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 93.00833333335342,
+      "crashed": false,
+      "elapsedWallSeconds": 300.055
+    },
+    {
+      "frames": 2441,
+      "heapBytes": 50400000,
+      "geometry": 430,
+      "textures": 11,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 114.87500000003749,
+      "crashed": false,
+      "elapsedWallSeconds": 360.072
+    },
+    {
+      "frames": 2905,
+      "heapBytes": 50400000,
+      "geometry": 432,
+      "textures": 11,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 136.4416666667069,
+      "crashed": false,
+      "elapsedWallSeconds": 420.092
+    },
+    {
+      "frames": 3390,
+      "heapBytes": 50400000,
+      "geometry": 432,
+      "textures": 11,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 158.94166666668644,
+      "crashed": false,
+      "elapsedWallSeconds": 480.108
+    },
+    {
+      "frames": 3867,
+      "heapBytes": 50400000,
+      "geometry": 429,
+      "textures": 11,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 180.84166666666653,
+      "crashed": false,
+      "elapsedWallSeconds": 540.128
+    },
+    {
+      "frames": 4353,
+      "heapBytes": 50400000,
+      "geometry": 463,
+      "textures": 12,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 203.75833333331235,
+      "crashed": false,
+      "elapsedWallSeconds": 600.145
+    },
+    {
+      "frames": 4818,
+      "heapBytes": 50400000,
+      "geometry": 463,
+      "textures": 12,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 225.40833333329266,
+      "crashed": false,
+      "elapsedWallSeconds": 660.167
+    },
+    {
+      "frames": 5336,
+      "heapBytes": 50400000,
+      "geometry": 467,
+      "textures": 12,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 249.22499999993767,
+      "crashed": false,
+      "elapsedWallSeconds": 720.183
+    },
+    {
+      "frames": 5845,
+      "heapBytes": 50400000,
+      "geometry": 439,
+      "textures": 11,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 272.8916666665828,
+      "crashed": false,
+      "elapsedWallSeconds": 780.2
+    },
+    {
+      "frames": 6320,
+      "heapBytes": 50400000,
+      "geometry": 475,
+      "textures": 12,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 295.00833333322936,
+      "crashed": false,
+      "elapsedWallSeconds": 840.219
+    },
+    {
+      "frames": 6825,
+      "heapBytes": 50400000,
+      "geometry": 469,
+      "textures": 12,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 318.5416666665413,
+      "crashed": false,
+      "elapsedWallSeconds": 900.239
+    },
+    {
+      "frames": 7340,
+      "heapBytes": 50400000,
+      "geometry": 503,
+      "textures": 13,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 342.34166666651964,
+      "crashed": false,
+      "elapsedWallSeconds": 960.257
+    },
+    {
+      "frames": 7822,
+      "heapBytes": 50400000,
+      "geometry": 503,
+      "textures": 13,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 364.5249999998328,
+      "crashed": false,
+      "elapsedWallSeconds": 1020.271
+    },
+    {
+      "frames": 8283,
+      "heapBytes": 50400000,
+      "geometry": 503,
+      "textures": 13,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 385.7749999998135,
+      "crashed": false,
+      "elapsedWallSeconds": 1080.289
+    },
+    {
+      "frames": 8742,
+      "heapBytes": 50400000,
+      "geometry": 538,
+      "textures": 14,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 407.44166666646043,
+      "crashed": false,
+      "elapsedWallSeconds": 1140.304
+    },
+    {
+      "frames": 9171,
+      "heapBytes": 50400000,
+      "geometry": 538,
+      "textures": 14,
+      "quality": 0,
+      "adaptiveModelVisible": false,
+      "flightT": 427.2416666664424,
+      "crashed": false,
+      "elapsedWallSeconds": 1200.02
+    }
+  ],
+  "note": "Minute samples: browser JS heap and Three counters, not Android process/GPU/PSS or leak certification."
+}
