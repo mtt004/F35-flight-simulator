@@ -8,10 +8,12 @@ from pathlib import Path
 import re
 import subprocess
 import zipfile
+from android_metadata import read_project_metadata, validate_badging
 
 parser = argparse.ArgumentParser()
 parser.add_argument("apk", type=Path)
 args = parser.parse_args()
+project_metadata = read_project_metadata()
 if not args.apk.is_file():
     parser.error("APK does not exist")
 sdk = Path(os.environ.get("ANDROID_HOME", os.environ.get("ANDROID_SDK_ROOT", "")))
@@ -54,10 +56,10 @@ with zipfile.ZipFile(args.apk) as archive:
     if b"__F35B_SIM__" not in bundled or b"WebGLRenderer" not in bundled:
         raise SystemExit("APK does not contain the simulator")
 badging = subprocess.run([locate("aapt"), "dump", "badging", str(args.apk)], check=True, capture_output=True, text=True).stdout
-if "package: name='com.mtt004.lightning'" not in badging:
-    raise SystemExit("Unexpected APK application ID")
-if "sdkVersion:'26'" not in badging or "targetSdkVersion:'35'" not in badging:
-    raise SystemExit("Unexpected APK SDK compatibility")
+try:
+    actual_metadata = validate_badging(badging, project_metadata)
+except ValueError as error:
+    raise SystemExit(str(error)) from error
 if "launchable-activity: name='com.mtt004.lightning.MainActivity'" not in badging:
     raise SystemExit("APK has no expected launchable activity")
 permissions = [line for line in badging.splitlines() if line.startswith("uses-permission")]
@@ -68,11 +70,7 @@ print(json.dumps({
     "filename": args.apk.name,
     "bytes": args.apk.stat().st_size,
     "sha256": hashlib.sha256(args.apk.read_bytes()).hexdigest(),
-    "applicationId": "com.mtt004.lightning",
-    "versionName": "0.1.0-experimental",
-    "versionCode": 1,
-    "minSdk": 26,
-    "targetSdk": 35,
+    **actual_metadata,
     "signing": "debug (ephemeral CI key; verify certificate output below)",
     "archiveIntegrity": "PASS",
     "bundledBrowserMatches": True,

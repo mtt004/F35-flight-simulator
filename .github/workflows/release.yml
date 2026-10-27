@@ -8,8 +8,8 @@ on:
       tag:
         description: 'New immutable experimental release tag'
         type: string
-        required: true
-        default: v0.1.0-experimental
+        required: false
+        default: ''
 permissions:
   contents: read
 concurrency:
@@ -29,6 +29,12 @@ jobs:
         with:
           node-version: '22.16.0'
       - run: npm ci
+      - name: Validate authoritative version and release tag before building
+        env:
+          RELEASE_EVENT: ${{ github.event_name }}
+          RELEASE_REF: ${{ github.ref_name }}
+          REQUESTED_TAG: ${{ inputs.tag }}
+        run: node scripts/project-config.mjs --release --event "$RELEASE_EVENT" --ref "$RELEASE_REF" --requested-tag "$REQUESTED_TAG" --github-env "$GITHUB_ENV"
       - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
         with:
           distribution: temurin
@@ -44,6 +50,8 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - name: Actual browser launch and internal regression checks
         run: node scripts/test-browser.mjs dist/index.html
+      - name: Actual saved-flight, replay-view and corrupt-record UI regression
+        run: node scripts/test-flight-lifecycle.mjs dist/index.html --label=release-flight-integrity
       - name: Build and verify signed APK archive
         run: bash scripts/build-android.sh
       - name: Compile the test APK before starting the memory-intensive emulator
@@ -95,14 +103,23 @@ jobs:
         run: |
           python3 - <<'PYTHON'
           from pathlib import Path
-          import json, xml.etree.ElementTree as ET
-          reports = list(Path('android/app/build/outputs/androidTest-results/connected').rglob('TEST-*.xml'))
-          assert reports, 'Instrumentation XML results are missing'
-          cases = [case for report in reports for case in ET.parse(report).iter('testcase')]
-          assert cases, 'No Android instrumentation tests ran'
-          failures = [case.attrib for case in cases if any(case.find(kind) is not None for kind in ['failure', 'error', 'skipped'])]
-          assert not failures, failures
-          result = {'status': 'PASS', 'environment': 'GitHub Actions Android API 33 x86_64 emulator, software GPU', 'actualInstallationAndLaunch': True, 'tests': len(cases), 'reports': [str(p) for p in reports], 'galaxyA51': 'NOT TESTED'}
+          import hashlib, json, os
+          from scripts.android_metadata import validate_instrumentation_xml
+          paths = sorted(Path('android/app/build/outputs/androidTest-results/connected').rglob('TEST-*.xml'))
+          contents = {str(path): path.read_bytes() for path in paths}
+          verification = json.loads(Path('dist/android-verification.json').read_text())
+          import xml.etree.ElementTree as ET
+          tests = sum(len(list(ET.fromstring(content).iter('testcase'))) for content in contents.values())
+          installed_apk_sha = hashlib.sha256(Path('android/app/build/outputs/apk/debug/app-debug.apk').read_bytes()).hexdigest()
+          assert installed_apk_sha == hashlib.sha256(Path('dist/Lightning-F35B-Android.apk').read_bytes()).hexdigest(), 'UTP-installed APK differs from deliverable'
+          result = {'status': 'PASS', 'environment': 'GitHub Actions Android API 33 x86_64 emulator, software GPU',
+                    'actualInstallationAndLaunch': True, 'tests': tests, 'reports': list(contents),
+                    'reportChecksums': {name: hashlib.sha256(content).hexdigest() for name, content in contents.items()},
+                    'apkSha256': installed_apk_sha,
+                    'sourceCommit': os.environ['GITHUB_SHA'], 'versionName': verification['versionName'],
+                    'versionCode': verification['versionCode'], 'galaxyA51': 'NOT TESTED'}
+          validate_instrumentation_xml(contents, result)
+          assert result['apkSha256'] == verification['sha256'], 'Installed build record and verified APK differ'
           Path('dist/android-installation.json').write_text(json.dumps(result, indent=2) + '\n')
           PYTHON
       - name: Baseline cloud benchmark and screenshots
@@ -126,13 +143,18 @@ jobs:
                   if path.is_file(): z.write(path, path.relative_to('dist').as_posix())
               for path in sorted(Path('android/app/build/outputs/androidTest-results/connected').rglob('*')):
                   if path.is_file(): z.write(path, path.as_posix())
-          manifest = {'sourceCommit': os.environ['GITHUB_SHA'], 'workflowRun': os.environ['GITHUB_RUN_ID'], 'androidVersion': '0.1.0-experimental', 'signing': 'debug; ephemeral CI key', 'galaxyA51': 'NOT TESTED', 'installation': 'PASS: Android API 33 emulator installed APK and launched actual bundled flight; see android-installation.json'}
+          verification = json.loads(Path('dist/android-verification.json').read_text())
+          manifest = json.loads(Path('dist/build-manifest.json').read_text())
+          assert manifest['version'] == verification['versionName'] and manifest['versionCode'] == verification['versionCode'], 'Browser/native versions differ'
+          manifest.update({'sourceCommit': os.environ['GITHUB_SHA'], 'workflowRun': os.environ['GITHUB_RUN_ID'], 'androidVersion': verification['versionName'], 'signing': 'debug; ephemeral CI key', 'galaxyA51': 'NOT TESTED', 'installation': 'PASS: Android API 33 emulator installed APK and launched actual bundled flight; see android-installation.json'})
           Path('dist/build-manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
           names = ['Lightning-F35B-Android.apk', 'Lightning-F35B-Web.zip', 'Lightning-F35B-Evidence.zip', 'android-verification.json', 'android-installation.json', 'build-manifest.json']
           for name in names:
               assert Path('dist', name).is_file(), 'Missing release artifact: ' + name
           Path('dist/SHA256SUMS.txt').write_text(''.join(hashlib.sha256(Path('dist', n).read_bytes()).hexdigest() + '  ' + n + '\n' for n in names))
           PYTHON
+      - name: Verify complete release, raw XML and source/binary correspondence
+        run: python3 scripts/verify-release.py dist --expected-source "$GITHUB_SHA"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
@@ -148,12 +170,9 @@ jobs:
       - name: Publish immutable prerelease
         env:
           GH_TOKEN: ${{ github.token }}
-          RELEASE_REF: ${{ github.ref_name }}
-          REQUESTED_TAG: ${{ inputs.tag }}
         run: |
           set -euo pipefail
-          release_tag="${REQUESTED_TAG:-${RELEASE_REF#release/}}"
-          [[ "$release_tag" =~ ^v[0-9]+\.[0-9]+\.[0-9]+[A-Za-z0-9.-]*$ ]] || { echo 'Invalid version tag'; exit 1; }
+          release_tag="$LIGHTNING_TAG"
           if gh release view "$release_tag" >/dev/null 2>&1; then
             echo 'Release already exists; refusing to replace assets or change its source commit.'
             exit 1
@@ -162,7 +181,7 @@ jobs:
           # Project Lightning — experimental F-35B mobile simulator
 
           Source commit: $GITHUB_SHA
-          APK: Lightning-F35B-Android.apk (com.mtt004.lightning, version 0.1.0-experimental, Android 8.0/API 26+ with WebGL2).
+          APK: Lightning-F35B-Android.apk (com.mtt004.lightning, version $LIGHTNING_VERSION, code $LIGHTNING_VERSION_CODE, Android 8.0/API 26+ with WebGL2).
           Browser: Lightning-F35B-Web.zip; extract and open Lightning-F35B.html offline.
           Integrity: see SHA256SUMS.txt and android-verification.json.
 

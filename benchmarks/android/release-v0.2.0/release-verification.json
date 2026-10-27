@@ -1,0 +1,65 @@
+{
+  "status": "PASS",
+  "files": {
+    "Lightning-F35B-Android.apk": {
+      "bytes": 1597089,
+      "sha256": "5631dac54e02193fda98483e54a4f54f48cfbd8d497f159aab584896bc2e44cd"
+    },
+    "Lightning-F35B-Web.zip": {
+      "bytes": 988987,
+      "sha256": "44da503158173dd9cb57781442a4bd01f2858f6cf67c6433d23cac0b65306d69"
+    },
+    "Lightning-F35B-Evidence.zip": {
+      "bytes": 9058442,
+      "sha256": "37edb6ed619979da332910b281ab856d070c77621191001cb2b5160778576442"
+    },
+    "android-verification.json": {
+      "bytes": 6920,
+      "sha256": "2ce0daa093440a68a64dc54f0794ebb0db995a757c277213cbadd0da326e1eea"
+    },
+    "android-installation.json": {
+      "bytes": 709,
+      "sha256": "4045ddd105b83a9ee17ad2a6e1f1cb418c3ae850c6daaea7e5fabc54f7d754c3"
+    },
+    "build-manifest.json": {
+      "bytes": 774,
+      "sha256": "ed215008f1ab46a1ffd9f14f2c6a1012df36298c8359d2b1708142ddd73b3995"
+    }
+  },
+  "sourceCommit": "488ea110cb57e5e0ba59605547f6da0687706f41",
+  "browserHtmlSha256": "8529330d53723356463319a96469da80fb9fc87a48ce5449abd1f47b59ed56f4",
+  "githubAssetDigestsMatch": true,
+  "signatureVerification": "CI apksigner record; not independently rerun without Android SDK",
+  "installation": {
+    "status": "PASS",
+    "environment": "GitHub Actions Android API 33 x86_64 emulator, software GPU",
+    "actualInstallationAndLaunch": true,
+    "tests": 1,
+    "reports": [
+      "android/app/build/outputs/androidTest-results/connected/debug/TEST-emulator-5554 - 13-_app-.xml"
+    ],
+    "reportChecksums": {
+      "android/app/build/outputs/androidTest-results/connected/debug/TEST-emulator-5554 - 13-_app-.xml": "1ab85df7f24605e09e747c2fc6de30e5125f111f27844c8603efde8468f6b4c0"
+    },
+    "apkSha256": "5631dac54e02193fda98483e54a4f54f48cfbd8d497f159aab584896bc2e44cd",
+    "sourceCommit": "488ea110cb57e5e0ba59605547f6da0687706f41",
+    "versionName": "0.2.0-experimental",
+    "versionCode": 2,
+    "galaxyA51": "NOT TESTED"
+  },
+  "rawInstrumentationProof": {
+    "tests": 1,
+    "rawReportChecksums": {
+      "android/app/build/outputs/androidTest-results/connected/debug/TEST-emulator-5554 - 13-_app-.xml": "1ab85df7f24605e09e747c2fc6de30e5125f111f27844c8603efde8468f6b4c0"
+    },
+    "liveFlightTestPresent": true
+  },
+  "actualApkMetadata": {
+    "applicationId": "com.mtt004.lightning",
+    "versionName": "0.2.0-experimental",
+    "versionCode": 2,
+    "minSdk": 26,
+    "targetSdk": 35
+  },
+  "galaxyA51": "NOT TESTED"
+}

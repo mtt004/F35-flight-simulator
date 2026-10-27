@@ -24,7 +24,7 @@ Settings use the bundled page's existing local storage. App data and settings pe
 | AndroidX WebKit | 1.12.1 |
 | AndroidX test core / runner / JUnit extension | 1.6.1 / 1.6.2 / 1.2.1 (test APK only) |
 | Application ID | `com.mtt004.lightning` |
-| Version name / code | `0.1.0-experimental` / 1 |
+| Next configured version name / code | `0.2.0-experimental` / 2, read from `package.json` |
 
 The Gradle binary download is verified by wrapper property `distributionSha256Sum`:
 `d725d707bfabd4dfdc958c624003b3c80accc03f7037b5122c4b1d0ef15cecab`.
@@ -65,7 +65,7 @@ Outputs:
 - `.github/workflows/android-build.yml`: tests, Android compilation/lint and signed APK verification on branch pushes and PRs. Every run additionally installs and launches the actual game through an instrumentation test on an API 33 emulator with a software GPU. Successful runs produce `dist/android-installation.json` from genuine instrumentation XML; missing, skipped or failing tests block that gate.
 - `.github/workflows/release.yml`: tests, browser launch, Android compilation and signing verification, an Android API 33 emulator installation/flight-launch gate, brief baseline/final cloud benchmarks, evidence ZIP, checksums, then a private GitHub prerelease.
 
-Create a new release branch such as `release/v0.1.0-experimental` at the intended source commit to trigger the prerelease workflow. It derives the immutable tag `v0.1.0-experimental`, refuses to replace an existing release, and records source SHA in `build-manifest.json`. Do not create that branch until its source is intended for release. Version tags and manual dispatch are also supported.
+Create the next release branch `release/v0.2.0-experimental` at its intended source commit to trigger the prerelease workflow. The release tag must exactly match `v` plus `package.json.version`; a mismatched branch/tag/input fails before Android setup. The workflow refuses to replace any existing release and records source SHA in `build-manifest.json`. Do not create that branch until its source is intended for release. Version tags and manual dispatch are also supported.
 
 All third-party Actions are pinned to commit SHAs, resolved from their published version refs during implementation. Regular workflows have read-only repository permissions. Only the release job receives `contents: write`, with its token supplied to the release step. No signing secret or private key is committed.
 
@@ -143,4 +143,14 @@ Startup records gfxstream, vulkan_mode_selected=lavapipe and gles_mode_selected=
 
 ### Final released binary
 
-Release run40508826040 succeeded and published v0.1.0-experimental from dd433f611b3911f49a914d65024c0e5cbe63269f. Actual released APK hash c8d2f351327ead8179105f36ae51c3996cc7bd1a8b43a41d4ab290eecc26e453 supersedes earlier checkpoint hashes. Native releaseXML1/1PASS and package/signature/licence reports are in benchmarks/android/release-v0.1.0 and the permanent releaseEvidenceZIP. `python3 scripts/verify-release.py <downloaded-release-directory> --expected-source dd433f611b3911f49a914d65024c0e5cbe63269f` verifies checksums, package consistency, bundled licences and recorded gates. Optional `--github-assets <published-assets.json>` verifies all published asset sizes/digests. It does not replace a fresh SDK apksigner verification or device test.
+Release run40508826040 succeeded and published v0.1.0-experimental from dd433f611b3911f49a914d65024c0e5cbe63269f. Actual released APK hash c8d2f351327ead8179105f36ae51c3996cc7bd1a8b43a41d4ab290eecc26e453 supersedes earlier checkpoint hashes. Native releaseXML1/1PASS and package/signature/licence reports are in benchmarks/android/release-v0.1.0 and the permanent releaseEvidenceZIP. Using the verifier from the `v0.1.0-experimental` source tag, `python3 scripts/verify-release.py <downloaded-release-directory> --expected-source dd433f611b3911f49a914d65024c0e5cbe63269f` verifies checksums, package consistency, bundled licences and recorded gates. Optional `--github-assets <published-assets.json>` verifies all published asset sizes/digests. It does not replace a fresh SDK apksigner verification or device test.
+
+## Next release configuration: 0.2.0-experimental
+
+`package.json.version` is the authoritative web/native version name, with `package.json.lightning.androidVersionCode` as the Android integer version code (currently 2). The npm lockfile records the same package version. Change these source fields together when preparing a future release and increment the Android code for updates; no signing key is changed by versioning. Existing v0.1.0 source and release assets remain immutable.
+
+`scripts/project-config.mjs` validates the version, Android-code bounds, lockfile agreement and exact release-tag agreement. `npm test` includes its ten configuration checks plus ten SDK-independent checks in `scripts/android_metadata.py` for actual aapt badging and raw instrumentation evidence. The web build exposes a frozen `globalThis.__LIGHTNING_BUILD__` record and puts matching metadata in its manifest. Gradle reads the same package metadata, while the APK verifier parses actual `aapt dump badging` output and rejects a stale or mismatched version; its reported version fields are observed APK values.
+
+Installation JSON now binds the actual APK SHA-256, package version and source commit to checksums of every raw instrumentation XML report. The release verifier opens those XML files from the evidence ZIP, requires the named live-flight test and all passing case/suite counts, and rejects missing/skipped/failed/incomplete tests or JSON-only claims. It also checks evidence-sidecar equality, APK/browser equality, manifest versions/source and browser checksum. The workflow runs this full verifier before publishing. These stronger requirements apply to v0.2.0 onward; use the matching historical source tag when independently reproducing older release verification.
+
+Preparation checks passed locally: ten JS configuration checks, ten Python metadata/evidence checks, syntax validation of workflows and embedded shell/Python, and parsing of the genuine archived v0.1.0 successful-run raw XML (one passing live-flight case). The next APK has not been built or installed locally; fresh CI and emulator evidence must establish its result.

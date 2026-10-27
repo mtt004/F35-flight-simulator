@@ -1,0 +1,156 @@
+✖ replay restores all mutated live state and original pause mode: false (21.754893ms)
+✖ replay restores all mutated live state and original pause mode: true (5.052641ms)
+✔ restore rejects short velocity without changing the flight (21.450654ms)
+✔ restore rejects short angular rate without changing the flight (4.661161ms)
+✔ restore rejects missing velocity without changing the flight (6.162145ms)
+✔ restore rejects numeric-string position without changing the flight (4.613359ms)
+✔ restore rejects null quaternion without changing the flight (7.718913ms)
+✔ restore rejects nonfinite velocity without changing the flight (3.998381ms)
+✔ restore rejects NaN angular rate without changing the flight (3.926402ms)
+✔ restore rejects zero quaternion without changing the flight (4.192263ms)
+✔ restore rejects overflow quaternion without changing the flight (4.233516ms)
+✔ restore rejects invalid seed without changing the flight (4.364643ms)
+✔ restore rejects out of range seed without changing the flight (5.666447ms)
+✔ restore rejects extreme position without changing the flight (3.919302ms)
+✔ restore rejects extreme velocity without changing the flight (4.672628ms)
+✔ restore rejects extreme angular rate without changing the flight (4.088066ms)
+✔ restore rejects extra vector components without changing the flight (6.394515ms)
+✔ valid existing save restores numeric state and normalizes orientation (5.009376ms)
+✔ valid save in another seeded world restores its absolute coordinates (4.093825ms)
+✔ save retains last valid flight when live orientation/rates are invalid: P.quat.set(0,NaN,0,1) (4.165783ms)
+✔ save retains last valid flight when live orientation/rates are invalid: P.om.set(0,Infinity,0) (4.175598ms)
+✖ saving during replay preserves the last live-flight save (6.130968ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 19
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 208.650068
+
+✖ failing tests:
+
+test at tests/unit/replay-state.test.mjs:24:37
+✖ replay restores all mutated live state and original pause mode: false (21.754893ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '{"p":[9,10,11],"v":[12,13,14],"q":[0,0,0,1],"om":[1,2,3],"camMode":2,"paused":false,"ias":80,"mach":0.2,"gNz":0.5,"nozzle":0,"gearD":0,"thr":0.2}'
+  - '{"p":[9,10,11],"v":[12,13,14],"q":[0,0,0,1],"om":[1,2,3],"camMode":2,"paused":false,"ias":150,"mach":0.45,"gNz":1.2,"nozzle":40,"gearD":0.8,"thr":0.7}'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/e9db2680cfd4/F35-flight-simulator/tests/unit/replay-state.test.mjs:25:177)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '{"p":[9,10,11],"v":[12,13,14],"q":[0,0,0,1],"om":[1,2,3],"camMode":2,"paused":false,"ias":80,"mach":0.2,"gNz":0.5,"nozzle":0,"gearD":0,"thr":0.2}',
+    expected: '{"p":[9,10,11],"v":[12,13,14],"q":[0,0,0,1],"om":[1,2,3],"camMode":2,"paused":false,"ias":150,"mach":0.45,"gNz":1.2,"nozzle":40,"gearD":0.8,"thr":0.7}',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/replay-state.test.mjs:24:37
+✖ replay restores all mutated live state and original pause mode: true (5.052641ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '{"p":[9,10,11],"v":[12,13,14],"q":[0,0,0,1],"om":[1,2,3],"camMode":2,"paused":false,"ias":80,"mach":0.2,"gNz":0.5,"nozzle":0,"gearD":0,"thr":0.2}'
+  - '{"p":[9,10,11],"v":[12,13,14],"q":[0,0,0,1],"om":[1,2,3],"camMode":2,"paused":true,"ias":150,"mach":0.45,"gNz":1.2,"nozzle":40,"gearD":0.8,"thr":0.7}'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/e9db2680cfd4/F35-flight-simulator/tests/unit/replay-state.test.mjs:25:177)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '{"p":[9,10,11],"v":[12,13,14],"q":[0,0,0,1],"om":[1,2,3],"camMode":2,"paused":false,"ias":80,"mach":0.2,"gNz":0.5,"nozzle":0,"gearD":0,"thr":0.2}',
+    expected: '{"p":[9,10,11],"v":[12,13,14],"q":[0,0,0,1],"om":[1,2,3],"camMode":2,"paused":true,"ias":150,"mach":0.45,"gNz":1.2,"nozzle":40,"gearD":0.8,"thr":0.7}',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/saved-flight.test.mjs:64:1
+✖ saving during replay preserves the last live-flight save (6.130968ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+  +   N1: 55,
+  +   N2: 59,
+  +   abSpool: 0,
+  +   camMode: 0,
+  +   flightT: 0,
+  +   fuel: 3000,
+  +   gearD: 1,
+  +   gearT: 1,
+  +   lfDoor: 0,
+  +   lfSpool: 0,
+  +   nozzle: 0,
+  -   camMode: 2,
+  -   flightT: 80,
+  -   fuel: 2200,
+  -   gearD: 0,
+  -   gearT: 0,
+      om: [
+  +     1,
+  +     2,
+  +     3
+  -     0.01,
+  -     0.02,
+  -     -0.03
+      ],
+  +   parkBrake: true,
+      pos: [
+  +     49,
+  +     10,
+  +     61
+  -     150,
+  -     2000,
+  -     -350
+      ],
+      quat: [
+        0,
+        0,
+        0,
+  ...
+      seed: 4201,
+  +   simHours: 13.2,
+  +   simT: 0,
+  -   simT: 120,
+      stolMode: 'CONV',
+  +   thr: 0.2,
+  +   thrT: 0.2,
+  -   thr: 0.65,
+  -   thrT: 0.7,
+      vel: [
+  +     12,
+  +     13,
+  +     14
+  -     70,
+  -     2,
+  -     -125
+      ],
+  +   wxPreset: 'cavok'
+    }
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/e9db2680cfd4/F35-flight-simulator/tests/unit/saved-flight.test.mjs:65:108)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { seed: 4201, pos: [ 49, 10, 61 ], vel: [ 12, 13, 14 ], quat: [ 0, 0, 0, 1 ], om: [ 1, 2, 3 ], fuel: 3000, thr: 0.2, thrT: 0.2, N1: 55, N2: 59, abSpool: 0, gearD: 1, gearT: 1, parkBrake: true, stolMode: 'CONV', lfDoor: 0, lfSpool: 0, nozzle: 0, simT: 0, flightT: 0, camMode: 0, wxPreset: 'cavok', simHours: 13.2 },
+    expected: { seed: 4201, pos: [ 150, 2000, -350 ], vel: [ 70, 2, -125 ], quat: [ 0, 0, 0, 1 ], om: [ 0.01, 0.02, -0.03 ], fuel: 2200, thr: 0.65, thrT: 0.7, gearD: 0, gearT: 0, stolMode: 'CONV', camMode: 2, simT: 120, flightT: 80 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

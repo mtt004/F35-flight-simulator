@@ -1,0 +1,44 @@
+[
+  {
+    "name": "android-installation.json",
+    "bytes": 709,
+    "digest": "sha256:4045ddd105b83a9ee17ad2a6e1f1cb418c3ae850c6daaea7e5fabc54f7d754c3",
+    "url": "https://github.com/mtt004/F35-flight-simulator/releases/download/v0.2.0-experimental/android-installation.json"
+  },
+  {
+    "name": "android-verification.json",
+    "bytes": 6920,
+    "digest": "sha256:2ce0daa093440a68a64dc54f0794ebb0db995a757c277213cbadd0da326e1eea",
+    "url": "https://github.com/mtt004/F35-flight-simulator/releases/download/v0.2.0-experimental/android-verification.json"
+  },
+  {
+    "name": "build-manifest.json",
+    "bytes": 774,
+    "digest": "sha256:ed215008f1ab46a1ffd9f14f2c6a1012df36298c8359d2b1708142ddd73b3995",
+    "url": "https://github.com/mtt004/F35-flight-simulator/releases/download/v0.2.0-experimental/build-manifest.json"
+  },
+  {
+    "name": "Lightning-F35B-Android.apk",
+    "bytes": 1597089,
+    "digest": "sha256:5631dac54e02193fda98483e54a4f54f48cfbd8d497f159aab584896bc2e44cd",
+    "url": "https://github.com/mtt004/F35-flight-simulator/releases/download/v0.2.0-experimental/Lightning-F35B-Android.apk"
+  },
+  {
+    "name": "Lightning-F35B-Evidence.zip",
+    "bytes": 9058442,
+    "digest": "sha256:37edb6ed619979da332910b281ab856d070c77621191001cb2b5160778576442",
+    "url": "https://github.com/mtt004/F35-flight-simulator/releases/download/v0.2.0-experimental/Lightning-F35B-Evidence.zip"
+  },
+  {
+    "name": "Lightning-F35B-Web.zip",
+    "bytes": 988987,
+    "digest": "sha256:44da503158173dd9cb57781442a4bd01f2858f6cf67c6433d23cac0b65306d69",
+    "url": "https://github.com/mtt004/F35-flight-simulator/releases/download/v0.2.0-experimental/Lightning-F35B-Web.zip"
+  },
+  {
+    "name": "SHA256SUMS.txt",
+    "bytes": 546,
+    "digest": "sha256:f91d8b8ebf8b7b94ec632a0aadd3796b4953d96c92b9ea17a5f98c404f8cf6da",
+    "url": "https://github.com/mtt004/F35-flight-simulator/releases/download/v0.2.0-experimental/SHA256SUMS.txt"
+  }
+]

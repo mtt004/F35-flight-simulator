@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-27T19:00:31.295Z",
+  "sourceSha256": "8529330d53723356463319a96469da80fb9fc87a48ce5449abd1f47b59ed56f4",
+  "environment": "Cloud Chromium; file URL; browser network offline; NOT Galaxy A51",
+  "status": "PASS",
+  "remoteRequests": [],
+  "errors": [],
+  "validation": {
+    "passed": 36,
+    "total": 36
+  },
+  "flight": {
+    "running": true,
+    "paused": false,
+    "crashed": false,
+    "simT": 0.38046666666680695,
+    "flightT": 0.11666666666666665,
+    "stepCount": 14,
+    "position": [
+      1197.0013056419077,
+      13.54404244149275,
+      131.5271404752023
+    ],
+    "velocity": [
+      0.12710504036002004,
+      -0.23737134562977977,
+      -0.046165550906950376
+    ],
+    "quaternion": [
+      -0.003221290516157843,
+      -0.5735707521387267,
+      -0.0022557165584971696,
+      0.8191465847583286
+    ],
+    "fuel": 3268.0640298677486,
+    "stolMode": "CONV",
+    "nozzle": 0,
+    "gearD": 1,
+    "camMode": 0,
+    "frameEMA": 159.90296477068844,
+    "graphicsLevel": 1,
+    "settings": {
+      "fbw": "ASSIST",
+      "fail": "OFF",
+      "sens": 1,
+      "expo": 0.3,
+      "dz": 0.07,
+      "invPitch": false,
+      "coord": true,
+      "hoverAssist": true,
+      "hmds": "FULL",
+      "tOp": 0.85,
+      "tSz": 1,
+      "hand": "R",
+      "rudSlider": false,
+      "gyro": false,
+      "gDz": 0.12,
+      "gThrBtn": true,
+      "quality": "AUTO",
+      "vapour": "ENHANCED",
+      "volume": 0.5,
+      "scan": false,
+      "structure": "REAL",
+      "targetMarker": false
+    },
+    "drawingBuffer": [
+      1152,
+      648
+    ],
+    "renderer": {
+      "calls": 549,
+      "triangles": 309836,
+      "textures": 12,
+      "geometries": 454
+    },
+    "replaySeconds": 0.08333333333333333
+  }
+}

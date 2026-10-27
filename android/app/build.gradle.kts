@@ -3,6 +3,15 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
+// One authoritative version record shared with the web build and release verification.
+val projectMetadata = groovy.json.JsonSlurper().parse(rootProject.file("../package.json")) as Map<*, *>
+val appVersionName = projectMetadata["version"] as? String ?: error("Missing package.json version")
+val lightningMetadata = projectMetadata["lightning"] as? Map<*, *> ?: error("Missing lightning metadata")
+val appVersionCode = lightningMetadata["androidVersionCode"].toString().toIntOrNull()
+    ?: error("Invalid Android version code")
+check(appVersionCode in 1..2100000000) { "Android version code outside supported range" }
+check(appVersionName.matches(Regex("[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?"))) { "Invalid application version" }
+
 val bundledWeb = layout.buildDirectory.dir("generated/lightningAssets")
 val bundleWeb by tasks.registering(Sync::class) {
     from(rootProject.file("../dist/index.html"))
@@ -29,8 +38,8 @@ android {
         applicationId = "com.mtt004.lightning"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1.0-experimental"
+        versionCode = appVersionCode
+        versionName = appVersionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     sourceSets.getByName("main").assets.srcDir(bundledWeb)

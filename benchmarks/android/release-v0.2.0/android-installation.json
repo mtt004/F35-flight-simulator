@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "environment": "GitHub Actions Android API 33 x86_64 emulator, software GPU",
+  "actualInstallationAndLaunch": true,
+  "tests": 1,
+  "reports": [
+    "android/app/build/outputs/androidTest-results/connected/debug/TEST-emulator-5554 - 13-_app-.xml"
+  ],
+  "reportChecksums": {
+    "android/app/build/outputs/androidTest-results/connected/debug/TEST-emulator-5554 - 13-_app-.xml": "1ab85df7f24605e09e747c2fc6de30e5125f111f27844c8603efde8468f6b4c0"
+  },
+  "apkSha256": "5631dac54e02193fda98483e54a4f54f48cfbd8d497f159aab584896bc2e44cd",
+  "sourceCommit": "488ea110cb57e5e0ba59605547f6da0687706f41",
+  "versionName": "0.2.0-experimental",
+  "versionCode": 2,
+  "galaxyA51": "NOT TESTED"
+}

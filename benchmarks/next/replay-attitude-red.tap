@@ -1,0 +1,80 @@
+✖ replay restores all mutated live state and original pause mode: false (35.659371ms)
+✖ replay restores all mutated live state and original pause mode: true (7.77025ms)
+✖ a second replay start cannot replace the original live-flight snapshot (7.726954ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 191.977582
+
+✖ failing tests:
+
+test at tests/unit/replay-state.test.mjs:27:37
+✖ replay restores all mutated live state and original pause mode: false (35.659371ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '{"p":[9,10,11],"v":[12,13,14],"q":[0,0,0,1],"om":[1,2,3],"camMode":2,"paused":false,"ias":150,"mach":0.45,"gNz":1.2,"nozzle":40,"gearD":0.8,"thr":0.7,"pitchDeg":0,"hdgDeg":180,"rollDeg":0,"bank":0,"forward":[0,0,1],"up":[0,1,0],"right":[-1,0,0]}'
+  - '{"p":[9,10,11],"v":[12,13,14],"q":[0,0,0,1],"om":[1,2,3],"camMode":2,"paused":false,"ias":150,"mach":0.45,"gNz":1.2,"nozzle":40,"gearD":0.8,"thr":0.7,"pitchDeg":0,"hdgDeg":0,"rollDeg":0,"bank":0,"forward":[0,0,-1],"up":[0,1,0],"right":[1,0,0]}'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/e9db2680cfd4/F35-flight-simulator/tests/unit/replay-state.test.mjs:28:177)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '{"p":[9,10,11],"v":[12,13,14],"q":[0,0,0,1],"om":[1,2,3],"camMode":2,"paused":false,"ias":150,"mach":0.45,"gNz":1.2,"nozzle":40,"gearD":0.8,"thr":0.7,"pitchDeg":0,"hdgDeg":180,"rollDeg":0,"bank":0,"forward":[0,0,1],"up":[0,1,0],"right":[-1,0,0]}',
+    expected: '{"p":[9,10,11],"v":[12,13,14],"q":[0,0,0,1],"om":[1,2,3],"camMode":2,"paused":false,"ias":150,"mach":0.45,"gNz":1.2,"nozzle":40,"gearD":0.8,"thr":0.7,"pitchDeg":0,"hdgDeg":0,"rollDeg":0,"bank":0,"forward":[0,0,-1],"up":[0,1,0],"right":[1,0,0]}',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/replay-state.test.mjs:27:37
+✖ replay restores all mutated live state and original pause mode: true (7.77025ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '{"p":[9,10,11],"v":[12,13,14],"q":[0,0,0,1],"om":[1,2,3],"camMode":2,"paused":true,"ias":150,"mach":0.45,"gNz":1.2,"nozzle":40,"gearD":0.8,"thr":0.7,"pitchDeg":0,"hdgDeg":180,"rollDeg":0,"bank":0,"forward":[0,0,1],"up":[0,1,0],"right":[-1,0,0]}'
+  - '{"p":[9,10,11],"v":[12,13,14],"q":[0,0,0,1],"om":[1,2,3],"camMode":2,"paused":true,"ias":150,"mach":0.45,"gNz":1.2,"nozzle":40,"gearD":0.8,"thr":0.7,"pitchDeg":0,"hdgDeg":0,"rollDeg":0,"bank":0,"forward":[0,0,-1],"up":[0,1,0],"right":[1,0,0]}'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/e9db2680cfd4/F35-flight-simulator/tests/unit/replay-state.test.mjs:28:177)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '{"p":[9,10,11],"v":[12,13,14],"q":[0,0,0,1],"om":[1,2,3],"camMode":2,"paused":true,"ias":150,"mach":0.45,"gNz":1.2,"nozzle":40,"gearD":0.8,"thr":0.7,"pitchDeg":0,"hdgDeg":180,"rollDeg":0,"bank":0,"forward":[0,0,1],"up":[0,1,0],"right":[-1,0,0]}',
+    expected: '{"p":[9,10,11],"v":[12,13,14],"q":[0,0,0,1],"om":[1,2,3],"camMode":2,"paused":true,"ias":150,"mach":0.45,"gNz":1.2,"nozzle":40,"gearD":0.8,"thr":0.7,"pitchDeg":0,"hdgDeg":0,"rollDeg":0,"bank":0,"forward":[0,0,-1],"up":[0,1,0],"right":[1,0,0]}',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/replay-state.test.mjs:30:1
+✖ a second replay start cannot replace the original live-flight snapshot (7.726954ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '{"p":[100,200,300],"v":[40,50,60],"q":[0,1,0,0],"om":[1,2,3],"camMode":0,"paused":false,"ias":80,"mach":0.2,"gNz":0.5,"nozzle":0,"gearD":0,"thr":0.2,"pitchDeg":0,"hdgDeg":180,"rollDeg":0,"bank":0,"forward":[0,0,1],"up":[0,1,0],"right":[-1,0,0]}'
+  - '{"p":[9,10,11],"v":[12,13,14],"q":[0,0,0,1],"om":[1,2,3],"camMode":2,"paused":true,"ias":150,"mach":0.45,"gNz":1.2,"nozzle":40,"gearD":0.8,"thr":0.7,"pitchDeg":0,"hdgDeg":0,"rollDeg":0,"bank":0,"forward":[0,0,-1],"up":[0,1,0],"right":[1,0,0]}'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/e9db2680cfd4/F35-flight-simulator/tests/unit/replay-state.test.mjs:31:113)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '{"p":[100,200,300],"v":[40,50,60],"q":[0,1,0,0],"om":[1,2,3],"camMode":0,"paused":false,"ias":80,"mach":0.2,"gNz":0.5,"nozzle":0,"gearD":0,"thr":0.2,"pitchDeg":0,"hdgDeg":180,"rollDeg":0,"bank":0,"forward":[0,0,1],"up":[0,1,0],"right":[-1,0,0]}',
+    expected: '{"p":[9,10,11],"v":[12,13,14],"q":[0,0,0,1],"om":[1,2,3],"camMode":2,"paused":true,"ias":150,"mach":0.45,"gNz":1.2,"nozzle":40,"gearD":0.8,"thr":0.7,"pitchDeg":0,"hdgDeg":0,"rollDeg":0,"bank":0,"forward":[0,0,-1],"up":[0,1,0],"right":[1,0,0]}',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

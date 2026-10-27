@@ -7,7 +7,9 @@ import { repositoryRoot, baselineFile } from '../tests/helpers/source.mjs';
 
 const args = process.argv.slice(2);
 const file = path.resolve(args.find(a => !a.startsWith('--') && !/^\d+$/.test(a)) || baselineFile);
-const label = file.includes('/legacy/') ? 'baseline' : 'final';
+const outputLabel = args.find(a=>a.startsWith('--label='))?.slice(8);
+if(outputLabel&&!/^[a-z0-9-]+$/.test(outputLabel))throw Error('Invalid output label');
+const label = outputLabel || (file.includes('/legacy/') ? 'baseline' : 'final');
 const seconds = Number(args[args.indexOf('--seconds') + 1]) || 30;
 if (!Number.isFinite(seconds) || seconds < 1 || seconds > 7200) throw new Error('Benchmark seconds must be 1…7200');
 const scenarios = [
@@ -25,7 +27,7 @@ const sourceSha256=createHash('sha256').update(await readFile(file)).digest('hex
 const report = { sourceSha256, host:{cpu:os.cpus()[0]?.model,logicalCpuCount:os.cpus().length,platform:os.platform(),arch:os.arch()}, date: new Date().toISOString(), source: path.relative(repositoryRoot, file), status: 'NOT TESTED', secondsPerScenario: seconds,
   methodology: '1280×720 CSS viewport, DPR 1, fixed seed 4201, MED baseline/default final. Frame durations are intervals between actual renderer.render calls after 3s warm-up. CPU render submission duration is synchronous JS wall time, not GPU execution time. 1% low = 1000 / mean slowest ceil(1%) frame intervals. Browser heap is not Android PSS.',
   realDeviceStatus: 'NOT TESTED', androidPssMb: null, gpuTimeMs: null, battery: null, thermal: null, inputLatencyMs: null, scenarios: [] };
-const outDir = path.join(repositoryRoot, `benchmarks/${label}`), shotDir = path.join(repositoryRoot, `screenshots/${label === 'baseline' ? 'before' : 'after'}`);
+const outDir = path.join(repositoryRoot, `benchmarks/${label}`), shotDir = path.join(repositoryRoot, 'screenshots', outputLabel || (label === 'baseline' ? 'before' : 'after'));
 let session;
 const percentile = (array, p) => array.length ? array[Math.min(array.length - 1, Math.ceil(array.length * p) - 1)] : null;
 try {
@@ -64,12 +66,25 @@ try {
     await page.waitForTimeout(3000);
     const before = await snapshot(page);
     await page.evaluate(() => Object.assign(window.__benchmark, { active: true, previous: null, intervals: [], submissions: [], frames: 0 }));
-    await page.waitForTimeout(seconds * 1000);
+    const progress=[];
+    if(sustained){
+      const started=Date.now();
+      while(Date.now()-started<seconds*1000){
+        await page.waitForTimeout(Math.min(60000,seconds*1000-(Date.now()-started)));
+        const sample=await page.evaluate(()=>({frames:window.__benchmark.frames,heapBytes:performance.memory?.usedJSHeapSize??null,
+          geometry:renderer.info.memory.geometries,textures:renderer.info.memory.textures,quality:qlLevel,
+          adaptiveModelVisible:ac.getObjectByName('Lightning adaptive surface model')?.visible??null,
+          flightT,crashed}));
+        sample.elapsedWallSeconds=(Date.now()-started)/1000;progress.push(sample);
+        await writeFile(path.join(outDir,'progress.json'),JSON.stringify({status:'IN PROGRESS',sourceSha256,environment:report.environment,secondsRequested:seconds,samples:progress,note:'Minute samples: browser JS heap and Three counters, not Android process/GPU/PSS or leak certification.'},null,2)+'\n');
+        console.log('ENDURANCE',JSON.stringify(sample));
+      }
+    }else await page.waitForTimeout(seconds * 1000);
     const samples = await page.evaluate(() => { window.__benchmark.active = false; return { ...window.__benchmark, heapBytes: performance.memory?.usedJSHeapSize ?? null }; });
     const after = await snapshot(page), sorted = samples.intervals.slice().sort((a, b) => a - b), sum = sorted.reduce((a, b) => a + b, 0);
     const worst = sorted.slice(-Math.max(1, Math.ceil(sorted.length * .01))), worstMean = worst.reduce((a,b) => a+b, 0) / worst.length;
     const item = { name: scenario.name, settings: scenario, status: after.crashed ? 'CRASHED DURING SCENARIO' : sorted.length ? 'MEASURED' : 'NO FRAMES',
-      frames: samples.frames, meanFps: sorted.length * 1000 / sum, medianFps: 1000 / percentile(sorted, .5), onePercentLowFps: 1000 / worstMean,
+      progress, frames: samples.frames, meanFps: sorted.length * 1000 / sum, medianFps: 1000 / percentile(sorted, .5), onePercentLowFps: 1000 / worstMean,
       frameMs: { p50: percentile(sorted, .5), p95: percentile(sorted, .95), p99: percentile(sorted, .99) },
       renderSubmissionMs: { mean: samples.submissions.reduce((a,b) => a+b, 0) / samples.submissions.length },
       stuttersOver100ms: sorted.filter(x => x > 100).length, heapBytes: samples.heapBytes, before, after, samples };
@@ -78,6 +93,7 @@ try {
     console.log(scenario.name, item.meanFps.toFixed(2), 'FPS', item.status);
   }
   report.errors = session.errors; report.warnings = session.warnings;
+  if(sustained)await writeFile(path.join(outDir,'progress.json'),JSON.stringify({status:'COMPLETE',sourceSha256,environment:report.environment,secondsRequested:seconds,samples:report.scenarios[0]?.progress||[],note:'Minute samples: browser JS heap and Three counters, not Android process/GPU/PSS or leak certification.'},null,2)+'\n');
   report.status = session.errors.length || report.scenarios.some(s => s.status !== 'MEASURED') ? 'FAIL' : 'MEASURED';
 } catch (error) { report.status = 'BLOCKED'; report.blocker = String(error); process.exitCode = 1; }
 finally {

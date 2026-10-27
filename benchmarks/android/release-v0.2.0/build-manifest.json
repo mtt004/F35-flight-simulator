@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0-experimental",
+  "versionCode": 2,
+  "sha256": "8529330d53723356463319a96469da80fb9fc87a48ce5449abd1f47b59ed56f4",
+  "bytes": 988851,
+  "offline": true,
+  "renderer": "Three.js r128",
+  "sources": [
+    "src/vendor/three-r128.min.js",
+    "src/rendering/mobile-policy.js",
+    "src/aircraft/detail.js",
+    "src/cockpit/detail.js",
+    "src/terrain/scenery.js",
+    "src/simulator.js",
+    "src/ui/runtime.js"
+  ],
+  "sourceCommit": "488ea110cb57e5e0ba59605547f6da0687706f41",
+  "workflowRun": "40562932868",
+  "androidVersion": "0.2.0-experimental",
+  "signing": "debug; ephemeral CI key",
+  "galaxyA51": "NOT TESTED",
+  "installation": "PASS: Android API 33 emulator installed APK and launched actual bundled flight; see android-installation.json"
+}

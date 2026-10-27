@@ -52,3 +52,21 @@ Actual backend Vulkanlavapipe/GLESswangle: successful controlled retry, not proo
 Release run40508826040/source dd433f611b3911f49a914d65024c0e5cbe63269f completed all mandatory tests/build/benchmark/upload gates and published v0.1.0-experimental. Downloaded actual artifact12736489228 and matched all sixchecksums plus seven GitHub Release API sizes/digests. Actual final APK1,593,761bytes/SHA c8d2f351327ead8179105f36ae51c3996cc7bd1a8b43a41d4ab290eecc26e453 (different ephemeral certificate from feature checkpoint). Native XML1pass/0failure/0error/0skip, exactHTML/licences and browserZIP verified. Added reproducible verify-release.py and saved its actual PASS report.
 
 Retained full latest release raw benchmarks separately under benchmarks/release-run-40508826040: Chrome151/2vCPU AMD, about2–3.5FPS CPU rasterization, below30 in this environment; prior Chrome153/endurance remain separately labelled. No A51 performance inference. End-of-implementation source is releasecommitdd433f6; subsequent commit adds only documentation, retainedQAevidence and standalone verification scripts. Final integration/mainSHA is recorded in the handover/PR. Fullscope remainsPARTIAL; issues2–5 stayopen.
+
+## v0.2 continuation — flight/save integrity
+
+Starting mainc53506ad59e7aad46904c3a648b0f06d6015dafd. Created feature/aircraft-and-flight-integrity without modifying releasedv0.1. Reproduced17 malformed-save failures using actual production functions/Three;2 valid legacy records passed. Actualv0.1 UI replay then reproduced changedgear/instruments andlostpause. Corrected full-vector validation before mutation, invalidcandidate writerguard, fullplayback-field/pause restoration and replay-save isolation. Targeted22/22NodeGREEN; rawRED/GREEN committed with rationale in flight-integrity-v0.2.md. No protected physics/STOVL/collision/recordReplay/updateReplay function changed. Broader geometry/version work proceeds in separate commits; realnextbrowser/native gates pending.
+
+## Independent-review corrections and visible comparison
+
+Source checkpoint4b52187f9008abfeaadf3827068cde0931644f08 passed Android+browserpush/PRCI. Review then reproduced stale derivedattitude/modelpose afterpausedreplay, repeatedReplayoverwritingrestoresnapshot, and nestedemptyXMLsuiteacceptance. AddedactualREDregressions andcorrectedall3;54Node+10JS+13Python checksPASS. Source-reviewreport independent-review-v0.2.md; protected16functions remainbyteidentical.
+
+BuiltnextHTML8529330d53723356463319a96469da80fb9fc87a48ce5449abd1f47b59ed56f4 andcaptured4actualpairs againstv0.1 withsource/cameras/settings. Inspectedfront/rearquarter,underside,cockpit: boundedbody/intake/nozzlerefinement, no newblockingocclusion. Existinggear/terrain/citiesremainstylized. FreshactualUIderived/replay/corruptsave andcontrol-onlyflightQA pending; nofull-lifecycle/A51claim.
+
+## Fresh realUI integrity gate
+
+CorrectednextHTML8529330…passed6actualUIchecks: normalroundtrip, replayview/derivedstate, autosavereplayisolation,3corruptrecordrejections+recovery. Originalhandlercapture requiredDOMcapturelisteners innewharness; itsinitialinstrumentationFAIL isretained, then6GREEN withzeroerrors. Addednewchecks tobrowserCI/release mandatorygates. No claim ofcomplete safeSTOVLconversion followsfromaV-only mode-transitiontrace; realcontrol-onlyflightoutcomes recordedseparately. Nextproductsourcecheckpoint998f7be04faf046a71b2603a5af5748c5391017b containsreviewfixes+actualgeometrycaptures.
+
+## Actual flight trials and v0.2 endurance
+
+SourceHTML8529330…: input-only conventional takeoff passed(14.56simseconds,12.09mAGL). Safe conversion/vertical landing NOT established by bounded quality pilots; hard contact/mode-only observations are explicitly separated from qualityFAILs. Later controlled hover remaineduncrashed near5–7m but timedout; cause notisolated, no newphysicsregressionclaim. Rawtraces/parameters committed with issue7 followup. Exactofflinefile/network-disabledlaunchPASS36/36withzeroHTTPrequests/pageerrors. Startedfresh20minutecloudendurancewithminuteJS-heap/Threecounter/LOD-visibilitysamples; no inheritedv0.1endurancepassappliedtov0.2.
