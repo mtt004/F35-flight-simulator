@@ -1,0 +1,213 @@
+{
+  "status": "PASS",
+  "releaseSourceCommit": "dd433f611b3911f49a914d65024c0e5cbe63269f",
+  "checkedExistingProductAndBuildFiles": 51,
+  "comparison": "Git blob SHA-1 of exact bytes; excludes documentation/research/benchmarks/screenshots/README. Standalone post-build offline/package QA tools are additions, not bundled runtime changes.",
+  "mismatches": [],
+  "files": [
+    {
+      "path": ".gitattributes",
+      "gitBlobSha": "03b2046d7f345b719d245d1875f6afcb925a24ed"
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "gitBlobSha": "507a12f50305c7d8cacbce84f31ae85fe877a07c"
+    },
+    {
+      "path": ".github/workflows/android-build.yml",
+      "gitBlobSha": "efffc3b6904cbc0cb9430f0a5df247f4665ca421"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "gitBlobSha": "d734b3ad6199f231a4c916e64685e8b4e3c6e0a3"
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "gitBlobSha": "9f111b512d84044f354fe4c6d1028a7aab987bb5"
+    },
+    {
+      "path": ".gitignore",
+      "gitBlobSha": "8addf304f64d46c9534ff63e1d2bf0b237e26808"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "gitBlobSha": "f7ad1a94fe47848843c5fdd1d8767c2a9c962872"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "gitBlobSha": "c28d071374f776c587713a95e89ff11da0b9a12b"
+    },
+    {
+      "path": "LICENSES.md",
+      "gitBlobSha": "02554020cd21d896602ebc213154e3a48de156ec"
+    },
+    {
+      "path": "android/LICENSE-2.0.txt",
+      "gitBlobSha": "d645695673349e3947e8e5ae42332d0ac3164cd7"
+    },
+    {
+      "path": "android/THIRD_PARTY_NOTICES.txt",
+      "gitBlobSha": "a94380d64a288f6e02a7313a33e000c1104e903a"
+    },
+    {
+      "path": "android/app/build.gradle.kts",
+      "gitBlobSha": "8c7b1f945f8af2eab76fa5cc884601fc4d4120ad"
+    },
+    {
+      "path": "android/app/src/androidTest/java/com/mtt004/lightning/OfflineLaunchTest.kt",
+      "gitBlobSha": "60e60d30615b6febcaced6b430fa8a3c7046eef8"
+    },
+    {
+      "path": "android/app/src/main/AndroidManifest.xml",
+      "gitBlobSha": "aedb05547cd79c2a0658d603054aea3065b1bd8a"
+    },
+    {
+      "path": "android/app/src/main/java/com/mtt004/lightning/MainActivity.kt",
+      "gitBlobSha": "b004597673041b148323c8f00cd5140ba59cc9fc"
+    },
+    {
+      "path": "android/build.gradle.kts",
+      "gitBlobSha": "c7ad7549e74f63b6958ba4e171cc08161976da49"
+    },
+    {
+      "path": "android/gradle.properties",
+      "gitBlobSha": "25ebd438e1f21f015b03abdca42833429db06d58"
+    },
+    {
+      "path": "android/gradle/wrapper/gradle-wrapper.jar",
+      "gitBlobSha": "2c3521197d7c4586c843d1d3e9090525f1898cde"
+    },
+    {
+      "path": "android/gradle/wrapper/gradle-wrapper.properties",
+      "gitBlobSha": "77f5d0ba6cca270e1cd7b83b283e62570ca751d0"
+    },
+    {
+      "path": "android/gradlew",
+      "gitBlobSha": "d95bf6131dc41079a1665889f84d4cfec92a2bc1"
+    },
+    {
+      "path": "android/gradlew.bat",
+      "gitBlobSha": "640d68685c14950470c82031e02198e220b96e62"
+    },
+    {
+      "path": "android/run-instrumentation.sh",
+      "gitBlobSha": "b75b3da37818c3eebb2e44eb7532edcf8e13e20a"
+    },
+    {
+      "path": "android/settings.gradle.kts",
+      "gitBlobSha": "5726b2543618ffbb11e715a00f67236569769d2e"
+    },
+    {
+      "path": "assets/manifest.json",
+      "gitBlobSha": "62fe14e1f3a9977a6a12a08a9a3d7aac29c95975"
+    },
+    {
+      "path": "legacy/F35B_Offline_Open_World_Simulator_Advanced_Physics_Overhaul.html",
+      "gitBlobSha": "1dff09f38337536f26fb6c712a0090bb4fce049a"
+    },
+    {
+      "path": "package-lock.json",
+      "gitBlobSha": "8a7b0add281a42b90705083948eb25807268e2c0"
+    },
+    {
+      "path": "package.json",
+      "gitBlobSha": "09b61ea565f5867250a7af1cca408d62ec49e9fa"
+    },
+    {
+      "path": "scenery-packs/README.md",
+      "gitBlobSha": "2a331c6c1926b29a108603e62a6c89055b498566"
+    },
+    {
+      "path": "scenery-packs/cappadocia-appearance.json",
+      "gitBlobSha": "7dd029af25efb54df29810c21b00e6141430361e"
+    },
+    {
+      "path": "scenery-packs/hampshire-appearance.json",
+      "gitBlobSha": "d1de24dccacf9fbc919c36683544e14aa8e758b5"
+    },
+    {
+      "path": "scripts/build-android.sh",
+      "gitBlobSha": "57861cb6b411dc00b55e385ef4f384c568911f23"
+    },
+    {
+      "path": "scripts/build-web.mjs",
+      "gitBlobSha": "7a79752190f386ec2305f4dfa29631ba5ae6944f"
+    },
+    {
+      "path": "scripts/run-benchmarks.mjs",
+      "gitBlobSha": "c45b29a3e41c916d5e698da4e677fddce83cfb55"
+    },
+    {
+      "path": "scripts/test-browser.mjs",
+      "gitBlobSha": "eea3ec888cc706e5349db54df2b8f9ae4495951f"
+    },
+    {
+      "path": "scripts/verify-apk.py",
+      "gitBlobSha": "f7b4ce22015fa63eb13a2ea6bfdf1782974f282e"
+    },
+    {
+      "path": "src/aircraft/detail.js",
+      "gitBlobSha": "d7fb9cd41a4017cabff2755e6bed9d5c0d46753e"
+    },
+    {
+      "path": "src/cockpit/detail.js",
+      "gitBlobSha": "a0a3b1414bf21adee15d915822d99b6e67539e08"
+    },
+    {
+      "path": "src/index.template.html",
+      "gitBlobSha": "5b791a5f8e0cfdc658e59564c562ed27b6ff0fe7"
+    },
+    {
+      "path": "src/rendering/mobile-policy.js",
+      "gitBlobSha": "c7a0322f4b6f245dae18e93eb4cccaaa75421442"
+    },
+    {
+      "path": "src/simulator.js",
+      "gitBlobSha": "810ea890472c3c4e29eeaef309d847db6f90e41e"
+    },
+    {
+      "path": "src/terrain/scenery.js",
+      "gitBlobSha": "6bc59d7cf57ddb8c860af252e3a8e27bb6bf84a6"
+    },
+    {
+      "path": "src/ui/base.css",
+      "gitBlobSha": "4f0b66ee4eed0bc3399ca6b219b545e11aaa3c4d"
+    },
+    {
+      "path": "src/ui/lightning.css",
+      "gitBlobSha": "53d8037008631e8ddb31e8f782285d397770d5ed"
+    },
+    {
+      "path": "src/ui/runtime.js",
+      "gitBlobSha": "89eb778de13cf8e137dc93f7407d185ee7c0ef61"
+    },
+    {
+      "path": "src/vendor/three-r128.min.js",
+      "gitBlobSha": "5d4213a6ef87fe2c5330b97664e7db2e33387136"
+    },
+    {
+      "path": "tests/helpers/browser.mjs",
+      "gitBlobSha": "44f231b8e35e7a13c9226a6fb71c23ad59d16d75"
+    },
+    {
+      "path": "tests/helpers/source.mjs",
+      "gitBlobSha": "01387eaf8e86fb0c837ffc35fca7b43886e15ee3"
+    },
+    {
+      "path": "tests/unit/flight-math.test.mjs",
+      "gitBlobSha": "b7aa090339b15c79c51b39d181c5652f7156b430"
+    },
+    {
+      "path": "tests/unit/mobile-policy.test.mjs",
+      "gitBlobSha": "50173c2f3c3df3af406d0b117168f17a2c731e8a"
+    },
+    {
+      "path": "tests/unit/source-preservation.test.mjs",
+      "gitBlobSha": "fb842293d259019c0a8a16bc393fa8fee74896ed"
+    },
+    {
+      "path": "tests/unit/visual-assets.test.mjs",
+      "gitBlobSha": "9f217f0599d09d29c4833043430b2edbf06e59c5"
+    }
+  ]
+}

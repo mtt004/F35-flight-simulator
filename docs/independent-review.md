@@ -51,3 +51,57 @@ Experimental prerelease only, with PARTIAL scope and explicit device/feature lim
 ## Implementer evidence update after the review checkpoint
 
 The completed sequential rerun now identifies current HTML SHA `d4ade981c06f483c2d0a5d529c290c9bae3dc12724ffb03ca7937d245f00f198` in `benchmarks/final/benchmark-report.json` and screenshot capture settings. Seven scenarios were measured with zero recorded JavaScript/shader errors. `docs/known-issues.md` now distinguishes the initial browser download failure from the later working serverless Chromium. The corrupt-save P2 remains documented and tracked as GitHub issue4; no resolution is claimed. This addendum is the implementer's update, not a new independent test by the reviewer.
+
+## Follow-up review — Android host crash, renderer retry and bundled notices
+
+The review was reopened after emulator attempt4. This addendum supersedes the earlier workflow-progress snapshot only for the evidence explicitly described here; it does not turn a pending retry into a pass.
+
+Read `benchmarks/android/attempt-4/README.md`, preserved host-kernel event, final emulator state, and the instrumentation/diagnostic wrapper. Attempt4 (run40454725990, sourceb71f9cc78692b2db6eaeaad41f8a6e14222e1140) records a host `RenderThread` segmentation fault, followed by emulator disappearance. The selected logs show no OOM kill and memory remained available afterward. This supports a native-renderer crash classification, not attribution to a precise library, application assertion, real device, or definitive root cause.
+
+Reviewed changes:
+
+- Both workflows change only the emulator's software renderer option from `swiftshader_indirect` to `lavapipe`; live-flight assertions and failure gates remain. A successful retry must verify the actual selected GLES/Vulkan backends in startup logs. A supported option alone is not runtime success.
+- `android/run-instrumentation.sh` retains failing Gradle/timeout exit status, applies a10-minute instrumentation deadline and bounded adb collection, and copies only bounded emulator crash evidence. No assertion was disabled or converted to a pass. Shell syntax passes.
+- The Android build adds `android/LICENSE-2.0.txt`, `android/THIRD_PARTY_NOTICES.txt`, and root `LICENSES.md` under `assets/www/`. Required input files are checked before bundling. `scripts/verify-apk.py` requires exact source copies, the full known Apache2.0 bytes, Kotlin/AndroidX attribution, and records bundled licence checksums before proceeding to APK package/signature checks.
+- Verified the11358-byte full Apache2.0 file SHA-256 `cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30` and appendix. Read the notices and corrected runtime-redistribution explanation. The patch does not alter simulator HTML, flight functions, native gameplay assertions, requested Android permissions, origin restrictions or the web/native trust boundary.
+- Reran the current Node suite:28/28 PASS. Python verifier compilation and shell syntax checks passed. No additional heavy graphics session was launched during the implementer's ongoing benchmark.
+
+No concrete blocking source/build regression was identified in these pending changes. **The previously built APK is not sufficient evidence of the licence correction:** a newly rebuilt APK must pass the strengthened asset/package/signature verifier. Emulator installation/live-flight remains failed/unproven until a genuine subsequent run passes. The project remains experimental/PARTIAL against the full scope.
+
+The implementer published the reviewed source as remote commit `dd433f611b3911f49a914d65024c0e5cbe63269f` on the development/release branches and started a fresh native CI run. This commit identity was supplied by the implementer; no completion result was inferred at this review checkpoint. The subsequent final audit should record the actual run, APK checksum and completed gate results.
+
+## Independently verified Android success checkpoint — 27 October 2026
+
+This checkpoint supersedes the earlier Android gate's failed/pending status for the specific feature build below. Full requested scope and physical-device qualification remain **PARTIAL**.
+
+Independently queried [Actions run40508798727](https://github.com/mtt004/F35-flight-simulator/actions/runs/40508798727), job122204936626: completed/success, including APK build, emulator install/live-flight test, evidence generation and upload. Read its decoded job log, which checks out source commit `dd433f611b3911f49a914d65024c0e5cbe63269f` and uploads artifact12736870350. Inspected the downloaded artifact under `.tmp/android-pass/` and independently checked:
+
+- Raw instrumentation XML: `com.mtt004.lightning.OfflineLaunchTest`, **1 test, 0 failures, 0 errors, 0 skipped**. Testcase `testBundledSimulatorLoadsAndStarts` completed in16.519seconds. The test source requires original validation, active finite flight state, rendering and advancing simulation counters; this is stronger evidence than simply hiding a menu.
+- Actual APK: **1593761 bytes**, independently recomputed SHA-256 `547f5b3ee3d634e6b54647c3c0a7eb6cdccf99822a5c9c38d28532557a10543f`. ZIP integrity passes. Recorded `aapt` identifies `com.mtt004.lightning`, version `0.1.0-experimental`/1, minSDK26, targetSDK35, expected launchable activity and no requested Android permissions. Recorded `apksigner` output verifies APK Signature Schemev2 with one Android Debug RSA2048 signer. This reviewer recomputed archive/hash/content checks; cryptographic signing evidence is the successful CI verifier's recorded tool output, not a new local apksigner execution.
+- APK's bundled HTML is byte-identical to the artifact's browser HTML **and current local HTML**:980436bytes, SHA-256 `d4ade981c06f483c2d0a5d529c290c9bae3dc12724ffb03ca7937d245f00f198`. Browser ZIP passes integrity and contains those exact HTML bytes.
+- All three notice documents inside the actual APK match checked-in source bytes. `THIRD_PARTY_NOTICES.txt`13758bytes/SHA `8635e625afaf3f72453f8f1b5e8809f033296a90013aab16f9cdee23c8bef53f`; full Apache licence11358bytes/SHA `cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30`; `LICENSES.md`3978bytes/SHA `45944a73a65f1d839f6f9a2c35629b55379034e861f0f25945a4919db62da266`. The previously identified binary notice gap is corrected in this built artifact.
+- `android-installation.json` agrees with the raw XML: API33 x86_64 software-renderer emulator installed/ran the game. Final emulator state is `device`. Guest log records one instrumented target-process PSS snapshot98699KB; it includes instrumentation and excludes separate WebView renderers, is not a peak/total-app measurement, and is not GalaxyA51 evidence.
+- Actual startup log says `vulkan_mode_selected:lavapipe gles_mode_selected:swangle`. Therefore the successful run does **not** prove all SwiftShader-related paths were removed, nor establish that the backend change alone causally fixed the prior native crash. It establishes that this source and this selected emulator configuration passed the live-flight gate once.
+
+The parent implementer also reports a successful separate PR Android run40508805072 and that the release run40508826040 passed its emulator gate before benchmarking/publication. Those two additional outcomes were not independently inspected in this checkpoint; their final artifacts/results must be linked by the final handover. In particular, the final release APK may have a different checksum/signing certificate because CI debug keys are ephemeral. Use the actual published release asset's hash, not this feature artifact's hash by assumption.
+
+Physical GalaxyA51 testing, full geographic packs, the requested full visual reconstruction and remaining audit limitations are unchanged. No stable1.0 or universal device-performance claim follows from this emulator success.
+
+## Final published artifact review — 27 October 2026
+
+**Released experimental binaries independently verified; full project scope remains PARTIAL.** This final checkpoint supersedes the feature-only APK identity above for user delivery.
+
+Independently queried release run [40508826040](https://github.com/mtt004/F35-flight-simulator/actions/runs/40508826040), job122205031681: completed/success, including browser regression, signed/licence-verified APK build, genuine emulator installation/live-flight, both benchmarks, evidence/checksums and immutable prerelease publication. Published release: https://github.com/mtt004/F35-flight-simulator/releases/tag/v0.1.0-experimental ; source `dd433f611b3911f49a914d65024c0e5cbe63269f`.
+
+Reviewed `scripts/verify-release.py` and independently reran it against the downloaded successful release artifact `.tmp/final-release/dist`, saved GitHub API asset metadata, and expected source. It passed all six SHA256SUMS entries and all seven saved published asset size/digest comparisons. It explicitly separates recorded CI signing evidence from local archive verification. The current script's installation check consumes the recorded JSON; this reviewer additionally parsed the real XML directly from the evidence ZIP rather than treating that JSON as sufficient by itself.
+
+Independent byte/content results:
+
+- **Final APK1593761bytes**, recomputed SHA-256 `c8d2f351327ead8179105f36ae51c3996cc7bd1a8b43a41d4ab290eecc26e453`. This differs from the earlier feature APK; the final handover must use this released hash. Archive integrity passes, bundled HTML matches the current980436-byte HTML/SHA `d4ade981c06f483c2d0a5d529c290c9bae3dc12724ffb03ca7937d245f00f198`, and all three licence assets exactly match source.
+- Browser ZIP980572bytes/SHA `ce6a4d2a6b4bd5a922be18029daeaff9d5afbe0b3635509b5eaa3574a9f4d4a8`; evidence ZIP6076943bytes/SHA `6784824f616c140d7a5e5a5d14c6858caf4e65036a7290743a4f06d709fd8f3b`. Both archive integrity and cross-package HTML checks passed.
+- Actual release evidence XML: **1 test,0failures,0errors,0skips**; `testBundledSimulatorLoadsAndStarts`, testcase37.585seconds. Evidence ZIP's package/installation JSON bytes exactly match the separately released JSON files. The successful emulator gate is therefore supported by raw test output, not solely a self-reported checklist.
+- Signature status remains the successful CI `apksigner` record and published verification file; no local SDK signing tool was introduced. Debug signing and its ephemeral upgrade identity remain disclosed.
+
+Read the completed published-delivery section in `docs/final-audit.md`. Its latest release-run Chrome151/two-logical-CPU measurements are correctly distinguished from earlier Chrome153 measurements, compare differing adaptive product defaults, and remain below30FPS on that CPU software renderer. They cannot certify GalaxyA51 performance. The twenty-minute cloud run likewise does not establish Android thermals, total PSS, leak absence, or real-time simulation under overload.
+
+No new blocking release-content inconsistency was found. Remaining original acceptance gaps—physical A51 qualification, accurate geographic packs, complete visual/audio reconstruction, corrupt-save robustness, full flight-lifecycle coverage and the complete requested screenshot matrix—remain explicitly open. Final main-branch integration/documentation identity should be supplied by the implementer after committing this review and retained evidence; the published product/source identity above remains fixed.

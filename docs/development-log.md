@@ -36,3 +36,19 @@ Moved assembleDebugAndroidTest before QEMU, bounded Gradle heap/workers and Kotl
 ## 2026-10-27 — host renderer crash isolated
 
 Starting remote b71f9cc78692b2db6eaeaad41f8a6e14222e1140. Fourth release test again lost emulator; new host diagnostics establish RenderThread segmentation fault, not a proven guest app assertion orOOM. Preserved selected attempt3/4 installation/XML/kernel/memory evidence in benchmarks/android. Switched only emulator software backend to documented Lavapipe and bounded dead-device diagnostics. BrowserHTML and physics bytes unchanged. Mandatory live-flight test retained; fresh build/test/release result pending.
+
+## Direct browser-file offline verification
+
+Executed `CHROMIUM_PATH=<packaged Chromium153> node scripts/test-offline.mjs dist/Lightning-F35B.html` with a file URL and browser networking disabled. Actual run PASS:36/36 internal checks, rendered active flight and advancing physics, finite position, zero attempted HTTP(S) requests and zero page JavaScript errors. Exact HTML SHA d4ade981c06f483c2d0a5d529c290c9bae3dc12724ffb03ca7937d245f00f198. Script and machine-readable report are preserved; no local web server was used. This confirms the tested browser's direct offline launch, not universal file-URL persistence or a physical phone result.
+
+## Android live-flight gate passed
+
+Tested source dd433f611b3911f49a914d65024c0e5cbe63269f. BrowserCI runs40508799047/40508805009 and Android runs40508798727/40508805072 succeeded. Downloaded actual artifact12736870350: APK1,593,761bytes/SHA547f5b3ee3d634e6b54647c3c0a7eb6cdccf99822a5c9c38d28532557a10543f; rawXML1test/0failure/0error/0skip. Identical HTML and exact bundled licences verified. This is a checkpoint APK; final release artifact may have a different ephemeral debug key. Release40508826040 also passed its independent emulator gate and proceeded to benchmarks.
+
+Actual backend Vulkanlavapipe/GLESswangle: successful controlled retry, not proof all SwiftShader code was avoided or native crash fully diagnosed. Raw98,699KB single instrumentedprocessPSS sample is not wholeapp/nativeGPU/peak/A51 memory. Selected success/failure records retained. No stable1.0/fullscope claim.
+
+## Experimental release published and independently checked
+
+Release run40508826040/source dd433f611b3911f49a914d65024c0e5cbe63269f completed all mandatory tests/build/benchmark/upload gates and published v0.1.0-experimental. Downloaded actual artifact12736489228 and matched all sixchecksums plus seven GitHub Release API sizes/digests. Actual final APK1,593,761bytes/SHA c8d2f351327ead8179105f36ae51c3996cc7bd1a8b43a41d4ab290eecc26e453 (different ephemeral certificate from feature checkpoint). Native XML1pass/0failure/0error/0skip, exactHTML/licences and browserZIP verified. Added reproducible verify-release.py and saved its actual PASS report.
+
+Retained full latest release raw benchmarks separately under benchmarks/release-run-40508826040: Chrome151/2vCPU AMD, about2–3.5FPS CPU rasterization, below30 in this environment; prior Chrome153/endurance remain separately labelled. No A51 performance inference. End-of-implementation source is releasecommitdd433f6; subsequent commit adds only documentation, retainedQAevidence and standalone verification scripts. Final integration/mainSHA is recorded in the handover/PR. Fullscope remainsPARTIAL; issues2–5 stayopen.

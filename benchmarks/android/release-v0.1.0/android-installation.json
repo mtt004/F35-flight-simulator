@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "environment": "GitHub Actions Android API 33 x86_64 emulator, software GPU",
+  "actualInstallationAndLaunch": true,
+  "tests": 1,
+  "reports": [
+    "android/app/build/outputs/androidTest-results/connected/debug/TEST-emulator-5554 - 13-_app-.xml"
+  ],
+  "galaxyA51": "NOT TESTED"
+}
