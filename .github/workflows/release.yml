@@ -46,6 +46,30 @@ jobs:
         run: node scripts/test-browser.mjs dist/index.html
       - name: Build and verify signed APK archive
         run: bash scripts/build-android.sh
+      - name: Reclaim only unused SDK-managed NDK packages on the disposable runner
+        if: runner.environment == 'github-hosted'
+        run: |
+          df -h "$ANDROID_HOME"
+          python3 - <<'PYTHON'
+          from pathlib import Path
+          import json, os, re, shutil, subprocess
+          sdk = Path(os.environ['ANDROID_HOME']).resolve()
+          before = shutil.disk_usage(sdk)
+          listing = subprocess.run(['sdkmanager', '--list_installed'], check=True, capture_output=True, text=True).stdout
+          packages = sorted({line.split('|', 1)[0].strip() for line in listing.splitlines()
+                             if re.fullmatch(r'ndk;[0-9]+(?:\.[0-9]+)+', line.split('|', 1)[0].strip())})
+          for package in packages:
+              print('Uninstalling unused SDK package:', package, flush=True)
+              subprocess.run(['sdkmanager', '--uninstall', package], check=True)
+          after = shutil.disk_usage(sdk)
+          result = {'runner': 'GitHub-hosted disposable ubuntu-24.04', 'sdk': str(sdk),
+                    'removedSdkPackages': packages, 'freeBytesBefore': before.free,
+                    'freeBytesAfter': after.free, 'reclaimedBytes': after.free - before.free,
+                    'scope': 'SDK-managed ndk packages only; app has no native C++ build'}
+          Path('dist/runner-storage.json').write_text(json.dumps(result, indent=2) + '\n')
+          print(json.dumps(result, indent=2))
+          PYTHON
+          df -h "$ANDROID_HOME"
       - name: Permit hardware acceleration for the isolated emulator runner
         run: if [ -e /dev/kvm ]; then sudo chmod a+rw /dev/kvm; fi
       - name: Install and launch the actual game on an Android API 33 emulator
@@ -93,6 +117,7 @@ jobs:
                       if path.is_file(): z.write(path, path.as_posix())
               z.write('dist/android-verification.json', 'android-verification.json')
               z.write('dist/android-installation.json', 'android-installation.json')
+              if Path('dist/runner-storage.json').is_file(): z.write('dist/runner-storage.json', 'runner-storage.json')
               for path in sorted(Path('android/app/build/outputs/androidTest-results/connected').rglob('*')):
                   if path.is_file(): z.write(path, path.as_posix())
           manifest = {'sourceCommit': os.environ['GITHUB_SHA'], 'workflowRun': os.environ['GITHUB_RUN_ID'], 'androidVersion': '0.1.0-experimental', 'signing': 'debug; ephemeral CI key', 'galaxyA51': 'NOT TESTED', 'installation': 'PASS: Android API 33 emulator installed APK and launched actual bundled flight; see android-installation.json'}
