@@ -258,8 +258,8 @@
             const first=s.p[0],last=s.p[s.p.length-1];
             // The end caps are appended below and do not alter the side normals.
             const caps=[];
-            if(first[0]>0)caps.push([first,-Math.PI/2]);
-            if(last[0]>0)caps.push([last,Math.PI/2]);
+            if(first[0]>0)caps.push([first,Math.PI/2]);
+            if(last[0]>0)caps.push([last,-Math.PI/2]);
             for(const cap of caps) {
               const cg=new T.CircleGeometry(cap[0][0],s.n);
               cg.rotateX(cap[1]);cg.rotateY(Math.PI/2);cg.scale(1,1,s.sz);
@@ -270,7 +270,8 @@
           case 'beam': {
             const a=new T.Vector3(...s.a),b=new T.Vector3(...s.b),d=b.clone().sub(a);
             g=new T.CylinderGeometry(s.r,s.r,d.length(),s.n,1,false);
-            g.applyQuaternion(new T.Quaternion().setFromUnitVectors(new T.Vector3(0,1,0),d.clone().normalize()));
+            g.applyMatrix4(new T.Matrix4().makeRotationFromQuaternion(
+              new T.Quaternion().setFromUnitVectors(new T.Vector3(0,1,0),d.clone().normalize())));
             const mid=a.add(b).multiplyScalar(.5);g.translate(mid.x,mid.y,mid.z);break;
           }
         }
