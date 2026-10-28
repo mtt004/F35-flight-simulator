@@ -23,7 +23,7 @@ Browser runtime QA: `npx playwright install --with-deps chromium`, then `node sc
 - [Research](research/), [dependency pins](docs/dependencies.md), [asset licences](LICENSES.md)
 - [Benchmarks](benchmarks/), [controls](docs/controls.md), [known limitations](docs/known-issues.md), [28-decision acceptance map](docs/acceptance-matrix.md)
 
-Status is experimental/PARTIAL against the full overhaul. Available APK/browser release gates passed; physical-device and remaining-feature gates are incomplete. Accurate geographic scenery and the full requested visual reconstruction remain unfinished. No Galaxy A51 testing is claimed.
+Status is experimental/PARTIAL against the full overhaul. Available APK/browser release gates passed; physical-device and remaining-feature gates are incomplete. V0.3 development adds the real London corridor; the full requested visual reconstruction and mobile performance acceptance remain unfinished. No Galaxy A51 testing is claimed.
 
 ## London V0.3 development
 
@@ -40,4 +40,4 @@ python3 -m venv .tmp/london-venv
 
 Initial preprocessing downloads verified OS archives (~393 MB); generated browser/APK play fully offline. Source pins refuse changed downloads. GitHub workflows regenerate the same assets and retain the manifest/licences.
 
-This experimental milestone does not establish Galaxy A51 frame rate, battery/thermal behavior or commercial-simulator realism. See the delivery report for actual checks and limits.
+This experimental milestone does not establish Galaxy A51 frame rate, battery/thermal behavior or commercial-simulator realism. See the [V0.3 delivery audit](docs/delivery-v0.3.md), [twelve screenshot comparisons](docs/visual-comparison-v0.3.md) and [measured performance](docs/performance-v0.3.md) for actual checks and limits.

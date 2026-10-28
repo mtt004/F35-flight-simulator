@@ -18,7 +18,7 @@ concurrency:
 jobs:
   build-and-release:
     runs-on: ubuntu-24.04
-    timeout-minutes: 40
+    timeout-minutes: 60
     permissions:
       contents: write
     steps:
@@ -59,6 +59,8 @@ jobs:
         run: node scripts/test-browser.mjs dist/index.html
       - name: Actual London takeoff and scenery recovery regression
         run: node scripts/test-london.mjs dist/index.html
+      - name: Network-disabled browser file startup
+        run: node scripts/test-offline.mjs dist/index.html
       - name: Actual saved-flight, replay-view and corrupt-record UI regression
         run: node scripts/test-flight-lifecycle.mjs dist/index.html --label=release-flight-integrity
       - name: Build and verify signed APK archive
@@ -208,7 +210,7 @@ jobs:
 
           Automated browser checks and a signed APK archive verification passed in this workflow. Benchmarks use a cloud CPU software renderer and do not establish Galaxy A51 performance. An Android API 33 emulator installed the APK and launched the actual bundled flight successfully; see android-installation.json and evidence ZIP. Galaxy A51 installation, gyroscope, battery, thermal behaviour and 20-minute device stability are NOT TESTED.
 
-          This is a debug-signed experimental build. The CI signing key is ephemeral: later builds may require uninstalling the previous APK, deleting its stored data. No private signing key is committed. Regional scenery packs and the full requested visual overhaul may remain incomplete; see docs/known-issues.md and docs/development-log.md at the source commit.
+          This is a debug-signed experimental build. The CI signing key is ephemeral: later builds may require uninstalling the previous APK, deleting its stored data. No private signing key is committed. London uses real OS map/elevation data, estimated building heights and original simplified landmarks. Ground artwork is vector-derived, not aerial imagery. The full commercial-quality visual overhaul remains incomplete; see docs/known-issues.md and docs/development-log.md at the source commit.
           NOTES
           gh release create "$release_tag" dist/Lightning-F35B-Android.apk dist/Lightning-F35B-Web.zip dist/Lightning-F35B-Evidence.zip dist/Lightning-London-Scenery.zip dist/SHA256SUMS.txt dist/android-verification.json dist/android-installation.json dist/build-manifest.json --target "$GITHUB_SHA" --title "Project Lightning $release_tag" --notes-file dist/RELEASE_NOTES.md --prerelease
           gh release view "$release_tag" --json url,tagName,targetCommitish,assets

@@ -1,0 +1,312 @@
+{
+  "sourceSha256": "8529330d53723356463319a96469da80fb9fc87a48ce5449abd1f47b59ed56f4",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/131.0.6778.204 Safari/537.36",
+    "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "viewport": [
+      1280,
+      720
+    ],
+    "devicePixelRatio": 1,
+    "drawingBuffer": [
+      1152,
+      648
+    ],
+    "hardware": "Cloud Linux Chromium using SwiftShader software rasterizer; NOT Galaxy A51",
+    "realDevice": false
+  },
+  "method": "Actual WebGL framebuffer; fixed poses/cameras for visual QA. Paused physics, seed4201, Balanced Q1, CAVOK,1280x720. Before is V2 product web source. Same global map coordinates/camera for both; V2 contains no London. Aircraft shots use matched PARK pose and relative camera. Captures are not flight lifecycle evidence.",
+  "shots": [
+    {
+      "name": "01-heathrow-takeoff",
+      "camera": [
+        -1850,
+        35,
+        -481
+      ],
+      "fov": 58,
+      "aircraft": [
+        -1800,
+        27,
+        -480
+      ],
+      "hour": 13.2,
+      "renderer": {
+        "frame": 21,
+        "calls": 766,
+        "triangles": 368250,
+        "points": 3937,
+        "lines": 36,
+        "geometries": 718,
+        "textures": 15
+      }
+    },
+    {
+      "name": "02-airport-ground",
+      "camera": [
+        -380,
+        95,
+        650
+      ],
+      "fov": 58,
+      "aircraft": [
+        0,
+        27,
+        -300
+      ],
+      "hour": 13.2,
+      "renderer": {
+        "frame": 31,
+        "calls": 736,
+        "triangles": 396332,
+        "points": 3937,
+        "lines": 16,
+        "geometries": 824,
+        "textures": 16
+      }
+    },
+    {
+      "name": "03-london-approach",
+      "camera": [
+        19400,
+        630,
+        -3200
+      ],
+      "fov": 58,
+      "aircraft": [
+        20000,
+        500,
+        -4000
+      ],
+      "hour": 13.2,
+      "renderer": {
+        "frame": 40,
+        "calls": 604,
+        "triangles": 454828,
+        "points": 2859,
+        "lines": 16,
+        "geometries": 819,
+        "textures": 16
+      }
+    },
+    {
+      "name": "04-london-skyline",
+      "camera": [
+        23900,
+        430,
+        -2800
+      ],
+      "fov": 58,
+      "aircraft": [
+        24600,
+        450,
+        -3300
+      ],
+      "hour": 13.2,
+      "renderer": {
+        "frame": 50,
+        "calls": 632,
+        "triangles": 464318,
+        "points": 2859,
+        "lines": 16,
+        "geometries": 807,
+        "textures": 16
+      }
+    },
+    {
+      "name": "05-thames-tower-bridge",
+      "camera": [
+        26300,
+        220,
+        -3700
+      ],
+      "fov": 58,
+      "aircraft": [
+        26350,
+        220,
+        -3700
+      ],
+      "hour": 13.2,
+      "renderer": {
+        "frame": 59,
+        "calls": 498,
+        "triangles": 437440,
+        "points": 2859,
+        "lines": 0,
+        "geometries": 808,
+        "textures": 16
+      }
+    },
+    {
+      "name": "06-shard",
+      "camera": [
+        25380,
+        210,
+        -3670
+      ],
+      "fov": 58,
+      "aircraft": [
+        25600,
+        250,
+        -3650
+      ],
+      "hour": 13.2,
+      "renderer": {
+        "frame": 68,
+        "calls": 422,
+        "triangles": 426814,
+        "points": 2859,
+        "lines": 0,
+        "geometries": 807,
+        "textures": 16
+      }
+    },
+    {
+      "name": "07-aircraft-exterior",
+      "camera": [
+        6260.292235219579,
+        25.56,
+        -5045.162759501371
+      ],
+      "fov": 43,
+      "aircraft": [
+        6278.287160273035,
+        21.56,
+        -5041.139990266066
+      ],
+      "hour": 13.2,
+      "renderer": {
+        "frame": 77,
+        "calls": 640,
+        "triangles": 407922,
+        "points": 2976,
+        "lines": 36,
+        "geometries": 734,
+        "textures": 14
+      }
+    },
+    {
+      "name": "08-aircraft-nozzle",
+      "camera": [
+        6290.5364355076335,
+        24.56,
+        -5052.183325642076
+      ],
+      "fov": 43,
+      "aircraft": [
+        6278.287160273035,
+        21.56,
+        -5041.139990266066
+      ],
+      "hour": 13.2,
+      "renderer": {
+        "frame": 88,
+        "calls": 491,
+        "triangles": 384294,
+        "points": 3816,
+        "lines": 36,
+        "geometries": 765,
+        "textures": 14
+      }
+    },
+    {
+      "name": "09-cockpit",
+      "camera": [
+        6276.362334520602,
+        22.36,
+        -5040.116542259193
+      ],
+      "fov": 43,
+      "aircraft": [
+        6278.287160273035,
+        21.56,
+        -5041.139990266066
+      ],
+      "hour": 13.2,
+      "renderer": {
+        "frame": 97,
+        "calls": 373,
+        "triangles": 375782,
+        "points": 3816,
+        "lines": 0,
+        "geometries": 808,
+        "textures": 16
+      }
+    },
+    {
+      "name": "10-high-altitude",
+      "camera": [
+        21000,
+        5000,
+        2000
+      ],
+      "fov": 58,
+      "aircraft": [
+        23000,
+        5000,
+        -2000
+      ],
+      "hour": 13.2,
+      "renderer": {
+        "frame": 107,
+        "calls": 512,
+        "triangles": 509368,
+        "points": 2859,
+        "lines": 0,
+        "geometries": 826,
+        "textures": 17
+      }
+    },
+    {
+      "name": "11-sunset",
+      "camera": [
+        24000,
+        500,
+        -2800
+      ],
+      "fov": 58,
+      "aircraft": [
+        25000,
+        600,
+        -2000
+      ],
+      "hour": 18.1,
+      "renderer": {
+        "frame": 118,
+        "calls": 468,
+        "triangles": 462582,
+        "points": 2859,
+        "lines": 0,
+        "geometries": 824,
+        "textures": 17
+      }
+    },
+    {
+      "name": "12-night",
+      "camera": [
+        24000,
+        500,
+        -2800
+      ],
+      "fov": 58,
+      "aircraft": [
+        25000,
+        600,
+        -2000
+      ],
+      "hour": 23.3,
+      "renderer": {
+        "frame": 128,
+        "calls": 468,
+        "triangles": 462582,
+        "points": 2859,
+        "lines": 0,
+        "geometries": 824,
+        "textures": 17
+      }
+    }
+  ],
+  "errors": [],
+  "status": "PASS"
+}

@@ -1,0 +1,653 @@
+{
+  "date": "2026-10-28T14:33:33.879Z",
+  "source": "dist/index.html",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/131.0.6778.204 Safari/537.36",
+    "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "viewport": [
+      1280,
+      720
+    ],
+    "devicePixelRatio": 1,
+    "drawingBuffer": [
+      1152,
+      648
+    ],
+    "hardware": "Cloud Linux Chromium using SwiftShader software rasterizer; NOT Galaxy A51",
+    "realDevice": false
+  },
+  "checks": [
+    {
+      "name": "built-in equation validation",
+      "status": "PASS",
+      "details": {
+        "passed": 36,
+        "total": 36,
+        "tests": [
+          {
+            "name": "ISA sea-level density",
+            "pass": true,
+            "value": 1.2250122659906946
+          },
+          {
+            "name": "ISA density decreases with altitude",
+            "pass": true,
+            "value": 0.36391987008393273
+          },
+          {
+            "name": "Local speed of sound drives Mach",
+            "pass": true,
+            "value": {
+              "sea": 0.58773004184835,
+              "high": 0.6778098184425373
+            }
+          },
+          {
+            "name": "High-alpha lift peaks then falls progressively",
+            "pass": true,
+            "value": {
+              "clPeak": 1.91,
+              "clPost": 1.21
+            }
+          },
+          {
+            "name": "Developed high-AoA state retains nose-down recovery authority",
+            "pass": true,
+            "value": {
+              "recEff": 0.524896,
+              "recCm": -0.24615955689303615
+            }
+          },
+          {
+            "name": "Yaw damper opposes positive rate and sideslip",
+            "pass": true,
+            "value": {
+              "yawCmd": 0.10122064327658226,
+              "yawMoment": -0.020244128655316454
+            }
+          },
+          {
+            "name": "Turbulence is represented as airmass velocity",
+            "pass": true,
+            "value": 2.1427511313320635
+          },
+          {
+            "name": "Fuel sequencing produces bounded nonlinear CG shift",
+            "pass": true,
+            "value": {
+              "full": 0.03025,
+              "low": -0.09991797272542235,
+              "fdFull": {
+                "fwd": 1485.5,
+                "ctr": 2673.8999999999996,
+                "aft": 1782.6
+              },
+              "fdLow": {
+                "fwd": 403.78387502544274,
+                "ctr": 534.7800000000001,
+                "aft": 249.8361249745573
+              }
+            }
+          },
+          {
+            "name": "Engine exposes separate fan/core spool states",
+            "pass": true,
+            "value": {
+              "N1": 50,
+              "N2": 55,
+              "abSpool": 0
+            }
+          },
+          {
+            "name": "Pilot roll input reaches physical surface travel",
+            "pass": true,
+            "value": {
+              "fullRightFlaperon": -28,
+              "limit": 28
+            }
+          },
+          {
+            "name": "Aerodynamic hinge load slows actuator rather than capping turn rate",
+            "pass": true,
+            "value": {
+              "lowRate": 5.8,
+              "highRate": 2.3353742252909253
+            }
+          },
+          {
+            "name": "Gear creates parasite drag",
+            "pass": true,
+            "value": 0.032
+          },
+          {
+            "name": "Transonic wave drag peaks near Mach one",
+            "pass": true,
+            "value": {
+              "sub": 0.0014163199681396892,
+              "trans": 0.02591019007218219,
+              "sup": 0.008458975972484904
+            }
+          },
+          {
+            "name": "Afterburner supports supersonic acceleration near M1.55 at 10 km",
+            "pass": true,
+            "value": {
+              "thrust": 99214.14458596162,
+              "drag": 67315.5205409973,
+              "margin": 1.4738673011603178
+            }
+          },
+          {
+            "name": "LiftSystem component thrust sums correctly",
+            "pass": true,
+            "value": {
+              "fan": 88964,
+              "rear": 80068,
+              "posts": 17348,
+              "total": 186380
+            }
+          },
+          {
+            "name": "Hover requires a light recovery mass",
+            "pass": true,
+            "value": {
+              "lightMargin": 0.1774646358655234,
+              "fullMargin": -0.07736108041918444
+            }
+          },
+          {
+            "name": "Selectable structural envelope is bounded",
+            "pass": true,
+            "value": 8.5
+          },
+          {
+            "name": "Afterburner fuel flow exceeds military",
+            "pass": true,
+            "value": {
+              "mil": 1.18,
+              "ab": 3.78
+            }
+          },
+          {
+            "name": "Loaded 1-g minimum-speed estimate is plausible",
+            "pass": true,
+            "value": 122.22182276401271
+          },
+          {
+            "name": "ASSIST aerodynamic AoA is not compressed",
+            "pass": true,
+            "value": {
+              "policy": "control-law limiter; physical AoA retained"
+            }
+          },
+          {
+            "name": "Ground effect is concentrated below roughly half-span",
+            "pass": true,
+            "value": {
+              "near": 0.5750164951136763,
+              "far": 0
+            }
+          },
+          {
+            "name": "Engine thrust lapses at altitude",
+            "pass": true,
+            "value": 0.40386270142621156
+          },
+          {
+            "name": "Humid high-load condensation exceeds dry",
+            "pass": true,
+            "value": {
+              "humid": 1,
+              "dry": 0
+            }
+          },
+          {
+            "name": "Contrail regime is separate from wing vapour",
+            "pass": true,
+            "value": true
+          },
+          {
+            "name": "Seeded noise is deterministic",
+            "pass": true,
+            "value": {
+              "p1": -0.1115108872767373,
+              "p2": -0.1115108872767373,
+              "p3": 0.8540259224932708
+            }
+          },
+          {
+            "name": "Spatial feature indexes cover streamed records",
+            "pass": true,
+            "value": {
+              "airports": 58,
+              "indexedA": 58,
+              "cities": 48,
+              "indexedC": 48
+            }
+          },
+          {
+            "name": "Generated land airports pass terrain suitability",
+            "pass": true,
+            "value": {
+              "checked": 58,
+              "bad": []
+            }
+          },
+          {
+            "name": "30/60/120 Hz fixed-step equivalence",
+            "pass": true,
+            "value": {
+              "spread": 0,
+              "r30": {
+                "x": 294.59590645507666,
+                "v": 57.69006868712539,
+                "f": 1985.840000000062
+              },
+              "r60": {
+                "x": 294.59590645507666,
+                "v": 57.69006868712539,
+                "f": 1985.840000000062
+              },
+              "r120": {
+                "x": 294.59590645507666,
+                "v": 57.69006868712539,
+                "f": 1985.840000000062
+              }
+            }
+          },
+          {
+            "name": "Terrain cache and effect pools are bounded",
+            "pass": true,
+            "value": {
+              "vapour": 640,
+              "vortexNodes": 72,
+              "airportProxies": 160,
+              "heightCache": 16000,
+              "regions": 49
+            }
+          },
+          {
+            "name": "Horizon traffic fleet meets dense-airspace target",
+            "pass": true,
+            "value": {
+              "fleet": 128,
+              "target": 128
+            }
+          },
+          {
+            "name": "Horizon airline traffic cruises around FL300",
+            "pass": true,
+            "value": {
+              "averageFt": 30774.87864828927
+            }
+          },
+          {
+            "name": "Route airliners have runway-to-runway plans",
+            "pass": true,
+            "value": {
+              "routes": 18,
+              "target": 14
+            }
+          },
+          {
+            "name": "Dense aircraft fleet uses instancing",
+            "pass": true,
+            "value": {
+              "instanced": true
+            }
+          },
+          {
+            "name": "Neutral ASSIST pitch hold state is available",
+            "pass": true,
+            "value": {
+              "neutralPitchRef": 0,
+              "neutralPitchArmed": false
+            }
+          },
+          {
+            "name": "Traffic target marker control is wired",
+            "pass": true,
+            "value": {
+              "marker": true,
+              "drawer": true,
+              "touch": true
+            }
+          },
+          {
+            "name": "Offline package has no external resources",
+            "pass": true,
+            "value": []
+          }
+        ]
+      }
+    },
+    {
+      "name": "flight starts offline and executes fixed physics steps",
+      "status": "PASS",
+      "details": {
+        "before": {
+          "running": true,
+          "paused": false,
+          "crashed": false,
+          "simT": 1.0081999999999969,
+          "flightT": 0.075,
+          "stepCount": 9,
+          "position": [
+            6278.28428390409,
+            21.55280905467142,
+            -5041.138459049236
+          ],
+          "velocity": [
+            -0.07227499806186903,
+            -0.16658460707415035,
+            0.03848259084243523
+          ],
+          "quaternion": [
+            0.0009022138759522074,
+            -0.8571658475134964,
+            -0.0015019707802224743,
+            -0.5150375131486703
+          ],
+          "fuel": 3268.0769751337693,
+          "stolMode": "CONV",
+          "nozzle": 0,
+          "gearD": 1,
+          "camMode": 0,
+          "frameEMA": 540.8819917108245,
+          "graphicsLevel": 1,
+          "settings": {
+            "fbw": "ASSIST",
+            "fail": "OFF",
+            "sens": 1,
+            "expo": 0.3,
+            "dz": 0.07,
+            "invPitch": false,
+            "coord": true,
+            "hoverAssist": true,
+            "hmds": "FULL",
+            "tOp": 0.85,
+            "tSz": 1,
+            "hand": "R",
+            "rudSlider": false,
+            "gyro": false,
+            "gDz": 0.12,
+            "gThrBtn": true,
+            "quality": "MED",
+            "vapour": "ENHANCED",
+            "volume": 0,
+            "scan": false,
+            "structure": "REAL",
+            "targetMarker": false
+          },
+          "drawingBuffer": [
+            1152,
+            648
+          ],
+          "renderer": {
+            "calls": 439,
+            "triangles": 321054,
+            "textures": 14,
+            "geometries": 384
+          },
+          "replaySeconds": 0
+        },
+        "after": {
+          "running": true,
+          "paused": false,
+          "crashed": false,
+          "simT": 1.0581999999999967,
+          "flightT": 0.12499999999999999,
+          "stepCount": 15,
+          "position": [
+            6278.279054553156,
+            21.541973989809257,
+            -5041.135675284642
+          ],
+          "velocity": [
+            -0.1281417959261199,
+            -0.24956419872249483,
+            0.06822163831676414
+          ],
+          "quaternion": [
+            0.0022945906075549807,
+            -0.8571585318973192,
+            -0.0038205038045730313,
+            -0.5150333870733579
+          ],
+          "fuel": 3268.0614391634153,
+          "stolMode": "CONV",
+          "nozzle": 0,
+          "gearD": 1,
+          "camMode": 0,
+          "frameEMA": 533.0028921252833,
+          "graphicsLevel": 1,
+          "settings": {
+            "fbw": "ASSIST",
+            "fail": "OFF",
+            "sens": 1,
+            "expo": 0.3,
+            "dz": 0.07,
+            "invPitch": false,
+            "coord": true,
+            "hoverAssist": true,
+            "hmds": "FULL",
+            "tOp": 0.85,
+            "tSz": 1,
+            "hand": "R",
+            "rudSlider": false,
+            "gyro": false,
+            "gDz": 0.12,
+            "gThrBtn": true,
+            "quality": "MED",
+            "vapour": "ENHANCED",
+            "volume": 0,
+            "scan": false,
+            "structure": "REAL",
+            "targetMarker": false
+          },
+          "drawingBuffer": [
+            1152,
+            648
+          ],
+          "renderer": {
+            "calls": 439,
+            "triangles": 321054,
+            "textures": 14,
+            "geometries": 384
+          },
+          "replaySeconds": 0.08333333333333333
+        }
+      }
+    },
+    {
+      "name": "pause stops flight time and resume restarts it",
+      "status": "PASS",
+      "details": {
+        "pausedTime": 0.12499999999999999,
+        "resumedTime": 0.175
+      }
+    },
+    {
+      "name": "camera and instrumentation controls respond",
+      "status": "PASS",
+      "details": {
+        "camera": 1
+      }
+    },
+    {
+      "name": "touch stick receives pointer input and releases cleanly",
+      "status": "PASS",
+      "details": {
+        "el": 0,
+        "ail": 0
+      }
+    },
+    {
+      "name": "save retains finite state and settings",
+      "status": "PASS",
+      "details": {
+        "seed": 4201,
+        "flight": true
+      }
+    },
+    {
+      "name": "STOVL hover and conversion stay finite",
+      "status": "PASS",
+      "details": {
+        "hover": {
+          "running": true,
+          "paused": false,
+          "crashed": false,
+          "simT": 1.283199999999996,
+          "flightT": 0.35000000000000026,
+          "stepCount": 42,
+          "position": [
+            6870.52953932106,
+            100,
+            -5418.33220182343
+          ],
+          "velocity": [
+            0,
+            0,
+            0
+          ],
+          "quaternion": [
+            0,
+            -0.8571673007021123,
+            0,
+            -0.5150380749100543
+          ],
+          "fuel": 1485.5,
+          "stolMode": "HOVER",
+          "nozzle": 90,
+          "gearD": 1,
+          "camMode": 1,
+          "frameEMA": 537.7839736108068,
+          "graphicsLevel": 1,
+          "settings": {
+            "fbw": "ASSIST",
+            "fail": "OFF",
+            "sens": 1,
+            "expo": 0.3,
+            "dz": 0.07,
+            "invPitch": false,
+            "coord": true,
+            "hoverAssist": true,
+            "hmds": "NAV",
+            "tOp": 0.85,
+            "tSz": 1,
+            "hand": "R",
+            "rudSlider": false,
+            "gyro": false,
+            "gDz": 0.12,
+            "gThrBtn": true,
+            "quality": "MED",
+            "vapour": "ENHANCED",
+            "volume": 0,
+            "scan": false,
+            "structure": "REAL",
+            "targetMarker": false
+          },
+          "drawingBuffer": [
+            1152,
+            648
+          ],
+          "renderer": {
+            "calls": 322,
+            "triangles": 321128,
+            "textures": 16,
+            "geometries": 424
+          },
+          "replaySeconds": 0
+        },
+        "converted": {
+          "running": true,
+          "paused": false,
+          "crashed": false,
+          "simT": 1.3331999999999957,
+          "flightT": 0.4000000000000004,
+          "stepCount": 48,
+          "position": [
+            6870.529543776589,
+            99.9989892601599,
+            -5418.332197341595
+          ],
+          "velocity": [
+            0.00015043419413108644,
+            -0.036368545988636376,
+            0.0001575454599713181
+          ],
+          "quaternion": [
+            0.000017762176845252686,
+            -0.8571670385228656,
+            -0.0000275233186335598,
+            -0.5150385102076468
+          ],
+          "fuel": 1485.4213868517518,
+          "stolMode": "TO_CONV",
+          "nozzle": 90,
+          "gearD": 1,
+          "camMode": 1,
+          "frameEMA": 617.5547749302665,
+          "graphicsLevel": 1,
+          "settings": {
+            "fbw": "ASSIST",
+            "fail": "OFF",
+            "sens": 1,
+            "expo": 0.3,
+            "dz": 0.07,
+            "invPitch": false,
+            "coord": true,
+            "hoverAssist": true,
+            "hmds": "NAV",
+            "tOp": 0.85,
+            "tSz": 1,
+            "hand": "R",
+            "rudSlider": false,
+            "gyro": false,
+            "gDz": 0.12,
+            "gThrBtn": true,
+            "quality": "MED",
+            "vapour": "ENHANCED",
+            "volume": 0,
+            "scan": false,
+            "structure": "REAL",
+            "targetMarker": false
+          },
+          "drawingBuffer": [
+            1152,
+            648
+          ],
+          "renderer": {
+            "calls": 329,
+            "triangles": 341370,
+            "textures": 16,
+            "geometries": 424
+          },
+          "replaySeconds": 0
+        }
+      }
+    },
+    {
+      "name": "context loss is recoverable",
+      "status": "PASS"
+    },
+    {
+      "name": "no unexpected JavaScript or shader errors and no remote resources",
+      "status": "PASS",
+      "details": {
+        "requests": 1,
+        "errors": [],
+        "warnings": [
+          "WebGL: INVALID_VALUE: texImage2D: bad image data",
+          "[.WebGL-0x3364000d2200] GL_INVALID_OPERATION: Texture format does not support mipmap generation.",
+          "WebGL: INVALID_VALUE: texImage2D: bad image data",
+          "[.WebGL-0x3364000d2200] GL_INVALID_OPERATION: Texture format does not support mipmap generation."
+        ]
+      }
+    }
+  ],
+  "status": "PASS",
+  "note": "Real Galaxy A51 installation, PSS, battery and thermals are NOT TESTED."
+}
