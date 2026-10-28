@@ -16,7 +16,10 @@ test('Heathrow terminals have merged facade, roof and apron detail within a mobi
  const materials=new Set();for(let i=0;i<colors.length;i+=3)materials.add(Array.from(colors.slice(i,i+3),v=>v.toFixed(2)).join(','));
  assert.ok(materials.size>=3,'glazing, structural metal and rooftop plant need distinct materials');
  assert.ok([...m.geometry.attributes.position.array].every(Number.isFinite));
- m.geometry.computeBoundingBox();assert.ok(m.geometry.boundingBox.min.y>=24);assert.ok(m.geometry.boundingBox.max.y<85);
+ m.geometry.computeBoundingBox();assert.ok(m.geometry.boundingBox.min.y>=24);
+ // The largest curved roof is the 22 m terminal with a 13 m crest.
+ // Plant must fit its existing height + 14 m collision ceiling.
+ assert.ok(m.geometry.boundingBox.max.y<=24+22+14);
  const apron=g.getObjectByName('Heathrow aprons and stand markings');assert.ok(apron);
  assert.ok(apron.geometry.attributes.position.count>200);
  assert.ok([...apron.geometry.attributes.position.array].every(Number.isFinite));

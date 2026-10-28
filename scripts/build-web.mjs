@@ -7,6 +7,16 @@ import {loadProjectConfig} from './project-config.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=f=>fs.readFile(path.join(root,f),'utf8');
 const project=loadProjectConfig(root);
+// Verify and retain the exact bytes that will be embedded. Never silently ship
+// an interrupted/truncated texture or a pack that differs from its manifest.
+const packPath=path.join(root,'scenery-packs/london');
+const packManifest=JSON.parse(await fs.readFile(path.join(packPath,'manifest.json'),'utf8'));
+const assets=new Map();
+for(const name of ['data.json.gz','ground.png','water-mask.png','NOTICE.txt','LICENSE-OGL-3.0.txt']){
+ const bytes=await fs.readFile(path.join(packPath,name)),entry=packManifest.outputs?.[name];
+ if(!entry||!Number.isSafeInteger(entry.bytes)||entry.bytes<=0||bytes.length!==entry.bytes||createHash('sha256').update(bytes).digest('hex')!==entry.sha256)throw Error(`${name}: scenery integrity check failed; rebuild the licensed pack`);
+ assets.set(name,bytes);
+}
 let html=await read('src/index.template.html');
 const css=await read('src/ui/base.css')+'\n'+await read('src/ui/lightning.css');
 const paths=['src/vendor/three-r128.min.js','src/rendering/mobile-policy.js','src/aircraft/detail.js','src/cockpit/detail.js','src/terrain/scenery.js','src/terrain/london.js','src/terrain/landmarks.js','src/simulator.js','src/ui/runtime.js'];
@@ -14,10 +24,10 @@ const js=await Promise.all(paths.map(read));
 // Keep simulator and runtime integration in one parser task: no animation frame
 // can run between scheduling the simulator loop and defining its UI hooks.
 const buildMetadata=`Object.defineProperty(globalThis, '__LIGHTNING_BUILD__', {value:Object.freeze(${JSON.stringify(project)})});\n`;
-const scenery=gunzipSync(await fs.readFile(path.join(root,'scenery-packs/london/data.json.gz'))).toString('utf8');
-const geo='globalThis.__LONDON_DATA__='+scenery+';globalThis.__LONDON_GROUND__='+JSON.stringify('data:image/png;base64,'+(await fs.readFile(path.join(root,'scenery-packs/london/ground.png'))).toString('base64'))+';globalThis.__LONDON_MASK__='+JSON.stringify('data:image/png;base64,'+(await fs.readFile(path.join(root,'scenery-packs/london/water-mask.png'))).toString('base64'))+';';
+const scenery=gunzipSync(assets.get('data.json.gz')).toString('utf8');
+const geo='globalThis.__LONDON_DATA__='+scenery+';globalThis.__LONDON_GROUND__='+JSON.stringify('data:image/png;base64,'+assets.get('ground.png').toString('base64'))+';globalThis.__LONDON_MASK__='+JSON.stringify('data:image/png;base64,'+assets.get('water-mask.png').toString('base64'))+';';
 const scriptSources=[buildMetadata+js[0],geo,...js.slice(1,-2),js.slice(-2).join('\n')];
-const ogl=await read('scenery-packs/london/LICENSE-OGL-3.0.txt');html=html.replace('Not for real navigation.</details>',()=> 'Not for real navigation.<pre style="white-space:pre-wrap">'+ogl.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</pre></details>');
+const ogl=assets.get('LICENSE-OGL-3.0.txt').toString('utf8');html=html.replace('Not for real navigation.</details>',()=> 'Not for real navigation.<pre style="white-space:pre-wrap">'+ogl.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</pre></details>');
 html=html.replace('<!-- LIGHTNING_STYLES -->',()=>'<style>\n'+css+'\n</style>').replace('<!-- LIGHTNING_SCRIPTS -->',()=>scriptSources.map(s=>'<script>\n'+s.replace(/<\/script/gi,'<\\/script')+'\n</script>').join('\n'));
 if(/<(script|link)[^>]+(?:src|href)=/i.test(html))throw Error('Offline package cannot reference external scripts/styles');
 await fs.mkdir(path.join(root,'dist'),{recursive:true});
