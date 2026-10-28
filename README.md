@@ -1,12 +1,12 @@
 # Project Lightning — F-35B Mobile Simulator
 
-Experimental offline F-35B-inspired simulator targeting Samsung Galaxy A51. Preserves the owner-supplied six-DOF/STOVL sandbox, adds mobile graphics profiles, authored aircraft/cockpit detailing, airport materials/markings, procedural palettes and a restricted Kotlin Android host.
+Experimental offline F-35B-inspired simulator targeting Samsung Galaxy A51. Adds a geographic Heathrow–London corridor, real OS terrain/building/road/water data, original landmarks and airport architecture while preserving the owner-supplied six-DOF/STOVL sandbox and separate Legacy world. Android uses a restricted offline Kotlin WebView host.
 
 ## Download the experimental build
 
-[Android APK](https://github.com/mtt004/F35-flight-simulator/releases/download/v0.2.0-experimental/Lightning-F35B-Android.apk) · [Offline browser ZIP](https://github.com/mtt004/F35-flight-simulator/releases/download/v0.2.0-experimental/Lightning-F35B-Web.zip) · [Release and checksums](https://github.com/mtt004/F35-flight-simulator/releases/tag/v0.2.0-experimental)
+[Android APK](https://github.com/mtt004/F35-flight-simulator/releases/download/v0.3.0-experimental/Lightning-F35B-Android.apk) · [Offline browser ZIP](https://github.com/mtt004/F35-flight-simulator/releases/download/v0.3.0-experimental/Lightning-F35B-Web.zip) · [Release and checksums](https://github.com/mtt004/F35-flight-simulator/releases/tag/v0.3.0-experimental)
 
-The private repository requires authorized GitHub sign-in. APK0.2.0-experimental is debug-signed, AndroidAPI26+/WebGL2, and passed actual API33 emulator installation and live-flight checks. Physical GalaxyA51 is NOT TESTED. See the [v0.2 delivery audit](docs/delivery-v0.2.md) for exact source/hash/testing and incomplete scope.
+These V0.3 links become available only after the gated publishing workflow passes. While that workflow is pending, the [last published V0.2 release](https://github.com/mtt004/F35-flight-simulator/releases/tag/v0.2.0-experimental) remains available. The private repository requires authorized GitHub sign-in. V0.3 is debug-signed, AndroidAPI26+/WebGL2. Read the published APK/source/XML/checksum identity and actual emulator results in the release assets. Physical Galaxy A51 is NOT TESTED. See [recovery validation](docs/recovery-validation-v0.3.md) for exact product testing and incomplete scope.
 
 ## Build and test
 
