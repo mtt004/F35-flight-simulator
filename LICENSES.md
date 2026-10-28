@@ -28,3 +28,12 @@ The Kotlin compiler, Android Gradle Plugin, Android SDK/Gradle distribution, Pla
 ## Geographic research
 
 Potential datasets are documented in docs/scenery-data.md. No downloaded geospatial dataset is included in this release. The included appearance packs are stylized authored palettes and carry no claim of real geographic accuracy.
+
+## London V0.3 scenery
+Contains Ordnance Survey data © Crown copyright and database right 2026.
+OS OpenMap Local / OS Terrain 50, Open Government Licence v3.0:
+https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/ .
+Generated manifest, source notices and full licence are distributed in the London scenery package.
+Ground artwork and water mask are original derivatives, not aerial photography.
+Heathrow endpoints from public-domain OurAirports https://ourairports.com/data/ .
+Original authored landmarks are simplified interpretations of public reference information.

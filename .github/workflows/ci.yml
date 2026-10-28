@@ -21,6 +21,12 @@ jobs:
         with:
           node-version: '22.16.0'
       - run: npm ci
+      - name: Rebuild pinned licensed London scenery
+        run: |
+          python3 -m venv .tmp/london-venv
+          .tmp/london-venv/bin/pip install -r scripts/london-requirements.txt
+          .tmp/london-venv/bin/python scripts/build-london.py
+          .tmp/london-venv/bin/python scripts/build-london-ground.py
       - run: npm test
       - run: npm run build
       - run: npx playwright install --with-deps chromium

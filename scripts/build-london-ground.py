@@ -61,7 +61,7 @@ def main():
     with gzip.open(output/'data.json.gz', 'rt') as f:
         data = json.load(f)
     ground = Image.new('RGB', SIZE, COLORS['base'])
-    for kind in ('woodland','foreshore','site'):
+    for kind in ('woodland','foreshore'):
         mask = mask_for(o for o in data['surfaces'] if o['kind'] == kind)
         ground.paste(COLORS.get(kind, COLORS['pavement']), (0,0), mask)
     roofs = mask_for(data['buildings'])

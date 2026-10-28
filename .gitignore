@@ -10,3 +10,5 @@ android/local.properties
 
 __pycache__/
 *.pyc
+
+scenery-packs/london/

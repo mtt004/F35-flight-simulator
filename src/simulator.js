@@ -85,6 +85,8 @@ const S=Object.assign({fbw:'ASSIST',fail:'OFF',sens:1,expo:0.3,dz:0.07,invPitch:
 /* ================= [4] WORLD GENERATION ================= */
 const SYL=["VEL","KAR","OST","RIN","HAV","DOR","MIR","SOL","TRA","VEN","GAR","LUM","BRA","KES","OND","FAL"];
 const SUF=["A","IA","EN","OR","EA","UM"],APTS=[" FIELD"," STRIP"," BAY"," POINT"," INTL"," AFB"],CITS=["BURG","STAD","PORT","VILLE","HOLM","FORD","WICK"];
+let worldMode=SAVED.worldMode==='LONDON'?'LONDON':SAVED.worldMode==='LEGACY'||SAVED.seed?'LEGACY':'LONDON';
+LightningLondon.load(globalThis.__LONDON_DATA__);
 let airports=[],cities=[];
 const REGION=36000,FEATURE_BIN=12000,featureRegions=new Map(),airportBins=new Map(),cityBins=new Map();
 const _nearAirports=[],_nearCities=[];
@@ -252,6 +254,7 @@ function removeFeatureRegion(rec){
 }
 let featureTimer=0;
 function ensureRegionalFeatures(dt=0,force=false){
+  if(worldMode==='LONDON')return;
   featureTimer-=dt;if(!force&&featureTimer>0)return;featureTimer=0.45;
   const x=P?P.pos.x+OX:airports[0]?.x||0,z=P?P.pos.z+OZ:airports[0]?.z||0,ci=Math.floor(x/REGION),cj=Math.floor(z/REGION);
   for(let di=-2;di<=2;di++)for(let dj=-2;dj<=2;dj++)generateFeatureRegion(ci+di,cj+dj);
@@ -259,6 +262,7 @@ function ensureRegionalFeatures(dt=0,force=false){
 }
 function genWorld(){
   nzA=makeNoise(SEED);nzB=makeNoise(SEED^0x9e3779b9);airports=[];cities=[];featureRegions.clear();airportBins.clear();cityBins.clear();
+  if(worldMode==='LONDON'){for(const r of LightningLondon.runways){const a={...r,papi:[],grp:null};airports.push(a);indexFeature(airportBins,a);}return;}
   let found=null;
   outer:for(let r=0;r<22000&&!found;r+=350)for(let a=0;a<24;a++){const th=a/24*TAU+r*0.0013,x=Math.cos(th)*r,z=Math.sin(th)*r;
     const h=rawHeight(x,z);if(h>8&&h<110&&slopeOK(x,z,0.05)){found={x,z};break outer;}}
@@ -267,7 +271,7 @@ function genWorld(){
   for(let di=-2;di<=2;di++)for(let dj=-2;dj<=2;dj++)generateFeatureRegion(hc+di,hj+dj);
 }
 /* ================= [5] TERRAIN ================= */
-function heightAt(x,z){
+function legacyHeightAt(x,z){
   let h=rawHeight(x,z);
   const nearbyA=collectNearby(airportBins,x,z,11000,_nearAirports);
   for(let i=0;i<nearbyA.length;i++){const a=nearbyA[i],dx=x-a.x,dz=z-a.z,s=Math.sin(a.hdg*D2R),c=Math.cos(a.hdg*D2R);
@@ -290,9 +294,15 @@ function heightAt(x,z){
       if(h>cap)h=lerp(h,cap,sideK*endK);}}
   return h;
 }
+function heightAt(x,z){
+  if(worldMode==='LONDON'){const h=LightningLondon.height(x,z);if(h!==null)return h;const gx=clamp(x,-5000,34000),gz=clamp(z,-9000,6000),edge=LightningLondon.height(gx,gz),d=Math.hypot(x-gx,z-gz);return lerp(Math.max(2,edge),Math.max(2,legacyHeightAt(x,z)),smooth(0,10000,d));}
+  return legacyHeightAt(x,z);
+}
 const WATER_Y=0.12;
-function surfaceH(x,z){const h=heightAt(x,z);return h>WATER_Y?h:WATER_Y;}
-function isWaterAt(x,z){return heightAt(x,z)<0.05;}
+function legacySurfaceH(x,z){const h=heightAt(x,z);return h>WATER_Y?h:WATER_Y;}
+function legacyIsWaterAt(x,z){return heightAt(x,z)<0.05;}
+function surfaceH(x,z){if(worldMode==='LONDON'){const h=LightningLondon.surface(x,z);if(h!==null)return h;}return legacySurfaceH(x,z);}
+function isWaterAt(x,z){return worldMode==='LONDON'?LightningLondon.isWater(x,z):legacyIsWaterAt(x,z);}
 const hCache=new Map();
 function heightCached(x,z){const k=(Math.round(x*0.25)+262144)*524288+(Math.round(z*0.25)+262144);
   let v=hCache.get(k);if(v===undefined){v=heightAt(x,z);if(hCache.size>16000)hCache.clear();hCache.set(k,v);}return v;}
@@ -302,6 +312,7 @@ const SURF={RWY:{roll:0.012,brk:0.55,lat:0.9,rough:0},APRON:{roll:0.015,brk:0.5,
   GRASS:{roll:0.05,brk:0.35,lat:0.6,rough:1},SOIL:{roll:0.06,brk:0.3,lat:0.55,rough:1.2},
   ROCK:{roll:0.04,brk:0.3,lat:0.7,rough:2},SNOW:{roll:0.03,brk:0.15,lat:0.3,rough:0.6},WATER:{roll:0,brk:0,lat:0,rough:0}};
 function surfaceType(x,z,h){
+  if(worldMode==='LONDON'&&LightningLondon.isWater(x,z))return'WATER';
   const nearby=collectNearby(airportBins,x,z,2800,_nearAirports);
   for(let i=0;i<nearby.length;i++){const a=nearby[i],dx=x-a.x,dz=z-a.z;
     if(dx*dx+dz*dz>2400*2400)continue;
@@ -315,6 +326,7 @@ function surfaceType(x,z,h){
 }
 const _col=new THREE.Color(),_c2=new THREE.Color();
 function colorAt(x,z,h,ny,out){
+  if(worldMode==='LONDON'){out.setRGB(.35,.39,.30);return;}
   const slope=1-clamp(ny,0,1),moist=fbm01(nzA,x*.00031+41.2,z*.00031+17.8,3),warm=fbm01(nzB,x*.000052-81,z*.000052+29,3),macro=fbm01(nzB,x*.000095+151,z*.000095-71,2);
   if(h<-1){const d=clamp(-h/460,0,1);out.setRGB(.035+.08*(1-d),.105+.18*(1-d),.16+.20*(1-d));}
   else if(h<4.2){const t=smooth(-1,4.2,h);out.setRGB(.80-.08*t,.72-.08*t,.49-.10*t);}
@@ -445,7 +457,7 @@ const CHUNK=2400,chunks=new Map(),terrainMat=new THREE.ShaderMaterial({vertexCol
   float diff=max(dot(n,l),0.);float hemi=.36+.24*n.y;col*=hemi+diff*(.43+.17*uDay);col*=mix(1.,.76,uWet);
   float spec=pow(max(dot(reflect(-l,n),v),0.),52.)*uWet*.12;col+=vec3(.78,.86,.92)*spec;
   float dist=distance(cameraPosition,vW),fog=1.-exp(-uFogD*uFogD*dist*dist);float ground=smoothstep(2500.,15500.,length(cameraPosition.xz-vW.xz))*(1.-smoothstep(300.,1500.,vW.y))*.18;fog=clamp(fog+ground,0.,1.);col=mix(col,uFog,fog);gl_FragColor=vec4(col,1.);}`});
-terrainMat.userData.shared=true;LightningScenery.init(THREE,terrainMat);LightningScenery.setPalette(THREE,terrainMat,L.palette,customPalette);
+terrainMat.userData.shared=true;LightningScenery.init(THREE,terrainMat);LightningLondon.initTerrain(THREE,terrainMat);LightningScenery.setPalette(THREE,terrainMat,L.palette,customPalette);
 const chunkQueue=[];let vegDensity=1,lodRadius=7;
 function releaseChunk(entry){
   if(!entry)return;
@@ -494,6 +506,7 @@ function buildVeg(ci,cj,lod){
   return out;
 }
 function terrainGeometry(ci,cj,seg){
+  if(worldMode==='LONDON')return LightningLondon.terrainGeometry(THREE,ci,cj,seg===64?24:seg===32?12:6,heightAt);
   const cx=(ci+.5)*CHUNK,cz=(cj+.5)*CHUNK,n=seg+1,topCount=n*n,verts=[],idx=[];
   for(let j=0;j<n;j++)for(let i=0;i<n;i++){
     const lx=-CHUNK/2+i*CHUNK/seg,lz=-CHUNK/2+j*CHUNK/seg;
@@ -542,7 +555,7 @@ function buildShoreline(ci,cj,lod){
 function buildChunk(ci,cj,lod){
   const seg=[64,32,16][lod],cx=(ci+.5)*CHUNK,cz=(cj+.5)*CHUNK,g=terrainGeometry(ci,cj,seg);
   const m=new THREE.Mesh(g,terrainMat);m.position.set(cx,0,cz);worldGroup.add(m);
-  const shore=buildShoreline(ci,cj,lod),veg=(lod===0||(lod===1&&ql()>=1))?buildVeg(ci,cj,lod):[];
+  const shore=worldMode==='LONDON'?null:buildShoreline(ci,cj,lod),veg=worldMode==='LONDON'?[]:(lod===0||(lod===1&&ql()>=1))?buildVeg(ci,cj,lod):[];
   const key=ci+','+cj,old=chunks.get(key);if(old)releaseChunk(old);
   chunks.set(key,{mesh:m,lod,veg,shore});
 }
@@ -945,6 +958,7 @@ function updateAirportProxies(sorted,range){let n=0;const C=new THREE.Color();
 /* Distance-capped detail streaming. Terrain remains continuous; expensive airport/city meshes are bounded. */
 let visualTimer=0;
 function ensureVisuals(dt){
+  if(worldMode==='LONDON'){LightningLondon.update(P.pos.x+OX,P.pos.z+OZ,P.pos.y,ql(),nightF,performance.now()/1000);return;}
   visualTimer-=dt;if(visualTimer>0)return;visualTimer=0.45;
   const x=P.pos.x+OX,z=P.pos.z+OZ,aptIn=[44000,56000,70000,84000][ql()],cityIn=[38000,50000,64000,78000][ql()];
   const aptMax=[5,7,9,11][ql()],cityMax=[4,6,8,10][ql()],sortedA=airports.map(a=>[a,Math.hypot(a.x-x,a.z-z)]).sort((a,b)=>a[1]-b[1]);
@@ -1058,6 +1072,7 @@ function updateAmbientAir(dt,pgx,pgz){
 function initShips(){
   clearAmbientAir();
   ships.forEach(s=>{worldGroup.remove(s.g);disposeGroup(s.g);});ships.length=0;
+  if(worldMode==='LONDON'){civAir.forEach(c=>{worldGroup.remove(c.g);disposeGroup(c.g);});civAir.length=0;clearLocalTrafficHub();initAmbientAir(mulberry32(SEED*77+5));return;}
   const rng=mulberry32(SEED*77+5),spots=[];
   for(let a=0;a<24&&spots.length<6;a++){const th=a/24*TAU+0.26;for(let dd=4000;dd<42000;dd+=3000){const x=airports[0].x+Math.cos(th)*dd,z=airports[0].z+Math.sin(th)*dd;if(heightAt(x,z)<-2){spots.push({x,z,th});break;}}}
   spots.forEach((sp,i)=>{const g=new THREE.Group(),hull=new THREE.Mesh(new THREE.BoxGeometry(16,7,64),new THREE.MeshLambertMaterial({color:0x26333f}));hull.position.y=3;g.add(hull);
@@ -2129,6 +2144,7 @@ function applyFailures(dt){
 }
 /* ================= [16] COLLISION ================= */
 function checkCollisions(){
+  if(worldMode==='LONDON'&&LightningLondon.collides(P.pos.x+OX,P.pos.y,P.pos.z+OZ)){doCrash('COLLISION — LONDON BUILDING');return;}
   const gx=P.pos.x+OX,gz=P.pos.z+OZ,py=P.pos.y;
   for(const [c,g] of cityGroups){
     const dx=gx-c.x,dz=gz-c.z;if(dx*dx+dz*dz>(c.r+700)*(c.r+700))continue;
@@ -2999,7 +3015,7 @@ function updateCamera(dt){
 }
 function rebaseOrigin(){
   if(Math.abs(P.pos.x)<15000&&Math.abs(P.pos.z)<15000)return;
-  const dx=P.pos.x,dz=P.pos.z;OX+=dx;OZ+=dz;P.pos.x=0;P.pos.z=0;
+  const dx=P.pos.x,dz=P.pos.z;for(const f of replayFrames){f.p[0]-=dx;f.p[2]-=dz;}if(replayRestore){replayRestore.p.x-=dx;replayRestore.p.z-=dz;}OX+=dx;OZ+=dz;P.pos.x=0;P.pos.z=0;
   camPos.x-=dx;camPos.z-=dz;camLook.x-=dx;camLook.z-=dz;camTrackPos.x-=dx;camTrackPos.z-=dz;if(fixedCameraAnchor){fixedCameraAnchor.x-=dx;fixedCameraAnchor.z-=dz;}
   for(let i=0;i<140;i++){expPos[i*3]-=dx;expPos[i*3+2]-=dz;}
   worldGroup.position.set(-OX,0,-OZ);
@@ -3134,8 +3150,9 @@ function placeAt(type){
     P.vel.set(0,0,0);P.quat.setFromAxisAngle(_yUp,-a.hdg*D2R);
     gearT=1;gearD=1;parkBrake=true;prevWheelsOn=true;thr=thrT=.2;N1=50;N2=55;
   } else if(type==='AIR'){
-    const ax=a.thrAx-a.ux*8000,az=a.thrAz-a.uz*8000;
-    const glideAlt=a.elev+Math.tan(3*D2R)*8000;
+    const approachDistance=worldMode==='LONDON'?2500:8000;
+    const ax=a.thrAx-a.ux*approachDistance,az=a.thrAz-a.uz*approachDistance;
+    const glideAlt=a.elev+Math.tan(3*D2R)*approachDistance;
     P.pos.set(ax-OX,Math.max(glideAlt,surfaceH(ax,az)+60),az-OZ);
     /* Approach vector points from threshold A toward the runway. The baseline used
        the opposite sign, so airborne starts visually faced the field while moving away. */
@@ -3228,6 +3245,7 @@ function applyScenario(){
   $({PARK:'stPark',RUNWAY:'stRunway',AIR:'stAir',HOVER:'stHover'}[startType]).classList.add('on');
 }
 function newWorld(seed){
+  LightningLondon.dispose();aptProxyGeo.setDrawRange(0,0);
   SEED=clamp(parseInt(seed)||1000,1,999999);$('seed').value=SEED;
   for(const [,v] of chunks)releaseChunk(v);chunks.clear();
   for(const [k,g] of aptGroups){worldGroup.remove(g);disposeGroup(g);}aptGroups.clear();
@@ -3237,6 +3255,9 @@ function newWorld(seed){
   for(const [k,g] of wfGroups){if(g)removeWindFarm(g);}wfGroups.clear();windTurbines.length=0;
   clearStorms();clearVapour();vapRng=mulberry32(SEED*43+17);hCache.clear();OX=0;OZ=0;worldGroup.position.set(0,0,0);
   genWorld();populateApts();initClouds();
+  if(worldMode==='LONDON')LightningLondon.create(THREE,worldGroup,terrainMat);
+  water.visible=worldMode!=='LONDON';terrainMat.uniforms.uLondon.value=worldMode==='LONDON'?1:0;
+  $('worldMode').value=worldMode;$('worldNote').textContent=worldMode==='LONDON'?'London: 39 × 15 km OS data · estimated heights · procedural terrain beyond coverage':'Legacy procedural world · generated geography';
   fuel=selectedFuel();crashed=false;autoBrake=false;parkBrake=true;
   resetFlightSystems();applyScenario();placeAt(startType);configureScenarioState();
   applyWx();initShips();
@@ -3272,10 +3293,10 @@ function validSavedFlight(f){
 }
 function savePrefs(withFlight=true){
   const apt=selectedAirport()||airports[0],fuelEl=$('selFuel');
-  const payload={seed:SEED,settings:Object.assign({},S),wxPreset,simHours,startType,scenario,tutorialSeen:!!SAVED.tutorialSeen,
+  const payload={worldMode:typeof worldMode==='undefined'?'LEGACY':worldMode,seed:SEED,settings:Object.assign({},S),wxPreset,simHours,startType,scenario,tutorialSeen:!!SAVED.tutorialSeen,
     fuelLoad:fuelEl?fuelEl.value:'.55',aptIcao:apt&&apt.icao,flight:SAVED.flight||null};
   if(withFlight&&running&&!crashed&&!replayActive){
-    const candidate={seed:SEED,pos:[P.pos.x+OX,P.pos.y,P.pos.z+OZ],vel:P.vel.toArray(),quat:P.quat.toArray(),om:P.om.toArray(),
+    const candidate={worldMode:typeof worldMode==='undefined'?'LEGACY':worldMode,seed:SEED,pos:[P.pos.x+OX,P.pos.y,P.pos.z+OZ],vel:P.vel.toArray(),quat:P.quat.toArray(),om:P.om.toArray(),
       fuel,thr,thrT,N1,N2,abSpool,gearD,gearT,parkBrake,stolMode,lfDoor,lfSpool,nozzle,simT,flightT,camMode,wxPreset,simHours};
     if(validSavedFlight(candidate))payload.flight=candidate;}
   SAVED=payload;
@@ -3286,7 +3307,9 @@ function continueSavedFlight(){
   const f=SAVED.flight;
   if(!validSavedFlight(f)){toast('INVALID SAVED FLIGHT — START NEW OR CLEAR SAVED DATA','warn');return false;}
   const finite=(v,d)=>Number.isFinite(v)?v:d;
-  if(f.seed!==SEED)newWorld(f.seed);
+  const savedMode=f.worldMode==='LONDON'?'LONDON':'LEGACY';
+  if(typeof worldMode!=='undefined'&&worldMode!==savedMode){worldMode=savedMode;newWorld(f.seed);}
+  else if(f.seed!==SEED)newWorld(f.seed);
   startSortie();OX=0;OZ=0;worldGroup.position.set(0,0,0);
   P.pos.fromArray(f.pos);P.vel.fromArray(f.vel||[0,0,0]);P.quat.fromArray(f.quat).normalize();P.om.fromArray(f.om||[0,0,0]);
   fuel=clamp(finite(f.fuel,selectedFuel()),0,MAX_FUEL);thr=clamp(finite(f.thr,.2),0,1);thrT=clamp(finite(f.thrT,thr),0,1);N2=clamp(finite(f.N2,55),0,105);N1=clamp(finite(f.N1,N2-4),0,105);abSpool=clamp(finite(f.abSpool,0),0,1);
@@ -3330,6 +3353,7 @@ $('start').addEventListener('click',startSortie);
 $('btnReplay').addEventListener('click',startReplay);$('btnSumReplay').addEventListener('click',startReplay);
 $('continue').addEventListener('click',continueSavedFlight);
 $('resetSave').addEventListener('click',()=>{try{localStorage.removeItem(SAVE_KEY);}catch(e){}SAVED={};$('continue').style.display='none';toast('SAVED DATA CLEARED');});
+$('worldMode').addEventListener('change',()=>{worldMode=$('worldMode').value;SAVED.flight=null;navTargetIcao='';newWorld(SEED);savePrefs(false);});
 $('dice').addEventListener('click',()=>{newWorld(1000+((Math.random()*9000)|0));sfxClick();});
 let seedTO=null;
 $('seed').addEventListener('input',()=>{clearTimeout(seedTO);seedTO=setTimeout(()=>newWorld($('seed').value),500);});
@@ -3636,7 +3660,7 @@ function runValidation(){
   add('Seeded noise is deterministic',p1===p2&&Math.abs(p1-p3)>.0001,{p1,p2,p3});
   const indexedA=[...airportBins.values()].reduce((n,b)=>n+b.size,0),indexedC=[...cityBins.values()].reduce((n,b)=>n+b.size,0);
   add('Spatial feature indexes cover streamed records',indexedA===airports.length&&indexedC===cities.length,{airports:airports.length,indexedA,cities:cities.length,indexedC});
-  const landA=airports.filter(a=>!a.platform),badSites=landA.filter(a=>rawHeight(a.x,a.z)<=0||rawSlope(a.x,a.z)>.085);
+  const landA=airports.filter(a=>!a.platform),badSites=landA.filter(a=>worldMode==='LONDON'?Math.abs(heightAt(a.x,a.z)-a.elev)>.01:rawHeight(a.x,a.z)<=0||rawSlope(a.x,a.z)>.085);
   add('Generated land airports pass terrain suitability',badSites.length===0,{checked:landA.length,bad:badSites.map(a=>a.icao)});
   const rateProbe=fps=>{let acc=0,v=0,x=0,n=55,f=2000;for(let frame=0;frame<fps*12;frame++){acc+=1/fps;while(acc+1e-12>=1/120){const dt=1/120;n+=(100-n)*Math.min(1,dt/2.4);const thrust=MILT*Math.pow(n/100,3),drag=.5*sl.rho*v*v*.035*S_REF;v+=(thrust-drag)/18000*dt;x+=v*dt;f-=1.18*dt;acc-=dt;}}return{x,v,f};};
   const r30=rateProbe(30),r60=rateProbe(60),r120=rateProbe(120),spread=Math.max(Math.abs(r30.x-r60.x),Math.abs(r120.x-r60.x));
@@ -3645,7 +3669,8 @@ function runValidation(){
   add('Horizon traffic fleet meets dense-airspace target',!!ambientAir&&ambientAir.max>=128&&ambientAir.data.length>=128,{fleet:ambientAir?ambientAir.data.length:0,target:128});
   const avgTrafficFt=ambientAir?ambientAir.data.reduce((n,d)=>n+d.alt*FT,0)/ambientAir.data.length:0;
   add('Horizon airline traffic cruises around FL300',avgTrafficFt>29000&&avgTrafficFt<33000,{averageFt:avgTrafficFt});
-  add('Route airliners have runway-to-runway plans',civAir.length>=14&&civAir.every(c=>c.plan&&c.plan.pts.length>=10&&Math.abs(c.plan.pts[c.plan.pts.length-1].y-c.to.elev)<5),{routes:civAir.length,target:14});
+  if(worldMode==='LONDON')add('Heathrow runways have real aligned endpoints',airports.length===2&&airports.every(a=>Math.abs(Math.hypot(a.thrBx-a.thrAx,a.thrBz-a.thrAz)-a.rwyLen)<10),{runways:airports.length});
+  else add('Route airliners have runway-to-runway plans',civAir.length>=14&&civAir.every(c=>c.plan&&c.plan.pts.length>=10&&Math.abs(c.plan.pts[c.plan.pts.length-1].y-c.to.elev)<5),{routes:civAir.length,target:14});
   add('Dense aircraft fleet uses instancing',!!ambientAir&&ambientAir.mesh&&ambientAir.mesh.isInstancedMesh===true,{instanced:!!(ambientAir&&ambientAir.mesh&&ambientAir.mesh.isInstancedMesh)});
   add('Neutral ASSIST pitch hold state is available',typeof neutralPitchRef==='number'&&typeof neutralPitchArmed==='boolean',{neutralPitchRef,neutralPitchArmed});
   add('Traffic target marker control is wired',!!$('targetMarker')&&!!$('sTarget')&&!!$('tbTarget'),{marker:!!$('targetMarker'),drawer:!!$('sTarget'),touch:!!$('tbTarget')});
@@ -3654,7 +3679,7 @@ function runValidation(){
   const passed=tests.filter(t=>t.pass).length;return{passed,total:tests.length,tests};
 }
 window.__F35B_SIM__={version:globalThis.__LIGHTNING_BUILD__?.version||'0.1.0-experimental',runValidation,get snapshot(){return {running,paused,crashed,simT,flightT,stepCount,position:P.pos.toArray(),velocity:P.vel.toArray(),quaternion:P.quat.toArray(),fuel,stolMode,nozzle,gearD,camMode,profile:L.profile,quality:qlLevel,drawingBuffer:[renderer.domElement.width,renderer.domElement.height],workMs:lastWorkMs,renderer:{...renderer.info.render,...renderer.info.memory}};},get diagnostics(){return SELF_TEST;},
-  get world(){const kinds={};for(const a of airports)kinds[a.kind]=(kinds[a.kind]||0)+1;return{airports:airports.length,cities:cities.length,kinds,regions:featureRegions.size,airportBins:airportBins.size,visualAirports:aptGroups.size};},
+  get world(){const kinds={};for(const a of airports)kinds[a.kind]=(kinds[a.kind]||0)+1;return{mode:worldMode,london:worldMode==='LONDON'?LightningLondon.stats():null,airports:airports.length,cities:cities.length,kinds,regions:featureRegions.size,airportBins:airportBins.size,visualAirports:aptGroups.size};},
   get traffic(){let roadVehicles=0,trainConsists=0,trainCars=0;for(const [,g] of roadGroups){if(!g)continue;const r=g.userData.roadTraffic,t=g.userData.train;if(r)roadVehicles+=r.data.length;if(t){trainConsists+=t.consistCount;trainCars+=t.n;}}const lr=localTrafficHub&&localTrafficHub.userData.localCars,lt=localTrafficHub&&localTrafficHub.userData.train;return{ambientAircraft:ambientAir?ambientAir.mesh.count:0,routeAircraft:civAir.length,totalAircraft:civAir.length+(ambientAir?ambientAir.mesh.count:0),roadVehicles,localRoadVehicles:lr?lr.cars.length:0,trainConsists,trainCars,localTrainConsists:lt?lt.consistCount:0,localTrainCars:lt?lt.n:0};},
   get effects(){return{condWing,vortexStrength,condTrans,contrail,particles:vapourCount,vortexNodes:vortNodeCount,setting:S.vapour,wingSheet:!!(wingVapMesh&&wingVapMesh.visible),transonicShell:!!(transVapMesh&&transVapMesh.visible)};},
   get landing(){return{score:stats.tdScore,grade:stats.tdGrade,sinkFpm:stats.tdVs*FPM,centreline:stats.tdAcross,headingError:stats.tdHdg,airport:stats.tdAirport};},
@@ -3720,6 +3745,7 @@ function loop(now){
   waterMat.uniforms.uFogD.value=scene.fog.density;waterMat.uniforms.uNight.value=nightF;
   terrainMat.uniforms.uOrigin.value.set(OX,OZ);
   terrainMat.uniforms.uSun.value.copy(sunDir);terrainMat.uniforms.uFog.value.copy(scene.fog.color);terrainMat.uniforms.uFogD.value=scene.fog.density;terrainMat.uniforms.uDay.value=dayF;terrainMat.uniforms.uWet.value=wx.wet?1:0;terrainMat.uniforms.uTime.value=simT;
+  if(worldMode==='LONDON')LightningLondon.update(P.pos.x+OX,P.pos.z+OZ,P.pos.y,ql(),nightF,performance.now()/1000);
   drawHMDS();
   if($('infoPan').classList.contains('on')&&running)drawInfoMap();
   updateDbg(dt);

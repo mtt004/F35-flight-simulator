@@ -197,13 +197,13 @@ def features(archive):
     with zipfile.ZipFile(archive) as z:
         names = {n.lower(): n for n in z.namelist()}
         for filename in sorted(n for n in z.namelist() if n.lower().endswith('.shp')):
-            layer = Path(filename).stem.split('_')[-1]
-            if layer.lower() not in ('building', 'surfacewater_area', 'surfacewater', 'tidalwater', 'woodland', 'foreshore', 'importantbuilding', 'site', 'road'):
-                # Some editions have names such as TQ_SurfaceWater_Area.
-                low = Path(filename).stem.lower()
-                layer = next((v for v in ('SurfaceWater_Area', 'TidalWater', 'Woodland', 'Foreshore', 'Building', 'Site', 'Road') if low.endswith(v.lower())), '')
+            low = Path(filename).stem.lower()
+            layer = next((v for v in ('ImportantBuilding', 'Building', 'FunctionalSite',
+                'SurfaceWater_Area', 'TidalWater', 'Woodland', 'Foreshore', 'Roundabout', 'Road')
+                if low.endswith('_'+v.lower())), '')
             if not layer:
                 continue
+            print(f'Converting OS {layer} features within London coverage', flush=True)
             stem = filename[:-4]
             reader = shapefile.Reader(shp=io.BytesIO(z.read(filename)),
                 shx=io.BytesIO(z.read(names[(stem+'.shx').lower()])),
@@ -274,8 +274,8 @@ def main():
     for filename, layer, attrs, g, oid in features(paths['openmap-tq.zip']):
         low = layer.lower()
         counts[layer] = counts.get(layer, 0)+1
-        if low == 'road':
-            classification = str(attrs.get('CLASSIFICA', attrs.get('CLASSIFICATION', attrs.get('FEATCODE', 'road'))))
+        if low in ('road', 'roundabout'):
+            classification = str(attrs.get('CLASSIFICA', attrs.get('CLASSIFICATION', 'roundabout' if low == 'roundabout' else attrs.get('FEATCODE', 'road'))))
             category = classification.lower()
             width = 16 if 'motorway' in category else 11 if 'a road' in category else 8 if 'b road' in category else 5
             for j, line in enumerate(lines(g.simplify(3, preserve_topology=True))):

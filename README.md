@@ -24,3 +24,20 @@ Browser runtime QA: `npx playwright install --with-deps chromium`, then `node sc
 - [Benchmarks](benchmarks/), [controls](docs/controls.md), [known limitations](docs/known-issues.md), [28-decision acceptance map](docs/acceptance-matrix.md)
 
 Status is experimental/PARTIAL against the full overhaul. Available APK/browser release gates passed; physical-device and remaining-feature gates are incomplete. Accurate geographic scenery and the full requested visual reconstruction remain unfinished. No Galaxy A51 testing is claimed.
+
+## London V0.3 development
+
+Select London in Flight Setup for the offline Heathrow–Docklands corridor. Existing saved worlds default to Legacy; London saves retain their coordinate identity. London uses licensed OS outlines/elevation and original simplified landmarks. Building heights are estimates; ground colours are vector-derived artwork, not aerial imagery.
+
+Before `npm run build`, generate the pinned scenery:
+
+```sh
+python3 -m venv .tmp/london-venv
+.tmp/london-venv/bin/pip install -r scripts/london-requirements.txt
+.tmp/london-venv/bin/python scripts/build-london.py
+.tmp/london-venv/bin/python scripts/build-london-ground.py
+```
+
+Initial preprocessing downloads verified OS archives (~393 MB); generated browser/APK play fully offline. Source pins refuse changed downloads. GitHub workflows regenerate the same assets and retain the manifest/licences.
+
+This experimental milestone does not establish Galaxy A51 frame rate, battery/thermal behavior or commercial-simulator realism. See the delivery report for actual checks and limits.
