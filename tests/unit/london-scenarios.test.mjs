@@ -1,0 +1,3 @@
+import test from'node:test';import assert from'node:assert/strict';import fs from'node:fs';import vm from'node:vm';import{extractFunction}from'../helpers/source.mjs';
+const source=fs.readFileSync('src/simulator.js','utf8');
+test('world-dependent missions stay available in Legacy and are rejected in London',()=>{assert.ok(source.includes('function scenarioSupportedInWorld('),'scenario policy missing');const c=vm.createContext({});vm.runInContext(extractFunction(source,'scenarioSupportedInWorld')+';this.ok=scenarioSupportedInWorld;',c);for(const s of['TRAFFIC INTERCEPT','OFFSHORE RECOVERY']){assert.equal(c.ok(s,'LONDON'),false);assert.equal(c.ok(s,'LEGACY'),true);}assert.equal(c.ok('FREE FLIGHT','LONDON'),true);assert.equal(c.ok('CONVENTIONAL TAKEOFF','LONDON'),true);});

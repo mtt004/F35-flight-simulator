@@ -372,14 +372,14 @@ const hemi=new THREE.HemisphereLight(0x9db8d8,0x3a4a3a,0.55);scene.add(hemi);
 const worldGroup=new THREE.Group();scene.add(worldGroup);
 let OX=0,OZ=0;
 const skyMat=new THREE.ShaderMaterial({side:THREE.BackSide,depthWrite:false,fog:false,
- uniforms:{uSun:{value:new THREE.Vector3(0,1,0)},uZen:{value:new THREE.Color(0.1,0.3,0.62)},uHor:{value:new THREE.Color(0.62,0.76,0.88)},uSunC:{value:new THREE.Color(1,0.9,0.75)},uNight:{value:0},uFlash:{value:0},uCloud:{value:0.2},uDusk:{value:0},uHaze:{value:.25},uT:{value:0}},
+ uniforms:{uSun:{value:new THREE.Vector3(0,1,0)},uZen:{value:new THREE.Color(0.1,0.3,0.62)},uHor:{value:new THREE.Color(0.62,0.76,0.88)},uSunC:{value:new THREE.Color(1,0.9,0.75)},uNight:{value:0},uGroundHorizon:{value:0},uFlash:{value:0},uCloud:{value:0.2},uDusk:{value:0},uHaze:{value:.25},uT:{value:0}},
  vertexShader:'varying vec3 vP;void main(){vP=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
- fragmentShader:`varying vec3 vP;uniform vec3 uSun,uZen,uHor,uSunC;uniform float uNight,uFlash,uCloud,uDusk,uHaze,uT;
+ fragmentShader:`varying vec3 vP;uniform vec3 uSun,uZen,uHor,uSunC;uniform float uNight,uFlash,uCloud,uDusk,uHaze,uT,uGroundHorizon;
  float hsh(vec3 p){return fract(sin(dot(p,vec3(12.9898,78.233,37.719)))*43758.5453);}
  void main(){vec3 d=normalize(vP);float h=d.y;
   float alt=pow(clamp(h,0.0,1.0),0.58);vec3 sky=mix(uHor,uZen,alt);
   float horizon=exp(-abs(h)*7.5);sky=mix(sky,uHor*1.04,horizon*(.22+.38*uHaze));
-  if(h<0.0)sky=mix(uHor,uHor*0.34,clamp(-h*4.5,0.0,1.0));
+  if(h<0.0)sky=mix(uHor,uHor*mix(.34,.97,uGroundHorizon),clamp(-h*4.5,0.0,1.0));
   float sd=max(dot(d,uSun),0.0);float sunDisc=pow(sd,1800.0),aureole=pow(sd,45.0),bloom=pow(sd,7.0);
   sky+=uSunC*(sunDisc*2.4+aureole*.34+bloom*.055);
   vec2 dh=normalize(d.xz+vec2(1e-5)),sh=normalize(uSun.xz+vec2(1e-5));float sunH=max(dot(dh,sh),0.0);
@@ -3213,11 +3213,13 @@ function populateApts(){
   selAptIdx=si>=0?si:0;navTargetIcao=(airports[selAptIdx]||{}).icao||'';sel.value=selAptIdx;
 }
 const SCENARIOS=['FREE FLIGHT','STOVL QUALIFICATION','STORM DIVERSION','LOW-LEVEL NAVIGATION','ENGINE EMERGENCY','TRAFFIC INTERCEPT','OFFSHORE RECOVERY','CONVENTIONAL TAKEOFF','CIRCUIT & LANDING','CROSSWIND LANDING','ILS APPROACH','NIGHT LANDING','LOW-VIS APPROACH','HUMID VAPOUR RUN','SHORT TAKEOFF','STOVL TRANSITION','HOVER PRACTICE','VERTICAL LANDING','NAVIGATION FLIGHT','FUEL MANAGEMENT','ENGINE-OUT LANDING','DIVERSION'];
+function scenarioSupportedInWorld(name,mode){return mode!=='LONDON'||!['TRAFFIC INTERCEPT','OFFSHORE RECOVERY'].includes(name);}
 function populateScen(){const sel=$('selScen');sel.innerHTML='';
-  SCENARIOS.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;sel.appendChild(o);});
-  if(SCENARIOS.includes(scenario))sel.value=scenario;else{scenario='FREE FLIGHT';sel.value=scenario;}}
+  SCENARIOS.forEach(s=>{const o=document.createElement('option');o.value=s;o.disabled=!scenarioSupportedInWorld(s,worldMode);o.textContent=s+(o.disabled?' (Legacy only)':'');sel.appendChild(o);});
+  if(SCENARIOS.includes(scenario)&&scenarioSupportedInWorld(scenario,worldMode))sel.value=scenario;else{scenario='FREE FLIGHT';sel.value=scenario;}}
 function applyScenario(){
   scenario=$('selScen').value;
+  if(!scenarioSupportedInWorld(scenario,worldMode)){scenario='FREE FLIGHT';$('selScen').value=scenario;}
   switch(scenario){
     case'STOVL QUALIFICATION':startType='RUNWAY';break;
     case'STORM DIVERSION':wxPreset='bkn';startType='AIR';break;
@@ -3254,9 +3256,9 @@ function newWorld(seed){
   clearLocalTrafficHub();
   for(const [k,g] of wfGroups){if(g)removeWindFarm(g);}wfGroups.clear();windTurbines.length=0;
   clearStorms();clearVapour();vapRng=mulberry32(SEED*43+17);hCache.clear();OX=0;OZ=0;worldGroup.position.set(0,0,0);
-  genWorld();populateApts();initClouds();
+  genWorld();populateApts();populateScen();initClouds();
   if(worldMode==='LONDON')LightningLondon.create(THREE,worldGroup,terrainMat);
-  water.visible=worldMode!=='LONDON';terrainMat.uniforms.uLondon.value=worldMode==='LONDON'?1:0;
+  water.visible=worldMode!=='LONDON';terrainMat.uniforms.uLondon.value=worldMode==='LONDON'?1:0;skyMat.uniforms.uGroundHorizon.value=worldMode==='LONDON'?1:0;
   $('worldMode').value=worldMode;$('worldNote').textContent=worldMode==='LONDON'?'London: 39 × 15 km OS data · estimated heights · procedural terrain beyond coverage':'Legacy procedural world · generated geography';
   fuel=selectedFuel();crashed=false;autoBrake=false;parkBrake=true;
   resetFlightSystems();applyScenario();placeAt(startType);configureScenarioState();

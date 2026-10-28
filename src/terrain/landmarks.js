@@ -298,5 +298,9 @@
     }
     return group;
   }
-  root.LightningLandmarks=Object.freeze({locations,build,collides});
+  // Suppress generic map extrusions inside authored landmark footprints. Real
+  // source polygons remain in the downloadable pack; this is renderer curation.
+  const clearances={westminster:[65,170],eye:[80,45],shard:[48,42],towerbridge:[35,150],stpauls:[65,90],canary:[45,45],gherkin:[35,35],buckingham:[70,100]};
+  function excludes(x,z){for(const [id,p]of Object.entries(locations)){const b=clearances[id];if(Math.abs(x-p[0])<b[0]&&Math.abs(z-p[1])<b[1])return true;}return false;}
+  root.LightningLandmarks=Object.freeze({locations,build,collides,excludes});
 })(typeof window!=='undefined'?window:globalThis);

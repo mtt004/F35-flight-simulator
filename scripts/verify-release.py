@@ -25,11 +25,11 @@ for line in (root / 'SHA256SUMS.txt').read_text().splitlines():
     if hashlib.sha256(data).hexdigest() != digest:
         raise SystemExit('Checksum mismatch: ' + name)
     checks[name] = {'bytes': len(data), 'sha256': digest}
-required = {'Lightning-F35B-Android.apk', 'Lightning-F35B-Web.zip', 'Lightning-F35B-Evidence.zip',
+required = {'Lightning-F35B-Android.apk', 'Lightning-F35B-Web.zip', 'Lightning-F35B-Evidence.zip', 'Lightning-London-Scenery.zip',
             'android-verification.json', 'android-installation.json', 'build-manifest.json'}
 if set(checks) != required:
     raise SystemExit('Release checksum manifest is incomplete or unexpected')
-for name in ['Lightning-F35B-Web.zip', 'Lightning-F35B-Android.apk', 'Lightning-F35B-Evidence.zip']:
+for name in ['Lightning-F35B-Web.zip', 'Lightning-F35B-Android.apk', 'Lightning-F35B-Evidence.zip', 'Lightning-London-Scenery.zip']:
     with zipfile.ZipFile(root / name) as archive:
         if archive.testzip() is not None:
             raise SystemExit('Corrupt archive: ' + name)
