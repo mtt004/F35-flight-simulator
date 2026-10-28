@@ -1,5 +1,10 @@
 # V0.3 experimental London delivery audit
 
+This document records the earlier candidate. The execution-date continuation,
+new airport architecture, integrity fixes and current source-bound checks are
+in [release recovery validation](recovery-validation-v0.3.md). Its newer build
+identity supersedes earlier hashes and counts below.
+
 Execution date: 28 October 2026. This is a visibly improved, playable geographic milestone, not completion of the requested commercial-quality reconstruction or Galaxy A51 acceptance. Final release binary identity and installation checks must be read from the published `build-manifest.json`, `android-verification.json`, `android-installation.json` and `SHA256SUMS.txt`; this source document does not invent a future binary hash.
 
 ## What was wrong with V2

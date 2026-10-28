@@ -47,6 +47,13 @@ inspected. Terrain 50 still matches the original pin. Pipeline version 4 invalid
 old generated packs. Size, MD5 and SHA-256 checks remain mandatory; future upstream
 changes fail closed. See `research/os-download-metadata-2026-10-28.json`.
 
+The release also archives these exact licensed raw downloads in
+`Lightning-London-Source-Data.zip`. To rebuild after the provider changes editions,
+extract `openmap-tq.zip` and `terrain50-gb.zip` into `.tmp/london`, then run the
+normal preprocessing commands. Their original byte counts and hashes remain
+mandatory. Playing requires only the APK or browser build; these bulk raw inputs
+are an optional reproducibility asset, not a runtime download.
+
 ## Geometry and terrain
 
 Shapefile DBF text is decoded as cp1252. Geometry is repaired when necessary,

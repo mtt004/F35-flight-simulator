@@ -38,6 +38,8 @@ python3 -m venv .tmp/london-venv
 .tmp/london-venv/bin/python scripts/build-london-ground.py
 ```
 
-Initial preprocessing downloads verified OS archives (~393 MB); generated browser/APK play fully offline. Source pins refuse changed downloads. GitHub workflows regenerate the same assets and retain the manifest/licences.
+Initial preprocessing downloads verified OS archives (~382 MB); generated browser/APK play fully offline. Source pins refuse changed downloads. GitHub workflows regenerate the same assets and retain the manifest/licences.
 
 This experimental milestone does not establish Galaxy A51 frame rate, battery/thermal behavior or commercial-simulator realism. See the [V0.3 delivery audit](docs/delivery-v0.3.md), [twelve screenshot comparisons](docs/visual-comparison-v0.3.md) and [measured performance](docs/performance-v0.3.md) for actual checks and limits.
+
+Current release-candidate fixes and build-bound verification: [recovery validation](docs/recovery-validation-v0.3.md). The verified release also retains exact licensed raw inputs for reproducible rebuilds after upstream editions change.

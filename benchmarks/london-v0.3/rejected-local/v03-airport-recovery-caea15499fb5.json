@@ -1,0 +1,184 @@
+{
+  "date": "2026-10-28T19:48:29.886Z",
+  "source": "dist/index.html",
+  "sourceSha256": "caea15499fb5bcb04bf49c7edf6217991ee6812ea6fbab3983ce031e4bdd62ae",
+  "referenceMainCommit": "c53506ad59e7aad46904c3a648b0f06d6015dafd",
+  "pilotBudgetSeconds": null,
+  "environment": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/131.0.6778.33 Safari/537.36",
+    "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "viewport": [
+      1280,
+      720
+    ],
+    "devicePixelRatio": 1,
+    "drawingBuffer": [
+      1152,
+      648
+    ],
+    "hardware": "Cloud Linux Chromium using SwiftShader software rasterizer; NOT Galaxy A51",
+    "realDevice": false
+  },
+  "segments": [],
+  "checks": [
+    {
+      "name": "normal save → UI respawn → new launch UI Continue restores exact saved state",
+      "status": "FAIL",
+      "wallSeconds": 14.735,
+      "error": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"http://127.0.0.1:42617/dist/index.html\", waiting until \"load\"\u001b[22m\n",
+      "evidence": null,
+      "state": null
+    },
+    {
+      "name": "natural replay completion restores paused live flight and every playback-mutated field",
+      "status": "FAIL",
+      "wallSeconds": 0.002,
+      "error": "Error: page.evaluate: Target page, context or browser has been closed",
+      "evidence": null,
+      "state": null
+    },
+    {
+      "name": "autosave during real replay preserves last valid live-flight record",
+      "status": "FAIL",
+      "wallSeconds": 0,
+      "error": "AssertionError [ERR_ASSERTION]: Replay save was not observed",
+      "evidence": null,
+      "state": null
+    },
+    {
+      "name": "malformed save empty-velocity is rejected before world/state mutation with recovery UI",
+      "status": "FAIL",
+      "wallSeconds": 0.001,
+      "error": "Error: page.evaluate: Target page, context or browser has been closed",
+      "evidence": null,
+      "state": null
+    },
+    {
+      "name": "malformed save numeric-string-position is rejected before world/state mutation with recovery UI",
+      "status": "FAIL",
+      "wallSeconds": 0.001,
+      "error": "Error: page.evaluate: Target page, context or browser has been closed",
+      "evidence": null,
+      "state": null
+    },
+    {
+      "name": "malformed save zero-quaternion is rejected before world/state mutation with recovery UI",
+      "status": "FAIL",
+      "wallSeconds": 0,
+      "error": "Error: page.evaluate: Target page, context or browser has been closed",
+      "evidence": null,
+      "state": null
+    },
+    {
+      "name": "complete hover forward-conversion scenario",
+      "status": "NOT TESTED",
+      "reason": "Extended automated flight control is opt-in (--extended); basic save/replay tests do not establish a complete flight lifecycle."
+    },
+    {
+      "name": "conventional runway takeoff",
+      "status": "NOT TESTED",
+      "reason": "Run with --takeoff; no takeoff is inferred from an airborne spawn."
+    },
+    {
+      "name": "vertical landing from hover scenario",
+      "status": "NOT TESTED",
+      "reason": "Run with --hover-landing; a configured hover spawn does not establish a landing."
+    }
+  ],
+  "status": "FAIL",
+  "limitations": [
+    "Cloud Chromium/SwiftShader functional tests; not Galaxy A51 evidence.",
+    "Normal UI start/scenario selection may position an aircraft at its configured spawn; tests label such starts. No lifecycle is inferred from teleporting aircraft state.",
+    "Replay stop is observed synchronously using a wrapper that calls the original function unchanged, before any later live physics step.",
+    "No Android installation, gyro, battery or thermal claim."
+  ],
+  "runSettings": {
+    "viewport": [
+      640,
+      360
+    ],
+    "profile": "BATTERY",
+    "softwareRenderer": true
+  },
+  "validSavedPayload": {
+    "worldMode": "LEGACY",
+    "seed": 4201,
+    "settings": {
+      "fbw": "ASSIST",
+      "fail": "OFF",
+      "sens": 1,
+      "expo": 0.3,
+      "dz": 0.07,
+      "invPitch": false,
+      "coord": true,
+      "hoverAssist": true,
+      "hmds": "FULL",
+      "tOp": 0.85,
+      "tSz": 1,
+      "hand": "R",
+      "rudSlider": false,
+      "gyro": false,
+      "gDz": 0.12,
+      "gThrBtn": true,
+      "quality": "MED",
+      "vapour": "ENHANCED",
+      "volume": 0,
+      "scan": false,
+      "structure": "REAL",
+      "targetMarker": false
+    },
+    "wxPreset": "cavok",
+    "simHours": 13.222221666666648,
+    "startType": "AIR",
+    "scenario": "FREE FLIGHT",
+    "tutorialSeen": true,
+    "fuelLoad": "0.55",
+    "aptIcao": "KGES",
+    "flight": {
+      "worldMode": "LEGACY",
+      "seed": 4201,
+      "pos": [
+        15093.149884138624,
+        432.6364196802176,
+        -9790.346358417313
+      ],
+      "vel": [
+        -70.00518590564928,
+        -7.554173060610442,
+        37.234701122085326
+      ],
+      "quat": [
+        0.00259838823972121,
+        -0.8545744714711719,
+        0.0024852730537872026,
+        -0.5193164204087629
+      ],
+      "om": [
+        -0.0009211262599217432,
+        -0.011052410709594524,
+        -0.00659534423788437
+      ],
+      "fuel": 3267.2381318836674,
+      "thr": 0.68,
+      "thrT": 0.68,
+      "N1": 81.72496842834317,
+      "N2": 87.39519423986478,
+      "abSpool": 0,
+      "gearD": 0,
+      "gearT": 0,
+      "parkBrake": false,
+      "stolMode": "CONV",
+      "lfDoor": 0,
+      "lfSpool": 0,
+      "nozzle": 0,
+      "simT": 1.7582999999999973,
+      "flightT": 1.1249999999999984,
+      "camMode": 1,
+      "wxPreset": "cavok",
+      "simHours": 13.222221666666648
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

@@ -1,5 +1,9 @@
 # V0.3 London performance report
 
+Historical candidate measurements follow. Current-build measurements are recorded
+in [release recovery validation](recovery-validation-v0.3.md) and the final release
+evidence ZIP; do not transfer results between different HTML hashes.
+
 Measured 2026-10-28. HTML SHA-256 `9c4853a5eba204ad582e832a3a1f5b0274ec3a317b3a558ee3da10dfc1f5bf64`. Product source: `6a73eddcd76f41229bc7c4c26151f1179875077b`; subsequent evidence/workflow commits do not change product bytes.
 
 Chrome 131 on cloud Linux with ANGLE/SwiftShader software rasterization, 1280 × 720 viewport, Balanced Q1, 1152 × 648 drawing buffer. This is **not Galaxy A51 hardware**. All scenes ran sequentially; the short offline-startup test overlapped the initial Heathrow measurement, so that row is diagnostic rather than an isolated comparison. No speedup is inferred against V2 reports made on different Chrome/host versions.

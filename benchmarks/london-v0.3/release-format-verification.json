@@ -1,0 +1,73 @@
+{
+  "status": "PASS",
+  "files": {
+    "Lightning-F35B-Android.apk": {
+      "bytes": 14721797,
+      "sha256": "3414f7fa0d0b59f88ccc51c2b9eb82539b2150e64fdaa8d5bdf1e44e88e07443"
+    },
+    "Lightning-F35B-Web.zip": {
+      "bytes": 31627773,
+      "sha256": "7ff8afe086536df2696d3ba2654fd77d0826ad480120f9e0b8a3a4164de35e1f"
+    },
+    "Lightning-F35B-Evidence.zip": {
+      "bytes": 3158,
+      "sha256": "1eb65a391940e94c636e85c21c42d6667524613573f17827c63477be9b067733"
+    },
+    "Lightning-London-Scenery.zip": {
+      "bytes": 11857471,
+      "sha256": "5ca7f47ceb0994c287793963898e0d60271582f499bcd324280ebb590bcffd66"
+    },
+    "Lightning-London-Source-Data.zip": {
+      "bytes": 382152079,
+      "sha256": "d3e5046f68f2e96468867c5707dcd17262aa294dc062fb3e7a073a1817f52481"
+    },
+    "android-verification.json": {
+      "bytes": 6921,
+      "sha256": "2c0e3d71b6ef8f192cfadcd4e0bdafaa929732530ad4ee06b9640b5140a6cdab"
+    },
+    "android-installation.json": {
+      "bytes": 709,
+      "sha256": "7778b4fed8ef45f4cccb3e8c79f87879f538bb3fa43296de7edd820237aa4ff2"
+    },
+    "build-manifest.json": {
+      "bytes": 637,
+      "sha256": "fa480747d9f3a4349ddc69f1f3d70841b61bfa4e7efdf326f3ff1b9e9cf0d2b5"
+    }
+  },
+  "sourceCommit": "49cd7cf1f11825ee069a66c46342d19abb866248",
+  "browserHtmlSha256": "b9163b605f312d637e655dfb817fd215a7e12e6f2a4fced259bf07021093f0e8",
+  "githubAssetDigestsMatch": null,
+  "signatureVerification": "CI apksigner record; not independently rerun without Android SDK",
+  "installation": {
+    "status": "PASS",
+    "environment": "GitHub Actions Android API 33 x86_64 emulator, software GPU",
+    "actualInstallationAndLaunch": true,
+    "tests": 1,
+    "reports": [
+      "android/app/build/outputs/androidTest-results/connected/debug/TEST-emulator-5554 - 13-_app-.xml"
+    ],
+    "reportChecksums": {
+      "android/app/build/outputs/androidTest-results/connected/debug/TEST-emulator-5554 - 13-_app-.xml": "84044eebd49d476dc29cab52fcf4938aeeca534b438a93279122809b784c1d07"
+    },
+    "apkSha256": "3414f7fa0d0b59f88ccc51c2b9eb82539b2150e64fdaa8d5bdf1e44e88e07443",
+    "sourceCommit": "49cd7cf1f11825ee069a66c46342d19abb866248",
+    "versionName": "0.3.0-experimental",
+    "versionCode": 3,
+    "galaxyA51": "NOT TESTED"
+  },
+  "rawInstrumentationProof": {
+    "tests": 1,
+    "rawReportChecksums": {
+      "android/app/build/outputs/androidTest-results/connected/debug/TEST-emulator-5554 - 13-_app-.xml": "84044eebd49d476dc29cab52fcf4938aeeca534b438a93279122809b784c1d07"
+    },
+    "liveFlightTestPresent": true
+  },
+  "actualApkMetadata": {
+    "applicationId": "com.mtt004.lightning",
+    "versionName": "0.3.0-experimental",
+    "versionCode": 3,
+    "minSdk": 26,
+    "targetSdk": 35
+  },
+  "galaxyA51": "NOT TESTED"
+}

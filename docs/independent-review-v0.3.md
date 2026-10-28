@@ -1,5 +1,23 @@
 # Independent v0.3 review
 
+The earlier review below is retained. In the 28 October continuation, a fresh
+agent independently reviewed the closed-ring fix, official archive pins, merged
+airport architecture, asset-integrity guard and representative regenerated
+`b9163b605f312d637e655dfb817fd215a7e12e6f2a4fced259bf07021093f0e8`
+airport/river/high-altitude/night captures. No blocking visual/code/licence issue
+was found. The review measured 14,728 terminal-skin triangles, 652 apron triangles,
+about 2.03 MB of attributes, 16 airport draw objects, and a largest roof/plant
+crest within the existing terminal collision ceiling. Cosmetic facade relief
+extends up to 0.8 m beyond the conservative rectangular collision footprint.
+
+The reviewer identified that the staged endurance helper could accept paused or
+frozen physics. The implementation now rejects wrong-world, paused, crashed,
+nonfinite, missing-landmark or non-advancing samples, requires at least one second
+of total simulated flight, and labels restored context losses. Four policy tests
+cover those counterexamples. This is independent agent review, not a physical
+device lab or human pilot sign-off. Final APK/CI and endurance outcomes remain
+separate evidence gates. See [recovery validation](recovery-validation-v0.3.md).
+
 Review date: 2026-10-28. Scope: the London integration, geographic preprocessing,
 terrain/material integration, collision, save migration, origin rebasing and the
 twelve actual `screenshots/london-v0.3/after` captures. This is a separate code
