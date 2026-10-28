@@ -29,13 +29,23 @@ silently refreshed against a mutable upstream endpoint.
 
 | Product | Bytes | SHA-256 | MD5 |
 | --- | ---: | --- | --- |
-| OS OpenMap Local TQ, ESRI Shapefile | 230809695 | `1a89682919a6e1d96255d4dd8bb273a08a667fe3a5ab3d4c4bed3ef408565ea1` | `bf58528c496370c0ddd0f13048fe549a` |
+| OS OpenMap Local TQ, ESRI Shapefile | 220434575 | `0271ac90feaf041d9af7b1f3bab0ec99765e6f843d6f9e24c50500e2a25bb418` | `94c08ba6f3d9ce4a3b36339fc01b9334` |
 | OS Terrain 50 GB, ASCII Grid and GML | 161706566 | `d03e91d3adcf5927b2f2e2ef0d7b6ccf18a2e63728d6ebef83c6c9aa2a3c64a7` | `feba9008db55cdcb5c5e5b7896e3428b` |
 
 The precise OS download API URLs, source hashes and byte counts are recorded in
 `manifest.json` and the source script. The manifest also records every generated
 data, texture, notice and licence hash, counts, grid metadata, texture dimensions
 and estimated GPU memory. The manifest does not contain a self-referential hash.
+
+The OpenMap pin was explicitly reviewed on 28 October 2026 after the previous
+230809695-byte edition stopped being served. The official OS API metadata reports
+`opmplc_essh_tq.zip`, 220434575 bytes and MD5 `94c08ba6f3d9ce4a3b36339fc01b9334`;
+the downloaded archive matches both and its SHA-256 is pinned above. Archive
+entries are timestamped 26 October 2026. This is an observed archive timestamp,
+not a claimed survey date. Its included licence and EPSG:27700 projection were
+inspected. Terrain 50 still matches the original pin. Pipeline version 4 invalidates
+old generated packs. Size, MD5 and SHA-256 checks remain mandatory; future upstream
+changes fail closed. See `research/os-download-metadata-2026-10-28.json`.
 
 ## Geometry and terrain
 

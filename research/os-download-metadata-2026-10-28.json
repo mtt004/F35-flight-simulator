@@ -1,0 +1,79 @@
+{
+  "checked": "2026-10-28",
+  "openMapMetadataUrl": "https://api.os.uk/downloads/v1/products/OpenMapLocal/downloads?area=TQ",
+  "terrainMetadataUrl": "https://api.os.uk/downloads/v1/products/Terrain50/downloads?area=GB",
+  "openMapResponse": [
+    {
+      "md5": "94c08ba6f3d9ce4a3b36339fc01b9334",
+      "size": 220434575,
+      "url": "https://api.os.uk/downloads/v1/products/OpenMapLocal/downloads?area=TQ&format=ESRI%C2%AE+Shapefile&redirect",
+      "format": "ESRI\u00ae Shapefile",
+      "area": "TQ",
+      "fileName": "opmplc_essh_tq.zip"
+    },
+    {
+      "md5": "84c6a2f824ff6acfd0aae300f4138ef4",
+      "size": 223401165,
+      "url": "https://api.os.uk/downloads/v1/products/OpenMapLocal/downloads?area=TQ&format=GML&subformat=3&redirect",
+      "format": "GML",
+      "subformat": "3",
+      "area": "TQ",
+      "fileName": "opmplc_gml3_tq.zip"
+    },
+    {
+      "md5": "a1e5cf1cf11ddfbdc7a44e297e4d7868",
+      "size": 1129199399,
+      "url": "https://api.os.uk/downloads/v1/products/OpenMapLocal/downloads?area=TQ&format=GeoTIFF&subformat=Full+Colour&redirect",
+      "format": "GeoTIFF",
+      "subformat": "Full Colour",
+      "area": "TQ",
+      "fileName": "omlras_gtfc_tq.zip"
+    }
+  ],
+  "terrainResponse": [
+    {
+      "md5": "feba9008db55cdcb5c5e5b7896e3428b",
+      "size": 161706566,
+      "url": "https://api.os.uk/downloads/v1/products/Terrain50/downloads?area=GB&format=ASCII+Grid+and+GML+%28Grid%29&redirect",
+      "format": "ASCII Grid and GML (Grid)",
+      "area": "GB",
+      "fileName": "terr50_gagg_gb.zip"
+    },
+    {
+      "md5": "febf7c04a577d323e438005bf46fc0e5",
+      "size": 1045876678,
+      "url": "https://api.os.uk/downloads/v1/products/Terrain50/downloads?area=GB&format=ESRI%C2%AE+Shapefile&subformat=%28Contours%29&redirect",
+      "format": "ESRI\u00ae Shapefile",
+      "subformat": "(Contours)",
+      "area": "GB",
+      "fileName": "terr50_cesh_gb.zip"
+    },
+    {
+      "md5": "0a2e8dd67e2b2b07baa868f5b69f9324",
+      "size": 1124281736,
+      "url": "https://api.os.uk/downloads/v1/products/Terrain50/downloads?area=GB&format=GML&subformat=%28Contours%29&redirect",
+      "format": "GML",
+      "subformat": "(Contours)",
+      "area": "GB",
+      "fileName": "terr50_cgml_gb.zip"
+    },
+    {
+      "md5": "7bea1a60d7f93ea7c0af632c83fd9281",
+      "size": 1233528293,
+      "url": "https://api.os.uk/downloads/v1/products/Terrain50/downloads?area=GB&format=GeoPackage&redirect",
+      "format": "GeoPackage",
+      "area": "GB",
+      "fileName": "terr50_gpkg_gb.zip"
+    },
+    {
+      "md5": "fa3fed543cfa2073863b4170194e13b7",
+      "size": 1070803333,
+      "url": "https://api.os.uk/downloads/v1/products/Terrain50/downloads?area=GB&format=Vector+Tiles&subformat=%28MBTiles%29&redirect",
+      "format": "Vector Tiles",
+      "subformat": "(MBTiles)",
+      "area": "GB",
+      "fileName": "terr50_mbtiles_gb.zip"
+    }
+  ],
+  "review": "Downloaded archives matched official API byte counts and MD5. SHA256 independently computed; OpenMap licence and .prj inspected. Archive timestamp is not survey date."
+}

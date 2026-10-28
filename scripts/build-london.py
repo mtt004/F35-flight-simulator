@@ -28,14 +28,14 @@ CACHE = ROOT / '.tmp/london'
 DEFAULT_OUTPUT = ROOT / 'scenery-packs/london'
 B = (502000, 170000, 541000, 185000)
 CLIP = box(*B)
-VERSION = 3
+VERSION = 4
 SOURCES = {
     'openmap-tq.zip': {
         'product': 'OS OpenMap Local, TQ, ESRI Shapefile',
         'url': 'https://api.os.uk/downloads/v1/products/OpenMapLocal/downloads?area=TQ&format=ESRI%C2%AE+Shapefile&redirect',
-        'bytes': 230809695,
-        'md5': 'bf58528c496370c0ddd0f13048fe549a',
-        'sha256': '1a89682919a6e1d96255d4dd8bb273a08a667fe3a5ab3d4c4bed3ef408565ea1',
+        'bytes': 220434575,
+        'md5': '94c08ba6f3d9ce4a3b36339fc01b9334',
+        'sha256': '0271ac90feaf041d9af7b1f3bab0ec99765e6f843d6f9e24c50500e2a25bb418',
     },
     'terrain50-gb.zip': {
         'product': 'OS Terrain 50, GB, ASCII Grid and GML',
