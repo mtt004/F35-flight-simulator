@@ -4,25 +4,30 @@ async function check(name,f){try{report.checks.push({name,status:'PASS',details:
 try{session=await browserSession({file});report.environment=session.environment;const p=session.page;await p.selectOption('#worldMode','LONDON');await startFlight(p,{start:'RUNWAY'});
 await check('London starts on mapped Heathrow runway and advances physics',async()=>{const a=await snapshot(p);await p.waitForFunction(n=>stepCount>n+10,a.stepCount);const b=await snapshot(p);assert.equal(await p.evaluate(()=>worldMode),'LONDON');assert.ok(!b.crashed);assert.ok(b.stepCount>a.stepCount);const data=await p.evaluate(()=>({rwy:airports[0].rwyLen,h:heightAt(airports[0].x,airports[0].z),e:airports[0].elev,world:__F35B_SIM__.world}));assert.equal(data.rwy,3902);assert.ok(Math.abs(data.h-data.e)<.01);return{before:a,after:b,data};});
 await check('actual keyboard runway takeoff',async()=>{
- const previousProfile=await p.evaluate(()=>L.profile);
- const renderState=()=>({profile:L.profile,quality:qlLevel,buffer:[renderer.domElement.width,renderer.domElement.height],shadows:renderer.shadowMap.enabled,frameEMA,flightT});
- const before=await p.evaluate(renderState);
- // Exercise the existing user-facing Performance profile on CPU rasterizers.
- // Keep the real keyboard pilot, physics, flight thresholds and stage deadlines.
- await p.locator('#btnSet').click();
- await p.locator('#lightningProfile').selectOption('BATTERY');
- await p.locator('#btnDrawerClose').click();
- await p.waitForFunction(()=>L.profile==='BATTERY'&&qlLevel===0&&!renderer.shadowMap.enabled);
- const fixture=await p.evaluate(renderState),started=Date.now();
+ const previousProfile=await p.evaluate(()=>L.profile),previousViewport=p.viewportSize();
+ const renderState=()=>({profile:L.profile,quality:qlLevel,viewport:[innerWidth,innerHeight],buffer:[renderer.domElement.width,renderer.domElement.height],shadows:renderer.shadowMap.enabled,frameEMA,flightT});
+ const before=await p.evaluate(renderState);let fixture,started;
+ const evidence=async()=>({reason:'Control-function check at 640x360 CSS pixels on cloud software renderer; Balanced visual/benchmark/endurance gates run separately at 1280x720',before,fixture,after:await p.evaluate(renderState),wallSeconds:started?(Date.now()-started)/1000:null});
  try{
+  // Same real pilot and deadlines; bound CPU rasterizer pixel cost separately.
+  await p.locator('#btnSet').click();
+  await p.locator('#lightningProfile').selectOption('BATTERY');
+  await p.locator('#btnDrawerClose').click();
+  await p.setViewportSize({width:640,height:360});
+  await p.waitForFunction(()=>innerWidth===640&&innerHeight===360&&renderer.domElement.width===640&&renderer.domElement.height===360&&L.profile==='BATTERY'&&qlLevel===0&&!renderer.shadowMap.enabled);
+  fixture=await p.evaluate(renderState);started=Date.now();
   const pilot=await takeoffWithKeyboard(p,{timeout:180000});
-  return {...pilot,renderFixture:{reason:'Control-function check on cloud software renderer; Balanced visual/benchmark/endurance gates run separately',before,fixture,after:await p.evaluate(renderState),wallSeconds:(Date.now()-started)/1000}};
+  return {...pilot,renderFixture:await evidence()};
+ }catch(error){
+  error.evidence={...error.evidence,renderFixture:await evidence()};throw error;
  }finally{
   await p.evaluate(()=>{paused=true;});
-  await p.locator('#btnSet').click();
+  await p.setViewportSize(previousViewport);
+  if(await p.locator('#drawer').getAttribute('aria-hidden')!=='false')await p.locator('#btnSet').click();
   await p.locator('#lightningProfile').selectOption(previousProfile);
   await p.locator('#btnDrawerClose').click();
-  await p.waitForFunction(profile=>L.profile===profile,previousProfile);
+  await p.waitForFunction(({profile,viewport,buffer})=>L.profile===profile&&innerWidth===viewport.width&&innerHeight===viewport.height&&renderer.domElement.width===buffer[0]&&renderer.domElement.height===buffer[1],{profile:previousProfile,viewport:previousViewport,buffer:before.buffer});
+  assert.deepEqual(p.viewportSize(),previousViewport);
  }
 });
 await p.evaluate(()=>{paused=true;});
