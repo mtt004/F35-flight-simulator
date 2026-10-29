@@ -1,0 +1,926 @@
+{
+  "attribution": "Contains modified Copernicus Sentinel data [2025]",
+  "bounds": [
+    502000,
+    170000,
+    541000,
+    185000
+  ],
+  "crs": "EPSG:27700",
+  "extent": [
+    -5000,
+    -9000,
+    34000,
+    6000
+  ],
+  "gameTransform": {
+    "x": "Easting - 507000",
+    "z": "176000 - Northing"
+  },
+  "id": "london-sentinel-2025",
+  "license": "Copernicus Sentinel Data Legal Notice",
+  "licenseUrl": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+  "orientation": "north-up; image top is minimum game z",
+  "outputs": {
+    "NOTICE.txt": {
+      "bytes": 1814,
+      "file": "NOTICE.txt",
+      "sha256": "af5ffc115ceed30ad80bc31694de46acd863d491b532f0df1ad471015ce76ff8"
+    },
+    "overview.jpg": {
+      "bytes": 1164781,
+      "extent": [
+        -5000,
+        -9000,
+        34000,
+        6000
+      ],
+      "file": "overview.jpg",
+      "height": 1024,
+      "id": "overview",
+      "sha256": "1904e7495b56aec7c92d0153dfdbbe0e579bc88a8a7d412efc6495fcb5c25c88",
+      "width": 2048
+    },
+    "source-stac-east.json": {
+      "bytes": 33622,
+      "file": "source-stac-east.json",
+      "sha256": "8ac5dc20bfca88628c8356458c7e2131b2c4c5731a0195c72c57a998710d479d"
+    },
+    "source-stac-west.json": {
+      "bytes": 33625,
+      "file": "source-stac-west.json",
+      "sha256": "1af592ae022635741d3d526b4f19e5f30fe0a82d0fb8aaf62d487da14e0b2092"
+    },
+    "source-stac.json": {
+      "bytes": 33621,
+      "file": "source-stac.json",
+      "sha256": "4cec07b65f6c76903a2c7cb5ac9260b3c9386cc3bfde97d9a9cc6b6fd864a782"
+    },
+    "tile-0-0.jpg": {
+      "bytes": 118497,
+      "column": 0,
+      "extent": [
+        -5000.0,
+        -9000.0,
+        -125.0,
+        -4000.0
+      ],
+      "file": "tile-0-0.jpg",
+      "height": 512,
+      "id": "0-0",
+      "row": 0,
+      "sha256": "92f06bb52a18f649bb168d09f320988b09e12376bcb40bab5f3305b3fb64a95e",
+      "width": 512
+    },
+    "tile-0-1.jpg": {
+      "bytes": 116074,
+      "column": 0,
+      "extent": [
+        -5000.0,
+        -4000.0,
+        -125.0,
+        1000.0
+      ],
+      "file": "tile-0-1.jpg",
+      "height": 512,
+      "id": "0-1",
+      "row": 1,
+      "sha256": "3942fb01781c555a1e03b69d5eecb287c3bff7e92b6b24b5e58e954a83ce41e7",
+      "width": 512
+    },
+    "tile-0-2.jpg": {
+      "bytes": 105322,
+      "column": 0,
+      "extent": [
+        -5000.0,
+        1000.0,
+        -125.0,
+        6000.0
+      ],
+      "file": "tile-0-2.jpg",
+      "height": 512,
+      "id": "0-2",
+      "row": 2,
+      "sha256": "93e905c703492c1e14e068c1ebd865fa06fb099939c4d04baa31975b9e797b0b",
+      "width": 512
+    },
+    "tile-1-0.jpg": {
+      "bytes": 119271,
+      "column": 1,
+      "extent": [
+        -125.0,
+        -9000.0,
+        4750.0,
+        -4000.0
+      ],
+      "file": "tile-1-0.jpg",
+      "height": 512,
+      "id": "1-0",
+      "row": 0,
+      "sha256": "d1e110a0d6cdf12178e31f1eae52259e35c4f19a4668bd2dab1e9a8b7509bfb1",
+      "width": 512
+    },
+    "tile-1-1.jpg": {
+      "bytes": 124207,
+      "column": 1,
+      "extent": [
+        -125.0,
+        -4000.0,
+        4750.0,
+        1000.0
+      ],
+      "file": "tile-1-1.jpg",
+      "height": 512,
+      "id": "1-1",
+      "row": 1,
+      "sha256": "340ae39f717751e7a3aca7b4c9c43388f3d7f491c2cd4b8157d71153f57015ee",
+      "width": 512
+    },
+    "tile-1-2.jpg": {
+      "bytes": 121069,
+      "column": 1,
+      "extent": [
+        -125.0,
+        1000.0,
+        4750.0,
+        6000.0
+      ],
+      "file": "tile-1-2.jpg",
+      "height": 512,
+      "id": "1-2",
+      "row": 2,
+      "sha256": "4e86b4ed7bbae2331180718712dcc058ca676308ff77f6f26ee626a8a1234cd4",
+      "width": 512
+    },
+    "tile-2-0.jpg": {
+      "bytes": 122518,
+      "column": 2,
+      "extent": [
+        4750.0,
+        -9000.0,
+        9625.0,
+        -4000.0
+      ],
+      "file": "tile-2-0.jpg",
+      "height": 512,
+      "id": "2-0",
+      "row": 0,
+      "sha256": "107d143969a7238366f41ffcb5a785e973aa0d03e2343ae2d9a67703b6fee8e7",
+      "width": 512
+    },
+    "tile-2-1.jpg": {
+      "bytes": 124501,
+      "column": 2,
+      "extent": [
+        4750.0,
+        -4000.0,
+        9625.0,
+        1000.0
+      ],
+      "file": "tile-2-1.jpg",
+      "height": 512,
+      "id": "2-1",
+      "row": 1,
+      "sha256": "671b24009b2c66f5f65552e8fc697f5689249427f6a9ab44ac76ad5af741fdab",
+      "width": 512
+    },
+    "tile-2-2.jpg": {
+      "bytes": 119962,
+      "column": 2,
+      "extent": [
+        4750.0,
+        1000.0,
+        9625.0,
+        6000.0
+      ],
+      "file": "tile-2-2.jpg",
+      "height": 512,
+      "id": "2-2",
+      "row": 2,
+      "sha256": "ac8639b09357b3159057d2c4b532c2566dfda2956dab6866e9a143f705ed08ef",
+      "width": 512
+    },
+    "tile-3-0.jpg": {
+      "bytes": 132374,
+      "column": 3,
+      "extent": [
+        9625.0,
+        -9000.0,
+        14500.0,
+        -4000.0
+      ],
+      "file": "tile-3-0.jpg",
+      "height": 512,
+      "id": "3-0",
+      "row": 0,
+      "sha256": "b5f663b7db4001f5007b3ade147ee048c8a0e1a6e9aa1c598759f30c1cd74e69",
+      "width": 512
+    },
+    "tile-3-1.jpg": {
+      "bytes": 122333,
+      "column": 3,
+      "extent": [
+        9625.0,
+        -4000.0,
+        14500.0,
+        1000.0
+      ],
+      "file": "tile-3-1.jpg",
+      "height": 512,
+      "id": "3-1",
+      "row": 1,
+      "sha256": "678032a432ed2dd7a7be093c0e73440b3b4b3358850976ac050d9c05804dc622",
+      "width": 512
+    },
+    "tile-3-2.jpg": {
+      "bytes": 112453,
+      "column": 3,
+      "extent": [
+        9625.0,
+        1000.0,
+        14500.0,
+        6000.0
+      ],
+      "file": "tile-3-2.jpg",
+      "height": 512,
+      "id": "3-2",
+      "row": 2,
+      "sha256": "0436c4ee07a2f1be0493d748f3f1fe214f322b34455c80f5c2f7a2cb25acb386",
+      "width": 512
+    },
+    "tile-4-0.jpg": {
+      "bytes": 128763,
+      "column": 4,
+      "extent": [
+        14500.0,
+        -9000.0,
+        19375.0,
+        -4000.0
+      ],
+      "file": "tile-4-0.jpg",
+      "height": 512,
+      "id": "4-0",
+      "row": 0,
+      "sha256": "bfab3b165cb0860c3ad324f19c935b5c795e654f3416ba5a28a0d81cd4214dc6",
+      "width": 512
+    },
+    "tile-4-1.jpg": {
+      "bytes": 126741,
+      "column": 4,
+      "extent": [
+        14500.0,
+        -4000.0,
+        19375.0,
+        1000.0
+      ],
+      "file": "tile-4-1.jpg",
+      "height": 512,
+      "id": "4-1",
+      "row": 1,
+      "sha256": "0485c4d87a16e2aa882cf3aaec7e9ecc9e55c567f646ed4ad11c05bff1da9890",
+      "width": 512
+    },
+    "tile-4-2.jpg": {
+      "bytes": 119123,
+      "column": 4,
+      "extent": [
+        14500.0,
+        1000.0,
+        19375.0,
+        6000.0
+      ],
+      "file": "tile-4-2.jpg",
+      "height": 512,
+      "id": "4-2",
+      "row": 2,
+      "sha256": "2e8bf2a2a5c6019f9f6c0f25eca3577e6153652038f02a999f9757c8f9630fb2",
+      "width": 512
+    },
+    "tile-5-0.jpg": {
+      "bytes": 138095,
+      "column": 5,
+      "extent": [
+        19375.0,
+        -9000.0,
+        24250.0,
+        -4000.0
+      ],
+      "file": "tile-5-0.jpg",
+      "height": 512,
+      "id": "5-0",
+      "row": 0,
+      "sha256": "58d594c68309e331e00565c413b983eb310e405d0b113d7aec8cada14560a273",
+      "width": 512
+    },
+    "tile-5-1.jpg": {
+      "bytes": 133591,
+      "column": 5,
+      "extent": [
+        19375.0,
+        -4000.0,
+        24250.0,
+        1000.0
+      ],
+      "file": "tile-5-1.jpg",
+      "height": 512,
+      "id": "5-1",
+      "row": 1,
+      "sha256": "8c4de574eee9264e9d77ec0ee4c1224697f087c8c445e052449d75645245acb6",
+      "width": 512
+    },
+    "tile-5-2.jpg": {
+      "bytes": 121830,
+      "column": 5,
+      "extent": [
+        19375.0,
+        1000.0,
+        24250.0,
+        6000.0
+      ],
+      "file": "tile-5-2.jpg",
+      "height": 512,
+      "id": "5-2",
+      "row": 2,
+      "sha256": "ebe145419df15569157b60be67dd89f47da74e77b82f2802adbfb668b62626eb",
+      "width": 512
+    },
+    "tile-6-0.jpg": {
+      "bytes": 134154,
+      "column": 6,
+      "extent": [
+        24250.0,
+        -9000.0,
+        29125.0,
+        -4000.0
+      ],
+      "file": "tile-6-0.jpg",
+      "height": 512,
+      "id": "6-0",
+      "row": 0,
+      "sha256": "d68b8311d941a3be21bbe25a68d96bb77a09312491fcb7afb173deb04d9b3c19",
+      "width": 512
+    },
+    "tile-6-1.jpg": {
+      "bytes": 131023,
+      "column": 6,
+      "extent": [
+        24250.0,
+        -4000.0,
+        29125.0,
+        1000.0
+      ],
+      "file": "tile-6-1.jpg",
+      "height": 512,
+      "id": "6-1",
+      "row": 1,
+      "sha256": "4340c320e6dc00435bc254a699033c9d4d3700377c096de5a66e7c84cc834656",
+      "width": 512
+    },
+    "tile-6-2.jpg": {
+      "bytes": 119317,
+      "column": 6,
+      "extent": [
+        24250.0,
+        1000.0,
+        29125.0,
+        6000.0
+      ],
+      "file": "tile-6-2.jpg",
+      "height": 512,
+      "id": "6-2",
+      "row": 2,
+      "sha256": "f4b27726b140acc8a837ac428147a81106a345e1e4a05feb225d15af6a36048b",
+      "width": 512
+    },
+    "tile-7-0.jpg": {
+      "bytes": 134697,
+      "column": 7,
+      "extent": [
+        29125.0,
+        -9000.0,
+        34000.0,
+        -4000.0
+      ],
+      "file": "tile-7-0.jpg",
+      "height": 512,
+      "id": "7-0",
+      "row": 0,
+      "sha256": "04780583cea0c0f2a20c0bd338547360f882d6f3fd5cc0e554f80ad2d1c5189a",
+      "width": 512
+    },
+    "tile-7-1.jpg": {
+      "bytes": 122228,
+      "column": 7,
+      "extent": [
+        29125.0,
+        -4000.0,
+        34000.0,
+        1000.0
+      ],
+      "file": "tile-7-1.jpg",
+      "height": 512,
+      "id": "7-1",
+      "row": 1,
+      "sha256": "b7480ac85889aae6889daa4be2fbc9cb02b4d7b88f34c7e68540cfa077ce1cd8",
+      "width": 512
+    },
+    "tile-7-2.jpg": {
+      "bytes": 120202,
+      "column": 7,
+      "extent": [
+        29125.0,
+        1000.0,
+        34000.0,
+        6000.0
+      ],
+      "file": "tile-7-2.jpg",
+      "height": 512,
+      "id": "7-2",
+      "row": 2,
+      "sha256": "0ec56f6af49401ab4c76c5051dc7c237a9887739b1512cb73bc6e9c3efea6b16",
+      "width": 512
+    }
+  },
+  "overview": {
+    "bytes": 1164781,
+    "extent": [
+      -5000,
+      -9000,
+      34000,
+      6000
+    ],
+    "file": "overview.jpg",
+    "height": 1024,
+    "id": "overview",
+    "sha256": "1904e7495b56aec7c92d0153dfdbbe0e579bc88a8a7d412efc6495fcb5c25c88",
+    "width": 2048
+  },
+  "pipelineVersion": 1,
+  "processing": {
+    "displayTilePixelMetres": [
+      9.521484375,
+      9.765625
+    ],
+    "gdal": "3.12.2",
+    "missingPixels": 0,
+    "nativeGridResolutionMetres": [
+      10,
+      10
+    ],
+    "numpy": "2.3.5",
+    "pillow": "12.3.0",
+    "rasterio": "1.5.2",
+    "reprojectedNativeDimensions": [
+      3900,
+      1500
+    ],
+    "resampling": "bilinear; overview Lanczos",
+    "tileGrid": [
+      8,
+      3
+    ],
+    "tiledDimensions": [
+      4096,
+      1536
+    ]
+  },
+  "schemaVersion": 1,
+  "source": {
+    "bands": [
+      "B04",
+      "B03",
+      "B02"
+    ],
+    "bytes": 98368607,
+    "cloudCoverPercent": 0.004421,
+    "contributedPixels": 5719967,
+    "crs": "EPSG:32630",
+    "datetime": "2025-08-17T11:07:04.678000Z",
+    "id": "S2A_30UXC_20250817_0_L2A",
+    "nativeResolutionMetres": 10,
+    "sha256": "c71d7079ab784c13f9ddc02767c3052f498b4fb92f145917687a77bee7ee4321",
+    "stac": "source-stac.json",
+    "url": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/30/U/XC/2025/8/S2A_30UXC_20250817_0_L2A/TCI.tif"
+  },
+  "sources": [
+    {
+      "bytes": 98368607,
+      "cloudCoverPercent": 0.004421,
+      "contributedPixels": 5719967,
+      "datetime": "2025-08-17T11:07:04.678000Z",
+      "id": "S2A_30UXC_20250817_0_L2A",
+      "nativeResolutionMetres": 10,
+      "sha256": "c71d7079ab784c13f9ddc02767c3052f498b4fb92f145917687a77bee7ee4321",
+      "stac": "source-stac.json",
+      "url": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/30/U/XC/2025/8/S2A_30UXC_20250817_0_L2A/TCI.tif"
+    },
+    {
+      "bytes": 339476525,
+      "cloudCoverPercent": 0.247,
+      "contributedPixels": 50738,
+      "datetime": "2025-06-19T11:17:06.796000Z",
+      "id": "S2C_30UXC_20250619_0_L2A",
+      "nativeResolutionMetres": 10,
+      "sha256": "d85deb7e0f0bf15050b25330441e8c8f2d61db4a56b3ffd501bb5843250e6cb7",
+      "stac": "source-stac-west.json",
+      "url": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/30/U/XC/2025/6/S2C_30UXC_20250619_0_L2A/TCI.tif"
+    },
+    {
+      "bytes": 312756285,
+      "cloudCoverPercent": 0.160072,
+      "contributedPixels": 79295,
+      "datetime": "2025-08-25T11:07:07.333000Z",
+      "id": "S2C_30UYC_20250825_0_L2A",
+      "nativeResolutionMetres": 10,
+      "sha256": "361f84586c69e6c8c4f53a242ba1b2ea15ad4b78de8515d49823247bf8af55f0",
+      "stac": "source-stac-east.json",
+      "url": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/30/U/YC/2025/8/S2C_30UYC_20250825_0_L2A/TCI.tif"
+    }
+  ],
+  "tiles": [
+    {
+      "bytes": 118497,
+      "column": 0,
+      "extent": [
+        -5000.0,
+        -9000.0,
+        -125.0,
+        -4000.0
+      ],
+      "file": "tile-0-0.jpg",
+      "height": 512,
+      "id": "0-0",
+      "row": 0,
+      "sha256": "92f06bb52a18f649bb168d09f320988b09e12376bcb40bab5f3305b3fb64a95e",
+      "width": 512
+    },
+    {
+      "bytes": 119271,
+      "column": 1,
+      "extent": [
+        -125.0,
+        -9000.0,
+        4750.0,
+        -4000.0
+      ],
+      "file": "tile-1-0.jpg",
+      "height": 512,
+      "id": "1-0",
+      "row": 0,
+      "sha256": "d1e110a0d6cdf12178e31f1eae52259e35c4f19a4668bd2dab1e9a8b7509bfb1",
+      "width": 512
+    },
+    {
+      "bytes": 122518,
+      "column": 2,
+      "extent": [
+        4750.0,
+        -9000.0,
+        9625.0,
+        -4000.0
+      ],
+      "file": "tile-2-0.jpg",
+      "height": 512,
+      "id": "2-0",
+      "row": 0,
+      "sha256": "107d143969a7238366f41ffcb5a785e973aa0d03e2343ae2d9a67703b6fee8e7",
+      "width": 512
+    },
+    {
+      "bytes": 132374,
+      "column": 3,
+      "extent": [
+        9625.0,
+        -9000.0,
+        14500.0,
+        -4000.0
+      ],
+      "file": "tile-3-0.jpg",
+      "height": 512,
+      "id": "3-0",
+      "row": 0,
+      "sha256": "b5f663b7db4001f5007b3ade147ee048c8a0e1a6e9aa1c598759f30c1cd74e69",
+      "width": 512
+    },
+    {
+      "bytes": 128763,
+      "column": 4,
+      "extent": [
+        14500.0,
+        -9000.0,
+        19375.0,
+        -4000.0
+      ],
+      "file": "tile-4-0.jpg",
+      "height": 512,
+      "id": "4-0",
+      "row": 0,
+      "sha256": "bfab3b165cb0860c3ad324f19c935b5c795e654f3416ba5a28a0d81cd4214dc6",
+      "width": 512
+    },
+    {
+      "bytes": 138095,
+      "column": 5,
+      "extent": [
+        19375.0,
+        -9000.0,
+        24250.0,
+        -4000.0
+      ],
+      "file": "tile-5-0.jpg",
+      "height": 512,
+      "id": "5-0",
+      "row": 0,
+      "sha256": "58d594c68309e331e00565c413b983eb310e405d0b113d7aec8cada14560a273",
+      "width": 512
+    },
+    {
+      "bytes": 134154,
+      "column": 6,
+      "extent": [
+        24250.0,
+        -9000.0,
+        29125.0,
+        -4000.0
+      ],
+      "file": "tile-6-0.jpg",
+      "height": 512,
+      "id": "6-0",
+      "row": 0,
+      "sha256": "d68b8311d941a3be21bbe25a68d96bb77a09312491fcb7afb173deb04d9b3c19",
+      "width": 512
+    },
+    {
+      "bytes": 134697,
+      "column": 7,
+      "extent": [
+        29125.0,
+        -9000.0,
+        34000.0,
+        -4000.0
+      ],
+      "file": "tile-7-0.jpg",
+      "height": 512,
+      "id": "7-0",
+      "row": 0,
+      "sha256": "04780583cea0c0f2a20c0bd338547360f882d6f3fd5cc0e554f80ad2d1c5189a",
+      "width": 512
+    },
+    {
+      "bytes": 116074,
+      "column": 0,
+      "extent": [
+        -5000.0,
+        -4000.0,
+        -125.0,
+        1000.0
+      ],
+      "file": "tile-0-1.jpg",
+      "height": 512,
+      "id": "0-1",
+      "row": 1,
+      "sha256": "3942fb01781c555a1e03b69d5eecb287c3bff7e92b6b24b5e58e954a83ce41e7",
+      "width": 512
+    },
+    {
+      "bytes": 124207,
+      "column": 1,
+      "extent": [
+        -125.0,
+        -4000.0,
+        4750.0,
+        1000.0
+      ],
+      "file": "tile-1-1.jpg",
+      "height": 512,
+      "id": "1-1",
+      "row": 1,
+      "sha256": "340ae39f717751e7a3aca7b4c9c43388f3d7f491c2cd4b8157d71153f57015ee",
+      "width": 512
+    },
+    {
+      "bytes": 124501,
+      "column": 2,
+      "extent": [
+        4750.0,
+        -4000.0,
+        9625.0,
+        1000.0
+      ],
+      "file": "tile-2-1.jpg",
+      "height": 512,
+      "id": "2-1",
+      "row": 1,
+      "sha256": "671b24009b2c66f5f65552e8fc697f5689249427f6a9ab44ac76ad5af741fdab",
+      "width": 512
+    },
+    {
+      "bytes": 122333,
+      "column": 3,
+      "extent": [
+        9625.0,
+        -4000.0,
+        14500.0,
+        1000.0
+      ],
+      "file": "tile-3-1.jpg",
+      "height": 512,
+      "id": "3-1",
+      "row": 1,
+      "sha256": "678032a432ed2dd7a7be093c0e73440b3b4b3358850976ac050d9c05804dc622",
+      "width": 512
+    },
+    {
+      "bytes": 126741,
+      "column": 4,
+      "extent": [
+        14500.0,
+        -4000.0,
+        19375.0,
+        1000.0
+      ],
+      "file": "tile-4-1.jpg",
+      "height": 512,
+      "id": "4-1",
+      "row": 1,
+      "sha256": "0485c4d87a16e2aa882cf3aaec7e9ecc9e55c567f646ed4ad11c05bff1da9890",
+      "width": 512
+    },
+    {
+      "bytes": 133591,
+      "column": 5,
+      "extent": [
+        19375.0,
+        -4000.0,
+        24250.0,
+        1000.0
+      ],
+      "file": "tile-5-1.jpg",
+      "height": 512,
+      "id": "5-1",
+      "row": 1,
+      "sha256": "8c4de574eee9264e9d77ec0ee4c1224697f087c8c445e052449d75645245acb6",
+      "width": 512
+    },
+    {
+      "bytes": 131023,
+      "column": 6,
+      "extent": [
+        24250.0,
+        -4000.0,
+        29125.0,
+        1000.0
+      ],
+      "file": "tile-6-1.jpg",
+      "height": 512,
+      "id": "6-1",
+      "row": 1,
+      "sha256": "4340c320e6dc00435bc254a699033c9d4d3700377c096de5a66e7c84cc834656",
+      "width": 512
+    },
+    {
+      "bytes": 122228,
+      "column": 7,
+      "extent": [
+        29125.0,
+        -4000.0,
+        34000.0,
+        1000.0
+      ],
+      "file": "tile-7-1.jpg",
+      "height": 512,
+      "id": "7-1",
+      "row": 1,
+      "sha256": "b7480ac85889aae6889daa4be2fbc9cb02b4d7b88f34c7e68540cfa077ce1cd8",
+      "width": 512
+    },
+    {
+      "bytes": 105322,
+      "column": 0,
+      "extent": [
+        -5000.0,
+        1000.0,
+        -125.0,
+        6000.0
+      ],
+      "file": "tile-0-2.jpg",
+      "height": 512,
+      "id": "0-2",
+      "row": 2,
+      "sha256": "93e905c703492c1e14e068c1ebd865fa06fb099939c4d04baa31975b9e797b0b",
+      "width": 512
+    },
+    {
+      "bytes": 121069,
+      "column": 1,
+      "extent": [
+        -125.0,
+        1000.0,
+        4750.0,
+        6000.0
+      ],
+      "file": "tile-1-2.jpg",
+      "height": 512,
+      "id": "1-2",
+      "row": 2,
+      "sha256": "4e86b4ed7bbae2331180718712dcc058ca676308ff77f6f26ee626a8a1234cd4",
+      "width": 512
+    },
+    {
+      "bytes": 119962,
+      "column": 2,
+      "extent": [
+        4750.0,
+        1000.0,
+        9625.0,
+        6000.0
+      ],
+      "file": "tile-2-2.jpg",
+      "height": 512,
+      "id": "2-2",
+      "row": 2,
+      "sha256": "ac8639b09357b3159057d2c4b532c2566dfda2956dab6866e9a143f705ed08ef",
+      "width": 512
+    },
+    {
+      "bytes": 112453,
+      "column": 3,
+      "extent": [
+        9625.0,
+        1000.0,
+        14500.0,
+        6000.0
+      ],
+      "file": "tile-3-2.jpg",
+      "height": 512,
+      "id": "3-2",
+      "row": 2,
+      "sha256": "0436c4ee07a2f1be0493d748f3f1fe214f322b34455c80f5c2f7a2cb25acb386",
+      "width": 512
+    },
+    {
+      "bytes": 119123,
+      "column": 4,
+      "extent": [
+        14500.0,
+        1000.0,
+        19375.0,
+        6000.0
+      ],
+      "file": "tile-4-2.jpg",
+      "height": 512,
+      "id": "4-2",
+      "row": 2,
+      "sha256": "2e8bf2a2a5c6019f9f6c0f25eca3577e6153652038f02a999f9757c8f9630fb2",
+      "width": 512
+    },
+    {
+      "bytes": 121830,
+      "column": 5,
+      "extent": [
+        19375.0,
+        1000.0,
+        24250.0,
+        6000.0
+      ],
+      "file": "tile-5-2.jpg",
+      "height": 512,
+      "id": "5-2",
+      "row": 2,
+      "sha256": "ebe145419df15569157b60be67dd89f47da74e77b82f2802adbfb668b62626eb",
+      "width": 512
+    },
+    {
+      "bytes": 119317,
+      "column": 6,
+      "extent": [
+        24250.0,
+        1000.0,
+        29125.0,
+        6000.0
+      ],
+      "file": "tile-6-2.jpg",
+      "height": 512,
+      "id": "6-2",
+      "row": 2,
+      "sha256": "f4b27726b140acc8a837ac428147a81106a345e1e4a05feb225d15af6a36048b",
+      "width": 512
+    },
+    {
+      "bytes": 120202,
+      "column": 7,
+      "extent": [
+        29125.0,
+        1000.0,
+        34000.0,
+        6000.0
+      ],
+      "file": "tile-7-2.jpg",
+      "height": 512,
+      "id": "7-2",
+      "row": 2,
+      "sha256": "0ec56f6af49401ab4c76c5051dc7c237a9887739b1512cb73bc6e9c3efea6b16",
+      "width": 512
+    }
+  ]
+}

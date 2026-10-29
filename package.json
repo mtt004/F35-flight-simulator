@@ -1,6 +1,6 @@
 {
   "name": "lightning-f35b",
-  "version": "0.3.0-experimental",
+  "version": "0.4.0-candidate.1",
   "private": true,
   "type": "module",
   "engines": {
@@ -17,6 +17,6 @@
     "playwright": "1.62.1"
   },
   "lightning": {
-    "androidVersionCode": 3
+    "androidVersionCode": 4
   }
 }
