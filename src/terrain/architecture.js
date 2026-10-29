@@ -57,5 +57,5 @@ vec2 cell=fract(vUv*vec2(4.,4.));float pane=step(.20,cell.x)*step(cell.x,.63)*st
   };return m;
  };
  api.landmarkMaterial=api.material;
- api.update=function(m,night,sun){m.userData.night=night;m.envMapIntensity=.08+.92*(1-night);if(sun)m.userData.sun.copy(sun);if(m.userData.shader)m.userData.shader.uniforms.archNight.value=night;};
+ api.update=function(m,night,sun){m.userData.night=night;m.envMapIntensity=.08+.32*(1-night);if(sun)m.userData.sun.copy(sun);if(m.userData.shader)m.userData.shader.uniforms.archNight.value=night;};
 })(typeof window==='undefined'?globalThis:window);
