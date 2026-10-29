@@ -1,0 +1,63 @@
+name: Retrieve immutable V0.4 delivery
+on:
+  push:
+    branches: ['feature/v04-london-reconstruction']
+    paths: ['.github/workflows/v04-delivery.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  retrieve:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: mtt004/F35-flight-simulator
+      RELEASE_TAG: v0.4.0-candidate.1
+    steps:
+      - name: Download and verify the existing immutable release without rebuilding
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir core source
+          gh api "repos/$GH_REPO/releases/tags/$RELEASE_TAG" > release.json
+          for asset in Lightning-F35B-Android.apk Lightning-F35B-Web.zip Lightning-F35B-Evidence.zip Lightning-London-Scenery.zip android-verification.json android-installation.json build-manifest.json SHA256SUMS.txt; do
+            gh release download "$RELEASE_TAG" --repo "$GH_REPO" --dir core --pattern "$asset"
+          done
+          gh release download "$RELEASE_TAG" --repo "$GH_REPO" --dir source --pattern Lightning-London-Source-Data.zip
+          python3 - <<'PYTHON'
+          import hashlib, json
+          from pathlib import Path
+          release = json.loads(Path('release.json').read_text())
+          expected_source = 'ca330131115ee983a6457efa33ff513ac34803ad'
+          assert release['tag_name'] == 'v0.4.0-candidate.1' and release['target_commitish'] == expected_source
+          expected = {'Lightning-F35B-Android.apk', 'Lightning-F35B-Web.zip', 'Lightning-F35B-Evidence.zip', 'Lightning-London-Scenery.zip', 'Lightning-London-Source-Data.zip', 'android-verification.json', 'android-installation.json', 'build-manifest.json', 'SHA256SUMS.txt'}
+          assert {asset['name'] for asset in release['assets']} == expected
+          assets = []
+          for asset in release['assets']:
+              folder = 'source' if asset['name'] == 'Lightning-London-Source-Data.zip' else 'core'
+              path = Path(folder, asset['name'])
+              digest = hashlib.sha256()
+              with path.open('rb') as stream:
+                  for chunk in iter(lambda: stream.read(1024 * 1024), b''): digest.update(chunk)
+              assert path.stat().st_size == asset['size'] and 'sha256:' + digest.hexdigest() == asset['digest'], asset['name']
+              assets.append({'name': asset['name'], 'bytes': asset['size'], 'digest': asset['digest']})
+          manifest = json.loads(Path('core/build-manifest.json').read_text())
+          assert manifest['sourceCommit'] == expected_source
+          Path('core/published-assets.json').write_text(json.dumps(assets, indent=2) + '\n')
+          Path('core/delivery-verification.json').write_text(json.dumps({'status': 'PASS', 'release': release['html_url'], 'sourceCommit': expected_source, 'method': 'Downloaded existing published files without rebuilding; every byte count and SHA256 matched GitHub release metadata'}, indent=2) + '\n')
+          PYTHON
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: lightning-v04-core-ca330131
+          path: core/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 90
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: lightning-v04-source-ca330131
+          path: source/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 90
