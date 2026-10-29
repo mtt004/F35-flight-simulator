@@ -1,0 +1,36 @@
+2026-10-28T19:49:59.200Z pw:browser <launching> /workspace/scratch/3052bb054df2/chrome131/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --no-sandbox --use-angle=swiftshader --enable-unsafe-swiftshader --disable-dev-shm-usage --user-data-dir=/tmp/playwright_chromiumdev_profile-CKgjcL --remote-debugging-pipe --no-startup-window
+2026-10-28T19:49:59.205Z pw:browser <launched> pid=17
+2026-10-28T19:49:59.237Z pw:browser [pid=17][err] [1028/204959.236977:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to open socket: Operation not permitted
+2026-10-28T19:49:59.238Z pw:browser [pid=17][err] [1028/204959.238571:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to open socket: Operation not permitted
+2026-10-28T19:49:59.238Z pw:browser [pid=17][err] [1028/204959.238671:ERROR:bus.cc(407)] Failed to connect to the bus: Failed to open socket: Operation not permitted
+2026-10-28T19:49:59.238Z pw:browser [pid=17][err] [1028/204959.238833:ERROR:address_tracker_linux.cc(216)] Could not create NETLINK socket: Operation not permitted (1)
+2026-10-28T19:49:59.240Z pw:browser [pid=17][err] [1028/204959.239998:ERROR:udev_watcher.cc(51)] Failed to initialize a udev monitor.
+2026-10-28T19:49:59.240Z pw:browser [pid=17][err] [1028/204959.240320:ERROR:zygote_host_impl_linux.cc(279)] Failed to adjust OOM score of renderer with pid 35: No such file or directory (2)
+2026-10-28T19:49:59.252Z pw:browser [pid=17][err] [1028/204959.252069:WARNING:bluez_dbus_manager.cc(234)] Floss manager service not available, cannot set Floss enable/disable.
+2026-10-28T19:49:59.266Z pw:browser [pid=17][err] [1028/204959.266361:WARNING:sandbox_linux.cc(430)] InitializeSandbox() called with multiple threads in process gpu-process.
+2026-10-28T19:49:59.267Z pw:browser [pid=17][err] [1028/204959.267516:WARNING:viz_main_impl.cc(85)] VizNullHypothesis is disabled (not a warning)
+2026-10-28T19:49:59.270Z pw:browser [pid=17][err] [1028/204959.268930:ERROR:zygote_host_impl_linux.cc(279)] Failed to adjust OOM score of renderer with pid 67: No such file or directory (2)
+2026-10-28T19:50:07.909Z pw:browser [pid=17][err] socket(): Operation not permitted
+2026-10-28T19:50:07.909Z pw:browser [pid=17][err] socket(): Operation not permitted
+2026-10-28T19:50:07.910Z pw:browser [pid=17][err] [1028/205007.909715:WARNING:audio_manager_linux.cc(54)] Falling back to ALSA for audio output. PulseAudio is not available or could not be initialized.
+2026-10-28T19:50:14.860Z pw:browser [pid=17][err] [1028/205014.860362:ERROR:zygote_host_impl_linux.cc(279)] Failed to adjust OOM score of renderer with pid 91: No such file or directory (2)
+2026-10-28T19:50:21.692Z pw:browser [pid=17][err] [1028/205021.692096:ERROR:udev_watcher.cc(51)] Failed to initialize a udev monitor.
+FAIL normal save → UI respawn → new launch UI Continue restores exact saved state Error: page.goto: Target page, context or browser has been closed
+Call log:
+[2m  - navigating to "http://127.0.0.1:44627/dist/index.html", waiting until "load"[22m
+
+FAIL natural replay completion restores paused live flight and every playback-mutated field Error: page.evaluate: Target page, context or browser has been closed
+FAIL autosave during real replay preserves last valid live-flight record AssertionError [ERR_ASSERTION]: Replay save was not observed
+FAIL malformed save empty-velocity is rejected before world/state mutation with recovery UI Error: page.evaluate: Target page, context or browser has been closed
+FAIL malformed save numeric-string-position is rejected before world/state mutation with recovery UI Error: page.evaluate: Target page, context or browser has been closed
+FAIL malformed save zero-quaternion is rejected before world/state mutation with recovery UI Error: page.evaluate: Target page, context or browser has been closed
+2026-10-28T19:50:21.718Z pw:browser [pid=17] <process did exit: exitCode=null, signal=SIGSEGV>
+2026-10-28T19:50:21.718Z pw:browser [pid=17] starting temporary directories cleanup
+{
+  "report": "benchmarks/next/v03-browser-crash-diagnostic-caea15499fb5.json",
+  "status": "FAIL",
+  "passed": 0,
+  "failed": 6,
+  "sourceSha256": "caea15499fb5bcb04bf49c7edf6217991ee6812ea6fbab3983ce031e4bdd62ae"
+}
+2026-10-28T19:50:21.722Z pw:browser [pid=17] finished temporary directories cleanup

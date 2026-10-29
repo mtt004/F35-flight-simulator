@@ -1,0 +1,13 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> lightning-f35b@0.3.0-experimental build
+> node scripts/build-web.mjs
+
+file:///workspace/scratch/3052bb054df2/F35-flight-simulator/scripts/build-web.mjs:17
+ if(!entry||!Number.isSafeInteger(entry.bytes)||entry.bytes<=0||bytes.length!==entry.bytes||createHash('sha256').update(bytes).digest('hex')!==entry.sha256)throw Error(`${name}: scenery integrity check failed; rebuild the licensed pack`);
+                                                                                                                                                                  ^
+
+Error: water-mask.png: scenery integrity check failed; rebuild the licensed pack
+    at file:///workspace/scratch/3052bb054df2/F35-flight-simulator/scripts/build-web.mjs:17:163
+
+Node.js v24.22.1

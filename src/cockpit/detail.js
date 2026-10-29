@@ -39,6 +39,28 @@
       for(let j=0;j<9;j++) box(metal,side*.525,.605,-4.28+j*.23,.018,.008,.018);
     }
     box(metal,0,.276,-2.38,.075,.023,.060);
+    // Raised switches, rotary knobs and guarded controls share the static
+    // material batches. Their relief is visible from the pilot eye and in VR.
+    for(const side of[-1,1])for(let row=0;row<6;row++) {
+      const z=-3.72+row*.18,y=.345+(3.18+z)*.12;
+      box(graphite,side*.67,y+.016,z,.21,.024,.115,-.12);
+      box(metal,side*.615,y+.058,z,.018,.075,.018,-.12,0,side*.18);
+      box(rubber,side*.715,y+.047,z,.047,.045,.047,-.12);
+      if(row===1||row===4) {
+        box(safety,side*.59,y+.060,z-.040,.016,.065,.016,-.12);
+        box(safety,side*.66,y+.060,z-.040,.016,.065,.016,-.12);
+        box(safety,side*.625,y+.092,z-.040,.086,.014,.016,-.12);
+      }
+    }
+    // Rudder pedal pads and heel rails stay below the PCD sightline.
+    for(const side of[-1,1]) {
+      box(metal,side*.18,-.025,-3.67,.19,.055,.21,-.28);
+      box(rubber,side*.18,.010,-3.68,.16,.028,.13,-.28);
+      for(let j=0;j<3;j++)box(metal,side*.18,.026+j*.012,-3.72+j*.035,.15,.009,.011,-.28);
+    }
+    // Throttle gate rails and discrete detents are fixed to its existing base.
+    for(const side of[-1,1])box(metal,-.65+side*.065,.375,-2.47,.014,.025,.34);
+    for(let j=0;j<7;j++)box(metal,-.65,.378,-2.62+j*.05,.10,.015,.012);
     // Curved forward canopy bow above the pilot's sightline. No artificial HUD glass.
     const pts=[];
     for(let i=0;i<=16;i++){

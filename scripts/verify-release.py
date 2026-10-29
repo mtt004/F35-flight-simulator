@@ -25,14 +25,31 @@ for line in (root / 'SHA256SUMS.txt').read_text().splitlines():
     if hashlib.sha256(data).hexdigest() != digest:
         raise SystemExit('Checksum mismatch: ' + name)
     checks[name] = {'bytes': len(data), 'sha256': digest}
-required = {'Lightning-F35B-Android.apk', 'Lightning-F35B-Web.zip', 'Lightning-F35B-Evidence.zip',
+required = {'Lightning-F35B-Android.apk', 'Lightning-F35B-Web.zip', 'Lightning-F35B-Evidence.zip', 'Lightning-London-Scenery.zip', 'Lightning-London-Source-Data.zip',
             'android-verification.json', 'android-installation.json', 'build-manifest.json'}
 if set(checks) != required:
     raise SystemExit('Release checksum manifest is incomplete or unexpected')
-for name in ['Lightning-F35B-Web.zip', 'Lightning-F35B-Android.apk', 'Lightning-F35B-Evidence.zip']:
+for name in ['Lightning-F35B-Web.zip', 'Lightning-F35B-Android.apk', 'Lightning-F35B-Evidence.zip', 'Lightning-London-Scenery.zip', 'Lightning-London-Source-Data.zip']:
     with zipfile.ZipFile(root / name) as archive:
         if archive.testzip() is not None:
             raise SystemExit('Corrupt archive: ' + name)
+with zipfile.ZipFile(root / 'Lightning-London-Scenery.zip') as scenery, zipfile.ZipFile(root / 'Lightning-London-Source-Data.zip') as sources:
+    pack_manifest = json.loads(scenery.read('london/manifest.json'))
+    if sources.read('manifest.json') != scenery.read('london/manifest.json'):
+        raise SystemExit('Raw-source and processed-scenery manifests differ')
+    expected_names = set(pack_manifest['sources']) | {'manifest.json', 'NOTICE.txt', 'LICENSE-OGL-3.0.txt'}
+    if set(sources.namelist()) != expected_names:
+        raise SystemExit('Unexpected raw-source archive contents')
+    for name, pin in pack_manifest['sources'].items():
+        h = hashlib.sha256()
+        with sources.open(name) as source:
+            for chunk in iter(lambda: source.read(1024 * 1024), b''):
+                h.update(chunk)
+        if sources.getinfo(name).file_size != pin['bytes'] or h.hexdigest() != pin['sha256']:
+            raise SystemExit('Raw scenery input differs from pin: ' + name)
+    for name in ['NOTICE.txt', 'LICENSE-OGL-3.0.txt']:
+        if sources.read(name) != scenery.read('london/' + name):
+            raise SystemExit('Raw-source licence differs: ' + name)
 with zipfile.ZipFile(root / 'Lightning-F35B-Web.zip') as web:
     if web.namelist() != ['Lightning-F35B.html']:
         raise SystemExit('Unexpected browser package contents')

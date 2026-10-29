@@ -14,6 +14,7 @@ const browser = await playwright.chromium.launch({headless:true, executablePath:
 try {
   const context = await browser.newContext({offline:true, viewport:{width:1280,height:720},deviceScaleFactor:1});
   const page = await context.newPage();
+  await page.addInitScript(()=>Object.defineProperty(navigator,'getGamepads',{value:()=>[]}));
   page.on('pageerror',error=>report.errors.push(String(error)));
   page.on('request',request=>{if(/^https?:/.test(request.url()))report.remoteRequests.push(request.url());});
   await page.goto(pathToFileURL(file).href,{waitUntil:'load',timeout:120000});

@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-27T13:05:44.785Z",
-  "sourceSha256": "d4ade981c06f483c2d0a5d529c290c9bae3dc12724ffb03ca7937d245f00f198",
+  "date": "2026-10-28T19:59:03.777Z",
+  "sourceSha256": "b9163b605f312d637e655dfb817fd215a7e12e6f2a4fced259bf07021093f0e8",
   "environment": "Cloud Chromium; file URL; browser network offline; NOT Galaxy A51",
   "status": "PASS",
   "remoteRequests": [],
@@ -13,31 +13,31 @@
     "running": true,
     "paused": false,
     "crashed": false,
-    "simT": -3.3148999999999806,
-    "flightT": 0.15,
-    "stepCount": 18,
+    "simT": 0.6164666666666666,
+    "flightT": 0.16666666666666666,
+    "stepCount": 20,
     "position": [
-      2441.0221689159343,
-      105.53519971193097,
-      1405.1070480473509
+      924.9796945232806,
+      25.630205215884487,
+      -601.3142065014154
     ],
     "velocity": [
-      0.09748388882755969,
-      -0.28269182533546944,
-      0.15014631711501
+      0.20030469417644028,
+      -0.30267166591669903,
+      -0.006382861065554983
     ],
     "quaternion": [
-      -0.0017620725131899887,
-      -0.9588004413722999,
-      -0.0059395036737157755,
-      0.2840129064335828
+      -0.005375992555675298,
+      -0.6976764707123728,
+      -0.005206887577580421,
+      0.7163738753193918
     ],
-    "fuel": 3268.0537358742067,
+    "fuel": 3268.0483867821836,
     "stolMode": "CONV",
     "nozzle": 0,
     "gearD": 1,
     "camMode": 0,
-    "frameEMA": 700.6151265772935,
+    "frameEMA": 104.12331784839067,
     "graphicsLevel": 1,
     "settings": {
       "fbw": "ASSIST",
@@ -68,11 +68,11 @@
       648
     ],
     "renderer": {
-      "calls": 376,
-      "triangles": 143978,
-      "textures": 4,
-      "geometries": 399
+      "calls": 257,
+      "triangles": 137611,
+      "textures": 6,
+      "geometries": 296
     },
-    "replaySeconds": 0.08333333333333333
+    "replaySeconds": 0.16666666666666666
   }
 }

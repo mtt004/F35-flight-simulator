@@ -19,7 +19,7 @@ function environment(wasPaused){
  const $=id=>id==='pauseOv'?pauseElement:{classList:{remove(){},add(){}}};const document={getElementById:$};
  ${['updateAttitudeData','startReplay','stopReplay','updateReplay'].map(n=>extractFunction(source,n)).join('\n')}
  updateAttitudeData();
- this.begin=()=>startReplay();this.play=()=>{now+=500;updateReplay(.1);};this.stop=()=>stopReplay();
+ this.begin=()=>startReplay();this.play=()=>{now+=500;updateReplay(.1);};this.stop=()=>stopReplay();this.finishNaturally=()=>{now+=4000;updateReplay(.1);};this.clock=()=>({active:replayActive,wall:replayWall,clock:replayClock});
  this.state=()=>JSON.stringify({p:P.pos.toArray(),v:P.vel.toArray(),q:P.quat.toArray(),om:P.om.toArray(),camMode,paused,ias,mach,gNz,nozzle,gearD,thr,pitchDeg,hdgDeg,rollDeg,bank,forward:_fwd.toArray(),up:_up.toArray(),right:_rgt.toArray()});
  this.pauseVisible=()=>classes.has('on');`,context);
  return context;
@@ -29,4 +29,7 @@ for(const wasPaused of [false,true])test('replay restores all mutated live state
 });
 test('a second replay start cannot replace the original live-flight snapshot',()=>{
  const env=environment(true),before=env.state();env.begin();env.play();env.begin();env.play();env.stop();assert.equal(env.state(),before);
+});
+test('a replay request after natural completion starts a fresh replay with a new wall clock',()=>{
+ const env=environment(true);env.begin();const first=env.clock();env.finishNaturally();assert.equal(env.clock().active,false);env.begin();const next=env.clock();assert.equal(next.active,true);assert.ok(next.wall>first.wall);assert.equal(next.clock,0);
 });

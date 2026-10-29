@@ -4,7 +4,8 @@
 (function (root) {
   'use strict';
   const api = root.LightningVisuals = root.LightningVisuals || {};
-  let detail = null, fanDetail = null, texture = null, modelDetail = null, nozzleDetail = null, originalBody = null;
+  let detail = null, fanDetail = null, texture = null, modelDetail = null, nozzleDetail = null, originalBody = null, coreDetail = null;
+  const gearDetail = [];
   const finite = (v, fallback) => Number.isFinite(v) ? v : fallback;
 
   // Near LOD follows the legacy station envelope. It changes tessellation,
@@ -42,8 +43,8 @@
       idx.push(a,b,c,b,d,c); // outward winding (the old loft was double-sided).
     }
     const nose=p.length/3;p.push(0,samples[0][3],samples[0][0]);
-    const tail=p.length/3;p.push(0,samples.at(-1)[3],samples.at(-1)[0]);
-    for(let k=0;k<radial;k++){const b=(k+1)%radial;idx.push(nose,b,k);const a=(samples.length-1)*radial;idx.push(tail,a+k,a+b);}
+    // Leave the aft loft open: a centre disc here masks the articulated engine.
+    for(let k=0;k<radial;k++){const b=(k+1)%radial;idx.push(nose,b,k);}
     const body=new THREE.Mesh(makeGeometry(p,idx),skin);body.name='Lightning adaptive fuselage';modelDetail.add(body);
 
     // Smooth wing/body junctions replace the visual step between the original
@@ -59,20 +60,58 @@
     }
     const fairing=new THREE.Mesh(makeGeometry(fp,fi),fairingMat);fairing.name='Lightning blended wing-root fairings';modelDetail.add(fairing);
 
-    // Recessed inlet interiors are front-visible cavities, rather than bright
-    // planar patches. One combined mesh serves both sides of the aircraft.
-    const ip=[],ii=[];
-    for(const side of[-1,1]){
-      const base=ip.length/3;
-      const ring=[[1.13,.23],[1.42,.29],[1.65,.09],[1.62,-.33],[1.46,-.48],[1.10,-.40]];
-      for(const point of ring)ip.push(side*point[0],point[1],-2.43);
-      const centre=ip.length/3;ip.push(side*1.39,-.09,-2.18);
-      for(let k=0;k<ring.length;k++){const n=(k+1)%ring.length;if(side>0)ii.push(base+k,centre,base+n);else ii.push(base+k,base+n,centre);}
+    // Keep the inexpensive inlet structure separate from the quality-gated loft.
+    // The outer cowl, rolled lip and shrinking duct form a genuine open cavity.
+    coreDetail=new THREE.Group();coreDetail.name='Lightning near airframe core';coreDetail.userData.visualOnly=true;
+    const cp=[],ci=[],dp=[],di=[];
+    const join=(indices,base,count)=>{for(let k=0;k<count;k++){const a=base+k,b=base+(k+1)%count,c=a+count,d=b+count;indices.push(a,b,c,b,d,c);}};
+    const ring=[[1.13,.23],[1.42,.29],[1.65,.09],[1.62,-.33],[1.46,-.48],[1.10,-.40]];
+    for(const side of[-1,1]) {
+      const base=cp.length/3;
+      // Outer cowl aft, mouth edge and inner lip. Nothing spans the opening.
+      for(const [z,scale] of [[-1.48,1.06],[-2.58,1.04],[-2.60,.90]])for(const [x,y] of ring)cp.push(side*(1.39+(x-1.39)*scale),-.09+(y+.09)*scale,z);
+      join(ci,base,6);join(ci,base+6,6);
+      const duct=dp.length/3;
+      for(const [z,scale] of [[-2.60,.90],[-1.48,.64],[-.92,.49]])for(const [x,y] of ring)dp.push(side*(1.39+(x-1.39)*scale),-.09+(y+.09)*scale,z);
+      join(di,duct,6);join(di,duct+6,6);
+      // Recessed termination is well behind the mouth, never a bright flat patch.
+      const centre=dp.length/3;dp.push(side*1.39,-.09,-.91);
+      for(let k=0;k<6;k++)di.push(centre,duct+12+k,duct+12+(k+1)%6);
     }
-    const intakes=new THREE.Mesh(makeGeometry(ip,ii),dark);intakes.name='Lightning recessed inlet interiors';modelDetail.add(intakes);
-    aircraft.add(modelDetail);
+    const cowl=new THREE.Mesh(makeGeometry(cp,ci),fairingMat);cowl.name='Lightning inlet cowls and lips';coreDetail.add(cowl);
+    const ducts=new THREE.Mesh(makeGeometry(dp,di),dark);ducts.name='Lightning inlet ducts';coreDetail.add(ducts);
+    aircraft.add(modelDetail,coreDetail);
+
+    // A combined brace batch per gear pivot and torque-link batch per wheel
+    // inherit the existing translation, retraction and spin without new logic.
+    const appendBar=(positions,indices,a,b,width)=>{
+      const direction=new THREE.Vector3(...b).sub(new THREE.Vector3(...a)),length=direction.length();
+      const geometry=new THREE.BoxGeometry(width,length,width),matrix=new THREE.Matrix4();
+      const quaternion=new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0,1,0),direction.normalize());
+      matrix.compose(new THREE.Vector3(...a).add(new THREE.Vector3(...b)).multiplyScalar(.5),quaternion,new THREE.Vector3(1,1,1));geometry.applyMatrix4(matrix);
+      const base=positions.length/3;positions.push(...geometry.attributes.position.array);for(const index of geometry.index.array)indices.push(base+index);geometry.dispose();
+    };
+    for(let i=0;i<(aircraft.userData.gear||[]).length;i++) {
+      const pivot=aircraft.userData.gear[i],wheel=(aircraft.userData.wheels||[])[i];if(!wheel)continue;
+      const length=-wheel.position.y,bp=[],bi=[],lp=[],li=[];
+      appendBar(bp,bi,[-.15,-.10,.18],[0,-length*.76,0],.047);
+      appendBar(bp,bi,[.15,-.10,.18],[0,-length*.76,0],.047);
+      appendBar(bp,bi,[0,-length*.35,-.10],[0,-length*.80,.08],.055);
+      appendBar(lp,li,[.10,.31,.07],[.10,.17,.19],.037);
+      appendBar(lp,li,[.10,.17,.19],[.10,.03,.07],.037);
+      const braces=new THREE.Mesh(makeGeometry(bp,bi),alloy);braces.name='Lightning gear braces';pivot.add(braces);
+      const links=new THREE.Mesh(makeGeometry(lp,li),alloy);links.name='Lightning wheel torque links';wheel.add(links);gearDetail.push(braces,links);
+    }
 
     if(surfaces && surfaces.nozzle){
+      // The preserved segment pivots originally contained capped cylinders. Open
+      // those shells in-place while retaining their transforms and animation.
+      for(let i=0;i<3;i++) {
+        const segment=surfaces['nozSeg'+i];if(!segment)continue;
+        segment.traverse(object=>{const g=object.geometry,p=g&&g.parameters;if(!p||g.type!=='CylinderGeometry'||p.openEnded)return;
+          const open=new THREE.CylinderGeometry(p.radiusTop,p.radiusBottom,p.height,p.radialSegments,p.heightSegments,true,p.thetaStart,p.thetaLength);open.rotateX(Math.PI/2);object.geometry=open;g.dispose();
+        });
+      }
       nozzleDetail=new THREE.Group();nozzleDetail.name='Lightning articulated exhaust detail';nozzleDetail.userData.visualOnly=true;
       const np=[],ni=[],rings=[[.36,.535],[.53,.595],[.97,.558],[1.39,.505]],n=48;
       for(let j=0;j<rings.length;j++)for(let k=0;k<n;k++){
@@ -91,10 +130,13 @@
         const a=k/24*Math.PI*2,b=a+.15,base=tp.length/3;
         tp.push(Math.cos(a)*.11,Math.sin(a)*.11,.425,Math.cos(b)*.365,Math.sin(b)*.365,.435,Math.cos(b+.055)*.37,Math.sin(b+.055)*.37,.435);ti.push(base,base+1,base+2);
       }
-      const tunnel=new THREE.Mesh(makeGeometry(tp,ti),dark);tunnel.name='Lightning exhaust tunnel and turbine vanes';nozzleDetail.add(tunnel);
-      // Opaque end face stops background scenery showing through the jet engine.
-      const closure=new THREE.Mesh(new THREE.CircleGeometry(.431,48),new THREE.MeshBasicMaterial({color:0x080b0d,side:THREE.DoubleSide}));
-      closure.name='Lightning opaque turbine cavity';closure.position.z=.405;closure.geometry.computeBoundingSphere();nozzleDetail.add(closure);
+      // Merge the opaque recessed closure into the dark tunnel batch. A ray
+      // entering the bore reaches this depth rather than a legacy segment cap.
+      const centre=tp.length/3;tp.push(0,0,.405);
+      for(let k=0;k<n;k++){const a=k/n*Math.PI*2;tp.push(Math.cos(a)*.431,Math.sin(a)*.431,.405);}
+      for(let k=0;k<n;k++)ti.push(centre,centre+1+k,centre+1+(k+1)%n);
+      for(let k=2;k<tp.length;k+=3)tp[k]-=.405;
+      const tunnel=new THREE.Mesh(makeGeometry(tp,ti),dark);tunnel.name='Lightning opaque turbine cavity';tunnel.position.z=.405;nozzleDetail.add(tunnel);
       surfaces.nozzle.add(nozzleDetail);
     }
   }
@@ -187,7 +229,7 @@
     }
     buildAdaptiveModel(THREE,aircraft,surfaces);
     let geometryVertices=0,geometryTriangles=0,draws=0;
-    for(const group of[detail,fanDetail,modelDetail,nozzleDetail])if(group)group.traverse(o=>{
+    for(const group of[detail,fanDetail,modelDetail,coreDetail,nozzleDetail,...gearDetail])if(group)group.traverse(o=>{
       if(!o.geometry)return;draws++;geometryVertices+=o.geometry.attributes.position.count;
       geometryTriangles+=o.geometry.index?o.geometry.index.count/3:0;
     });
@@ -204,7 +246,11 @@
     detail.visible = visible;
     if (fanDetail) fanDetail.visible = visible;
     if (modelDetail) modelDetail.visible = visible;
-    if (nozzleDetail) nozzleDetail.visible = visible;
+    const coreLimit = coreDetail && coreDetail.visible ? 145 : 115;
+    const coreVisible = distance < coreLimit;
+    if (coreDetail) coreDetail.visible = coreVisible;
+    if (nozzleDetail) nozzleDetail.visible = coreVisible;
+    for(const mesh of gearDetail) mesh.visible = coreVisible;
     if (originalBody) originalBody.visible = !visible;
   };
 })(window);

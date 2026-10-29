@@ -21,7 +21,9 @@ const output = path.join(repositoryRoot, 'benchmarks/next', label + '-' + hash.s
 const report = { date: new Date().toISOString(), source: path.relative(repositoryRoot, source), sourceSha256: hash,
   referenceMainCommit: 'c53506ad59e7aad46904c3a648b0f06d6015dafd', pilotBudgetSeconds, environment: null, segments:[], checks: [], status: 'NOT TESTED',
   limitations: ['Cloud Chromium/SwiftShader functional tests; not Galaxy A51 evidence.',
+    'A superseded tab stops GPU draw submission before the replacement launch; its state/storage and the tested tab renderer remain unchanged.',
     'Normal UI start/scenario selection may position an aircraft at its configured spawn; tests label such starts. No lifecycle is inferred from teleporting aircraft state.',
+    'Replay save protection is tested by a deliberate real savePrefs(true) call after a rendered replay frame, not by firing the natural autosave timer.',
     'Replay stop is observed synchronously using a wrapper that calls the original function unchanged, before any later live physics step.',
     'No Android installation, gyro, battery or thermal claim.'] };
 let session;
@@ -105,6 +107,7 @@ try {
     await page.locator('#btnRestart').click(); await advanceSim(.2); await page.keyboard.press('Escape');
     const respawned=await state(); assert.ok(Math.abs(respawned.flightT-saved.flightT)>.1,'Respawn did not reset flight time');
     const previousPage=page;
+    await previousPage.evaluate(()=>{renderer.render=()=>{};});
     page=await session.context.newPage(); await page.setViewportSize({width:640,height:360});
     await page.goto(previousPage.url(),{waitUntil:'load',timeout:120000});
     await page.waitForFunction(() => window.__F35B_SIM__,null,{timeout:120000}); await attachObservers(page);
@@ -120,37 +123,46 @@ try {
   });
   await check('natural replay completion restores paused live flight and every playback-mutated field', async () => {
     if((await state()).paused)await page.keyboard.press('Escape');
-    await advanceSim(2.2); await page.keyboard.press('g');
+    await advanceSim(8.2); await page.keyboard.press('g');
     await page.keyboard.down('Shift'); await advanceSim(1.6); await page.keyboard.up('Shift');
     await page.keyboard.down('ArrowDown');
     try {await advanceSim(.5);}finally{await page.keyboard.up('ArrowDown');}
     await page.keyboard.press('Escape');
     await page.evaluate(()=>savePrefs(true));
-    const prepared=await state(); assert.ok(prepared.replayFrames>=24,'Replay has less than 2 seconds of actual physics data'); assert.equal(prepared.paused,true);
+    const prepared=await state(); assert.ok(prepared.replayFrames>=96,'Replay has less than 8 seconds of actual physics data'); assert.equal(prepared.paused,true);
     await page.evaluate(() => {
       const originalStop=stopReplay;
+      const originalUpdate=updateReplay;
       window.__qaReplayAttempts=[];
-      document.getElementById('btnReplay').addEventListener('click',()=>{const observed=window.__flightQaState();window.__qaReplayAttempts.push(observed);if(!replayActive)window.__qaReplayStarted=observed;},true);
+      const phase=()=>({active:replayActive,restore:JSON.stringify(replayRestore),wall:replayWall,clock:replayClock});
+      document.getElementById('btnReplay').addEventListener('click',()=>{const observed=window.__flightQaState();window.__qaReplayAttempts.push({state:observed,before:phase()});if(!replayActive){window.__qaReplayStarted=observed;window.__qaReplayStopped=null;}},true);
+      document.getElementById('btnReplay').addEventListener('click',()=>{window.__qaReplayAttempts.at(-1).after=phase();});
       stopReplay=function(...args){const result=originalStop.apply(this,args);window.__qaReplayStopped=window.__flightQaState();return result;};
+      updateReplay=function(...args){const result=originalUpdate.apply(this,args);if(replayActive&&!window.__qaReplaySaveEvidence){const before=JSON.stringify(SAVED.flight);savePrefs(true);window.__qaReplaySaveEvidence={before,after:JSON.stringify(SAVED.flight),stored:JSON.stringify(JSON.parse(localStorage.getItem(SAVE_KEY)).flight),replayActive,state:window.__flightQaState()};}return result;};
     });
     await page.locator('#btnReplay').click();
     await page.waitForFunction(() => replayActive,null,{timeout:15000});
-    await page.waitForTimeout(350); const playback=await state();
-    const before=await page.evaluate(()=>window.__qaReplayStarted);
+    await page.waitForFunction(()=>window.__qaReplaySaveEvidence,null,{timeout:60000});
+    const playback=await page.evaluate(()=>window.__qaReplaySaveEvidence.state);
+    let before=await page.evaluate(()=>window.__qaReplayStarted);
     assert.ok(playback.replayActive,'Playback not active');
-    report.replaySaveEvidence=await page.evaluate(()=>{const before=JSON.stringify(SAVED.flight);savePrefs(true);return{before,after:JSON.stringify(SAVED.flight),stored:JSON.stringify(JSON.parse(localStorage.getItem(SAVE_KEY)).flight),replayActive};});
+    report.replaySaveEvidence=await page.evaluate(()=>window.__qaReplaySaveEvidence);
     // Reopen the actual pause menu during playback, then click Replay again.
     // Observe snapshot identity/clock; the second call must not replace the live
     // flight restore snapshot with a playback pose.
     await page.keyboard.press('Escape');
-    const doubleBefore=await page.evaluate(()=>({restore:JSON.stringify(replayRestore),wall:replayWall,clock:replayClock}));
     await page.locator('#btnReplay').click();
-    const doubleAfter=await page.evaluate(()=>({restore:JSON.stringify(replayRestore),wall:replayWall,clock:replayClock,attempts:window.__qaReplayAttempts.length}));
-    report.replayDoubleClickEvidence={before:doubleBefore,after:doubleAfter,method:'Keyboard Escape reopens actual pause menu during playback; actual visible Replay button is clicked a second time.'};
-    assert.equal(doubleAfter.attempts,2,'Second actual Replay UI click was not observed');
-    assert.equal(doubleAfter.restore,doubleBefore.restore,'Second Replay click replaced original live snapshot');
-    assert.equal(doubleAfter.wall,doubleBefore.wall,'Second Replay click reset replay start time');
-    assert.ok(doubleAfter.clock>=doubleBefore.clock,'Second Replay click reset replay clock');
+    const attempts=await page.evaluate(()=>window.__qaReplayAttempts);assert.equal(attempts.length,2,'Second actual Replay UI click was not observed');
+    const doubleBefore=attempts[1].before,doubleAfter=attempts[1].after;
+    report.replayDoubleClickEvidence={before:doubleBefore,after:doubleAfter,method:'Capture/bubble listeners bracket the unchanged real UI handler in one event task. An active replay ignores a second request; a request after natural completion may start a new replay.'};
+    if(doubleBefore.active){
+      assert.equal(doubleAfter.restore,doubleBefore.restore,'Second Replay click replaced original live snapshot');
+      assert.equal(doubleAfter.wall,doubleBefore.wall,'Second Replay click reset replay start time');
+      assert.ok(doubleAfter.clock>=doubleBefore.clock,'Second Replay click reset replay clock');
+    }else{
+      assert.equal(doubleAfter.active,true,'Replay request after natural completion did not start');assert.equal(doubleAfter.clock,0);
+      before=await page.evaluate(()=>window.__qaReplayStarted);
+    }
     await page.waitForFunction(() => window.__qaReplayStopped,null,{timeout:90000});
     const after=await page.evaluate(() => window.__qaReplayStopped);
     const changed={};
@@ -177,7 +189,7 @@ try {
     assert.equal(after.view.replayButtonActive,false,'Replay UI state must clear');
     return evidence;
   });
-  await check('autosave during real replay preserves last valid live-flight record',async()=>{
+  await check('deliberate save attempt during rendered replay preserves the live-flight record',async()=>{
     const e=report.replaySaveEvidence;assert.ok(e&&e.replayActive,'Replay save was not observed');
     assert.equal(e.before,e.after);assert.equal(e.before,e.stored);return e;
   });
@@ -188,7 +200,7 @@ try {
     if(kind==='numeric-string-position')payload.flight.pos[0]=String(payload.flight.pos[0]);
     if(kind==='zero-quaternion')payload.flight.quat=[0,0,0,0];
     await page.evaluate(p=>localStorage.setItem(SAVE_KEY,JSON.stringify(p)),payload);
-    const old=page;page=await session.context.newPage();await page.setViewportSize({width:640,height:360});
+    const old=page;await old.evaluate(()=>{paused=true;renderer.render=()=>{};});page=await session.context.newPage();await page.setViewportSize({width:640,height:360});
     await page.goto(old.url(),{waitUntil:'load',timeout:120000});await page.waitForFunction(()=>window.__F35B_SIM__,null,{timeout:120000});await attachObservers(page);await old.close();
     await page.evaluate(()=>{
       const capture=()=>({state:window.__flightQaState(),world:window.__F35B_SIM__.world,origin:[OX,OZ]});

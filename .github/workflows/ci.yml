@@ -12,7 +12,7 @@ concurrency:
 jobs:
   browser:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
@@ -21,10 +21,18 @@ jobs:
         with:
           node-version: '22.16.0'
       - run: npm ci
+      - name: Rebuild pinned licensed London scenery
+        run: |
+          python3 -m venv .tmp/london-venv
+          .tmp/london-venv/bin/pip install -r scripts/london-requirements.txt
+          .tmp/london-venv/bin/python scripts/build-london.py
+          .tmp/london-venv/bin/python scripts/build-london-ground.py
       - run: npm test
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: node scripts/test-browser.mjs dist/index.html
+      - name: London scenery, takeoff and recovery regression
+        run: node scripts/test-london.mjs dist/index.html
       - name: Saved flight, repeated replay and malformed-record recovery through actual UI
         run: node scripts/test-flight-lifecycle.mjs dist/index.html --label=ci-flight-integrity
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

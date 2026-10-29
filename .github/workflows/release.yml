@@ -18,13 +18,14 @@ concurrency:
 jobs:
   build-and-release:
     runs-on: ubuntu-24.04
-    timeout-minutes: 40
+    timeout-minutes: 90
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '22.16.0'
@@ -45,11 +46,21 @@ jobs:
           cmdline-tools-version: '12266719'
           packages: 'platform-tools platforms;android-35 build-tools;35.0.0'
           log-accepted-android-sdk-licenses: 'false'
+      - name: Rebuild pinned licensed London scenery
+        run: |
+          python3 -m venv .tmp/london-venv
+          .tmp/london-venv/bin/pip install -r scripts/london-requirements.txt
+          .tmp/london-venv/bin/python scripts/build-london.py
+          .tmp/london-venv/bin/python scripts/build-london-ground.py
       - run: npm test
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - name: Actual browser launch and internal regression checks
         run: node scripts/test-browser.mjs dist/index.html
+      - name: Actual London takeoff and scenery recovery regression
+        run: node scripts/test-london.mjs dist/index.html
+      - name: Network-disabled browser file startup
+        run: node scripts/test-offline.mjs dist/index.html
       - name: Actual saved-flight, replay-view and corrupt-record UI regression
         run: node scripts/test-flight-lifecycle.mjs dist/index.html --label=release-flight-integrity
       - name: Build and verify signed APK archive
@@ -126,6 +137,16 @@ jobs:
         run: node scripts/run-benchmarks.mjs legacy/F35B_Offline_Open_World_Simulator_Advanced_Physics_Overhaul.html --seconds 10
       - name: Final cloud benchmark and screenshots
         run: node scripts/run-benchmarks.mjs dist/index.html --seconds 10
+      - name: Fixed V2 and London visual comparisons
+        run: |
+          git worktree add --detach .tmp/visual-v020 488ea110cb57e5e0ba59605547f6da0687706f41
+          node .tmp/visual-v020/scripts/build-web.mjs
+          node scripts/capture-london.mjs .tmp/visual-v020/dist/Lightning-F35B.html before
+          node scripts/capture-london.mjs dist/index.html after
+      - name: London controlled render benchmarks
+        run: node scripts/benchmark-london.mjs dist/index.html
+      - name: Twenty-minute London flight and streaming observation
+        run: node scripts/endurance-london.mjs dist/index.html
       - name: Package evidence and checksums
         run: |
           python3 - <<'PYTHON'
@@ -133,7 +154,7 @@ jobs:
           import hashlib, json, os, zipfile
           evidence = Path('dist/Lightning-F35B-Evidence.zip')
           with zipfile.ZipFile(evidence, 'w', zipfile.ZIP_DEFLATED) as z:
-              for folder in ['benchmarks', 'screenshots']:
+              for folder in ['benchmarks', 'screenshots', 'scenery-packs/london', 'docs']:
                   for path in sorted(Path(folder).rglob('*')):
                       if path.is_file(): z.write(path, path.as_posix())
               z.write('dist/android-verification.json', 'android-verification.json')
@@ -143,12 +164,26 @@ jobs:
                   if path.is_file(): z.write(path, path.relative_to('dist').as_posix())
               for path in sorted(Path('android/app/build/outputs/androidTest-results/connected').rglob('*')):
                   if path.is_file(): z.write(path, path.as_posix())
+          scenery = Path('dist/Lightning-London-Scenery.zip')
+          with zipfile.ZipFile(scenery, 'w', zipfile.ZIP_DEFLATED) as z:
+              for path in sorted(Path('scenery-packs/london').rglob('*')):
+                  if path.is_file(): z.write(path, path.relative_to('scenery-packs').as_posix())
+          # Preserve the exact licensed raw inputs: mutable provider URLs may
+          # stop serving these pins. Rebuilders can restore them to .tmp/london.
+          source_pins = json.loads(Path('scenery-packs/london/manifest.json').read_text())['sources']
+          with zipfile.ZipFile('dist/Lightning-London-Source-Data.zip', 'w', zipfile.ZIP_STORED) as z:
+              for name, pin in source_pins.items():
+                  path = Path('.tmp/london') / name
+                  assert path.stat().st_size == pin['bytes'] and hashlib.sha256(path.read_bytes()).hexdigest() == pin['sha256'], 'Raw source differs from pin'
+                  z.write(path, name)
+              for name in ['manifest.json', 'NOTICE.txt', 'LICENSE-OGL-3.0.txt']:
+                  z.write(Path('scenery-packs/london') / name, name)
           verification = json.loads(Path('dist/android-verification.json').read_text())
           manifest = json.loads(Path('dist/build-manifest.json').read_text())
           assert manifest['version'] == verification['versionName'] and manifest['versionCode'] == verification['versionCode'], 'Browser/native versions differ'
           manifest.update({'sourceCommit': os.environ['GITHUB_SHA'], 'workflowRun': os.environ['GITHUB_RUN_ID'], 'androidVersion': verification['versionName'], 'signing': 'debug; ephemeral CI key', 'galaxyA51': 'NOT TESTED', 'installation': 'PASS: Android API 33 emulator installed APK and launched actual bundled flight; see android-installation.json'})
           Path('dist/build-manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
-          names = ['Lightning-F35B-Android.apk', 'Lightning-F35B-Web.zip', 'Lightning-F35B-Evidence.zip', 'android-verification.json', 'android-installation.json', 'build-manifest.json']
+          names = ['Lightning-F35B-Android.apk', 'Lightning-F35B-Web.zip', 'Lightning-F35B-Evidence.zip', 'Lightning-London-Scenery.zip', 'Lightning-London-Source-Data.zip', 'android-verification.json', 'android-installation.json', 'build-manifest.json']
           for name in names:
               assert Path('dist', name).is_file(), 'Missing release artifact: ' + name
           Path('dist/SHA256SUMS.txt').write_text(''.join(hashlib.sha256(Path('dist', n).read_bytes()).hexdigest() + '  ' + n + '\n' for n in names))
@@ -183,11 +218,12 @@ jobs:
           Source commit: $GITHUB_SHA
           APK: Lightning-F35B-Android.apk (com.mtt004.lightning, version $LIGHTNING_VERSION, code $LIGHTNING_VERSION_CODE, Android 8.0/API 26+ with WebGL2).
           Browser: Lightning-F35B-Web.zip; extract and open Lightning-F35B.html offline.
+          Reproducible raw inputs: Lightning-London-Source-Data.zip; extract its two source archives to .tmp/london before preprocessing. The raw archives are optional for playing.
           Integrity: see SHA256SUMS.txt and android-verification.json.
 
           Automated browser checks and a signed APK archive verification passed in this workflow. Benchmarks use a cloud CPU software renderer and do not establish Galaxy A51 performance. An Android API 33 emulator installed the APK and launched the actual bundled flight successfully; see android-installation.json and evidence ZIP. Galaxy A51 installation, gyroscope, battery, thermal behaviour and 20-minute device stability are NOT TESTED.
 
-          This is a debug-signed experimental build. The CI signing key is ephemeral: later builds may require uninstalling the previous APK, deleting its stored data. No private signing key is committed. Regional scenery packs and the full requested visual overhaul may remain incomplete; see docs/known-issues.md and docs/development-log.md at the source commit.
+          This is a debug-signed experimental build. The CI signing key is ephemeral: later builds may require uninstalling the previous APK, deleting its stored data. No private signing key is committed. London uses real OS map/elevation data, estimated building heights and original simplified landmarks. Ground artwork is vector-derived, not aerial imagery. The full commercial-quality visual overhaul remains incomplete; see docs/known-issues.md and docs/development-log.md at the source commit.
           NOTES
-          gh release create "$release_tag" dist/Lightning-F35B-Android.apk dist/Lightning-F35B-Web.zip dist/Lightning-F35B-Evidence.zip dist/SHA256SUMS.txt dist/android-verification.json dist/android-installation.json dist/build-manifest.json --target "$GITHUB_SHA" --title "Project Lightning $release_tag" --notes-file dist/RELEASE_NOTES.md --prerelease
+          gh release create "$release_tag" dist/Lightning-F35B-Android.apk dist/Lightning-F35B-Web.zip dist/Lightning-F35B-Evidence.zip dist/Lightning-London-Scenery.zip dist/Lightning-London-Source-Data.zip dist/SHA256SUMS.txt dist/android-verification.json dist/android-installation.json dist/build-manifest.json --target "$GITHUB_SHA" --title "Project Lightning $release_tag" --notes-file dist/RELEASE_NOTES.md --prerelease
           gh release view "$release_tag" --json url,tagName,targetCommitish,assets
