@@ -11,8 +11,8 @@ const hit = (id,x,y,z,height=()=>0) => {
   return landmarks.collides(p[0]+x,y+4,p[1]+z,height);
 };
 
-test('all eight geographic anchors and public entry points are available', () => {
-  assert.equal(Object.keys(landmarks.locations).length,8);
+test('all nine geographic anchors and public entry points are available', () => {
+  assert.equal(Object.keys(landmarks.locations).length,9);
   assert.equal(typeof landmarks.build,'function');
   assert.equal(typeof landmarks.collides,'function');
   assert.equal(landmarks.locations.shard[0],25903.2);
@@ -51,7 +51,7 @@ test('Tower Bridge has open air under its high walkways', () => {
   assert.equal(hit('towerbridge',8,44,0),true);
   assert.equal(hit('towerbridge',0,25,0),false);
   assert.equal(hit('towerbridge',8,30,0),false);
-  assert.equal(hit('towerbridge',9,30,58),true);
+  assert.equal(hit('towerbridge',9,30,41),true);
 });
 
 test('Buckingham courtyard is open and its rotated wings are solid', () => {
@@ -81,7 +81,7 @@ test('far away, above landmark ceilings and nonfinite queries are clear', () => 
   assert.equal(landmarks.collides(0,Infinity,0),false);
 });
 
-test('Three r128 builds eight merged, finite, outward-facing meshes below the triangle budget', () => {
+test('Three r128 builds nine merged, finite, outward-facing meshes below the triangle budget', () => {
   const sceneContext={console};
   sceneContext.window=sceneContext;
   vm.createContext(sceneContext);
@@ -89,11 +89,11 @@ test('Three r128 builds eight merged, finite, outward-facing meshes below the tr
   vm.runInContext(fs.readFileSync(new URL('../../src/terrain/landmarks.js',import.meta.url),'utf8'),sceneContext);
   const T=sceneContext.THREE;
   const group=sceneContext.LightningLandmarks.build(T,()=>0);
-  assert.equal(group.children.length,8);
+  assert.equal(group.children.length,9);
   let triangles=0;
   for(const mesh of group.children) {
     assert.equal(mesh.type,'Mesh');
-    assert.equal(mesh.material.type,'MeshLambertMaterial');
+    assert.equal(mesh.material.type,'MeshStandardMaterial');
     assert.equal(mesh.material.vertexColors,true);
     assert.equal(mesh.position.lengthSq(),0,'merged vertices already have global coordinates');
     const geometry=mesh.geometry,p=geometry.attributes.position,n=geometry.attributes.normal;

@@ -46,7 +46,7 @@ export async function browserSession({ file = baselineFile, mobile = false } = {
     await page.addInitScript(() => {
       // Linux sandbox cannot expose gamepad device-monitor sockets; no gamepad testing claimed.
       Object.defineProperty(navigator,'getGamepads',{value:()=>[]});
-      localStorage.setItem('f35b_anchor_overhaul_v3', JSON.stringify({ seed: 4201, tutorialSeen: true, settings: { quality: 'MED', volume: 0 }, simHours: 13.2 }));
+      localStorage.setItem('f35b_anchor_overhaul_v3', JSON.stringify({ worldMode:'LEGACY', seed: 4201, tutorialSeen: true, settings: { quality: 'MED', volume: 0 }, simHours: 13.2 }));
     });
     const url = origin + '/' + path.relative(root, absFile).split(path.sep).map(encodeURIComponent).join('/');
     await page.goto(url, { waitUntil: 'load', timeout: 120000 });
