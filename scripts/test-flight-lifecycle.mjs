@@ -78,10 +78,17 @@ async function check(name, fn) {
   await mkdir(path.dirname(output), {recursive:true}); await writeFile(output, JSON.stringify(report,null,2)+'\n');
 }
 async function advanceSim(seconds, timeout = 90000) {
-  const target = (await state()).flightT + seconds;
-  await page.waitForFunction(t => crashed || flightT >= t, target, {timeout});
-  assert.equal((await state()).crashed,false,'Aircraft crashed while advancing physics');
+  const before=await state(),target=before.flightT+seconds,started=Date.now();
+  const observation={requestedSimSeconds:seconds,timeoutMs:timeout,beforeFlightT:before.flightT,targetFlightT:target};
+  (report.simAdvances??=[]).push(observation);
+  try {
+    await page.waitForFunction(t => crashed || flightT >= t, target, {timeout});
+    assert.equal((await state()).crashed,false,'Aircraft crashed while advancing physics');
+  } finally {
+    const after=await state();Object.assign(observation,{wallSeconds:(Date.now()-started)/1000,afterFlightT:after.flightT,replayFrames:after.replayFrames,paused:after.paused,crashed:after.crashed});
+  }
 }
+
 async function attachObservers(target) {
   await target.evaluate(`window.__flightQaState = ${readState.toString()}`);
   target.on('pageerror', e => session.errors.push(String(e)));
@@ -123,7 +130,8 @@ try {
   });
   await check('natural replay completion restores paused live flight and every playback-mutated field', async () => {
     if((await state()).paused)await page.keyboard.press('Escape');
-    await advanceSim(8.2); await page.keyboard.press('g');
+    // Keep the full simulated recording and frame minimum on CPU rasterizers.
+    await advanceSim(8.2,120000); await page.keyboard.press('g');
     await page.keyboard.down('Shift'); await advanceSim(1.6); await page.keyboard.up('Shift');
     await page.keyboard.down('ArrowDown');
     try {await advanceSim(.5);}finally{await page.keyboard.up('ArrowDown');}

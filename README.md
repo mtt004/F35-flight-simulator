@@ -1,45 +1,38 @@
 # Project Lightning — F-35B Mobile Simulator
 
-Experimental offline F-35B-inspired simulator targeting Samsung Galaxy A51. Adds a geographic Heathrow–London corridor, real OS terrain/building/road/water data, original landmarks and airport architecture while preserving the owner-supplied six-DOF/STOVL sandbox and separate Legacy world. Android uses a restricted offline Kotlin WebView host.
+Experimental offline F-35B-inspired simulator targeting Samsung Galaxy A51. London V0.4 adds real 10 m Sentinel-2 ground imagery, EA LiDAR-derived building heights and nine original textured landmarks to the Heathrow–Docklands corridor. The original six-DOF/STOVL sandbox and separate Legacy world remain available. Android uses a restricted offline Kotlin WebView host.
 
-## Download the experimental build
+## Candidate builds
 
-[Android APK](https://github.com/mtt004/F35-flight-simulator/releases/download/v0.3.0-experimental/Lightning-F35B-Android.apk) · [Offline browser ZIP](https://github.com/mtt004/F35-flight-simulator/releases/download/v0.3.0-experimental/Lightning-F35B-Web.zip) · [Release and checksums](https://github.com/mtt004/F35-flight-simulator/releases/tag/v0.3.0-experimental)
+[Releases and checksums](https://github.com/mtt004/F35-flight-simulator/releases) contain published APK and offline browser ZIP assets. The V0.4 candidate is `v0.4.0-candidate.1`; publication requires the release workflow's browser/offline checks, full twenty-minute London endurance run, APK verification and actual Android emulator installation/launch to pass. A candidate tag does not establish that those gates have passed. Repository and release access may require authorized GitHub sign-in.
 
-These V0.3 links become available only after the gated publishing workflow passes. While that workflow is pending, the [last published V0.2 release](https://github.com/mtt004/F35-flight-simulator/releases/tag/v0.2.0-experimental) remains available. The private repository requires authorized GitHub sign-in. V0.3 is debug-signed, AndroidAPI26+/WebGL2. Read the published APK/source/XML/checksum identity and actual emulator results in the release assets. Physical Galaxy A51 is NOT TESTED. See [recovery validation](docs/recovery-validation-v0.3.md) for exact product testing and incomplete scope.
+Physical Galaxy A51 installation, frame rate, gyroscope, battery, thermals and sustained device stability are **NOT TESTED**. Cloud browser and Android emulator results do not establish A51 performance. The APK uses an ephemeral debug certificate; updating may require uninstalling the previous build, deleting local saves.
 
 ## Build and test
 
-Node22+ and Java17. `npm ci`, `npm test`, `npm run build`. Open `dist/Lightning-F35B.html` offline in a WebGL2 browser. `bash scripts/build-android.sh` uses Android SDK35/build-tools35.0.0 and Gradle8.9 to produce `dist/Lightning-F35B-Android.apk`. See [Android build](docs/android-build.md) and [installation](docs/android-installation.md).
-
-The current APK uses an ephemeral debug certificate; upgrading an earlier build may require uninstalling it, which deletes local saves. See installation instructions before upgrading.
-
-Browser runtime QA: `npx playwright install --with-deps chromium`, then `node scripts/test-browser.mjs dist/index.html`. Direct offline-file QA: `node scripts/test-offline.mjs dist/Lightning-F35B.html` opens the distributable from disk with browser networking disabled, validates internal checks and requires live rendering/physics. Matched benchmarks: `node scripts/run-benchmarks.mjs <legacy-or-dist-html> --seconds 30`; sustained: add `--sustained --seconds 1200`. Test results identify actual hardware; cloud results do not establish A51 performance.
-
-## Engineering record
-
-- [Architecture](docs/architecture.md), [plan](docs/implementation-plan.md), [development log](docs/development-log.md)
-- [Preserved original/checksum](docs/original-source.md), [baseline audit](docs/baseline-audit.md)
-- [Research](research/), [dependency pins](docs/dependencies.md), [asset licences](LICENSES.md)
-- [Benchmarks](benchmarks/), [controls](docs/controls.md), [known limitations](docs/known-issues.md), [28-decision acceptance map](docs/acceptance-matrix.md)
-
-Status is experimental/PARTIAL against the full overhaul. Available APK/browser release gates passed; physical-device and remaining-feature gates are incomplete. V0.3 development adds the real London corridor; the full requested visual reconstruction and mobile performance acceptance remain unfinished. No Galaxy A51 testing is claimed.
-
-## London V0.3 development
-
-Select London in Flight Setup for the offline Heathrow–Docklands corridor. Existing saved worlds default to Legacy; London saves retain their coordinate identity. London uses licensed OS outlines/elevation and original simplified landmarks. Building heights are estimates; ground colours are vector-derived artwork, not aerial imagery.
-
-Before `npm run build`, generate the pinned scenery:
+Use Node 22+, Python 3.12 and Java 17. Generate every scenery pack before testing or building. Source scripts and OS/Sentinel SHA pins are committed; a fresh height build records the 2022 EA dataset input hashes with its output pack. The complete tile set and compressed heights are generated inputs, rather than a complete committed binary pack.
 
 ```sh
+npm ci
 python3 -m venv .tmp/london-venv
 .tmp/london-venv/bin/pip install -r scripts/london-requirements.txt
 .tmp/london-venv/bin/python scripts/build-london.py
 .tmp/london-venv/bin/python scripts/build-london-ground.py
+.tmp/london-venv/bin/python scripts/build-london-imagery.py
+.tmp/london-venv/bin/python scripts/build-london-heights.py
+.tmp/london-venv/bin/python scripts/test-london-heights.py
+npm test
+npm run build
 ```
 
-Initial preprocessing downloads verified OS archives (~382 MB); generated browser/APK play fully offline. Source pins refuse changed downloads. GitHub workflows regenerate the same assets and retain the manifest/licences.
+Initial preprocessing downloads verified OS archives (approximately 382 MB), SHA-pinned Sentinel source rasters (approximately 751 MB) and several GB of EA LiDAR rasters from the 2022 composite edition. OS/Sentinel byte changes are refused. A height rebuild retaining `sources.json` also rejects upstream byte changes; a fresh build records the dataset input pins and includes them in the release pack. CI uses the same pinned dependencies and regenerates all packs before tests; disposable runners delete only generated raster caches after preprocessing. The separate released source-data ZIP preserves the exact OS archives for rebuilding after provider editions change. See [V0.4 maintenance](docs/v0.4.md) for cache paths and provenance.
 
-This experimental milestone does not establish Galaxy A51 frame rate, battery/thermal behavior or commercial-simulator realism. See the [V0.3 delivery audit](docs/delivery-v0.3.md), [twelve screenshot comparisons](docs/visual-comparison-v0.3.md) and [measured performance](docs/performance-v0.3.md) for actual checks and limits.
+Open `dist/Lightning-F35B.html` offline in a WebGL2 browser. `bash scripts/build-android.sh` uses Android SDK 35/build-tools 35.0.0 and Gradle 8.9 to produce `dist/Lightning-F35B-Android.apk` (Android API 26+). See [Android build](docs/android-build.md) and [installation](docs/android-installation.md).
 
-Current release-candidate fixes and build-bound verification: [recovery validation](docs/recovery-validation-v0.3.md). The verified release also retains exact licensed raw inputs for reproducible rebuilds after upstream editions change.
+For browser QA, install Chromium with `npx playwright install --with-deps chromium`, then run `node scripts/test-browser.mjs dist/index.html` and `node scripts/test-offline.mjs dist/Lightning-F35B.html`. `node scripts/endurance-london.mjs dist/index.html` performs the full twenty-minute cloud observation. Results identify the tested environment.
+
+## London data and limits
+
+Select London in Flight Setup for the offline Heathrow–Docklands corridor. Existing saved worlds default to Legacy; London saves retain their coordinate identity. The 2022-edition height pipeline previously produced 38,914 EA LiDAR-derived building heights and 1,086 explicitly marked footprint-estimate fallbacks; each generated manifest records that build’s actual counts. Measured heights retain roof, footprint, vegetation and survey-date uncertainty. Sentinel imagery has a 10 m source resolution; it cannot show sub-metre aerial detail. Outer imagery edges use different summer 2025 acquisition dates. Landmark geometry and material artwork are authored for this game.
+
+Status remains experimental/PARTIAL against the full simulator overhaul. See [architecture](docs/architecture.md), [development log](docs/development-log.md), [known limitations](docs/known-issues.md), [asset licences](LICENSES.md), [controls](docs/controls.md), [preserved original](docs/original-source.md) and [benchmarks](benchmarks/).

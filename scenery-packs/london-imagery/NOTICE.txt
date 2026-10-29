@@ -1,0 +1,33 @@
+Contains modified Copernicus Sentinel data [2025]
+
+London true-colour ground imagery: Sentinel-2 MSI Level-2A summer 2025 mosaic.
+Primary: 2025-08-17, scene S2A_30UXC_20250817_0_L2A. Only missing edge pixels
+are filled from S2C_30UXC_20250619_0_L2A (west) and
+S2C_30UYC_20250825_0_L2A (east). Dates therefore differ at the outer edges.
+Source bands B04 (red), B03 (green), B02 (blue), 10 metre ground sampling.
+Distributed COGs supplied by Element 84 Earth Search / AWS Sentinel COGs.
+
+The Copernicus Sentinel legal notice permits reproduction, distribution,
+communication to the public, adaptation, modification and combination with
+other data. This derivative is cropped, reprojected from EPSG:32630 to
+EPSG:27700, bilinearly resampled and JPEG encoded. The original imagery is
+not sub-metre aerial photography. Increasing texture dimensions does not
+increase the 10 metre source resolution.
+
+Primary legal notice:
+https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice
+Official readable legal notice:
+https://cds.climate.copernicus.eu/licences/ec-sentinel
+Official attribution guidance:
+https://documentation.dataspace.copernicus.eu/FAQ.html
+
+Copernicus Sentinel data are provided without any express or implied
+warranty, including quality and suitability for any purpose. By using the
+data, users acknowledge the applicable conditions and waive claims for
+damages against the European Union and the data/information providers as
+set out in the primary legal notice. No ESA/EU endorsement is implied.
+
+Source URLs, product identifiers, SHA-256 hashes, coordinate transform,
+output dimensions and processing versions are recorded in manifest.json
+and source-stac*.json. Images are north-up: top = north = minimum game z.
+Game coordinates: x = Easting - 507000; z = 176000 - Northing.

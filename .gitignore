@@ -12,3 +12,5 @@ __pycache__/
 *.pyc
 
 scenery-packs/london/
+
+scenery-packs/london-heights/heights.json

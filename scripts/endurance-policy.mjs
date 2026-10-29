@@ -5,7 +5,7 @@ export function assessEndurance(samples){
   if(s.world?.mode!=='LONDON')issues.add('Unexpected world');
   if(s.paused)issues.add('Physics paused');
   if(s.crashed)issues.add('Aircraft crashed');
-  if(s.landmarks!==8)issues.add('Landmarks missing');
+  if(s.landmarks!==9)issues.add('Landmarks missing');
   for(const[name,size]of[['globalPosition',3],['velocity',3],['quaternion',4]])if(!Array.isArray(s[name])||s[name].length!==size||!s[name].every(Number.isFinite))issues.add('Nonfinite or malformed '+name);
   if(![s.flightT,s.simT,s.fuel].every(Number.isFinite))issues.add('Nonfinite flight state');
   const norm=Array.isArray(s.quaternion)?Math.hypot(...s.quaternion):NaN;
@@ -18,3 +18,4 @@ export function assessEndurance(samples){
  if(samples.at(-1)?.contextLost)issues.add('Graphics context not restored');
  return{issues:[...issues],recoveredContextLosses:samples.at(-1)?.contextLost?0:losses};
 }
+

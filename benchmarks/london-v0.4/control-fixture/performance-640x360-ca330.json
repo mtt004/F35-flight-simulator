@@ -1,0 +1,3116 @@
+{
+  "date": "2026-10-29T15:59:25.072Z",
+  "sourceSha256": "53e296a495b45983d409252f44fad8261ca8c79885bf7233e7dabc12defcb9df",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "London starts on mapped Heathrow runway and advances physics",
+      "status": "PASS",
+      "details": {
+        "before": {
+          "running": true,
+          "paused": false,
+          "crashed": false,
+          "simT": 1.4917000000000047,
+          "flightT": 0.075,
+          "stepCount": 9,
+          "position": [
+            -1804.1559675195385,
+            25.652773599282643,
+            -479.09484910551544
+          ],
+          "velocity": [
+            0.08234663308772247,
+            -0.1673265353385633,
+            -0.002580404528585983
+          ],
+          "quaternion": [
+            -0.001257762726530128,
+            -0.6976935587057415,
+            -0.0012214010000039313,
+            0.7163941822439928
+          ],
+          "fuel": 3268.0769780343185,
+          "stolMode": "CONV",
+          "nozzle": 0,
+          "gearD": 1,
+          "camMode": 0,
+          "frameEMA": 869.9607594058176,
+          "graphicsLevel": 1,
+          "settings": {
+            "fbw": "ASSIST",
+            "fail": "OFF",
+            "sens": 1,
+            "expo": 0.3,
+            "dz": 0.07,
+            "invPitch": false,
+            "coord": true,
+            "hoverAssist": true,
+            "hmds": "FULL",
+            "tOp": 0.85,
+            "tSz": 1,
+            "hand": "R",
+            "rudSlider": false,
+            "gyro": false,
+            "gDz": 0.12,
+            "gThrBtn": true,
+            "quality": "MED",
+            "vapour": "ENHANCED",
+            "volume": 0,
+            "scan": false,
+            "structure": "REAL",
+            "targetMarker": false
+          },
+          "drawingBuffer": [
+            1152,
+            648
+          ],
+          "renderer": {
+            "calls": 274,
+            "triangles": 145321,
+            "textures": 22,
+            "geometries": 308
+          },
+          "replaySeconds": 0
+        },
+        "after": {
+          "running": true,
+          "paused": false,
+          "crashed": false,
+          "simT": 1.6417000000000042,
+          "flightT": 0.22499999999999998,
+          "stepCount": 27,
+          "position": [
+            -1804.1281936817725,
+            25.610620654966713,
+            -479.0956780750659
+          ],
+          "velocity": [
+            0.2781701755073684,
+            -0.35330845076314227,
+            -0.008178294048097869
+          ],
+          "quaternion": [
+            -0.009089607674149427,
+            -0.6976412389628708,
+            -0.008818783486734707,
+            0.7163353333380219
+          ],
+          "fuel": 3268.029937155442,
+          "stolMode": "CONV",
+          "nozzle": 0,
+          "gearD": 1,
+          "camMode": 0,
+          "frameEMA": 757.060693595563,
+          "graphicsLevel": 1,
+          "settings": {
+            "fbw": "ASSIST",
+            "fail": "OFF",
+            "sens": 1,
+            "expo": 0.3,
+            "dz": 0.07,
+            "invPitch": false,
+            "coord": true,
+            "hoverAssist": true,
+            "hmds": "FULL",
+            "tOp": 0.85,
+            "tSz": 1,
+            "hand": "R",
+            "rudSlider": false,
+            "gyro": false,
+            "gDz": 0.12,
+            "gThrBtn": true,
+            "quality": "MED",
+            "vapour": "ENHANCED",
+            "volume": 0,
+            "scan": false,
+            "structure": "REAL",
+            "targetMarker": false
+          },
+          "drawingBuffer": [
+            1152,
+            648
+          ],
+          "renderer": {
+            "calls": 279,
+            "triangles": 149812,
+            "textures": 22,
+            "geometries": 312
+          },
+          "replaySeconds": 0.16666666666666666
+        },
+        "data": {
+          "rwy": 3902,
+          "h": 24.1,
+          "e": 24.1,
+          "world": {
+            "mode": "LONDON",
+            "london": {
+              "imagery": {
+                "resident": 4,
+                "pending": 0,
+                "failed": 0,
+                "maxResident": 4,
+                "estimatedRGBABytes": 5592405.333333333,
+                "source": "london-sentinel-2025",
+                "overviewReady": true
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 15,
+              "groundTiles": 1,
+              "pendingBuildings": 0,
+              "lods": [
+                15,
+                0,
+                0
+              ]
+            },
+            "airports": 2,
+            "cities": 0,
+            "kinds": {
+              "MAJOR": 2
+            },
+            "regions": 0,
+            "airportBins": 2,
+            "visualAirports": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "actual keyboard runway takeoff",
+      "status": "PASS",
+      "details": {
+        "trace": [
+          {
+            "event": "runway-start",
+            "state": {
+              "time": 0.8416666666666661,
+              "crashed": false,
+              "position": [
+                -1803.916951710979,
+                25.622285377832604,
+                -479.1017744432802
+              ],
+              "velocity": [
+                0.2142947780575514,
+                -0.01503375608909677,
+                -0.0061754920390253
+              ],
+              "radarAltitude": 1.522410659133346,
+              "ias": 5.2821382006128825,
+              "pitch": -3.6650085602058904,
+              "roll": -0.01685227352104147,
+              "gear": 1,
+              "wheelsOn": true,
+              "landings": 0,
+              "throttle": 0.2,
+              "targetThrottle": 0.2,
+              "rates": [
+                0.05527296001594184,
+                -0.000056175295577765846,
+                0.00016807935130051295
+              ],
+              "forwardSpeed": 0.21490505586217737,
+              "rightSpeed": -0.0005151404149893275,
+              "mode": "CONV",
+              "nozzle": 0,
+              "liftFan": 0,
+              "liftDoor": 0,
+              "hoverTrim": 0.9181058618248624,
+              "touchdown": {
+                "sink": 0,
+                "score": 0,
+                "grade": "—"
+              },
+              "paused": false
+            }
+          },
+          {
+            "event": "parking-brake-release",
+            "state": {
+              "time": 0.8416666666666661,
+              "crashed": false,
+              "position": [
+                -1803.916951710979,
+                25.622285377832604,
+                -479.1017744432802
+              ],
+              "velocity": [
+                0.2142947780575514,
+                -0.01503375608909677,
+                -0.0061754920390253
+              ],
+              "radarAltitude": 1.522410659133346,
+              "ias": 5.2821382006128825,
+              "pitch": -3.6650085602058904,
+              "roll": -0.01685227352104147,
+              "gear": 1,
+              "wheelsOn": true,
+              "landings": 0,
+              "throttle": 0.2,
+              "targetThrottle": 0.2,
+              "rates": [
+                0.05527296001594184,
+                -0.000056175295577765846,
+                0.00016807935130051295
+              ],
+              "forwardSpeed": 0.21490505586217737,
+              "rightSpeed": -0.0005151404149893275,
+              "mode": "CONV",
+              "nozzle": 0,
+              "liftFan": 0,
+              "liftDoor": 0,
+              "hoverTrim": 0.9181058618248624,
+              "touchdown": {
+                "sink": 0,
+                "score": 0,
+                "grade": "—"
+              },
+              "paused": false
+            }
+          },
+          {
+            "event": "full-throttle-command",
+            "state": {
+              "time": 2.3249999999999944,
+              "crashed": false,
+              "position": [
+                -1802.7286066722556,
+                25.558744812224713,
+                -479.13276376952155
+              ],
+              "velocity": [
+                1.530085551229395,
+                -0.06364235720929262,
+                -0.041023619268793145
+              ],
+              "radarAltitude": 1.4592751652014542,
+              "ias": 2.619788396610679,
+              "pitch": -3.8622642622929946,
+              "roll": -0.0010704708480858665,
+              "gear": 1,
+              "wheelsOn": true,
+              "landings": 0,
+              "throttle": 1,
+              "targetThrottle": 1,
+              "rates": [
+                -0.01675411303355774,
+                -0.00001562706102042208,
+                -0.0002653757471916444
+              ],
+              "forwardSpeed": 1.5314402748526734,
+              "rightSpeed": -0.0006210591904455831,
+              "mode": "CONV",
+              "nozzle": 0,
+              "liftFan": 0,
+              "liftDoor": 0,
+              "hoverTrim": 0.9180771532491576,
+              "touchdown": {
+                "sink": 0,
+                "score": 0,
+                "grade": "—"
+              },
+              "paused": false
+            }
+          },
+          {
+            "event": "rotation-at-135-knots",
+            "state": {
+              "time": 11.441666666666658,
+              "crashed": false,
+              "position": [
+                -1495.6723810902722,
+                25.591591952613538,
+                -486.9121376176105
+              ],
+              "velocity": [
+                74.12893877367759,
+                0.008238032528933134,
+                -1.8378975864034475
+              ],
+              "radarAltitude": 1.4915233023424612,
+              "ias": 135.1577806387414,
+              "pitch": -4.026283608541317,
+              "roll": -0.13149751887481595,
+              "gear": 1,
+              "wheelsOn": true,
+              "landings": 0,
+              "throttle": 1,
+              "targetThrottle": 1,
+              "rates": [
+                -0.0006043855839650518,
+                -0.0009134868870245929,
+                -0.015875222739053122
+              ],
+              "forwardSpeed": 73.96809591423595,
+              "rightSpeed": -0.023188080737309935,
+              "mode": "CONV",
+              "nozzle": 0,
+              "liftFan": 0,
+              "liftDoor": 0,
+              "hoverTrim": 0.9167973832079392,
+              "touchdown": {
+                "sink": 0,
+                "score": 0,
+                "grade": "—"
+              },
+              "paused": false
+            }
+          },
+          {
+            "event": "release-pitch-at-12-degrees-or-6m",
+            "state": {
+              "time": 16.374999999999712,
+              "crashed": false,
+              "position": [
+                -1022.258680768856,
+                29.294691749006155,
+                -497.50427409655947
+              ],
+              "velocity": [
+                114.89791004462194,
+                7.951295514885091,
+                -2.4964435198907435
+              ],
+              "radarAltitude": 5.1284309530487775,
+              "ias": 215.02007765438296,
+              "pitch": 12.009978867971656,
+              "roll": -0.041334428021739866,
+              "gear": 1,
+              "wheelsOn": false,
+              "landings": 0,
+              "throttle": 1,
+              "targetThrottle": 1,
+              "rates": [
+                0.15574011129032014,
+                -0.005927575369814787,
+                -0.000050868466534966964
+              ],
+              "forwardSpeed": 114.03898389096926,
+              "rightSpeed": -0.9785045180966747,
+              "mode": "CONV",
+              "nozzle": 0,
+              "liftFan": 0,
+              "liftDoor": 0,
+              "hoverTrim": 0.9162401305302847,
+              "touchdown": {
+                "sink": 0,
+                "score": 0,
+                "grade": "—"
+              },
+              "paused": false
+            }
+          },
+          {
+            "event": "airborne-at-least-12m-AGL",
+            "state": {
+              "time": 17.00833333333301,
+              "crashed": false,
+              "position": [
+                -948.8635871488509,
+                36.72034046272268,
+                -499.0834384339867
+              ],
+              "velocity": [
+                116.97064026906496,
+                14.859874931507262,
+                -2.495030653262901
+              ],
+              "radarAltitude": 12.496508171626786,
+              "ias": 220.26552778300746,
+              "pitch": 11.868760028862289,
+              "roll": -0.14975333126197518,
+              "gear": 1,
+              "wheelsOn": false,
+              "landings": 0,
+              "throttle": 1,
+              "targetThrottle": 1,
+              "rates": [
+                -0.0664424342352578,
+                0.005640886456215407,
+                0.005463768340682772
+              ],
+              "forwardSpeed": 117.55394231437849,
+              "rightSpeed": -0.9466313427872639,
+              "mode": "CONV",
+              "nozzle": 0,
+              "liftFan": 0,
+              "liftDoor": 0,
+              "hoverTrim": 0.916512292260124,
+              "touchdown": {
+                "sink": 0,
+                "score": 0,
+                "grade": "—"
+              },
+              "paused": false
+            }
+          }
+        ],
+        "samples": [
+          {
+            "time": 0.8416666666666661,
+            "crashed": false,
+            "position": [
+              -1803.916951710979,
+              25.622285377832604,
+              -479.1017744432802
+            ],
+            "velocity": [
+              0.2142947780575514,
+              -0.01503375608909677,
+              -0.0061754920390253
+            ],
+            "radarAltitude": 1.522410659133346,
+            "ias": 5.2821382006128825,
+            "pitch": -3.6650085602058904,
+            "roll": -0.01685227352104147,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 0.2,
+            "targetThrottle": 0.2,
+            "rates": [
+              0.05527296001594184,
+              -0.000056175295577765846,
+              0.00016807935130051295
+            ],
+            "forwardSpeed": 0.21490505586217737,
+            "rightSpeed": -0.0005151404149893275,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9181058618248624,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 1.1083333333333318,
+            "crashed": false,
+            "position": [
+              -1803.8361067628434,
+              25.55869685385882,
+              -479.1039441553171
+            ],
+            "velocity": [
+              0.411332230320055,
+              -0.3150440838958735,
+              -0.010731278564700339
+            ],
+            "radarAltitude": 1.4613222212246164,
+            "ias": 4.570737002713217,
+            "pitch": -3.661941928008547,
+            "roll": -0.01705853794575689,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 0.3466666666666665,
+            "targetThrottle": 0.3466666666666665,
+            "rates": [
+              -0.0514739418611825,
+              -0.0000027562915960311994,
+              -0.0002110322085310901
+            ],
+            "forwardSpeed": 0.43087729098387667,
+            "rightSpeed": 0.00004535565623490362,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9180989190695973,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 1.4083333333333308,
+            "crashed": false,
+            "position": [
+              -1803.6823576754548,
+              25.555453458451193,
+              -479.10788022265007
+            ],
+            "velocity": [
+              0.6025973023422591,
+              0.20213210409229324,
+              -0.015476283436564845
+            ],
+            "radarAltitude": 1.4537690242504233,
+            "ias": 3.992402929675124,
+            "pitch": -3.77472573329514,
+            "roll": -0.012244198023165266,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 0.5116666666666665,
+            "targetThrottle": 0.5116666666666665,
+            "rates": [
+              0.04141524313833983,
+              -0.000011175927348415168,
+              -0.00041207115812733514
+            ],
+            "forwardSpeed": 0.5882643042651216,
+            "rightSpeed": 0.00048599566891142053,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9180942273390398,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 1.691666666666663,
+            "crashed": false,
+            "position": [
+              -1803.4731448133373,
+              25.565170536756447,
+              -479.1132418222384
+            ],
+            "velocity": [
+              0.8747633092022156,
+              -0.10527917123767203,
+              -0.02271809160278081
+            ],
+            "radarAltitude": 1.4660478631834266,
+            "ias": 3.2218931875306183,
+            "pitch": -3.7870662654074114,
+            "roll": -0.006403379554128996,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 0.6675000000000015,
+            "targetThrottle": 0.6675000000000015,
+            "rates": [
+              -0.042131731824032445,
+              0.000007687602172905658,
+              -0.0004399223784961229
+            ],
+            "forwardSpeed": 0.8801174874627555,
+            "rightSpeed": 0.00037559523427186867,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9180900718296912,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 1.9749999999999954,
+            "crashed": false,
+            "position": [
+              -1803.1896189264876,
+              25.56286781195983,
+              -479.12060975467693
+            ],
+            "velocity": [
+              1.1164213209373757,
+              0.08580517390707133,
+              -0.029499091589594056
+            ],
+            "radarAltitude": 1.4621527688439357,
+            "ias": 2.9265371251152774,
+            "pitch": -3.9685231533802314,
+            "roll": -0.0021259072565914957,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 0.8233333333333366,
+            "targetThrottle": 0.8233333333333366,
+            "rates": [
+              0.027877952096081175,
+              -0.000005172372319111493,
+              -0.0003325180367677436
+            ],
+            "forwardSpeed": 1.1082324854689078,
+            "rightSpeed": -0.000012411407050140488,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9180848645778192,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 2.2749999999999946,
+            "crashed": false,
+            "position": [
+              -1802.803769183034,
+              25.562276600117567,
+              -479.13077477403726
+            ],
+            "velocity": [
+              1.4656218162962877,
+              -0.07688000500341266,
+              -0.039241397396298304
+            ],
+            "radarAltitude": 1.4629172668259258,
+            "ias": 2.6547583177576106,
+            "pitch": -3.8119134377119925,
+            "roll": -0.0009856922737221112,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 0.9883333333333384,
+            "targetThrottle": 0.9883333333333384,
+            "rates": [
+              -0.0174027867875326,
+              -0.000014270191955070634,
+              -0.00026083473935997926
+            ],
+            "forwardSpeed": 1.4680114138626212,
+            "rightSpeed": -0.0005407148629846537,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9180785354486586,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 2.5749999999999935,
+            "crashed": false,
+            "position": [
+              -1802.301154066137,
+              25.56083456664216,
+              -479.14409430089864
+            ],
+            "velocity": [
+              1.9178831667805227,
+              0.049206519749791844,
+              -0.051672251564402784
+            ],
+            "radarAltitude": 1.4604245123109116,
+            "ias": 2.3873670701912233,
+            "pitch": -3.8748189071200003,
+            "roll": -0.002255660816087826,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.01179881462777172,
+              -0.000021961069664458713,
+              -0.00035612486181636467
+            ],
+            "forwardSpeed": 1.9108854648205895,
+            "rightSpeed": -0.0010289597238193199,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9180691184914697,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 2.8749999999999925,
+            "crashed": false,
+            "position": [
+              -1801.5956633884985,
+              25.560344649255107,
+              -479.16278036459914
+            ],
+            "velocity": [
+              2.8271658355494127,
+              -0.032580596244254384,
+              -0.07611196691193103
+            ],
+            "radarAltitude": 1.460616154223807,
+            "ias": 1.5633799096031082,
+            "pitch": -3.907295719560273,
+            "roll": -0.0040462383704995015,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.013583866833100191,
+              -0.00002118451122114533,
+              -0.0007405620508133175
+            ],
+            "forwardSpeed": 2.8238179427675236,
+            "rightSpeed": -0.0014647201360290518,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9180466612588142,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 3.1749999999999914,
+            "crashed": false,
+            "position": [
+              -1800.5681947574164,
+              25.562384271866833,
+              -479.1899018974619
+            ],
+            "velocity": [
+              4.032486396787317,
+              0.02645577387472558,
+              -0.10862875839460132
+            ],
+            "radarAltitude": 1.4621638070845435,
+            "ias": 2.251238878212649,
+            "pitch": -3.958149566663535,
+            "roll": -0.0038563173964913937,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.005658982554609695,
+              -0.000030100867285230686,
+              -0.0014225107465519694
+            ],
+            "forwardSpeed": 4.02251484483627,
+            "rightSpeed": -0.0021560117296177406,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9180148585049659,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 3.4583333333333237,
+            "crashed": false,
+            "position": [
+              -1799.2270650647567,
+              25.561244412156928,
+              -479.22527916201557
+            ],
+            "velocity": [
+              5.432284091657989,
+              -0.02222248087682763,
+              -0.1471368508081382
+            ],
+            "radarAltitude": 1.461429599497567,
+            "ias": 4.640724119741705,
+            "pitch": -3.9538419359426995,
+            "roll": -0.0027477959521177053,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.0036914150680578896,
+              -0.00005722404951935305,
+              -0.002240637328170978
+            ],
+            "forwardSpeed": 5.422862554052861,
+            "rightSpeed": -0.0037222048689336262,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9179797293299283,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 3.7583333333333226,
+            "crashed": false,
+            "position": [
+              -1797.340246784485,
+              25.55993085329872,
+              -479.27511856096123
+            ],
+            "velocity": [
+              7.135568976651156,
+              0.005873232086842972,
+              -0.19495755778301516
+            ],
+            "radarAltitude": 1.4598819096979945,
+            "ias": 7.8762188502341495,
+            "pitch": -3.92383964739283,
+            "roll": -0.0034935473471341717,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.0056433101634525955,
+              -0.00010762197975935984,
+              -0.0036349112111519594
+            ],
+            "forwardSpeed": 7.121117271245123,
+            "rightSpeed": -0.0066102782156842455,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9179395042605951,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 4.058333333333325,
+            "crashed": false,
+            "position": [
+              -1794.9098359522204,
+              25.557991067349594,
+              -479.33937473111047
+            ],
+            "velocity": [
+              9.043183017519446,
+              -0.01093152248946014,
+              -0.25000613198631116
+            ],
+            "radarAltitude": 1.4580821633703387,
+            "ias": 11.451549241420826,
+            "pitch": -3.8999397057587797,
+            "roll": -0.006869263374226148,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.0015907238482962924,
+              -0.00018177085601805125,
+              -0.006142469896194866
+            ],
+            "forwardSpeed": 9.026417623208445,
+            "rightSpeed": -0.011375687294130604,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9178974140753949,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 4.308333333333337,
+            "crashed": false,
+            "position": [
+              -1792.429749140986,
+              25.55779668975248,
+              -479.40495140484177
+            ],
+            "velocity": [
+              10.757906141948375,
+              0.005216732023993719,
+              -0.301498035909838
+            ],
+            "radarAltitude": 1.457753216985612,
+            "ias": 14.609257123846524,
+            "pitch": -3.8877006888699,
+            "roll": -0.011386195271224682,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.0030723222108116595,
+              -0.0002739845117906213,
+              -0.009726113523746326
+            ],
+            "forwardSpeed": 10.737015381858631,
+            "rightSpeed": -0.017711218524964933,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9178615541756717,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 4.55833333333335,
+            "crashed": false,
+            "position": [
+              -1789.5072014046016,
+              25.557514317026925,
+              -479.4821906308112
+            ],
+            "velocity": [
+              12.57613293251359,
+              -0.007222225971449574,
+              -0.35930916685315684
+            ],
+            "radarAltitude": 1.4575745022433537,
+            "ias": 18.00938530120784,
+            "pitch": -3.8630875597112233,
+            "roll": -0.016720925188654975,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.0002238205089577078,
+              -0.000410053032850368,
+              -0.015572798165223476
+            ],
+            "forwardSpeed": 12.553133010340087,
+            "rightSpeed": -0.0277036129787675,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9178251918322441,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 4.808333333333362,
+            "crashed": false,
+            "position": [
+              -1786.1190592354455,
+              25.556497541889478,
+              -479.57163869792873
+            ],
+            "velocity": [
+              14.476544580720644,
+              0.001222128146854569,
+              -0.4177087606721682
+            ],
+            "radarAltitude": 1.4564873574882533,
+            "ias": 21.656009807932563,
+            "pitch": -3.8604267166867823,
+            "roll": -0.021314290755217274,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.001492750269718799,
+              -0.0004925796894998987,
+              -0.02061472093733976
+            ],
+            "forwardSpeed": 14.449593200129097,
+            "rightSpeed": -0.03619579974999021,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9177884580328053,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 5.091666666666709,
+            "crashed": false,
+            "position": [
+              -1781.692300638824,
+              25.55683107903284,
+              -479.68834127522024
+            ],
+            "velocity": [
+              16.71766795874166,
+              -0.0017937106583030284,
+              -0.47648187027277356
+            ],
+            "radarAltitude": 1.4568460266216583,
+            "ias": 26.097729481015538,
+            "pitch": -3.838590690043692,
+            "roll": -0.024313477635992682,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.00014623258747961754,
+              -0.0005080303442799496,
+              -0.020725022647558208
+            ],
+            "forwardSpeed": 16.6870188895036,
+            "rightSpeed": -0.03625880942659443,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.91774662676048,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 5.341666666666722,
+            "crashed": false,
+            "position": [
+              -1777.250146559797,
+              25.556475191378166,
+              -479.80533676977575
+            ],
+            "velocity": [
+              18.75845487433527,
+              0.0008916242356462978,
+              -0.5299114990825976
+            ],
+            "radarAltitude": 1.4564677611761994,
+            "ias": 30.225888699995952,
+            "pitch": -3.839922572799002,
+            "roll": -0.027077491731834092,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.0004197464934695463,
+              -0.0005302270873546594,
+              -0.02072627280691668
+            ],
+            "forwardSpeed": 18.723718311940125,
+            "rightSpeed": -0.036376531245383814,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9177095193277129,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 5.608333333333402,
+            "crashed": false,
+            "position": [
+              -1771.9419476188143,
+              25.556941110141196,
+              -479.945021910097
+            ],
+            "velocity": [
+              20.990204220412046,
+              0.0005148067035778257,
+              -0.5881879042347935
+            ],
+            "radarAltitude": 1.4569368200853319,
+            "ias": 34.70510005567375,
+            "pitch": -3.8283512526931545,
+            "roll": -0.031310997311666276,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.00047043079336013473,
+              -0.0005737111605013727,
+              -0.02061892667337482
+            ],
+            "forwardSpeed": 20.951525175299906,
+            "rightSpeed": -0.03659129956034446,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9176698617714112,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 5.858333333333414,
+            "crashed": false,
+            "position": [
+              -1766.419111064032,
+              25.55682151880173,
+              -480.09020795661064
+            ],
+            "velocity": [
+              23.125610469306437,
+              0.00003044366692942299,
+              -0.6436518160052112
+            ],
+            "radarAltitude": 1.4568212651045052,
+            "ias": 38.87776293452704,
+            "pitch": -3.82668358966589,
+            "roll": -0.03744132301929206,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.00015515856062484724,
+              -0.0006275705822866354,
+              -0.02045859294786544
+            ],
+            "forwardSpeed": 23.08295692235887,
+            "rightSpeed": -0.036854168642798446,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.917632576165818,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 6.125000000000094,
+            "crashed": false,
+            "position": [
+              -1759.9344165221673,
+              25.55721699819241,
+              -480.26041176754296
+            ],
+            "velocity": [
+              25.441443511846057,
+              0.001959380728736547,
+              -0.7031032265793054
+            ],
+            "radarAltitude": 1.4572006700196667,
+            "ias": 43.27211221535312,
+            "pitch": -3.8199557190233393,
+            "roll": -0.046735241230468724,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.0004168945309729952,
+              -0.0006825093813411902,
+              -0.020258510346096683
+            ],
+            "forwardSpeed": 25.39446002529886,
+            "rightSpeed": -0.03691484464481287,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9175927700997343,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 6.408333333333442,
+            "crashed": false,
+            "position": [
+              -1752.3623964586725,
+              25.55772407085925,
+              -480.4586455309923
+            ],
+            "velocity": [
+              27.93838784955784,
+              0.002367107461319705,
+              -0.7661833307386291
+            ],
+            "radarAltitude": 1.4577043449637372,
+            "ias": 47.9241824401476,
+            "pitch": -3.8194577723512873,
+            "roll": -0.05856787611048654,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.00017766295676148724,
+              -0.0007235224682892997,
+              -0.020149993663425545
+            ],
+            "forwardSpeed": 27.886628211818977,
+            "rightSpeed": -0.036554112037661346,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9175504307984536,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 6.691666666666789,
+            "crashed": false,
+            "position": [
+              -1744.0783173668815,
+              25.558738227825312,
+              -480.6747440750348
+            ],
+            "velocity": [
+              30.465900943534333,
+              0.0041200752495091225,
+              -0.8289095676093776
+            ],
+            "radarAltitude": 1.4587038938648966,
+            "ias": 52.642286808556534,
+            "pitch": -3.8212105882859766,
+            "roll": -0.06969929452906312,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.00015374125581866228,
+              -0.0007400103564039696,
+              -0.020190098900214438
+            ],
+            "forwardSpeed": 30.40911980749281,
+            "rightSpeed": -0.03568701574813016,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9175080796404895,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 6.941666666666801,
+            "crashed": false,
+            "position": [
+              -1736.1712097632103,
+              25.559711837550843,
+              -480.88019521923445
+            ],
+            "velocity": [
+              32.71697545235492,
+              0.0038374515643910955,
+              -0.8840910085273912
+            ],
+            "radarAltitude": 1.4596798587878048,
+            "ias": 56.88098628482321,
+            "pitch": -3.825765123112548,
+            "roll": -0.07661954501241235,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.00040965455445563745,
+              -0.000736267375331131,
+              -0.020352215909767154
+            ],
+            "forwardSpeed": 32.65569944669192,
+            "rightSpeed": -0.03472160269393143,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9174706923535262,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 7.225000000000149,
+            "crashed": false,
+            "position": [
+              -1726.5267632456507,
+              25.560907707806408,
+              -481.1297637136229
+            ],
+            "velocity": [
+              35.28705362111523,
+              0.0044756343655680585,
+              -0.9466640089617777
+            ],
+            "radarAltitude": 1.4608704108533601,
+            "ias": 61.72858989802612,
+            "pitch": -3.830978729872816,
+            "roll": -0.07985064619852396,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.0002637164173524338,
+              -0.0007246120087291584,
+              -0.02055065230230384
+            ],
+            "forwardSpeed": 35.22054884992285,
+            "rightSpeed": -0.033709799739746193,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9174283057532951,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 7.475000000000161,
+            "crashed": false,
+            "position": [
+              -1717.4103489918662,
+              25.562024346084318,
+              -481.3647605745542
+            ],
+            "velocity": [
+              37.568268849877896,
+              0.004528245620665658,
+              -1.0020612597794027
+            ],
+            "radarAltitude": 1.4619866107041446,
+            "ias": 65.98974460193125,
+            "pitch": -3.8358683615850646,
+            "roll": -0.07929092690737839,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.0004309481537023159,
+              -0.0007179810261088591,
+              -0.020619012826519182
+            ],
+            "forwardSpeed": 37.49711019804981,
+            "rightSpeed": -0.033113354833784525,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9173908962229789,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 7.775000000000176,
+            "crashed": false,
+            "position": [
+              -1705.7158785479114,
+              25.563486850922104,
+              -481.6651262543069
+            ],
+            "velocity": [
+              40.31874569782499,
+              0.005116998043774313,
+              -1.068701921740269
+            ],
+            "radarAltitude": 1.4634442092717386,
+            "ias": 71.07113712031253,
+            "pitch": -3.8436557511281846,
+            "roll": -0.07713865265101814,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.00046369701894744865,
+              -0.0007226636773971087,
+              -0.020480293192051854
+            ],
+            "forwardSpeed": 40.24181588362294,
+            "rightSpeed": -0.03279637680175296,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9173459991259936,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 8.025000000000185,
+            "crashed": false,
+            "position": [
+              -1695.3389706632988,
+              25.564742769368223,
+              -481.9307526498762
+            ],
+            "velocity": [
+              42.61911240323817,
+              0.004886507633526655,
+              -1.1241479836084465
+            ],
+            "radarAltitude": 1.464702048471274,
+            "ias": 75.33936585625439,
+            "pitch": -3.8506343543397117,
+            "roll": -0.07652946043733784,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.000500456402649206,
+              -0.0007349264786696291,
+              -0.0202312500662131
+            ],
+            "forwardSpeed": 42.53733442847419,
+            "rightSpeed": -0.03271898416590324,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9173085792397586,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 8.325000000000168,
+            "crashed": false,
+            "position": [
+              -1682.1264901284148,
+              25.56619158753397,
+              -482.26779912175846
+            ],
+            "velocity": [
+              45.38648234509185,
+              0.0048435166757431185,
+              -1.190160882397079
+            ],
+            "radarAltitude": 1.466151224895004,
+            "ias": 80.54543437824893,
+            "pitch": -3.8585220939824008,
+            "roll": -0.07877532362914581,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.00041479845788707534,
+              -0.0007487979678465505,
+              -0.01991638905267863
+            ],
+            "forwardSpeed": 45.29881851048454,
+            "rightSpeed": -0.03251093757719237,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9172636656685523,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 8.625000000000151,
+            "crashed": false,
+            "position": [
+              -1668.082988355257,
+              25.56770293860671,
+              -482.62458772894473
+            ],
+            "velocity": [
+              48.15871871224466,
+              0.005393927049797718,
+              -1.2552809619003626
+            ],
+            "radarAltitude": 1.4676579892146293,
+            "ias": 85.85010201893002,
+            "pitch": -3.865990977590303,
+            "roll": -0.08327817900893786,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.0004888432026871901,
+              -0.0007479045341769799,
+              -0.019726084757705934
+            ],
+            "forwardSpeed": 48.06506171262679,
+            "rightSpeed": -0.03188231338362102,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.917218749456774,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 8.925000000000134,
+            "crashed": false,
+            "position": [
+              -1653.2073582837556,
+              25.56954783220294,
+              -483.0008545332984
+            ],
+            "velocity": [
+              50.93364256466227,
+              0.006936167673772605,
+              -1.319521765023702
+            ],
+            "radarAltitude": 1.4694900308056553,
+            "ias": 91.23601064931755,
+            "pitch": -3.876082709238664,
+            "roll": -0.08696944461905531,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.0007193681266153968,
+              -0.0007242782862549071,
+              -0.019698776174443582
+            ],
+            "forwardSpeed": 50.83368452288194,
+            "rightSpeed": -0.030802421314068518,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9171738453378109,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 9.225000000000117,
+            "crashed": false,
+            "position": [
+              -1637.4990603515037,
+              25.571863757438432,
+              -483.39641359014666
+            ],
+            "velocity": [
+              53.70957561121766,
+              0.008424029247446556,
+              -1.3832967089583605
+            ],
+            "radarAltitude": 1.471793557194701,
+            "ias": 96.67373571921433,
+            "pitch": -3.89100309495641,
+            "roll": -0.0867123288871591,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.0010121931559743337,
+              -0.000681280577733605,
+              -0.019769120161555822
+            ],
+            "forwardSpeed": 53.6029281568346,
+            "rightSpeed": -0.0295718790897197,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9171289610686366,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 9.5250000000001,
+            "crashed": false,
+            "position": [
+              -1620.9580138874287,
+              25.57462597112855,
+              -483.8112314453342
+            ],
+            "velocity": [
+              56.485152497034505,
+              0.010019940901327915,
+              -1.447146107121814
+            ],
+            "radarAltitude": 1.4745424716210387,
+            "ias": 102.10334411282733,
+            "pitch": -3.9102400415517256,
+            "roll": -0.08130312691648237,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.0012391654199991604,
+              -0.0006350084210211255,
+              -0.01978057250287216
+            ],
+            "forwardSpeed": 56.37141975775628,
+            "rightSpeed": -0.028618825214504984,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9170840961137917,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 9.825000000000083,
+            "crashed": false,
+            "position": [
+              -1603.5844663634853,
+              25.57790793571649,
+              -484.24540892778
+            ],
+            "velocity": [
+              59.25953406297918,
+              0.011702388780960785,
+              -1.5113350043712594
+            ],
+            "radarAltitude": 1.47781041580998,
+            "ias": 107.47390292463444,
+            "pitch": -3.934238565227915,
+            "roll": -0.07259828582904278,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.0015754028570840399,
+              -0.0006078626263532415,
+              -0.019527623574177904
+            ],
+            "forwardSpeed": 59.138244674267185,
+            "rightSpeed": -0.02820668414302041,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9170392546070326,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 10.125000000000066,
+            "crashed": false,
+            "position": [
+              -1585.3789035282741,
+              25.581474479157,
+              -484.69905734485945
+            ],
+            "velocity": [
+              62.031800470765056,
+              0.011632309822521702,
+              -1.575653556232964
+            ],
+            "radarAltitude": 1.481377543241809,
+            "ias": 112.75887877152333,
+            "pitch": -3.9631649283342245,
+            "roll": -0.06521426887084819,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.0017170435691923308,
+              -0.0006189068689947364,
+              -0.018923571206550343
+            ],
+            "forwardSpeed": 61.90254951499943,
+            "rightSpeed": -0.02832877753811558,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9169944252736312,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 10.45833333333338,
+            "crashed": false,
+            "position": [
+              -1564.1757739601994,
+              25.584922633158094,
+              -485.2258582353803
+            ],
+            "velocity": [
+              65.10746700162312,
+              0.008830568054502792,
+              -1.6463485331790229
+            ],
+            "radarAltitude": 1.4848490450909715,
+            "ias": 118.51178008434914,
+            "pitch": -3.992690496249462,
+            "roll": -0.0651375477837931,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.0012767513596225835,
+              -0.0006845365429262679,
+              -0.017978086618363916
+            ],
+            "forwardSpeed": 64.96953719977252,
+            "rightSpeed": -0.028699065080685537,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.916944587520961,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 10.758333333333363,
+            "crashed": false,
+            "position": [
+              -1544.2173858352696,
+              25.58716609478159,
+              -485.71999320128197
+            ],
+            "velocity": [
+              67.86898908235042,
+              0.006453821840657159,
+              -1.7079625325902457
+            ],
+            "radarAltitude": 1.4871123129329185,
+            "ias": 123.64637156571064,
+            "pitch": -4.009995128717275,
+            "roll": -0.07643829957396288,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.0007612037633692688,
+              -0.0007557726426262766,
+              -0.017075903710368632
+            ],
+            "forwardSpeed": 67.72378165879877,
+            "rightSpeed": -0.028425649701295574,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9168996894845111,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 11.025000000000015,
+            "crashed": false,
+            "position": [
+              -1525.7820341543108,
+              25.5887923828029,
+              -486.1745325870757
+            ],
+            "velocity": [
+              70.31703603245316,
+              0.006000467653966052,
+              -1.7605144059044506
+            ],
+            "radarAltitude": 1.4887423789057834,
+            "ias": 128.18050818859925,
+            "pitch": -4.018304930550679,
+            "roll": -0.09490219127907865,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.00028247994459336146,
+              -0.0008120647574546114,
+              -0.016481494853458494
+            ],
+            "forwardSpeed": 70.16571727193491,
+            "rightSpeed": -0.027106682117030934,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9168597608286323,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 11.341666666666663,
+            "crashed": false,
+            "position": [
+              -1503.0434904513002,
+              25.590816810968743,
+              -486.7321656542575
+            ],
+            "velocity": [
+              73.21552225140266,
+              0.007216073547042275,
+              -1.819939664122795
+            ],
+            "radarAltitude": 1.4907566770225174,
+            "ias": 133.49136274613602,
+            "pitch": -4.023337298350016,
+            "roll": -0.12234418807578636,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.00044102323755070786,
+              -0.0008703074848570177,
+              -0.016039133620299597
+            ],
+            "forwardSpeed": 73.05711343970397,
+            "rightSpeed": -0.024355528615023214,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.916812348930374,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 11.641666666666646,
+            "crashed": false,
+            "position": [
+              -1480.6563776352004,
+              25.5931615022299,
+              -487.277268348408
+            ],
+            "velocity": [
+              75.95320320316294,
+              0.004642110340655998,
+              -1.8697405246778898
+            ],
+            "radarAltitude": 1.49312281797706,
+            "ias": 138.50012094506835,
+            "pitch": -3.9761545258951716,
+            "roll": -0.15373145476929395,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.00560395424222336,
+              -0.001557548860888211,
+              -0.014450597573693134
+            ],
+            "forwardSpeed": 75.79325547325953,
+            "rightSpeed": -0.019793203417594052,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9167674523489453,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 11.908333333333298,
+            "crashed": false,
+            "position": [
+              -1460.068108644605,
+              25.593608119291385,
+              -487.77379779906414
+            ],
+            "velocity": [
+              78.38033884254794,
+              0.006147987367635874,
+              -1.9087966104674177
+            ],
+            "radarAltitude": 1.4935568860633204,
+            "ias": 143.04507090857723,
+            "pitch": -3.9473013382954796,
+            "roll": -0.19491364924659796,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.00037025606171992855,
+              -0.00150745216777948,
+              -0.013645056056948924
+            ],
+            "forwardSpeed": 78.21714122823651,
+            "rightSpeed": -0.015472355752699452,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9167274623708473,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 12.20833333333328,
+            "crashed": false,
+            "position": [
+              -1436.1340257497436,
+              25.59950398921539,
+              -488.3444568612431
+            ],
+            "velocity": [
+              81.10175332771709,
+              0.03231677036801807,
+              -1.9484452989369867
+            ],
+            "radarAltitude": 1.4992346827956524,
+            "ias": 148.2969867475214,
+            "pitch": -3.921715465419187,
+            "roll": -0.2378567605391463,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.004881245509720844,
+              -0.001558214731724506,
+              -0.013706131009766347
+            ],
+            "forwardSpeed": 80.93320595587743,
+            "rightSpeed": -0.008834010520415436,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9166827394442472,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 12.508333333333264,
+            "crashed": false,
+            "position": [
+              -1411.3849716937405,
+              25.61232402421568,
+              -488.9268388181641
+            ],
+            "velocity": [
+              83.81383798863752,
+              0.05118046479019255,
+              -1.9841496036975221
+            ],
+            "radarAltitude": 1.5118975203424299,
+            "ias": 153.55263059226593,
+            "pitch": -3.7683762503965585,
+            "roll": -0.26590441827067296,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.012837314971730164,
+              -0.001532874701657627,
+              -0.013360686136465166
+            ],
+            "forwardSpeed": 83.65328188970894,
+            "rightSpeed": -0.0021311466802360624,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9166383579685182,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 12.808333333333247,
+            "crashed": false,
+            "position": [
+              -1385.8237688938236,
+              25.62970294764339,
+              -489.5205377062781
+            ],
+            "velocity": [
+              86.51642402426049,
+              0.06330453577457502,
+              -2.0186481654099175
+            ],
+            "radarAltitude": 1.5291754098452692,
+            "ias": 158.706605769734,
+            "pitch": -3.5046223583235223,
+            "roll": -0.27598935755902826,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.017304792759324943,
+              -0.001433465715377657,
+              -0.012439569541908887
+            ],
+            "forwardSpeed": 86.37502863607206,
+            "rightSpeed": 0.0027168147190805847,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.916594200942506,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 13.141666666666561,
+            "crashed": false,
+            "position": [
+              -1356.473555964411,
+              25.651792778580532,
+              -490.1936228001053
+            ],
+            "velocity": [
+              89.50676081510247,
+              0.06718772213720602,
+              -2.0576488944787914
+            ],
+            "radarAltitude": 1.5512328808960554,
+            "ias": 164.4522763637127,
+            "pitch": -3.155832777761339,
+            "roll": -0.2715565094118782,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.01889106114074087,
+              -0.0012866274874450568,
+              -0.010717212384773755
+            ],
+            "forwardSpeed": 89.39172114234246,
+            "rightSpeed": 0.0055839158571400205,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9165452738603611,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 13.441666666666544,
+            "crashed": false,
+            "position": [
+              -1329.2083566483172,
+              25.67147592953203,
+              -490.81179853611155
+            ],
+            "velocity": [
+              92.18357099602484,
+              0.0638094613006609,
+              -2.093707611292447
+            ],
+            "radarAltitude": 1.5709441840211902,
+            "ias": 169.74792622125125,
+            "pitch": -2.8268354082369256,
+            "roll": -0.2624018424145409,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.01934867962234559,
+              -0.0011625442046877211,
+              -0.008665904321063064
+            ],
+            "forwardSpeed": 92.09273627735439,
+            "rightSpeed": 0.006587789473525341,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9165012286278782,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 13.708333333333195,
+            "crashed": false,
+            "position": [
+              -1304.300459898823,
+              25.68829476887161,
+              -491.3712925962052
+            ],
+            "velocity": [
+              94.5487899385315,
+              0.06356345747666439,
+              -2.125924009994701
+            ],
+            "radarAltitude": 1.5877650733926387,
+            "ias": 174.3507172353261,
+            "pitch": -2.529029075721906,
+            "roll": -0.25613438167085,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.019596205599341852,
+              -0.0010618655619811803,
+              -0.006600853453686616
+            ],
+            "forwardSpeed": 94.47845840502337,
+            "rightSpeed": 0.007122804630713464,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9164620429630276,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 13.991666666666513,
+            "crashed": false,
+            "position": [
+              -1277.1470838335067,
+              25.707363169475748,
+              -491.9760347278883
+            ],
+            "velocity": [
+              97.04543014083228,
+              0.0719738727067238,
+              -2.1596232185917934
+            ],
+            "radarAltitude": 1.6067633872031912,
+            "ias": 178.9908192817428,
+            "pitch": -2.2099156351579516,
+            "roll": -0.25341004895783265,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.01975006957381109,
+              -0.000946374905089059,
+              -0.004309536781655644
+            ],
+            "forwardSpeed": 96.9951133354632,
+            "rightSpeed": 0.008139497416043362,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9164204665821746,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 14.324999999999827,
+            "crashed": false,
+            "position": [
+              -1244.2999178541095,
+              25.73378423881463,
+              -492.7009259945765
+            ],
+            "velocity": [
+              99.96027971943347,
+              0.0861690423327485,
+              -2.1985029172008934
+            ],
+            "radarAltitude": 1.633066163461855,
+            "ias": 184.54035755110093,
+            "pitch": -1.8249028379286993,
+            "roll": -0.25260055384424007,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.020857300331514617,
+              -0.0007817759537455743,
+              -0.001583352103028068
+            ],
+            "forwardSpeed": 99.93156554312074,
+            "rightSpeed": 0.010222996144751306,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9163717492248856,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 14.62499999999981,
+            "crashed": false,
+            "position": [
+              -1213.9104422632845,
+              25.761844847143273,
+              -493.3656555905909
+            ],
+            "velocity": [
+              102.559605610437,
+              0.10749309702296118,
+              -2.2334506831016268
+            ],
+            "radarAltitude": 1.6609490713347483,
+            "ias": 189.96291229676496,
+            "pitch": -1.4382988285503684,
+            "roll": -0.2527508850039071,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.027009503609250567,
+              -0.0009790967424913324,
+              0.0005371795433440396
+            ],
+            "forwardSpeed": 102.54950425026225,
+            "rightSpeed": 0.009490241304279667,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9163281142413343,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 14.941666666666459,
+            "crashed": false,
+            "position": [
+              -1180.9919627024428,
+              25.811747502719268,
+              -494.0782301708948
+            ],
+            "velocity": [
+              105.26793256944441,
+              0.22346354676702962,
+              -2.265497749171756
+            ],
+            "radarAltitude": 1.7098853064962078,
+            "ias": 195.7572192501638,
+            "pitch": -0.6946599101928814,
+            "roll": -0.27634060120233966,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.0603738801686244,
+              -0.0010945284799934523,
+              0.0015961747286120502
+            ],
+            "forwardSpeed": 105.28260142752106,
+            "rightSpeed": 0.002454053911099763,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9162830568587388,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 15.258333333333107,
+            "crashed": false,
+            "position": [
+              -1147.224579533738,
+              25.916833690802708,
+              -494.80065577290776
+            ],
+            "velocity": [
+              107.9169868298944,
+              0.45310203525450365,
+              -2.2964967319570957
+            ],
+            "radarAltitude": 1.8130578405089182,
+            "ias": 200.99484486017988,
+            "pitch": 0.8907557441169426,
+            "roll": -0.29573548173339276,
+            "gear": 1,
+            "wheelsOn": true,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.12058728419091747,
+              -0.0012475781627322943,
+              0.00031906005074337546
+            ],
+            "forwardSpeed": 107.93413305550453,
+            "rightSpeed": -0.00941819398705146,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9162407266639776,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 15.524999999999759,
+            "crashed": false,
+            "position": [
+              -1118.150268936715,
+              26.08277558822904,
+              -495.41970168190295
+            ],
+            "velocity": [
+              110.04802034433261,
+              0.8776879568380577,
+              -2.3590904093149394
+            ],
+            "radarAltitude": 1.9754615219220568,
+            "ias": 204.94277748212664,
+            "pitch": 3.2122840553900267,
+            "roll": -0.2715922758819103,
+            "gear": 1,
+            "wheelsOn": false,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.1800085726949568,
+              -0.0058319476305284034,
+              -0.0037776524652805023
+            ],
+            "forwardSpeed": 109.94144378775874,
+            "rightSpeed": -0.10469346802288548,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9162089082207463,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 15.79166666666641,
+            "crashed": false,
+            "position": [
+              -1088.5347411773473,
+              26.475062615503187,
+              -496.05957056647406
+            ],
+            "velocity": [
+              111.96372007646295,
+              2.184384096416409,
+              -2.433483187770038
+            ],
+            "radarAltitude": 2.3568594146997164,
+            "ias": 208.62577511452008,
+            "pitch": 6.103918864295131,
+            "roll": -0.1900216515803081,
+            "gear": 1,
+            "wheelsOn": false,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.19237719531248654,
+              -0.01023115008560691,
+              -0.0049827413070793625
+            ],
+            "forwardSpeed": 111.57124145136268,
+            "rightSpeed": -0.37735813059768075,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.916188279150202,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 16.091666666666395,
+            "crashed": false,
+            "position": [
+              -1054.6623671133725,
+              27.49786761302741,
+              -496.79819334360417
+            ],
+            "velocity": [
+              113.72019613699092,
+              4.7393917433220345,
+              -2.4827671987556443
+            ],
+            "radarAltitude": 3.358372681833057,
+            "ias": 212.33452428486473,
+            "pitch": 9.306701163134418,
+            "roll": -0.09277644945498996,
+            "gear": 1,
+            "wheelsOn": false,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.17686517511952277,
+              -0.009977259083038191,
+              -0.003135737314533662
+            ],
+            "forwardSpeed": 112.99394896543718,
+            "rightSpeed": -0.7306052026569072,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9161938187724973,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 16.374999999999712,
+            "crashed": false,
+            "position": [
+              -1022.258680768856,
+              29.294691749006155,
+              -497.50427409655947
+            ],
+            "velocity": [
+              114.89791004462194,
+              7.951295514885091,
+              -2.4964435198907435
+            ],
+            "radarAltitude": 5.1284309530487775,
+            "ias": 215.02007765438296,
+            "pitch": 12.009978867971656,
+            "roll": -0.041334428021739866,
+            "gear": 1,
+            "wheelsOn": false,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              0.15574011129032014,
+              -0.005927575369814787,
+              -0.000050868466534966964
+            ],
+            "forwardSpeed": 114.03898389096926,
+            "rightSpeed": -0.9785045180966747,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9162401305302847,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 16.65833333333303,
+            "crashed": false,
+            "position": [
+              -989.5798576720908,
+              32.062712930338364,
+              -498.21119669329624
+            ],
+            "velocity": [
+              115.73610830583175,
+              11.447586083996983,
+              -2.4926686537647167
+            ],
+            "radarAltitude": 7.867316379638389,
+            "ias": 217.165478498404,
+            "pitch": 12.9787697639215,
+            "roll": -0.052882045848214515,
+            "gear": 1,
+            "wheelsOn": false,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.021723230357257345,
+              -0.0003019309654321853,
+              0.0029551212004255835
+            ],
+            "forwardSpeed": 115.37461806356643,
+            "rightSpeed": -1.0680874012672215,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9163344742694571,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          },
+          {
+            "time": 16.958333333333012,
+            "crashed": false,
+            "position": [
+              -954.707862829742,
+              35.98568322734918,
+              -498.9587262156505
+            ],
+            "velocity": [
+              116.76785039473805,
+              14.454874219378082,
+              -2.4932560544039686
+            ],
+            "radarAltitude": 11.76522594218769,
+            "ias": 219.777961938547,
+            "pitch": 12.061430445187993,
+            "roll": -0.13169783683480213,
+            "gear": 1,
+            "wheelsOn": false,
+            "landings": 0,
+            "throttle": 1,
+            "targetThrottle": 1,
+            "rates": [
+              -0.0675977514166475,
+              0.004977787713922486,
+              0.0052246206913214846
+            ],
+            "forwardSpeed": 117.23858626157592,
+            "rightSpeed": -0.9773571587608014,
+            "mode": "CONV",
+            "nozzle": 0,
+            "liftFan": 0,
+            "liftDoor": 0,
+            "hoverTrim": 0.9164834593357001,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "paused": false
+          }
+        ],
+        "method": "Configured runway spawn; P releases brake, Shift commands full throttle, ArrowDown starts rotation at135IAS and releases by12°pitch or6mAGL; actual physics must reach12mAGL off wheels. No rigid-state assignment. This is takeoff only, not a full circuit.",
+        "renderFixture": {
+          "reason": "Control-function check at 640x360 CSS pixels on cloud software renderer; Balanced visual/benchmark/endurance gates run separately at 1280x720",
+          "before": {
+            "profile": "BALANCED",
+            "quality": 1,
+            "viewport": [
+              1280,
+              720
+            ],
+            "buffer": [
+              1152,
+              648
+            ],
+            "shadows": true,
+            "frameEMA": 628.6036415629209,
+            "flightT": 0.39166666666666705
+          },
+          "fixture": {
+            "profile": "BATTERY",
+            "quality": 0,
+            "viewport": [
+              640,
+              360
+            ],
+            "buffer": [
+              640,
+              360
+            ],
+            "shadows": false,
+            "frameEMA": 573.8315949114415,
+            "flightT": 0.7916666666666663
+          },
+          "after": {
+            "profile": "BATTERY",
+            "quality": 0,
+            "viewport": [
+              640,
+              360
+            ],
+            "buffer": [
+              640,
+              360
+            ],
+            "shadows": false,
+            "frameEMA": 730.4367472149622,
+            "flightT": 17.00833333333301
+          },
+          "wallSeconds": 236.015
+        }
+      }
+    },
+    {
+      "name": "London save identity survives restore",
+      "status": "PASS",
+      "details": {
+        "mode": "LONDON",
+        "pos": [
+          -948.8635871488509,
+          36.72034046272268,
+          -499.0834384339867
+        ]
+      }
+    },
+    {
+      "name": "London mission menu restricts unsupported legacy-only worlds",
+      "status": "PASS",
+      "details": {
+        "FREE FLIGHT": false,
+        "STOVL QUALIFICATION": false,
+        "STORM DIVERSION": false,
+        "LOW-LEVEL NAVIGATION": false,
+        "ENGINE EMERGENCY": false,
+        "TRAFFIC INTERCEPT": true,
+        "OFFSHORE RECOVERY": true,
+        "CONVENTIONAL TAKEOFF": false,
+        "CIRCUIT & LANDING": false,
+        "CROSSWIND LANDING": false,
+        "ILS APPROACH": false,
+        "NIGHT LANDING": false,
+        "LOW-VIS APPROACH": false,
+        "HUMID VAPOUR RUN": false,
+        "SHORT TAKEOFF": false,
+        "STOVL TRANSITION": false,
+        "HOVER PRACTICE": false,
+        "VERTICAL LANDING": false,
+        "NAVIGATION FLIGHT": false,
+        "FUEL MANAGEMENT": false,
+        "ENGINE-OUT LANDING": false,
+        "DIVERSION": false
+      }
+    },
+    {
+      "name": "profile switches retain landmarks and bounded scene resources",
+      "status": "PASS",
+      "details": [
+        {
+          "profile": "BATTERY",
+          "mode": "LONDON",
+          "landmarks": 9,
+          "stats": {
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 10,
+            "pendingBuildings": 0,
+            "lods": [
+              9,
+              63,
+              0
+            ]
+          },
+          "buffer": [
+            806,
+            453
+          ]
+        },
+        {
+          "profile": "BALANCED",
+          "mode": "LONDON",
+          "landmarks": 9,
+          "stats": {
+            "imagery": {
+              "resident": 2,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 2,
+              "estimatedRGBABytes": 2796202.6666666665,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 10,
+            "pendingBuildings": 0,
+            "lods": [
+              9,
+              63,
+              0
+            ]
+          },
+          "buffer": [
+            1152,
+            648
+          ]
+        },
+        {
+          "profile": "HIGH",
+          "mode": "LONDON",
+          "landmarks": 9,
+          "stats": {
+            "imagery": {
+              "resident": 2,
+              "pending": 2,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 2796202.6666666665,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 10,
+            "pendingBuildings": 0,
+            "lods": [
+              9,
+              63,
+              0
+            ]
+          },
+          "buffer": [
+            1280,
+            720
+          ]
+        },
+        {
+          "profile": "BALANCED",
+          "mode": "LONDON",
+          "landmarks": 9,
+          "stats": {
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 73,
+            "groundTiles": 10,
+            "pendingBuildings": 61,
+            "lods": [
+              9,
+              64,
+              0
+            ]
+          },
+          "buffer": [
+            1152,
+            648
+          ]
+        }
+      ]
+    },
+    {
+      "name": "context restoration leaves a rendered London world",
+      "status": "PASS",
+      "details": {
+        "running": true,
+        "paused": true,
+        "crashed": false,
+        "simT": 18.425033333332937,
+        "flightT": 17.00833333333301,
+        "stepCount": 2041,
+        "position": [
+          -948.8635871488509,
+          36.72034046272268,
+          -499.0834384339867
+        ],
+        "velocity": [
+          116.97064026906496,
+          14.859874931507262,
+          -2.495030653262901
+        ],
+        "quaternion": [
+          0.07244929119130242,
+          -0.6986889368931206,
+          0.07338533016188428,
+          0.7079544215456742
+        ],
+        "fuel": 3213.8666333514543,
+        "stolMode": "CONV",
+        "nozzle": 0,
+        "gearD": 1,
+        "camMode": 0,
+        "frameEMA": 956.5092076287888,
+        "graphicsLevel": 1,
+        "settings": {
+          "fbw": "ASSIST",
+          "fail": "OFF",
+          "sens": 1,
+          "expo": 0.3,
+          "dz": 0.07,
+          "invPitch": false,
+          "coord": true,
+          "hoverAssist": true,
+          "hmds": "FULL",
+          "tOp": 0.85,
+          "tSz": 1,
+          "hand": "R",
+          "rudSlider": false,
+          "gyro": false,
+          "gDz": 0.12,
+          "gThrBtn": true,
+          "quality": "MED",
+          "vapour": "ENHANCED",
+          "volume": 0,
+          "scan": false,
+          "structure": "REAL",
+          "targetMarker": false
+        },
+        "drawingBuffer": [
+          1152,
+          648
+        ],
+        "renderer": {
+          "calls": 289,
+          "triangles": 193241,
+          "textures": 15,
+          "geometries": 281
+        },
+        "replaySeconds": 17
+      }
+    },
+    {
+      "name": "no JavaScript/shader errors or remote requests",
+      "status": "PASS",
+      "details": {
+        "errors": [],
+        "warnings": [
+          "WebGL: INVALID_OPERATION: delete: object does not belong to this context",
+          "WebGL: INVALID_OPERATION: delete: object does not belong to this context"
+        ],
+        "requests": 1
+      }
+    }
+  ],
+  "limits": [
+    "Cloud software-renderer functional test; not Galaxy A51 performance.",
+    "Configured runway spawn; takeoff uses real keyboard controls/physics. Other geography/rebase checks use explicit state fixtures, not a continuous corridor flight."
+  ],
+  "environment": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+    "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "viewport": [
+      1280,
+      720
+    ],
+    "devicePixelRatio": 1,
+    "drawingBuffer": [
+      1152,
+      648
+    ],
+    "hardware": "Cloud Linux Chromium using SwiftShader software rasterizer; NOT Galaxy A51",
+    "realDevice": false
+  }
+}

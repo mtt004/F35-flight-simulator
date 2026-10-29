@@ -14,3 +14,5 @@
 #lightningError{display:none;position:fixed;inset:0;z-index:60;background:#0b1729ee;color:#fff;text-align:center;padding:20vh 8vw;font:16px/1.7 system-ui}#lightningError button{display:block;margin:20px auto;padding:14px 24px}
 #tstick{border-color:#b3d8e077;background:radial-gradient(circle,#95b5bd1a,#11243166);box-shadow:inset 0 0 20px #a3cee011}#tknob{border-color:#bddde6;background:#bbd5de25}
 @media(orientation:landscape) and (max-height:500px){.bwrap{grid-template-columns:minmax(280px,1fr) minmax(300px,1fr);gap:14px;padding:18px 22px}.bwrap h1{font-size:32px}.pan{padding:12px}#boot .tags{display:none}.tagline{font-size:12px}#log{font-size:10px;min-height:unset}.eyebrow{font-size:9px}#boot .statusbar{font-size:8px}#tstick{width:138px;height:138px}#tknob{width:48px;height:48px;margin:-24px}#tthr{width:48px}#tbtns{bottom:65px;grid-template-columns:repeat(2,54px);gap:5px}.tbtn{height:38px}.ped{width:68px;height:44px}#missionBox{max-width:34vw}}
+
+#sceneryBadge{position:fixed;bottom:5px;left:50%;transform:translateX(-50%);font:9px monospace;color:#b8cece;background:#101f29b3;padding:3px 7px;pointer-events:none;z-index:8;white-space:nowrap}
