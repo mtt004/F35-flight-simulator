@@ -5,3 +5,5 @@ Pillow==12.3.0
 pyproj==3.8.0
 numpy==2.3.5
 certifi==2026.10.19
+rasterio==1.5.2
+requests==2.34.2

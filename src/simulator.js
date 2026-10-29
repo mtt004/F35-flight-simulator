@@ -85,7 +85,7 @@ const S=Object.assign({fbw:'ASSIST',fail:'OFF',sens:1,expo:0.3,dz:0.07,invPitch:
 /* ================= [4] WORLD GENERATION ================= */
 const SYL=["VEL","KAR","OST","RIN","HAV","DOR","MIR","SOL","TRA","VEN","GAR","LUM","BRA","KES","OND","FAL"];
 const SUF=["A","IA","EN","OR","EA","UM"],APTS=[" FIELD"," STRIP"," BAY"," POINT"," INTL"," AFB"],CITS=["BURG","STAD","PORT","VILLE","HOLM","FORD","WICK"];
-let worldMode=SAVED.worldMode==='LONDON'?'LONDON':SAVED.worldMode==='LEGACY'||SAVED.seed?'LEGACY':'LONDON';
+let worldMode=Lightning.chooseWorld(SAVED);
 LightningLondon.load(globalThis.__LONDON_DATA__);
 let airports=[],cities=[];
 const REGION=36000,FEATURE_BIN=12000,featureRegions=new Map(),airportBins=new Map(),cityBins=new Map();
@@ -366,6 +366,7 @@ renderer.domElement.className='gl';document.body.prepend(renderer.domElement);
 const scene=new THREE.Scene();
 scene.fog=new THREE.FogExp2(0x9db7c8,0.00006);
 const camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,0.5,90000);
+LightningLondonLighting.environment(THREE,renderer,scene);
 const sunLight=new THREE.DirectionalLight(0xfff2e0,1.1);scene.add(sunLight);
 const moonLight=new THREE.DirectionalLight(0x8fa8d8,0.14);scene.add(moonLight);
 const hemi=new THREE.HemisphereLight(0x9db8d8,0x3a4a3a,0.55);scene.add(hemi);
@@ -386,7 +387,10 @@ const skyMat=new THREE.ShaderMaterial({side:THREE.BackSide,depthWrite:false,fog:
   sky+=uSunC*pow(sunH,5.0)*horizon*uDusk*.28;
   sky=mix(sky,uHor*.91,uCloud*.34*smoothstep(-.02,.52,h));
   if(uNight>.02&&h>0.0){vec3 g=floor(d*190.0);float ss=hsh(g);float st=step(.99875,ss)*(.55+.45*sin(ss*6000.0+uT*1.7));sky+=vec3(st)*uNight*smoothstep(0.0,.24,h);}
-  sky+=vec3(.85,.9,1.0)*uFlash;gl_FragColor=vec4(sky,1.0);}`});
+  sky+=vec3(.85,.9,1.0)*uFlash;sky=mix(sky/12.92,pow((sky+.055)/1.055,vec3(2.4)),step(vec3(.04045),sky));gl_FragColor=vec4(sky,1.0);
+#include <tonemapping_fragment>
+#include <encodings_fragment>
+}`});
 const sky=new THREE.Mesh(new THREE.SphereGeometry(40000,24,16),skyMat);scene.add(sky);
 const moon=new THREE.Mesh(new THREE.SphereGeometry(900,12,10),new THREE.MeshBasicMaterial({color:0xdfe4ee}));scene.add(moon);
 const waterMat=new THREE.ShaderMaterial({transparent:true,depthWrite:false,
@@ -457,7 +461,7 @@ const CHUNK=2400,chunks=new Map(),terrainMat=new THREE.ShaderMaterial({vertexCol
   float diff=max(dot(n,l),0.);float hemi=.36+.24*n.y;col*=hemi+diff*(.43+.17*uDay);col*=mix(1.,.76,uWet);
   float spec=pow(max(dot(reflect(-l,n),v),0.),52.)*uWet*.12;col+=vec3(.78,.86,.92)*spec;
   float dist=distance(cameraPosition,vW),fog=1.-exp(-uFogD*uFogD*dist*dist);float ground=smoothstep(2500.,15500.,length(cameraPosition.xz-vW.xz))*(1.-smoothstep(300.,1500.,vW.y))*.18;fog=clamp(fog+ground,0.,1.);col=mix(col,uFog,fog);gl_FragColor=vec4(col,1.);}`});
-terrainMat.userData.shared=true;LightningScenery.init(THREE,terrainMat);LightningLondon.initTerrain(THREE,terrainMat);LightningScenery.setPalette(THREE,terrainMat,L.palette,customPalette);
+terrainMat.userData.shared=true;LightningScenery.init(THREE,terrainMat);LightningLondon.initTerrain(THREE,terrainMat);LightningLondonLighting.terrain(THREE,terrainMat);LightningScenery.setPalette(THREE,terrainMat,L.palette,customPalette);
 const chunkQueue=[];let vegDensity=1,lodRadius=7;
 function releaseChunk(entry){
   if(!entry)return;
@@ -554,7 +558,7 @@ function buildShoreline(ci,cj,lod){
 }
 function buildChunk(ci,cj,lod){
   const seg=[64,32,16][lod],cx=(ci+.5)*CHUNK,cz=(cj+.5)*CHUNK,g=terrainGeometry(ci,cj,seg);
-  const m=new THREE.Mesh(g,terrainMat);m.position.set(cx,0,cz);worldGroup.add(m);
+  const m=new THREE.Mesh(g,terrainMat);m.receiveShadow=true;m.position.set(cx,0,cz);worldGroup.add(m);
   const shore=worldMode==='LONDON'?null:buildShoreline(ci,cj,lod),veg=worldMode==='LONDON'?[]:(lod===0||(lod===1&&ql()>=1))?buildVeg(ci,cj,lod):[];
   const key=ci+','+cj,old=chunks.get(key);if(old)releaseChunk(old);
   chunks.set(key,{mesh:m,lod,veg,shore});
@@ -1600,8 +1604,9 @@ function updateWeather(dt){
   skyMat.uniforms.uSunC.value.set(1,0.9,0.75).lerp(new THREE.Color(1,0.42,0.18),duskA);
   skyMat.uniforms.uNight.value=nightF;skyMat.uniforms.uCloud.value=wx.cov;skyMat.uniforms.uDusk.value=duskA;skyMat.uniforms.uHaze.value=clamp(.12+wx.cov*.34+fogW*.55,0,1);
   skyFlash*=Math.exp(-dt*6);skyMat.uniforms.uFlash.value=skyFlash;skyMat.uniforms.uT.value=simT;
-  scene.fog.color.copy(hor);scene.fog.density=clamp(3.2/wx.vis,0.00004,0.002);
+  scene.fog.color.copy(hor).convertSRGBToLinear();scene.fog.density=clamp(1.9/wx.vis,0.000025,0.002);
   sunLight.position.copy(sunDir).multiplyScalar(1000);
+  LightningLondonLighting.update(THREE,renderer,scene,sunLight,sunDir,P.pos,heightAt(P.pos.x+OX,P.pos.z+OZ),ql(),dayF,performance.now()/1000,worldMode==='LONDON');
   sunLight.intensity=1.25*dayF*(1-wx.cov*0.55);
   sunLight.color.set(1,0.9,0.78).lerp(new THREE.Color(1,0.5,0.25),duskA);
   moonDir.set(-sunDir.x,Math.max(0.3,-sunDir.y+0.5),-sunDir.z).normalize();
@@ -3259,7 +3264,7 @@ function newWorld(seed){
   genWorld();populateApts();populateScen();initClouds();
   if(worldMode==='LONDON')LightningLondon.create(THREE,worldGroup,terrainMat);
   water.visible=worldMode!=='LONDON';terrainMat.uniforms.uLondon.value=worldMode==='LONDON'?1:0;skyMat.uniforms.uGroundHorizon.value=worldMode==='LONDON'?1:0;
-  $('worldMode').value=worldMode;$('worldNote').textContent=worldMode==='LONDON'?'London: 39 × 15 km OS data · estimated heights · procedural terrain beyond coverage':'Legacy procedural world · generated geography';
+  $('worldMode').value=worldMode;$('worldNote').textContent=worldMode==='LONDON'?'London v0.4: 39 × 15 km · Sentinel-2 10m imagery · EA LiDAR heights + estimated gaps':'Legacy procedural world · generated geography';
   fuel=selectedFuel();crashed=false;autoBrake=false;parkBrake=true;
   resetFlightSystems();applyScenario();placeAt(startType);configureScenarioState();
   applyWx();initShips();
