@@ -31,12 +31,36 @@ jobs:
           cmdline-tools-version: '12266719'
           packages: 'platform-tools platforms;android-35 build-tools;35.0.0'
           log-accepted-android-sdk-licenses: 'false'
-      - name: Rebuild pinned licensed London scenery
+      - name: Rebuild pinned OS and Sentinel imagery plus EA 2022 LiDAR heights
         run: |
           python3 -m venv .tmp/london-venv
           .tmp/london-venv/bin/pip install -r scripts/london-requirements.txt
           .tmp/london-venv/bin/python scripts/build-london.py
           .tmp/london-venv/bin/python scripts/build-london-ground.py
+          .tmp/london-venv/bin/python scripts/build-london-imagery.py
+          .tmp/london-venv/bin/python scripts/build-london-heights.py
+          .tmp/london-venv/bin/python scripts/test-london-heights.py
+      - name: Remove only regenerated raster caches on the disposable runner
+        if: runner.environment == 'github-hosted'
+        run: |
+          python3 - <<'PYTHON'
+          from pathlib import Path
+          import shutil
+          # Keep processed scenery and .tmp/london OS archives for source packaging.
+          cache_root = Path('.tmp').resolve()
+          lidar = Path('.tmp/london-lidar')
+          assert not lidar.is_symlink(), 'Refusing symlinked task cache'
+          assert lidar.resolve().parent == cache_root, 'Unexpected LiDAR cache location'
+          if lidar.exists():
+              shutil.rmtree(lidar)
+          for name in ['london-sentinel-tci.tif', 'london-sentinel-june-tci.tif', 'london-sentinel-east-tci.tif']:
+              path = Path('.tmp') / name
+              assert not path.is_symlink(), 'Refusing symlinked task cache'
+              assert path.resolve().parent == cache_root, 'Unexpected Sentinel cache location'
+              path.unlink(missing_ok=True)
+          print('Removed generated LiDAR/Sentinel rasters; kept processed packs and pinned OS source archives')
+          PYTHON
+          df -h .
       - run: npm test
       - run: bash scripts/build-android.sh
       - name: Compile the test APK before starting the memory-intensive emulator
@@ -117,3 +141,4 @@ jobs:
             dist/
             android/app/build/reports/
             android/app/build/outputs/androidTest-results/
+

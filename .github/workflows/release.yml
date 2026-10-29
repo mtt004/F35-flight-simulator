@@ -6,10 +6,10 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'New immutable experimental release tag'
+        description: 'New immutable candidate tag; must match package.json'
         type: string
         required: false
-        default: ''
+        default: 'v0.4.0-candidate.1'
 permissions:
   contents: read
 concurrency:
@@ -46,12 +46,36 @@ jobs:
           cmdline-tools-version: '12266719'
           packages: 'platform-tools platforms;android-35 build-tools;35.0.0'
           log-accepted-android-sdk-licenses: 'false'
-      - name: Rebuild pinned licensed London scenery
+      - name: Rebuild pinned OS and Sentinel imagery plus EA 2022 LiDAR heights
         run: |
           python3 -m venv .tmp/london-venv
           .tmp/london-venv/bin/pip install -r scripts/london-requirements.txt
           .tmp/london-venv/bin/python scripts/build-london.py
           .tmp/london-venv/bin/python scripts/build-london-ground.py
+          .tmp/london-venv/bin/python scripts/build-london-imagery.py
+          .tmp/london-venv/bin/python scripts/build-london-heights.py
+          .tmp/london-venv/bin/python scripts/test-london-heights.py
+      - name: Remove only regenerated raster caches on the disposable runner
+        if: runner.environment == 'github-hosted'
+        run: |
+          python3 - <<'PYTHON'
+          from pathlib import Path
+          import shutil
+          # Keep processed scenery and .tmp/london OS archives for source packaging.
+          cache_root = Path('.tmp').resolve()
+          lidar = Path('.tmp/london-lidar')
+          assert not lidar.is_symlink(), 'Refusing symlinked task cache'
+          assert lidar.resolve().parent == cache_root, 'Unexpected LiDAR cache location'
+          if lidar.exists():
+              shutil.rmtree(lidar)
+          for name in ['london-sentinel-tci.tif', 'london-sentinel-june-tci.tif', 'london-sentinel-east-tci.tif']:
+              path = Path('.tmp') / name
+              assert not path.is_symlink(), 'Refusing symlinked task cache'
+              assert path.resolve().parent == cache_root, 'Unexpected Sentinel cache location'
+              path.unlink(missing_ok=True)
+          print('Removed generated LiDAR/Sentinel rasters; kept processed packs and pinned OS source archives')
+          PYTHON
+          df -h .
       - run: npm test
       - run: npm run build
       - run: npx playwright install --with-deps chromium
@@ -137,12 +161,14 @@ jobs:
         run: node scripts/run-benchmarks.mjs legacy/F35B_Offline_Open_World_Simulator_Advanced_Physics_Overhaul.html --seconds 10
       - name: Final cloud benchmark and screenshots
         run: node scripts/run-benchmarks.mjs dist/index.html --seconds 10
-      - name: Fixed V2 and London visual comparisons
+      - name: Fixed V0.3 and V0.4 visual comparisons
         run: |
-          git worktree add --detach .tmp/visual-v020 488ea110cb57e5e0ba59605547f6da0687706f41
-          node .tmp/visual-v020/scripts/build-web.mjs
-          node scripts/capture-london.mjs .tmp/visual-v020/dist/Lightning-F35B.html before
-          node scripts/capture-london.mjs dist/index.html after
+          git worktree add --detach .tmp/visual-v03 4f07f11a30582cfc5635951e22b53884116a6cff
+          mkdir -p .tmp/visual-v03/scenery-packs/london
+          cp -a scenery-packs/london/. .tmp/visual-v03/scenery-packs/london/
+          node .tmp/visual-v03/scripts/build-web.mjs
+          node scripts/capture-v04.mjs .tmp/visual-v03/dist/Lightning-F35B.html before
+          node scripts/capture-v04.mjs dist/index.html after
       - name: London controlled render benchmarks
         run: node scripts/benchmark-london.mjs dist/index.html
       - name: Twenty-minute London flight and streaming observation
@@ -152,22 +178,31 @@ jobs:
           python3 - <<'PYTHON'
           from pathlib import Path
           import hashlib, json, os, zipfile
+          def distributable(path):
+              return (path.is_file() and path.name != 'heights.json'
+                      and path.suffix.lower() not in {'.tif', '.tiff', '.vrt', '.asc', '.bil', '.img', '.jp2'})
           evidence = Path('dist/Lightning-F35B-Evidence.zip')
           with zipfile.ZipFile(evidence, 'w', zipfile.ZIP_DEFLATED) as z:
-              for folder in ['benchmarks', 'screenshots', 'scenery-packs/london', 'docs']:
+              for folder in ['benchmarks', 'screenshots', 'scenery-packs', 'docs']:
                   for path in sorted(Path(folder).rglob('*')):
-                      if path.is_file(): z.write(path, path.as_posix())
+                      if distributable(path): z.write(path, path.as_posix())
               z.write('dist/android-verification.json', 'android-verification.json')
               z.write('dist/android-installation.json', 'android-installation.json')
               if Path('dist/runner-storage.json').is_file(): z.write('dist/runner-storage.json', 'runner-storage.json')
               for path in sorted(Path('dist/android-host-diagnostics').rglob('*')):
                   if path.is_file(): z.write(path, path.relative_to('dist').as_posix())
               for path in sorted(Path('android/app/build/outputs/androidTest-results/connected').rglob('*')):
-                  if path.is_file(): z.write(path, path.as_posix())
+                  if distributable(path): z.write(path, path.as_posix())
           scenery = Path('dist/Lightning-London-Scenery.zip')
           with zipfile.ZipFile(scenery, 'w', zipfile.ZIP_DEFLATED) as z:
-              for path in sorted(Path('scenery-packs/london').rglob('*')):
-                  if path.is_file(): z.write(path, path.relative_to('scenery-packs').as_posix())
+              for path in sorted(Path('scenery-packs').rglob('*')):
+                  if distributable(path): z.write(path, path.relative_to('scenery-packs').as_posix())
+              names = set(z.namelist())
+              for pack in ['london', 'london-imagery', 'london-heights']:
+                  pack_manifest = json.loads(Path('scenery-packs', pack, 'manifest.json').read_text())
+                  required = {pack + '/manifest.json'} | {pack + '/' + name for name in pack_manifest['outputs']}
+                  assert required <= names, 'Incomplete scenery ZIP: ' + pack
+              assert not any(Path(name).name == 'heights.json' for name in names), 'Uncompressed heights leaked into player archive'
           # Preserve the exact licensed raw inputs: mutable provider URLs may
           # stop serving these pins. Rebuilders can restore them to .tmp/london.
           source_pins = json.loads(Path('scenery-packs/london/manifest.json').read_text())['sources']
@@ -221,9 +256,10 @@ jobs:
           Reproducible raw inputs: Lightning-London-Source-Data.zip; extract its two source archives to .tmp/london before preprocessing. The raw archives are optional for playing.
           Integrity: see SHA256SUMS.txt and android-verification.json.
 
-          Automated browser checks and a signed APK archive verification passed in this workflow. Benchmarks use a cloud CPU software renderer and do not establish Galaxy A51 performance. An Android API 33 emulator installed the APK and launched the actual bundled flight successfully; see android-installation.json and evidence ZIP. Galaxy A51 installation, gyroscope, battery, thermal behaviour and 20-minute device stability are NOT TESTED.
+          Automated browser checks, the full twenty-minute London endurance observation and signed APK archive verification passed in this workflow. Benchmarks use a cloud CPU software renderer and do not establish Galaxy A51 performance. An Android API 33 emulator installed the APK and launched the actual bundled flight successfully; see android-installation.json and evidence ZIP. Galaxy A51 installation, gyroscope, battery, thermal behaviour and 20-minute device stability are NOT TESTED.
 
-          This is a debug-signed experimental build. The CI signing key is ephemeral: later builds may require uninstalling the previous APK, deleting its stored data. No private signing key is committed. London uses real OS map/elevation data, estimated building heights and original simplified landmarks. Ground artwork is vector-derived, not aerial imagery. The full commercial-quality visual overhaul remains incomplete; see docs/known-issues.md and docs/development-log.md at the source commit.
+          This is a debug-signed experimental build. The CI signing key is ephemeral: later builds may require uninstalling the previous APK, deleting its stored data. No private signing key is committed. London includes real 10 m Copernicus Sentinel-2 ground imagery, OS mapping/elevation, 38,914 EA LiDAR-derived building heights and 1,086 explicitly marked footprint-estimate fallbacks. Nine original textured landmarks use game-authored materials. The imagery does not provide sub-metre aerial detail. Measured roof heights retain survey/footprint/vegetation uncertainty. See docs/v0.4.md and attribution notices in the scenery ZIP.
           NOTES
           gh release create "$release_tag" dist/Lightning-F35B-Android.apk dist/Lightning-F35B-Web.zip dist/Lightning-F35B-Evidence.zip dist/Lightning-London-Scenery.zip dist/Lightning-London-Source-Data.zip dist/SHA256SUMS.txt dist/android-verification.json dist/android-installation.json dist/build-manifest.json --target "$GITHUB_SHA" --title "Project Lightning $release_tag" --notes-file dist/RELEASE_NOTES.md --prerelease
           gh release view "$release_tag" --json url,tagName,targetCommitish,assets
+
