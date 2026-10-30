@@ -149,6 +149,54 @@ def validate_android_runtime_evidence(content, expected_version=None):
     return result
 
 
+def collect_android_runtime_evidence(private_content, logcat_content, expected_version):
+    """Prefer actual app-private bytes; otherwise recover exact logged JSON bytes.
+
+    UTP can uninstall the target before the EXIT trap runs. The test also logs
+    the same object with Log.i. Only the latest matching LightningQA record is
+    eligible: a truncated or mismatched latest record cannot revive an old one.
+    """
+    try:
+        validate_android_runtime_evidence(private_content, expected_version)
+        return private_content, {'source': 'app-private', 'payloadSha256': hashlib.sha256(private_content).hexdigest()}
+    except ValueError as error:
+        private_error = str(error)
+    if not isinstance(logcat_content, bytes) or len(logcat_content) > 32 * 1024 * 1024:
+        raise ValueError('Missing or oversized actual Android logcat evidence')
+    candidate = None
+    for number, line in enumerate(logcat_content.splitlines(), 1):
+        match = re.search(rb'\bI\s+LightningQA\s*:\s*(\{.*)$', line)
+        if match and re.search(rb'"metric"\s*:\s*"offline_london_runtime"', match[1]):
+            candidate = (match[1].rstrip(), number)
+    if candidate is None:
+        raise ValueError('No actual LightningQA runtime JSON record in logcat; app-private retrieval: ' + private_error)
+    payload, number = candidate
+    validate_android_runtime_evidence(payload, expected_version)
+    return payload, {'source': 'logcat', 'payloadSha256': hashlib.sha256(payload).hexdigest(),
+                     'rawLogcatSha256': hashlib.sha256(logcat_content).hexdigest(), 'rawLogcatLine': number,
+                     'appPrivateValidationError': private_error}
+
+
+def collect_android_runtime_files(directory, expected_version):
+    """Retain raw retrievals and write validated exact runtime bytes plus provenance."""
+    directory = Path(directory)
+    private_path = directory / 'android-runtime-app-private.txt'
+    output = directory / 'android-runtime.json'
+    # Also supports already-downloaded evidence from the first collection format.
+    if not private_path.is_file() and output.is_file():
+        private_path.write_bytes(output.read_bytes())
+    private = private_path.read_bytes() if private_path.is_file() else b''
+    logcat = directory / 'android-logcat-final.txt'
+    raw_log = logcat.read_bytes() if logcat.is_file() else b''
+    output.unlink(missing_ok=True)
+    payload, provenance = collect_android_runtime_evidence(private, raw_log, expected_version)
+    output.write_bytes(payload)
+    provenance.update({'appPrivateReport': private_path.name, 'rawLogcatReport': logcat.name,
+                       'method': 'Exact validated app-private bytes or exact complete latest Log.i LightningQA JSON payload; no field synthesis'})
+    (directory / 'android-runtime-provenance.json').write_text(json.dumps(provenance, indent=2) + '\n')
+    return provenance
+
+
 def self_test():
     expected = {'version': '0.2.0-experimental', 'versionCode': 2}
     badging = "package: name='com.mtt004.lightning' versionCode='2' versionName='0.2.0-experimental'\nsdkVersion:'26'\ntargetSdkVersion:'35'\n"
@@ -178,6 +226,20 @@ def self_test():
                'observation': {'wallSeconds': 1.0, 'simulationSeconds': 1.0, 'simulationToWallRatio': 1.0, 'debtSeconds': 0.0}}
     def validate_runtime(value=runtime, version=expected['version']):
         return validate_android_runtime_evidence(json.dumps(value).encode(), version)
+    # Exact line retained from the genuine passing API 33 CI instrumentation:
+    # WebView 101, three prepared tiles decoded. It is never regenerated here.
+    actual_log = (ROOT / 'tests/fixtures/android-runtime-logcat.txt').read_bytes()
+    actual_payload = actual_log.split(b'LightningQA: ', 1)[1].rstrip(b'\n')
+    def actual_extraction():
+        payload, provenance = collect_android_runtime_evidence(b'run-as: unknown package', actual_log, '0.5.0-experimental')
+        assert payload == actual_payload
+        assert provenance['source'] == 'logcat'
+        assert provenance['rawLogcatSha256'] == hashlib.sha256(actual_log).hexdigest()
+        assert validate_android_runtime_evidence(payload, '0.5.0-experimental')['prepared']['decoded'] == 3
+    def prefer_private():
+        original = json.dumps(runtime, indent=2).encode()
+        payload, provenance = collect_android_runtime_evidence(original, actual_log, expected['version'])
+        assert payload == original and provenance['source'] == 'app-private'
     checks = [
         lambda: must_fail(lambda: validate_instrumentation_xml({path: incomplete}, evidence(incomplete))),
         lambda: must_fail(lambda: validate_instrumentation_xml({path: aggregate_wrong}, evidence(aggregate_wrong))),
@@ -201,6 +263,13 @@ def self_test():
         lambda: must_fail(lambda: validate_runtime({**runtime, 'observation': {**runtime['observation'], 'simulationToWallRatio': 20}})),
         lambda: must_fail(lambda: validate_runtime({**runtime, 'geometryPath': 'dynamic-fallback'})),
         lambda: must_fail(lambda: validate_runtime(runtime, '0.5.0-experimental')),
+        actual_extraction,
+        prefer_private,
+        lambda: must_fail(lambda: collect_android_runtime_evidence(b'', b'', '0.5.0-experimental')),
+        lambda: must_fail(lambda: collect_android_runtime_evidence(b'', actual_log[:-100], '0.5.0-experimental')),
+        lambda: must_fail(lambda: collect_android_runtime_evidence(b'', actual_log, '0.4.0-candidate.1')),
+        lambda: must_fail(lambda: collect_android_runtime_evidence(b'', actual_log.replace(b'LightningQA:', b'OtherTag:'), '0.5.0-experimental')),
+        lambda: must_fail(lambda: collect_android_runtime_evidence(b'', actual_log + actual_log[:-100], '0.5.0-experimental')),
     ]
     for check in checks:
         check()
@@ -209,3 +278,5 @@ def self_test():
 
 if __name__ == '__main__' and '--self-test' in sys.argv:
     self_test()
+elif __name__ == '__main__' and len(sys.argv) == 3 and sys.argv[1] == '--collect-runtime':
+    print(json.dumps(collect_android_runtime_files(Path(sys.argv[2]), read_project_metadata()['version']), indent=2))
