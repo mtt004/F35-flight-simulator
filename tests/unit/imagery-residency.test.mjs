@@ -15,3 +15,12 @@ test('failed detail leaves overview usable and does not retry forever',async()=>
  let calls=0;const cache=new c.LightningImagery.Residency(entries,()=>{calls++;return Promise.reject(Error('corrupt image'));},()=>{},4);
  cache.update(50,50,4);await settle();cache.update(50,50,4);await settle();cache.update(50,50,4);await settle();assert.equal(calls,4);assert.equal(cache.stats().failed,4);assert.equal(cache.stats().resident,0);
 });
+test('imagery churn counters distinguish eviction, reload and stale decode without increasing residency',async()=>{
+ const cache=new c.LightningImagery.Residency(entries,e=>Promise.resolve({id:e.id}),()=>{},2);
+ cache.update(50,50,2);await settle();cache.update(50,50,2);await settle();
+ assert.equal(cache.stats().loads,2);assert.equal(cache.stats().selectionPasses,1);
+ cache.update(1150,50,2);await settle();assert.equal(cache.stats().evictions,2);
+ cache.update(50,50,2);await settle();assert.equal(cache.stats().reloads,2);
+ assert.equal(cache.stats().resident,2);assert.equal(cache.stats().peakPending,2);
+ cache.dispose();assert.equal(cache.stats().resident,0);
+});

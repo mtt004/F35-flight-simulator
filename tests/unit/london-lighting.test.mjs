@@ -54,3 +54,15 @@ test('disabling London shadows resets the directional-light target',()=>{
  assert.equal(sun.target.position.length(),0);
  assert.ok(sun.position.clone().sub(sun.target.position).normalize().distanceTo(dir)<1e-8);
 });
+
+test('shadow activation never invalidates unrelated or shared material versions',()=>{
+ const c=context(),T=c.THREE,r={shadowMap:{}},scene=new T.Scene(),sun=new T.DirectionalLight();
+ const basic=new T.MeshBasicMaterial(),lit=new T.MeshStandardMaterial();
+ scene.add(new T.Mesh(new T.BoxGeometry(),basic),new T.Mesh(new T.BoxGeometry(),[lit,basic]));
+ const before=[basic.version,lit.version],dir=new T.Vector3(.4,.8,.2).normalize(),pos=new T.Vector3(25000,200,-4000);
+ for(const [quality,day,time] of [[1,1,0],[0,1,.1],[1,1,.2],[1,0,.3],[1,1,.4]]){
+  c.LightningLondonLighting.update(T,r,scene,sun,dir,pos,10,quality,day,time,true);
+  assert.deepEqual([basic.version,lit.version],before);
+  assert.equal(r.shadowMap.enabled,quality>0&&day>.08);
+ }
+});

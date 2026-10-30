@@ -7,14 +7,19 @@ function inRing(p,x,z){let yes=false;for(let i=0,j=p.length-1;i<p.length;j=i++){
 api.contains=(f,x,z)=>inRing(f.p,x,z)&&!(f.holes||[]).some(p=>inRing(p,x,z));
 const key=(x,z)=>Math.floor(x/CELL)+','+Math.floor(z/CELL);
 function bounds(p){const xs=p.map(v=>v[0]),zs=p.map(v=>v[1]);return{x0:Math.min(...xs),x1:Math.max(...xs),z0:Math.min(...zs),z1:Math.max(...zs)};}
-let renderedBuildings=0,measuredBuildings=0;
+let renderedBuildings=0,measuredBuildings=0,buildingTiles=[],roadTiles=[];
+const tileRecords=map=>Array.from(map,([k,b])=>{const comma=k.indexOf(',');return{k,b,x:(Number(k.slice(0,comma))+.5)*CELL,z:(Number(k.slice(comma+1))+.5)*CELL};});
+// LOD 0 and 1 deliberately share every vertex/UV/normal; only LOD 2 changes geometry.
+const geometryVariant=lod=>lod===2?2:0;
 let data,buildings=new Map(),colliders=new Map(),waters=new Map(),grounds=new Map(),roadsByTile=new Map();
 const add=(m,k,v)=>{if(!m.has(k))m.set(k,[]);m.get(k).push(v);};
 api.load=function(d){api.dispose();data=d;renderedBuildings=measuredBuildings=0;for(const m of[buildings,colliders,waters,grounds,roadsByTile])m.clear();
  for(const f of d.surfaces){const b=f.bounds=bounds(f.p);add(grounds,key((b.x0+b.x1)/2,(b.z0+b.z1)/2),f);if(f.kind==='water')for(let i=Math.floor(b.x0/CELL);i<=Math.floor(b.x1/CELL);i++)for(let j=Math.floor(b.z0/CELL);j<=Math.floor(b.z1/CELL);j++)add(waters,i+','+j,f);}
  for(const r of d.roads){const q=bounds(r.p);add(roadsByTile,key((q.x0+q.x1)/2,(q.z0+q.z1)/2),r);}
  for(const b of d.buildings){const measured=root.__LONDON_HEIGHTS__?.[b.id];if(measured&&measured.source==='ea-lidar-dsm-dtm-1m-2022'&&Number.isFinite(measured.height)&&measured.height>0){b.h=measured.height;b.heightSource=measured.source;measuredBuildings++;}else b.heightSource='estimated';const q=b.bounds=bounds(b.p);if(root.LightningLandmarks?.excludes?.((q.x0+q.x1)/2,(q.z0+q.z1)/2))continue;delete b.baseY;if(root.LightningArchitecture)b.arch=root.LightningArchitecture.classify(b);renderedBuildings++;add(buildings,key((q.x0+q.x1)/2,(q.z0+q.z1)/2),b);for(let i=Math.floor(q.x0/CELL);i<=Math.floor(q.x1/CELL);i++)for(let j=Math.floor(q.z0/CELL);j<=Math.floor(q.z1/CELL);j++)add(colliders,i+','+j,b);}
+ buildingTiles=tileRecords(buildings);roadTiles=tileRecords(roadsByTile);
 };
+api.forEachBuildingTile=visit=>{for(const tile of buildingTiles)visit(tile.k,tile.b);};
 api.waterAt=(x,z)=>(waters.get(key(x,z))||[]).find(f=>x>=f.bounds.x0&&x<=f.bounds.x1&&z>=f.bounds.z0&&z<=f.bounds.z1&&api.contains(f,x,z));api.isWater=(x,z)=>!!api.waterAt(x,z);
 api.height=function(x,z){if(!data)return null;let h=api.sampleGrid(data.terrain,x,z);if(h===null)return null;const w=api.waterAt(x,z);if(w)return w.level-2;for(const a of api.runways){const dx=x-a.x,dz=z-a.z,u=dx*a.ux+dz*a.uz,v=dx*a.rx+dz*a.rz,d=Math.hypot(Math.max(0,Math.abs(u)-a.rwyLen/2-80),Math.max(0,Math.abs(v)-180));if(d<220){const k=1-d/220;h=h*(1-k)+a.elev*k;}}return h;};
 api.surface=(x,z)=>{const w=api.waterAt(x,z);return w?w.level:api.height(x,z);};
@@ -42,34 +47,44 @@ api.buildBuildings=function(T,list,lod,height){const o=soup(T);for(const b of li
  if(pitched){const axis=ridgeX?0:1;if((a[axis]-mid)*(d[axis]-mid)<0){const k=(mid-a[axis])/(d[axis]-a[axis]),m=[a[0]+k*(d[0]-a[0]),top,a[1]+k*(d[1]-a[1])];o.tri(v3,m,v2,col,[[u0,(v3[1]-base)/12],[u0+(u1-u0)*k,b.h/12],[u1,(v2[1]-base)/12]],style);}}dist+=len;}}
  }return o.geometry();};
 function surfaceGeometry(T,list,rr,height){const o=soup(T);for(const f of list){if(f.kind==='site')continue;const col=f.kind==='water'?[.18,.29,.30]:f.kind==='woodland'?[.17,.28,.14]:[.4,.36,.27],t=triangulate(T,f);for(const a of t.tri)o.tri(...a.map(i=>{const p=t.p[i];return[p[0],f.kind==='water'?f.level:(height(...p)??10)+.65,p[1]];}),col);}for(const f of rr)for(let i=1;i<f.p.length;i++){const a=f.p[i-1],b=f.p[i],dx=b[0]-a[0],dz=b[1]-a[1],len=Math.hypot(dx,dz);if(!len)continue;const w=Math.min(20,f.width||7)/2,nx=-dz/len*w,nz=dx/len*w,N=Math.ceil(len/70);for(let j=0;j<N;j++){const p=[a[0]+dx*j/N,a[1]+dz*j/N],q=[a[0]+dx*(j+1)/N,a[1]+dz*(j+1)/N],v0=[p[0]-nx,(height(...p)??10)+.9,p[1]-nz],v1=[p[0]+nx,(height(...p)??10)+.9,p[1]+nz],v2=[q[0]+nx,(height(...q)??10)+.9,q[1]+nz],v3=[q[0]-nx,(height(...q)??10)+.9,q[1]-nz];o.tri(v0,v2,v1,[.22,.23,.23]);o.tri(v0,v3,v2,[.22,.23,.23]);}}return o.geometry();}
-let group,T0,mat,groundMat,riverMat,cache=new Map(),groundCache=new Map(),lastUpdate=-Infinity,lastWork=-Infinity,night=0;
+let group,T0,mat,groundMat,riverMat,cache=new Map(),groundCache=new Map(),lastUpdate=-Infinity,lastWork=-Infinity,night=0,landmarkMaterials=[];
 let buildingQueue=[],groundQueue=[],buildingJob=null,groundJob=null;
 const clock=()=>root.performance?.now?.()??Date.now();
-function cancelJob(job){if(job)for(const g of job.parts)g.dispose();}
+function cancelJob(job){if(!job)return;job.cancelled=true;job.request?.cancel();job.geometry?.dispose();for(const g of job.parts)g.dispose();}
 // Copy already-triangulated attributes, including normals; no geometry rebuild at tile completion.
 function finishGeometry(parts){const g=new T0.BufferGeometry();if(!parts.length)return g;
  for(const name of Object.keys(parts[0].attributes)){const first=parts[0].getAttribute(name),array=new Float32Array(parts.reduce((n,p)=>n+p.getAttribute(name).array.length,0));let offset=0;for(const p of parts){const a=p.getAttribute(name).array;array.set(a,offset);offset+=a.length;}g.setAttribute(name,new T0.BufferAttribute(array,first.itemSize));}
  g.boundingBox=new T0.Box3();for(const p of parts)g.boundingBox.union(p.boundingBox);g.boundingSphere=g.boundingBox.getBoundingSphere(new T0.Sphere());for(const p of parts)p.dispose();return g;}
-function advanceJob(job,isGround){const list=job.list.slice(job.next,job.next+8);job.parts.push(isGround?surfaceGeometry(T0,[],list,api.height):api.buildBuildings(T0,list,job.lod,api.height));job.next+=list.length;
- if(job.next<job.list.length)return job;
- const m=new T0.Mesh(finishGeometry(job.parts),isGround?groundMat:mat);m.castShadow=!isGround;m.receiveShadow=true;const store=isGround?groundCache:cache,old=store.get(job.k);group.add(m);if(old){const previous=isGround?old:old.m;group.remove(previous);previous.geometry.dispose();}store.set(job.k,isGround?m:{m,lod:job.lod});return null;}
-function startJob(v,isGround){return v?{k:v.k,lod:v.lod,list:isGround?(roadsByTile.get(v.k)||[]):v.b,next:0,parts:[]}:null;}
+function advanceJob(job,isGround){
+ let geometry;
+ if(job.prepared){if(!job.geometry)return job;geometry=job.geometry;job.geometry=null;job.next=job.list.length;}
+ else{const list=job.list.slice(job.next,job.next+8);job.parts.push(isGround?surfaceGeometry(T0,[],list,api.height):api.buildBuildings(T0,list,job.lod,api.height));job.next+=list.length;if(job.next<job.list.length)return job;geometry=finishGeometry(job.parts);}
+ const m=new T0.Mesh(geometry,isGround?groundMat:mat);m.castShadow=!isGround;m.receiveShadow=true;const store=isGround?groundCache:cache,old=store.get(job.k);group.add(m);if(old){const previous=isGround?old:old.m;group.remove(previous);previous.geometry.dispose();}store.set(job.k,isGround?m:{m,lod:job.lod});return null;
+}
+function startJob(v,isGround){
+ if(!v)return null;const job={k:v.k,lod:v.lod,list:isGround?(roadsByTile.get(v.k)||[]):v.b,next:0,parts:[]};
+ if(!isGround&&root.LightningPreparedGeometry?.has(v.k,v.lod)){
+  job.prepared=true;job.request=root.LightningPreparedGeometry.request(v.k,v.lod);
+  job.request.promise.then(g=>{if(job.cancelled)g.dispose();else job.geometry=g;},()=>{if(!job.cancelled)job.prepared=false;});
+ }
+ return job;
+}
 
-api.create=function(T,parent,terrainMat){api.dispose();T0=T;group=new T.Group();group.name='London OS offline scenery';parent.add(group);if(terrainMat){const g=new T.PlaneGeometry(140000,140000);g.setAttribute('color',new T.Float32BufferAttribute(Array(g.attributes.position.count).fill([.12,.16,.1]).flat(),3));g.rotateX(-Math.PI/2);const base=new T.Mesh(g,terrainMat);base.position.set(18000,-20,0);base.name='Synthetic low detail horizon outside map coverage';group.add(base);}
+api.create=function(T,parent,terrainMat){api.dispose();T0=T;root.LightningPreparedGeometry?.configure(T,data===root.__LONDON_DATA__?root.__LONDON_GEOMETRY__:null);group=new T.Group();group.name='London OS offline scenery';parent.add(group);if(terrainMat){const g=new T.PlaneGeometry(140000,140000);g.setAttribute('color',new T.Float32BufferAttribute(Array(g.attributes.position.count).fill([.12,.16,.1]).flat(),3));g.rotateX(-Math.PI/2);const base=new T.Mesh(g,terrainMat);base.position.set(18000,-20,0);base.name='Synthetic low detail horizon outside map coverage';group.add(base);}
 if(root.LightningArchitecture){mat=root.LightningArchitecture.material(T);}else{mat=new T.MeshLambertMaterial({vertexColors:true,side:T.DoubleSide});mat.onBeforeCompile=s=>{s.uniforms.londonNight={value:night};mat.userData.shader=s;s.vertexShader='varying vec3 lp,ln;\n'+s.vertexShader;s.vertexShader=s.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nlp=position;ln=normal;');s.fragmentShader='varying vec3 lp,ln;uniform float londonNight;\n'+s.fragmentShader;s.fragmentShader=s.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
 float wall=1.-smoothstep(.15,.7,abs(ln.y));vec2 wp=vec2(abs(ln.x)>.6?lp.z:lp.x,lp.y)/vec2(3.,3.3);vec2 cell=abs(fract(wp)-.5),aa=fwidth(wp)*1.2;float win=(1.-smoothstep(.27-aa.x,.29+aa.x,cell.x))*(1.-smoothstep(.28-aa.y,.31+aa.y,cell.y))*wall;float lit=step(.68,fract(sin(dot(floor(wp),vec2(12.989,78.23)))*43758.54));diffuseColor.rgb=mix(diffuseColor.rgb,vec3(.19,.28,.32),win*.72);`);s.fragmentShader=s.fragmentShader.replace('#include <emissivemap_fragment>','#include <emissivemap_fragment>\ntotalEmissiveRadiance+=vec3(.7,.43,.16)*win*lit*londonNight;');};}
- groundMat=new T.MeshLambertMaterial({vertexColors:true,side:T.DoubleSide,polygonOffset:true,polygonOffsetFactor:-1});riverMat=new T.MeshStandardMaterial({vertexColors:true,side:T.DoubleSide,roughness:.32,metalness:.12,envMapIntensity:.55});if(root.LightningLandmarks)group.add(root.LightningLandmarks.build(T,api.height));group.add(api.buildAirport(T));const water=new T.Mesh(surfaceGeometry(T,data.surfaces.filter(f=>f.kind==='water'),[],api.height),riverMat);water.receiveShadow=true;water.name='Complete offline water surfaces';group.add(water);return group;};
-api.update=function(x,z,alt,quality,n,time){night=n;if(root.LightningArchitecture&&mat)root.LightningArchitecture.update(mat,n);else if(mat?.userData.shader)mat.userData.shader.uniforms.londonNight.value=n;if(riverMat)riverMat.envMapIntensity=.025+.5*(1-n);root.LightningImagery?.update(x,z,alt,quality,time);if(!group)return;group.getObjectByName('LondonLandmarks')?.traverse(o=>{if(o.material&&root.LightningArchitecture)root.LightningArchitecture.update(o.material,n);});
+ groundMat=new T.MeshLambertMaterial({vertexColors:true,side:T.DoubleSide,polygonOffset:true,polygonOffsetFactor:-1});riverMat=new T.MeshStandardMaterial({vertexColors:true,side:T.DoubleSide,roughness:.32,metalness:.12,envMapIntensity:.55});if(root.LightningLandmarks){const landmarks=root.LightningLandmarks.build(T,api.height);group.add(landmarks);const materials=new Set();landmarks.traverse(o=>{if(o.material)for(const material of[o.material].flat())materials.add(material);});landmarkMaterials=Array.from(materials);}group.add(api.buildAirport(T));const water=new T.Mesh(surfaceGeometry(T,data.surfaces.filter(f=>f.kind==='water'),[],api.height),riverMat);water.receiveShadow=true;water.name='Complete offline water surfaces';group.add(water);return group;};
+api.update=function(x,z,alt,quality,n,time){night=n;if(root.LightningArchitecture&&mat)root.LightningArchitecture.update(mat,n);else if(mat?.userData.shader)mat.userData.shader.uniforms.londonNight.value=n;if(riverMat)riverMat.envMapIntensity=.025+.5*(1-n);root.LightningImagery?.update(x,z,alt,quality,time);if(!group)return;if(root.LightningArchitecture)for(const material of landmarkMaterials)root.LightningArchitecture.update(material,n);
  // Both the visual setup and render loop may call update for the same frame.
  if(time>=lastWork&&time-lastWork<.015)return;lastWork=time;
  if(time-lastUpdate>=.2||time<lastUpdate){lastUpdate=time;
- const items=[...buildings].map(([k,b])=>{const p=k.split(',').map(Number);return{k,b,d:Math.hypot((p[0]+.5)*CELL-x,(p[1]+.5)*CELL-z,alt)};}).filter(v=>v.d<33000).sort((a,b)=>a.d-b.d).slice(0,quality>1?100:72),wanted=new Set(items.map(v=>v.k));
- buildingQueue=items.map(v=>({...v,lod:v.d<2200?0:v.d<6500?1:2})).filter(v=>{const old=cache.get(v.k);return !old||old.lod!==v.lod&&Math.abs(v.d-(v.lod===0?2200:6500))>300;});
- if(buildingJob&&!buildingQueue.some(v=>v.k===buildingJob.k&&v.lod===buildingJob.lod)){cancelJob(buildingJob);buildingJob=null;}
+ const items=buildingTiles.map(v=>({k:v.k,b:v.b,d:Math.hypot(v.x-x,v.z-z,alt)})).filter(v=>v.d<33000).sort((a,b)=>a.d-b.d).slice(0,quality>1?100:72),wanted=new Set(items.map(v=>v.k));
+ buildingQueue=items.map(v=>({...v,lod:v.d<2200?0:v.d<6500?1:2})).filter(v=>{const old=cache.get(v.k);if(old&&geometryVariant(old.lod)===geometryVariant(v.lod)){old.lod=v.lod;return false;}return !old||Math.abs(v.d-(v.lod===0?2200:6500))>300;});
+ if(buildingJob){const wantedJob=buildingQueue.find(v=>v.k===buildingJob.k&&geometryVariant(v.lod)===geometryVariant(buildingJob.lod));if(wantedJob)buildingJob.lod=wantedJob.lod;else{cancelJob(buildingJob);buildingJob=null;}}
  for(const[k,v]of cache)if(!wanted.has(k)){group.remove(v.m);v.m.geometry.dispose();cache.delete(k);}
  // The map atlas already contains the complete real road network. Local meshes add
  // nearby land cover only; rebuilding all road ribbons duplicates that atlas work.
- const gi=[...roadsByTile.keys()].map(k=>{const p=k.split(',').map(Number);return{k,d:Math.hypot((p[0]+.5)*CELL-x,(p[1]+.5)*CELL-z)};}).filter(v=>v.d<2200&&alt<900).sort((a,b)=>a.d-b.d).slice(0,16),gw=new Set(gi.map(v=>v.k));
+ const gi=roadTiles.map(v=>({k:v.k,d:Math.hypot(v.x-x,v.z-z)})).filter(v=>v.d<2200&&alt<900).sort((a,b)=>a.d-b.d).slice(0,16),gw=new Set(gi.map(v=>v.k));
  groundQueue=gi.filter(v=>!groundCache.has(v.k));if(groundJob&&!gw.has(groundJob.k)){cancelJob(groundJob);groundJob=null;}
  for(const[k,m]of groundCache)if(!gw.has(k)){group.remove(m);m.geometry.dispose();groundCache.delete(k);}
  }
@@ -77,18 +92,19 @@ api.update=function(x,z,alt,quality,n,time){night=n;if(root.LightningArchitectur
  // batch to eight features and keep incomplete geometries off the GPU.
  const start=clock();let steps=0;
  while(steps<12&&clock()-start<6){
-  if(!buildingJob){while(buildingQueue.length){const v=buildingQueue.shift(),old=cache.get(v.k);if(!old||old.lod!==v.lod){buildingJob=startJob(v,false);break;}}}
+  if(!buildingJob){while(buildingQueue.length){const v=buildingQueue.shift(),old=cache.get(v.k);if(!old||geometryVariant(old.lod)!==geometryVariant(v.lod)){buildingJob=startJob(v,false);break;}}}
   if(buildingJob){buildingJob=advanceJob(buildingJob,false);steps++;if(clock()-start>=6)break;}
   if(!groundJob){while(groundQueue.length){const v=groundQueue.shift();if(!groundCache.has(v.k)){groundJob=startJob(v,true);break;}}}
   if(groundJob){groundJob=advanceJob(groundJob,true);steps++;}
+  if(buildingJob?.prepared&&!buildingJob.geometry)break;
   if(!buildingJob&&!groundJob&&!buildingQueue.length&&!groundQueue.length)break;
  }
 };
-api.stats=()=>({imagery:root.LightningImagery?.stats(),measuredHeights:measuredBuildings,buildings:renderedBuildings,rawBuildings:data?.buildings.length||0,buildingTiles:cache.size,groundTiles:groundCache.size,pendingBuildings:buildingJob?buildingJob.list.length-buildingJob.next:0,lods:[...cache.values()].reduce((a,v)=>(a[v.lod]++,a),[0,0,0])});
+api.stats=()=>({queuedBuildings:buildingQueue.length,pendingPrepared:buildingJob?.prepared?1:0,prepared:root.LightningPreparedGeometry?.stats(),imagery:root.LightningImagery?.stats(),measuredHeights:measuredBuildings,buildings:renderedBuildings,rawBuildings:data?.buildings.length||0,buildingTiles:cache.size,groundTiles:groundCache.size,pendingBuildings:buildingJob?buildingJob.list.length-buildingJob.next:0,lods:[...cache.values()].reduce((a,v)=>(a[v.lod]++,a),[0,0,0])});
 const airportObstacles=[];
 const terminals=[{x:-1380,z:200,w:430,d:650,h:22},{x:600,z:250,w:430,d:280,h:26},{x:-20,z:350,w:520,d:230,h:23},{x:1060,z:1530,w:480,d:100,h:20},{x:1910,z:-80,w:360,d:150,h:24}];
 api.collides=function(x,y,z){if(root.LightningLandmarks?.collides?.(x,y,z,api.height))return true;for(const b of colliders.get(key(x,z))||[])if(x>=b.bounds.x0&&x<=b.bounds.x1&&z>=b.bounds.z0&&z<=b.bounds.z1&&api.contains(b,x,z)&&y<baseHeight(b,api.height)+b.h)return true;for(const b of airportObstacles)if(Math.abs(x-b.x)<b.w/2&&Math.abs(z-b.z)<b.d/2&&y>b.y&&y<b.y+b.h)return true;for(const b of terminals)if(Math.abs(x-b.x)<b.w/2&&Math.abs(z-b.z)<b.d/2&&y<(api.height(b.x,b.z)??24)+b.h+14)return true;return Math.hypot(x-668,z-58)<14&&y<102;};
-api.dispose=function(){cancelJob(buildingJob);cancelJob(groundJob);buildingJob=groundJob=null;buildingQueue=[];groundQueue=[];if(group){const gg=new Set(),mm=new Set();group.traverse(o=>{if(o.geometry)gg.add(o.geometry);if(o.material)for(const m of[o.material].flat())mm.add(m);});for(const g of gg)g.dispose();for(const m of mm){if(m.userData.shared)continue;for(const t of new Set([m.map,m.roughnessMap,...(m.userData.ownedTextures||[])].filter(Boolean)))t.dispose();m.dispose();}group.parent?.remove(group);}group=null;root.LightningImagery?.reset();cache.clear();groundCache.clear();lastUpdate=lastWork=-Infinity;};
+api.dispose=function(){root.LightningPreparedGeometry?.reset();cancelJob(buildingJob);cancelJob(groundJob);buildingJob=groundJob=null;buildingQueue=[];groundQueue=[];if(group){const gg=new Set(),mm=new Set();group.traverse(o=>{if(o.geometry)gg.add(o.geometry);if(o.material)for(const m of[o.material].flat())mm.add(m);});for(const g of gg)g.dispose();for(const m of mm){if(m.userData.shared)continue;for(const t of new Set([m.map,m.roughnessMap,...(m.userData.ownedTextures||[])].filter(Boolean)))t.dispose();m.dispose();}group.parent?.remove(group);}group=null;landmarkMaterials=[];root.LightningImagery?.reset();cache.clear();groundCache.clear();lastUpdate=lastWork=-Infinity;};
 api.initTerrain=function(T,m){function texture(src,mip){const t=new T.Texture(),i=new Image();i.onload=()=>{t.image=i;t.needsUpdate=true;};i.src=src;t.minFilter=mip?T.LinearMipmapLinearFilter:T.LinearFilter;t.magFilter=T.LinearFilter;t.generateMipmaps=mip;t.anisotropy=mip?4:1;return t;}m.uniforms.uLondon={value:0};m.uniforms.uLondonMap={value:texture(globalThis.__LONDON_GROUND__,true)};m.uniforms.uLondonMask={value:texture(globalThis.__LONDON_MASK__,false)};m.fragmentShader='uniform float uLondon;uniform sampler2D uLondonMap,uLondonMask;\n'+m.fragmentShader;m.fragmentShader=m.fragmentShader.replace('float diff=max(dot(n,l),0.);','vec2 guv=vec2((globalXZ.x+5000.)/39000.,1.-(globalXZ.y+9000.)/15000.);float inside=step(0.,guv.x)*step(guv.x,1.)*step(0.,guv.y)*step(guv.y,1.);if(uLondon*inside>.5&&texture2D(uLondonMask,guv).r>.5)discard;vec3 land=texture2D(uLondonMap,clamp(guv,0.,1.)).rgb;col=mix(col,land*(.94+fine*.10),uLondon*inside);float diff=max(dot(n,l),0.);');root.LightningImagery?.init(T,m);};
 // Original architectural interpretation, not surveyed terminal or stand geometry.
 // Two merged meshes add surface relief without per-window draw calls or textures.
