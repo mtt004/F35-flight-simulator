@@ -1,0 +1,30 @@
+name: V0.5 local browser test dependency
+on:
+  push:
+    branches: ['qa/v05-browser-tools']
+permissions:
+  contents: read
+jobs:
+  chromium:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22.16.0'
+      - run: npm ci
+      - run: npx playwright install chromium
+      - name: Package only the public pinned Chromium dependency
+        run: |
+          mkdir browser-tools
+          tar -czf browser-tools/chromium-headless-shell.tar.gz -C "$HOME/.cache/ms-playwright" chromium_headless_shell-1234
+          sha256sum browser-tools/chromium-headless-shell.tar.gz > browser-tools/SHA256SUMS.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: v05-chromium-headless-shell-1234
+          path: browser-tools/
+          retention-days: 2
+          compression-level: 0
