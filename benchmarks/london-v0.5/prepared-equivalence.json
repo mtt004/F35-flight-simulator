@@ -1,0 +1,6971 @@
+{
+  "status": "PASS",
+  "method": "Every prepared Float32 attribute and merged-box culling bound checked against pre-optimisation r128 runtime, in eight-building parts. Node CPU diagnostic only; not GPU or Galaxy A51 FPS. Generation versus native gzip timings are descriptive, not controlled paired browser evidence.",
+  "baselineRef": "master",
+  "baselineSourceCommit": "ca330131115ee983a6457efa33ff513ac34803ad",
+  "baselineSourceBlob": "df4173a1d315b9d7f4f7d976831a2e2abf46b89d",
+  "baselineSourceSha256": "61bd9ef22ef374f0687d4c16ad8368f4857b673a30f2988074841cb246208d6a",
+  "manifestSha256": "e1d64b8869b7867c617a6ca89fc96e6b957d023119d54474a04455277dd7d077",
+  "inputHashes": {
+    "vectorData": "82088ac9a9e4e7c8cc106175cd62607b77c10f9cf7cf5c7fbcb79c238b36092c",
+    "heightData": "16705679a6df69a7065acea68ec27d62fdd5c8caf90ba5b19f0f640f239959fc"
+  },
+  "sourceHashes": {
+    "src/vendor/three-r128.min.js": "24886e60eb3dc2962199572ad8883d0573b1b4e508787ea96790ba400d05b02d",
+    "src/terrain/architecture.js": "3835b6d95aba149a679b4807c1ec0d8529c916671b723d32869122cd7fe3e1f2",
+    "src/terrain/landmarks.js": "84d87346f73bdfa7acefb33af9ceded45efe91c8b47d61d03b88e40d08e99d82",
+    "src/terrain/london.js": "1ed35fcc8594a944245b25ccfbef9a7576cf89645e178bf123e6df0fc5c70632",
+    "src/terrain/prepared-geometry.js": "ff43c13e3a2c25b671616e16f7515327821da7b18c8491bd24d21115731466d1",
+    "scripts/build-london-geometry.mjs": "244c4050bff081172b99ce66392eac7866bc6a4a8767ad492515674cd87d427e"
+  },
+  "cells": 433,
+  "checked": 866,
+  "attributes": 4330,
+  "bytes": 233337888,
+  "vertices": 4861206,
+  "errors": [],
+  "generationMs": {
+    "total": 10179.570051000002,
+    "p50": 5.6725769999993645,
+    "p95": 43.481800999999905,
+    "p99": 74.07988400000022,
+    "max": 324.41663000000017
+  },
+  "nativeGzipMs": {
+    "total": 650.6938999999811,
+    "p50": 0.37385900000117545,
+    "p95": 2.661423999999897,
+    "p99": 4.849296999999751,
+    "max": 7.882333000000472
+  },
+  "samples": [
+    {
+      "key": "16,-6",
+      "lod": 0,
+      "vertices": 28683,
+      "bytes": 1376784,
+      "generationMs": 68.44919699999991,
+      "decodeMs": 2.661423999999897
+    },
+    {
+      "key": "16,-6",
+      "lod": 2,
+      "vertices": 10320,
+      "bytes": 495360,
+      "generationMs": 15.12179100000003,
+      "decodeMs": 0.6850589999999102
+    },
+    {
+      "key": "4,-4",
+      "lod": 0,
+      "vertices": 14697,
+      "bytes": 705456,
+      "generationMs": 30.251071000000138,
+      "decodeMs": 1.5601980000001276
+    },
+    {
+      "key": "4,-4",
+      "lod": 2,
+      "vertices": 5130,
+      "bytes": 246240,
+      "generationMs": 7.163249999999607,
+      "decodeMs": 0.9091379999999845
+    },
+    {
+      "key": "14,1",
+      "lod": 0,
+      "vertices": 8355,
+      "bytes": 401040,
+      "generationMs": 14.926570000000083,
+      "decodeMs": 1.1834819999999127
+    },
+    {
+      "key": "14,1",
+      "lod": 2,
+      "vertices": 2730,
+      "bytes": 131040,
+      "generationMs": 4.807573999999931,
+      "decodeMs": 0.3471299999996518
+    },
+    {
+      "key": "9,-3",
+      "lod": 0,
+      "vertices": 3021,
+      "bytes": 145008,
+      "generationMs": 7.33377500000006,
+      "decodeMs": 0.9501870000003692
+    },
+    {
+      "key": "9,-3",
+      "lod": 2,
+      "vertices": 930,
+      "bytes": 44640,
+      "generationMs": 1.2545239999999467,
+      "decodeMs": 0.15947099999993952
+    },
+    {
+      "key": "10,-4",
+      "lod": 0,
+      "vertices": 11052,
+      "bytes": 530496,
+      "generationMs": 24.03870700000016,
+      "decodeMs": 1.0663570000001528
+    },
+    {
+      "key": "10,-4",
+      "lod": 2,
+      "vertices": 3390,
+      "bytes": 162720,
+      "generationMs": 4.167845000000398,
+      "decodeMs": 0.23430499999994936
+    },
+    {
+      "key": "3,2",
+      "lod": 0,
+      "vertices": 11385,
+      "bytes": 546480,
+      "generationMs": 21.10447000000022,
+      "decodeMs": 0.8940139999999701
+    },
+    {
+      "key": "3,2",
+      "lod": 2,
+      "vertices": 4770,
+      "bytes": 228960,
+      "generationMs": 7.8626610000001165,
+      "decodeMs": 0.3715710000001309
+    },
+    {
+      "key": "5,1",
+      "lod": 0,
+      "vertices": 3855,
+      "bytes": 185040,
+      "generationMs": 10.039559000000281,
+      "decodeMs": 0.33385999999973137
+    },
+    {
+      "key": "5,1",
+      "lod": 2,
+      "vertices": 1440,
+      "bytes": 69120,
+      "generationMs": 2.236591999999746,
+      "decodeMs": 0.2643710000002102
+    },
+    {
+      "key": "4,-2",
+      "lod": 0,
+      "vertices": 11070,
+      "bytes": 531360,
+      "generationMs": 17.36595000000034,
+      "decodeMs": 0.9509119999997893
+    },
+    {
+      "key": "4,-2",
+      "lod": 2,
+      "vertices": 4560,
+      "bytes": 218880,
+      "generationMs": 6.689397000000099,
+      "decodeMs": 0.8506170000000566
+    },
+    {
+      "key": "3,-1",
+      "lod": 0,
+      "vertices": 15828,
+      "bytes": 759744,
+      "generationMs": 74.07988400000022,
+      "decodeMs": 1.4922740000001795
+    },
+    {
+      "key": "3,-1",
+      "lod": 2,
+      "vertices": 6810,
+      "bytes": 326880,
+      "generationMs": 324.41663000000017,
+      "decodeMs": 0.5776749999999993
+    },
+    {
+      "key": "24,2",
+      "lod": 0,
+      "vertices": 8106,
+      "bytes": 389088,
+      "generationMs": 18.281192000000374,
+      "decodeMs": 0.705569000000196
+    },
+    {
+      "key": "24,2",
+      "lod": 2,
+      "vertices": 3120,
+      "bytes": 149760,
+      "generationMs": 3.7176650000001246,
+      "decodeMs": 0.32228600000007646
+    },
+    {
+      "key": "26,0",
+      "lod": 0,
+      "vertices": 9843,
+      "bytes": 472464,
+      "generationMs": 20.40280299999995,
+      "decodeMs": 0.8720289999996567
+    },
+    {
+      "key": "26,0",
+      "lod": 2,
+      "vertices": 2580,
+      "bytes": 123840,
+      "generationMs": 3.103860000000168,
+      "decodeMs": 0.1952849999997852
+    },
+    {
+      "key": "26,-8",
+      "lod": 0,
+      "vertices": 6513,
+      "bytes": 312624,
+      "generationMs": 9.66430900000023,
+      "decodeMs": 0.8527900000003683
+    },
+    {
+      "key": "26,-8",
+      "lod": 2,
+      "vertices": 1620,
+      "bytes": 77760,
+      "generationMs": 1.635229999999865,
+      "decodeMs": 0.17413500000020576
+    },
+    {
+      "key": "5,-6",
+      "lod": 0,
+      "vertices": 5982,
+      "bytes": 287136,
+      "generationMs": 20.627297999999882,
+      "decodeMs": 2.197519000000284
+    },
+    {
+      "key": "5,-6",
+      "lod": 2,
+      "vertices": 1860,
+      "bytes": 89280,
+      "generationMs": 2.698927999999796,
+      "decodeMs": 0.17928600000004735
+    },
+    {
+      "key": "22,-8",
+      "lod": 0,
+      "vertices": 6615,
+      "bytes": 317520,
+      "generationMs": 11.473508999999922,
+      "decodeMs": 0.61673699999983
+    },
+    {
+      "key": "22,-8",
+      "lod": 2,
+      "vertices": 1920,
+      "bytes": 92160,
+      "generationMs": 2.676039000000401,
+      "decodeMs": 0.15161999999963882
+    },
+    {
+      "key": "16,-7",
+      "lod": 0,
+      "vertices": 20634,
+      "bytes": 990432,
+      "generationMs": 44.52676999999994,
+      "decodeMs": 1.7295349999999416
+    },
+    {
+      "key": "16,-7",
+      "lod": 2,
+      "vertices": 8400,
+      "bytes": 403200,
+      "generationMs": 11.880075999999917,
+      "decodeMs": 0.7071650000002592
+    },
+    {
+      "key": "18,-1",
+      "lod": 0,
+      "vertices": 14211,
+      "bytes": 682128,
+      "generationMs": 28.278895000000375,
+      "decodeMs": 1.3859480000000985
+    },
+    {
+      "key": "18,-1",
+      "lod": 2,
+      "vertices": 4590,
+      "bytes": 220320,
+      "generationMs": 5.319723999999951,
+      "decodeMs": 0.3663379999998142
+    },
+    {
+      "key": "19,-5",
+      "lod": 0,
+      "vertices": 34122,
+      "bytes": 1637856,
+      "generationMs": 43.481800999999905,
+      "decodeMs": 2.928900999999769
+    },
+    {
+      "key": "19,-5",
+      "lod": 2,
+      "vertices": 7830,
+      "bytes": 375840,
+      "generationMs": 9.161524999999983,
+      "decodeMs": 0.8379330000002483
+    },
+    {
+      "key": "3,-5",
+      "lod": 0,
+      "vertices": 2439,
+      "bytes": 117072,
+      "generationMs": 3.916099999999915,
+      "decodeMs": 0.22907299999997122
+    },
+    {
+      "key": "3,-5",
+      "lod": 2,
+      "vertices": 900,
+      "bytes": 43200,
+      "generationMs": 0.6995649999998932,
+      "decodeMs": 0.08461499999975786
+    },
+    {
+      "key": "9,-1",
+      "lod": 0,
+      "vertices": 1110,
+      "bytes": 53280,
+      "generationMs": 1.759813000000122,
+      "decodeMs": 0.12583900000026915
+    },
+    {
+      "key": "9,-1",
+      "lod": 2,
+      "vertices": 510,
+      "bytes": 24480,
+      "generationMs": 0.6124500000000808,
+      "decodeMs": 0.06654100000014296
+    },
+    {
+      "key": "16,2",
+      "lod": 0,
+      "vertices": 7101,
+      "bytes": 340848,
+      "generationMs": 16.49599500000022,
+      "decodeMs": 1.3708950000000186
+    },
+    {
+      "key": "16,2",
+      "lod": 2,
+      "vertices": 3030,
+      "bytes": 145440,
+      "generationMs": 4.009546000000228,
+      "decodeMs": 0.30088999999998123
+    },
+    {
+      "key": "1,-7",
+      "lod": 0,
+      "vertices": 744,
+      "bytes": 35712,
+      "generationMs": 2.3177340000002005,
+      "decodeMs": 0.12452400000029229
+    },
+    {
+      "key": "1,-7",
+      "lod": 2,
+      "vertices": 240,
+      "bytes": 11520,
+      "generationMs": 0.3514210000003004,
+      "decodeMs": 0.08562999999958265
+    },
+    {
+      "key": "12,-7",
+      "lod": 0,
+      "vertices": 14067,
+      "bytes": 675216,
+      "generationMs": 20.474120000000312,
+      "decodeMs": 1.7909249999997883
+    },
+    {
+      "key": "12,-7",
+      "lod": 2,
+      "vertices": 4290,
+      "bytes": 205920,
+      "generationMs": 5.075221000000056,
+      "decodeMs": 0.3606159999999363
+    },
+    {
+      "key": "18,-3",
+      "lod": 0,
+      "vertices": 29448,
+      "bytes": 1413504,
+      "generationMs": 42.897963999999774,
+      "decodeMs": 2.6107379999998557
+    },
+    {
+      "key": "18,-3",
+      "lod": 2,
+      "vertices": 6960,
+      "bytes": 334080,
+      "generationMs": 7.4435700000003635,
+      "decodeMs": 1.3413209999998799
+    },
+    {
+      "key": "20,2",
+      "lod": 0,
+      "vertices": 6354,
+      "bytes": 304992,
+      "generationMs": 29.40738599999986,
+      "decodeMs": 0.5191020000002027
+    },
+    {
+      "key": "20,2",
+      "lod": 2,
+      "vertices": 2430,
+      "bytes": 116640,
+      "generationMs": 2.795452000000296,
+      "decodeMs": 0.1785859999999957
+    },
+    {
+      "key": "21,-8",
+      "lod": 0,
+      "vertices": 5775,
+      "bytes": 277200,
+      "generationMs": 9.03211599999986,
+      "decodeMs": 0.6619289999998728
+    },
+    {
+      "key": "21,-8",
+      "lod": 2,
+      "vertices": 1860,
+      "bytes": 89280,
+      "generationMs": 1.5833270000002813,
+      "decodeMs": 0.24510499999996682
+    },
+    {
+      "key": "2,3",
+      "lod": 0,
+      "vertices": 5190,
+      "bytes": 249120,
+      "generationMs": 8.388753000000179,
+      "decodeMs": 0.45516200000020035
+    },
+    {
+      "key": "2,3",
+      "lod": 2,
+      "vertices": 2100,
+      "bytes": 100800,
+      "generationMs": 2.474565999999868,
+      "decodeMs": 0.16007300000001123
+    },
+    {
+      "key": "23,-1",
+      "lod": 0,
+      "vertices": 13155,
+      "bytes": 631440,
+      "generationMs": 27.425980999999865,
+      "decodeMs": 0.957585999999992
+    },
+    {
+      "key": "23,-1",
+      "lod": 2,
+      "vertices": 4560,
+      "bytes": 218880,
+      "generationMs": 4.158878000000186,
+      "decodeMs": 0.3100339999996322
+    },
+    {
+      "key": "2,1",
+      "lod": 0,
+      "vertices": 8304,
+      "bytes": 398592,
+      "generationMs": 17.523505999999998,
+      "decodeMs": 0.644778999999744
+    },
+    {
+      "key": "2,1",
+      "lod": 2,
+      "vertices": 3570,
+      "bytes": 171360,
+      "generationMs": 4.810342000000219,
+      "decodeMs": 0.21714199999996708
+    },
+    {
+      "key": "25,-5",
+      "lod": 0,
+      "vertices": 14355,
+      "bytes": 689040,
+      "generationMs": 22.16712600000028,
+      "decodeMs": 1.169133000000329
+    },
+    {
+      "key": "25,-5",
+      "lod": 2,
+      "vertices": 4440,
+      "bytes": 213120,
+      "generationMs": 4.07567999999992,
+      "decodeMs": 0.28593399999999747
+    },
+    {
+      "key": "17,2",
+      "lod": 0,
+      "vertices": 15600,
+      "bytes": 748800,
+      "generationMs": 26.68743799999993,
+      "decodeMs": 1.219082999999955
+    },
+    {
+      "key": "17,2",
+      "lod": 2,
+      "vertices": 5610,
+      "bytes": 269280,
+      "generationMs": 5.016758000000209,
+      "decodeMs": 0.36083800000005795
+    },
+    {
+      "key": "18,2",
+      "lod": 0,
+      "vertices": 11325,
+      "bytes": 543600,
+      "generationMs": 23.761957000000166,
+      "decodeMs": 1.9858610000001136
+    },
+    {
+      "key": "18,2",
+      "lod": 2,
+      "vertices": 4530,
+      "bytes": 217440,
+      "generationMs": 15.046034999999847,
+      "decodeMs": 0.2866719999997258
+    },
+    {
+      "key": "13,-2",
+      "lod": 0,
+      "vertices": 11217,
+      "bytes": 538416,
+      "generationMs": 29.72659300000032,
+      "decodeMs": 0.9234529999998813
+    },
+    {
+      "key": "13,-2",
+      "lod": 2,
+      "vertices": 3480,
+      "bytes": 167040,
+      "generationMs": 6.4877150000002075,
+      "decodeMs": 0.2596849999999904
+    },
+    {
+      "key": "4,-3",
+      "lod": 0,
+      "vertices": 21774,
+      "bytes": 1045152,
+      "generationMs": 43.584166000000096,
+      "decodeMs": 2.0895809999997255
+    },
+    {
+      "key": "4,-3",
+      "lod": 2,
+      "vertices": 7740,
+      "bytes": 371520,
+      "generationMs": 13.508658000000196,
+      "decodeMs": 0.600394999999935
+    },
+    {
+      "key": "0,-6",
+      "lod": 0,
+      "vertices": 4830,
+      "bytes": 231840,
+      "generationMs": 7.798894999999902,
+      "decodeMs": 0.7793050000000221
+    },
+    {
+      "key": "0,-6",
+      "lod": 2,
+      "vertices": 1680,
+      "bytes": 80640,
+      "generationMs": 2.4830520000000433,
+      "decodeMs": 0.22244000000000597
+    },
+    {
+      "key": "1,-3",
+      "lod": 0,
+      "vertices": 14496,
+      "bytes": 695808,
+      "generationMs": 23.150931000000128,
+      "decodeMs": 1.5942170000002989
+    },
+    {
+      "key": "1,-3",
+      "lod": 2,
+      "vertices": 6240,
+      "bytes": 299520,
+      "generationMs": 4.908200000000306,
+      "decodeMs": 0.36564399999997477
+    },
+    {
+      "key": "17,4",
+      "lod": 0,
+      "vertices": 9891,
+      "bytes": 474768,
+      "generationMs": 13.334951000000274,
+      "decodeMs": 0.7634549999997944
+    },
+    {
+      "key": "17,4",
+      "lod": 2,
+      "vertices": 4170,
+      "bytes": 200160,
+      "generationMs": 4.698992999999973,
+      "decodeMs": 0.24731599999995524
+    },
+    {
+      "key": "6,2",
+      "lod": 0,
+      "vertices": 5331,
+      "bytes": 255888,
+      "generationMs": 7.4781739999998535,
+      "decodeMs": 0.450984999999946
+    },
+    {
+      "key": "6,2",
+      "lod": 2,
+      "vertices": 1950,
+      "bytes": 93600,
+      "generationMs": 1.821027999999842,
+      "decodeMs": 0.13585299999976996
+    },
+    {
+      "key": "21,-1",
+      "lod": 0,
+      "vertices": 22776,
+      "bytes": 1093248,
+      "generationMs": 38.06548699999985,
+      "decodeMs": 2.274105999999847
+    },
+    {
+      "key": "21,-1",
+      "lod": 2,
+      "vertices": 6480,
+      "bytes": 311040,
+      "generationMs": 7.24405999999999,
+      "decodeMs": 0.40415100000018356
+    },
+    {
+      "key": "20,-2",
+      "lod": 0,
+      "vertices": 25863,
+      "bytes": 1241424,
+      "generationMs": 53.83627800000022,
+      "decodeMs": 2.4737740000000485
+    },
+    {
+      "key": "20,-2",
+      "lod": 2,
+      "vertices": 10440,
+      "bytes": 501120,
+      "generationMs": 13.062057999999979,
+      "decodeMs": 0.5993840000001001
+    },
+    {
+      "key": "10,0",
+      "lod": 0,
+      "vertices": 6636,
+      "bytes": 318528,
+      "generationMs": 12.756872999999814,
+      "decodeMs": 0.4943319999997584
+    },
+    {
+      "key": "10,0",
+      "lod": 2,
+      "vertices": 2580,
+      "bytes": 123840,
+      "generationMs": 2.3026270000000295,
+      "decodeMs": 0.3070079999997688
+    },
+    {
+      "key": "1,2",
+      "lod": 0,
+      "vertices": 6009,
+      "bytes": 288432,
+      "generationMs": 8.955539000000044,
+      "decodeMs": 0.9660069999999905
+    },
+    {
+      "key": "1,2",
+      "lod": 2,
+      "vertices": 2430,
+      "bytes": 116640,
+      "generationMs": 2.798714999999902,
+      "decodeMs": 0.17760600000019622
+    },
+    {
+      "key": "11,-4",
+      "lod": 0,
+      "vertices": 9561,
+      "bytes": 458928,
+      "generationMs": 14.35122900000033,
+      "decodeMs": 0.9864560000000893
+    },
+    {
+      "key": "11,-4",
+      "lod": 2,
+      "vertices": 3360,
+      "bytes": 161280,
+      "generationMs": 4.214828000000125,
+      "decodeMs": 0.2610700000000179
+    },
+    {
+      "key": "6,4",
+      "lod": 0,
+      "vertices": 3276,
+      "bytes": 157248,
+      "generationMs": 4.5262330000000475,
+      "decodeMs": 0.26380699999981516
+    },
+    {
+      "key": "6,4",
+      "lod": 2,
+      "vertices": 750,
+      "bytes": 36000,
+      "generationMs": 0.8636200000000827,
+      "decodeMs": 0.07938400000011825
+    },
+    {
+      "key": "8,-5",
+      "lod": 0,
+      "vertices": 8781,
+      "bytes": 421488,
+      "generationMs": 13.189147999999932,
+      "decodeMs": 0.6044010000000526
+    },
+    {
+      "key": "8,-5",
+      "lod": 2,
+      "vertices": 3060,
+      "bytes": 146880,
+      "generationMs": 3.679073000000244,
+      "decodeMs": 0.41854800000010073
+    },
+    {
+      "key": "26,-4",
+      "lod": 0,
+      "vertices": 6165,
+      "bytes": 295920,
+      "generationMs": 7.7060880000003635,
+      "decodeMs": 0.43934600000011415
+    },
+    {
+      "key": "26,-4",
+      "lod": 2,
+      "vertices": 1380,
+      "bytes": 66240,
+      "generationMs": 1.300963000000138,
+      "decodeMs": 0.15102999999999156
+    },
+    {
+      "key": "14,-5",
+      "lod": 0,
+      "vertices": 17397,
+      "bytes": 835056,
+      "generationMs": 30.97103700000025,
+      "decodeMs": 2.2914300000002186
+    },
+    {
+      "key": "14,-5",
+      "lod": 2,
+      "vertices": 4890,
+      "bytes": 234720,
+      "generationMs": 6.764331000000311,
+      "decodeMs": 0.6643130000002202
+    },
+    {
+      "key": "15,-1",
+      "lod": 0,
+      "vertices": 18369,
+      "bytes": 881712,
+      "generationMs": 43.97836200000029,
+      "decodeMs": 2.075340999999753
+    },
+    {
+      "key": "15,-1",
+      "lod": 2,
+      "vertices": 6840,
+      "bytes": 328320,
+      "generationMs": 6.482527000000118,
+      "decodeMs": 0.4274319999999534
+    },
+    {
+      "key": "-2,-7",
+      "lod": 0,
+      "vertices": 9192,
+      "bytes": 441216,
+      "generationMs": 14.634265000000141,
+      "decodeMs": 1.3766869999999471
+    },
+    {
+      "key": "-2,-7",
+      "lod": 2,
+      "vertices": 2250,
+      "bytes": 108000,
+      "generationMs": 3.151767000000291,
+      "decodeMs": 0.16703800000004776
+    },
+    {
+      "key": "9,-7",
+      "lod": 0,
+      "vertices": 7875,
+      "bytes": 378000,
+      "generationMs": 18.49709299999995,
+      "decodeMs": 1.6145510000001195
+    },
+    {
+      "key": "9,-7",
+      "lod": 2,
+      "vertices": 2970,
+      "bytes": 142560,
+      "generationMs": 3.1476079999997637,
+      "decodeMs": 0.1958399999998619
+    },
+    {
+      "key": "17,1",
+      "lod": 0,
+      "vertices": 10020,
+      "bytes": 480960,
+      "generationMs": 21.03885799999989,
+      "decodeMs": 1.5356500000002598
+    },
+    {
+      "key": "17,1",
+      "lod": 2,
+      "vertices": 4860,
+      "bytes": 233280,
+      "generationMs": 7.055018999999902,
+      "decodeMs": 0.4600569999997788
+    },
+    {
+      "key": "-1,2",
+      "lod": 0,
+      "vertices": 11178,
+      "bytes": 536544,
+      "generationMs": 22.85610399999996,
+      "decodeMs": 1.2965739999999641
+    },
+    {
+      "key": "-1,2",
+      "lod": 2,
+      "vertices": 4830,
+      "bytes": 231840,
+      "generationMs": 4.159364000000096,
+      "decodeMs": 0.28441700000030323
+    },
+    {
+      "key": "1,1",
+      "lod": 0,
+      "vertices": 10935,
+      "bytes": 524880,
+      "generationMs": 21.791091999999935,
+      "decodeMs": 1.673797000000377
+    },
+    {
+      "key": "1,1",
+      "lod": 2,
+      "vertices": 3900,
+      "bytes": 187200,
+      "generationMs": 5.527595999999903,
+      "decodeMs": 0.31969100000014805
+    },
+    {
+      "key": "27,-2",
+      "lod": 0,
+      "vertices": 8718,
+      "bytes": 418464,
+      "generationMs": 20.269284999999854,
+      "decodeMs": 0.9303890000001047
+    },
+    {
+      "key": "27,-2",
+      "lod": 2,
+      "vertices": 3210,
+      "bytes": 154080,
+      "generationMs": 3.526691999999912,
+      "decodeMs": 0.21040300000004208
+    },
+    {
+      "key": "21,-4",
+      "lod": 0,
+      "vertices": 28563,
+      "bytes": 1371024,
+      "generationMs": 46.59366600000021,
+      "decodeMs": 2.0514359999997396
+    },
+    {
+      "key": "21,-4",
+      "lod": 2,
+      "vertices": 7980,
+      "bytes": 383040,
+      "generationMs": 7.579123000000436,
+      "decodeMs": 0.9489810000004582
+    },
+    {
+      "key": "18,-6",
+      "lod": 0,
+      "vertices": 25680,
+      "bytes": 1232640,
+      "generationMs": 42.38308500000039,
+      "decodeMs": 2.9031199999999444
+    },
+    {
+      "key": "18,-6",
+      "lod": 2,
+      "vertices": 7740,
+      "bytes": 371520,
+      "generationMs": 10.409991000000446,
+      "decodeMs": 0.9411400000008143
+    },
+    {
+      "key": "11,-5",
+      "lod": 0,
+      "vertices": 6924,
+      "bytes": 332352,
+      "generationMs": 12.95902500000011,
+      "decodeMs": 0.5110549999999421
+    },
+    {
+      "key": "11,-5",
+      "lod": 2,
+      "vertices": 2670,
+      "bytes": 128160,
+      "generationMs": 3.44949699999961,
+      "decodeMs": 0.7998829999996815
+    },
+    {
+      "key": "26,-6",
+      "lod": 0,
+      "vertices": 4836,
+      "bytes": 232128,
+      "generationMs": 8.871896000000561,
+      "decodeMs": 0.35994399999981397
+    },
+    {
+      "key": "26,-6",
+      "lod": 2,
+      "vertices": 1800,
+      "bytes": 86400,
+      "generationMs": 1.7429789999996501,
+      "decodeMs": 0.13824600000043574
+    },
+    {
+      "key": "6,0",
+      "lod": 0,
+      "vertices": 5196,
+      "bytes": 249408,
+      "generationMs": 9.637897000000521,
+      "decodeMs": 0.5695329999998648
+    },
+    {
+      "key": "6,0",
+      "lod": 2,
+      "vertices": 1530,
+      "bytes": 73440,
+      "generationMs": 2.441413999999895,
+      "decodeMs": 0.126365000000078
+    },
+    {
+      "key": "19,4",
+      "lod": 0,
+      "vertices": 7098,
+      "bytes": 340704,
+      "generationMs": 13.311375000000226,
+      "decodeMs": 0.5575680000001739
+    },
+    {
+      "key": "19,4",
+      "lod": 2,
+      "vertices": 3150,
+      "bytes": 151200,
+      "generationMs": 4.814206000000013,
+      "decodeMs": 0.9777700000004188
+    },
+    {
+      "key": "19,-2",
+      "lod": 0,
+      "vertices": 22533,
+      "bytes": 1081584,
+      "generationMs": 36.41340200000013,
+      "decodeMs": 5.557361000000128
+    },
+    {
+      "key": "19,-2",
+      "lod": 2,
+      "vertices": 8310,
+      "bytes": 398880,
+      "generationMs": 8.880833999999595,
+      "decodeMs": 0.5600139999996827
+    },
+    {
+      "key": "4,-1",
+      "lod": 0,
+      "vertices": 16236,
+      "bytes": 779328,
+      "generationMs": 39.785939000000326,
+      "decodeMs": 1.5592289999995046
+    },
+    {
+      "key": "4,-1",
+      "lod": 2,
+      "vertices": 6630,
+      "bytes": 318240,
+      "generationMs": 5.73786199999995,
+      "decodeMs": 0.4294100000006438
+    },
+    {
+      "key": "25,-3",
+      "lod": 0,
+      "vertices": 8286,
+      "bytes": 397728,
+      "generationMs": 11.186233000000357,
+      "decodeMs": 0.8633319999999003
+    },
+    {
+      "key": "25,-3",
+      "lod": 2,
+      "vertices": 2700,
+      "bytes": 129600,
+      "generationMs": 2.646964999999909,
+      "decodeMs": 0.3205120000002353
+    },
+    {
+      "key": "17,-5",
+      "lod": 0,
+      "vertices": 33036,
+      "bytes": 1585728,
+      "generationMs": 53.801854000000276,
+      "decodeMs": 2.7233360000000175
+    },
+    {
+      "key": "17,-5",
+      "lod": 2,
+      "vertices": 6840,
+      "bytes": 328320,
+      "generationMs": 9.145854999999756,
+      "decodeMs": 0.7517990000005739
+    },
+    {
+      "key": "4,2",
+      "lod": 0,
+      "vertices": 8334,
+      "bytes": 400032,
+      "generationMs": 19.382669999999962,
+      "decodeMs": 0.6054340000000593
+    },
+    {
+      "key": "4,2",
+      "lod": 2,
+      "vertices": 3540,
+      "bytes": 169920,
+      "generationMs": 3.090646000000561,
+      "decodeMs": 0.23251600000003236
+    },
+    {
+      "key": "2,4",
+      "lod": 0,
+      "vertices": 3705,
+      "bytes": 177840,
+      "generationMs": 6.206092000000353,
+      "decodeMs": 0.41406800000004296
+    },
+    {
+      "key": "2,4",
+      "lod": 2,
+      "vertices": 1170,
+      "bytes": 56160,
+      "generationMs": 1.4318040000007386,
+      "decodeMs": 0.18197700000018813
+    },
+    {
+      "key": "5,0",
+      "lod": 0,
+      "vertices": 10689,
+      "bytes": 513072,
+      "generationMs": 21.53708099999949,
+      "decodeMs": 1.0496210000001156
+    },
+    {
+      "key": "5,0",
+      "lod": 2,
+      "vertices": 3450,
+      "bytes": 165600,
+      "generationMs": 6.514653999999609,
+      "decodeMs": 2.442334000000301
+    },
+    {
+      "key": "18,0",
+      "lod": 0,
+      "vertices": 13293,
+      "bytes": 638064,
+      "generationMs": 20.894647000000077,
+      "decodeMs": 1.2506409999996322
+    },
+    {
+      "key": "18,0",
+      "lod": 2,
+      "vertices": 3810,
+      "bytes": 182880,
+      "generationMs": 3.1058069999999134,
+      "decodeMs": 0.2374419999996462
+    },
+    {
+      "key": "7,-4",
+      "lod": 0,
+      "vertices": 10944,
+      "bytes": 525312,
+      "generationMs": 17.8636460000007,
+      "decodeMs": 2.3951630000001387
+    },
+    {
+      "key": "7,-4",
+      "lod": 2,
+      "vertices": 3960,
+      "bytes": 190080,
+      "generationMs": 4.026346999999987,
+      "decodeMs": 0.4316319999998086
+    },
+    {
+      "key": "4,3",
+      "lod": 0,
+      "vertices": 4551,
+      "bytes": 218448,
+      "generationMs": 7.180550000000039,
+      "decodeMs": 0.5295969999997396
+    },
+    {
+      "key": "4,3",
+      "lod": 2,
+      "vertices": 1860,
+      "bytes": 89280,
+      "generationMs": 1.633694999999534,
+      "decodeMs": 0.13925099999960366
+    },
+    {
+      "key": "14,-1",
+      "lod": 0,
+      "vertices": 16665,
+      "bytes": 799920,
+      "generationMs": 30.616895000000113,
+      "decodeMs": 1.528809000000365
+    },
+    {
+      "key": "14,-1",
+      "lod": 2,
+      "vertices": 5670,
+      "bytes": 272160,
+      "generationMs": 6.3086050000001705,
+      "decodeMs": 0.5915399999994406
+    },
+    {
+      "key": "21,4",
+      "lod": 0,
+      "vertices": 4860,
+      "bytes": 233280,
+      "generationMs": 7.588292999999794,
+      "decodeMs": 0.6049419999999373
+    },
+    {
+      "key": "21,4",
+      "lod": 2,
+      "vertices": 1470,
+      "bytes": 70560,
+      "generationMs": 1.509226000000126,
+      "decodeMs": 0.18213099999957194
+    },
+    {
+      "key": "9,-4",
+      "lod": 0,
+      "vertices": 4545,
+      "bytes": 218160,
+      "generationMs": 7.9050450000004275,
+      "decodeMs": 0.41017699999974866
+    },
+    {
+      "key": "9,-4",
+      "lod": 2,
+      "vertices": 1410,
+      "bytes": 67680,
+      "generationMs": 1.2202330000000075,
+      "decodeMs": 0.11381100000016886
+    },
+    {
+      "key": "15,4",
+      "lod": 0,
+      "vertices": 11346,
+      "bytes": 544608,
+      "generationMs": 23.107913999999255,
+      "decodeMs": 1.4200730000002295
+    },
+    {
+      "key": "15,4",
+      "lod": 2,
+      "vertices": 4590,
+      "bytes": 220320,
+      "generationMs": 4.371442999999999,
+      "decodeMs": 0.2629510000006121
+    },
+    {
+      "key": "10,-1",
+      "lod": 0,
+      "vertices": 5475,
+      "bytes": 262800,
+      "generationMs": 8.582147000000077,
+      "decodeMs": 0.7637910000003103
+    },
+    {
+      "key": "10,-1",
+      "lod": 2,
+      "vertices": 2100,
+      "bytes": 100800,
+      "generationMs": 1.8666990000001533,
+      "decodeMs": 0.15657999999984895
+    },
+    {
+      "key": "8,-4",
+      "lod": 0,
+      "vertices": 10542,
+      "bytes": 506016,
+      "generationMs": 20.603250000000116,
+      "decodeMs": 1.1630400000003647
+    },
+    {
+      "key": "8,-4",
+      "lod": 2,
+      "vertices": 3780,
+      "bytes": 181440,
+      "generationMs": 15.579225999999835,
+      "decodeMs": 0.7045130000005884
+    },
+    {
+      "key": "27,0",
+      "lod": 0,
+      "vertices": 4902,
+      "bytes": 235296,
+      "generationMs": 15.271434999999656,
+      "decodeMs": 0.8094770000006974
+    },
+    {
+      "key": "27,0",
+      "lod": 2,
+      "vertices": 1440,
+      "bytes": 69120,
+      "generationMs": 2.2818889999998646,
+      "decodeMs": 0.5832159999999931
+    },
+    {
+      "key": "6,1",
+      "lod": 0,
+      "vertices": 4221,
+      "bytes": 202608,
+      "generationMs": 7.753377,
+      "decodeMs": 0.5113540000002104
+    },
+    {
+      "key": "6,1",
+      "lod": 2,
+      "vertices": 1470,
+      "bytes": 70560,
+      "generationMs": 1.974380999999994,
+      "decodeMs": 0.12131899999985762
+    },
+    {
+      "key": "16,-2",
+      "lod": 0,
+      "vertices": 30048,
+      "bytes": 1442304,
+      "generationMs": 41.509313999999904,
+      "decodeMs": 2.6083410000001095
+    },
+    {
+      "key": "16,-2",
+      "lod": 2,
+      "vertices": 9630,
+      "bytes": 462240,
+      "generationMs": 9.430288999999902,
+      "decodeMs": 0.641802999999527
+    },
+    {
+      "key": "-1,3",
+      "lod": 0,
+      "vertices": 7782,
+      "bytes": 373536,
+      "generationMs": 13.118490999999267,
+      "decodeMs": 0.5821109999997134
+    },
+    {
+      "key": "-1,3",
+      "lod": 2,
+      "vertices": 2520,
+      "bytes": 120960,
+      "generationMs": 4.239367999999558,
+      "decodeMs": 0.17130600000018603
+    },
+    {
+      "key": "16,4",
+      "lod": 0,
+      "vertices": 9066,
+      "bytes": 435168,
+      "generationMs": 15.361793000000034,
+      "decodeMs": 0.8452769999994416
+    },
+    {
+      "key": "16,4",
+      "lod": 2,
+      "vertices": 3630,
+      "bytes": 174240,
+      "generationMs": 3.2313670000003185,
+      "decodeMs": 0.29830500000025495
+    },
+    {
+      "key": "-2,-3",
+      "lod": 0,
+      "vertices": 3327,
+      "bytes": 159696,
+      "generationMs": 5.039458999999624,
+      "decodeMs": 0.2758009999997739
+    },
+    {
+      "key": "-2,-3",
+      "lod": 2,
+      "vertices": 1170,
+      "bytes": 56160,
+      "generationMs": 2.9878469999994195,
+      "decodeMs": 0.10949299999992945
+    },
+    {
+      "key": "15,3",
+      "lod": 0,
+      "vertices": 8874,
+      "bytes": 425952,
+      "generationMs": 20.694400999999743,
+      "decodeMs": 1.0731249999998909
+    },
+    {
+      "key": "15,3",
+      "lod": 2,
+      "vertices": 3570,
+      "bytes": 171360,
+      "generationMs": 3.6608839999998963,
+      "decodeMs": 0.23718499999995402
+    },
+    {
+      "key": "24,1",
+      "lod": 0,
+      "vertices": 6708,
+      "bytes": 321984,
+      "generationMs": 9.24004100000002,
+      "decodeMs": 0.5562600000002931
+    },
+    {
+      "key": "24,1",
+      "lod": 2,
+      "vertices": 3390,
+      "bytes": 162720,
+      "generationMs": 2.962911000000531,
+      "decodeMs": 0.2062710000000152
+    },
+    {
+      "key": "-5,-3",
+      "lod": 0,
+      "vertices": 1854,
+      "bytes": 88992,
+      "generationMs": 3.858749999999418,
+      "decodeMs": 0.6073390000001382
+    },
+    {
+      "key": "-5,-3",
+      "lod": 2,
+      "vertices": 810,
+      "bytes": 38880,
+      "generationMs": 1.2055469999995694,
+      "decodeMs": 1.2442679999994652
+    },
+    {
+      "key": "3,0",
+      "lod": 0,
+      "vertices": 11109,
+      "bytes": 533232,
+      "generationMs": 29.30987399999958,
+      "decodeMs": 1.1368390000006912
+    },
+    {
+      "key": "3,0",
+      "lod": 2,
+      "vertices": 4860,
+      "bytes": 233280,
+      "generationMs": 10.0792849999998,
+      "decodeMs": 0.3060889999997016
+    },
+    {
+      "key": "20,0",
+      "lod": 0,
+      "vertices": 13380,
+      "bytes": 642240,
+      "generationMs": 44.377841000000444,
+      "decodeMs": 1.4249989999998434
+    },
+    {
+      "key": "20,0",
+      "lod": 2,
+      "vertices": 4590,
+      "bytes": 220320,
+      "generationMs": 13.748149999999441,
+      "decodeMs": 2.3426509999999325
+    },
+    {
+      "key": "19,-7",
+      "lod": 0,
+      "vertices": 19584,
+      "bytes": 940032,
+      "generationMs": 40.07605100000001,
+      "decodeMs": 1.407868000000235
+    },
+    {
+      "key": "19,-7",
+      "lod": 2,
+      "vertices": 7590,
+      "bytes": 364320,
+      "generationMs": 7.1355479999992895,
+      "decodeMs": 0.4847280000003593
+    },
+    {
+      "key": "12,0",
+      "lod": 0,
+      "vertices": 6474,
+      "bytes": 310752,
+      "generationMs": 14.462791999999354,
+      "decodeMs": 1.144466000000648
+    },
+    {
+      "key": "12,0",
+      "lod": 2,
+      "vertices": 1920,
+      "bytes": 92160,
+      "generationMs": 1.7565480000002935,
+      "decodeMs": 0.5575240000007398
+    },
+    {
+      "key": "19,-1",
+      "lod": 0,
+      "vertices": 17106,
+      "bytes": 821088,
+      "generationMs": 31.481098000000202,
+      "decodeMs": 1.714535000000069
+    },
+    {
+      "key": "19,-1",
+      "lod": 2,
+      "vertices": 5340,
+      "bytes": 256320,
+      "generationMs": 7.547488999999587,
+      "decodeMs": 0.30119700000068406
+    },
+    {
+      "key": "22,0",
+      "lod": 0,
+      "vertices": 12828,
+      "bytes": 615744,
+      "generationMs": 25.505480000000716,
+      "decodeMs": 2.6171620000004623
+    },
+    {
+      "key": "22,0",
+      "lod": 2,
+      "vertices": 4980,
+      "bytes": 239040,
+      "generationMs": 9.894204000000173,
+      "decodeMs": 0.5704720000003363
+    },
+    {
+      "key": "22,-1",
+      "lod": 0,
+      "vertices": 15894,
+      "bytes": 762912,
+      "generationMs": 30.55319899999995,
+      "decodeMs": 1.4436310000000958
+    },
+    {
+      "key": "22,-1",
+      "lod": 2,
+      "vertices": 4800,
+      "bytes": 230400,
+      "generationMs": 5.15400099999988,
+      "decodeMs": 0.2843300000004092
+    },
+    {
+      "key": "14,-7",
+      "lod": 0,
+      "vertices": 10935,
+      "bytes": 524880,
+      "generationMs": 20.291863000000376,
+      "decodeMs": 0.7845980000001873
+    },
+    {
+      "key": "14,-7",
+      "lod": 2,
+      "vertices": 4650,
+      "bytes": 223200,
+      "generationMs": 8.436687000000347,
+      "decodeMs": 0.2884169999997539
+    },
+    {
+      "key": "15,-6",
+      "lod": 0,
+      "vertices": 20055,
+      "bytes": 962640,
+      "generationMs": 51.383192999999665,
+      "decodeMs": 2.3740880000004836
+    },
+    {
+      "key": "15,-6",
+      "lod": 2,
+      "vertices": 9120,
+      "bytes": 437760,
+      "generationMs": 9.566373000000567,
+      "decodeMs": 0.5380850000001374
+    },
+    {
+      "key": "20,-4",
+      "lod": 0,
+      "vertices": 24465,
+      "bytes": 1174320,
+      "generationMs": 37.29905099999996,
+      "decodeMs": 2.3457750000006854
+    },
+    {
+      "key": "20,-4",
+      "lod": 2,
+      "vertices": 7440,
+      "bytes": 357120,
+      "generationMs": 11.022328999999445,
+      "decodeMs": 0.4169259999998758
+    },
+    {
+      "key": "10,-6",
+      "lod": 0,
+      "vertices": 11079,
+      "bytes": 531792,
+      "generationMs": 21.263968000000204,
+      "decodeMs": 1.0411949999997887
+    },
+    {
+      "key": "10,-6",
+      "lod": 2,
+      "vertices": 3600,
+      "bytes": 172800,
+      "generationMs": 3.4089210000001913,
+      "decodeMs": 0.2145570000002408
+    },
+    {
+      "key": "19,2",
+      "lod": 0,
+      "vertices": 9165,
+      "bytes": 439920,
+      "generationMs": 21.188632000000325,
+      "decodeMs": 0.8116330000002563
+    },
+    {
+      "key": "19,2",
+      "lod": 2,
+      "vertices": 3300,
+      "bytes": 158400,
+      "generationMs": 3.2732519999999568,
+      "decodeMs": 0.21134600000004866
+    },
+    {
+      "key": "22,-3",
+      "lod": 0,
+      "vertices": 21294,
+      "bytes": 1022112,
+      "generationMs": 33.312010000000555,
+      "decodeMs": 1.5543450000004668
+    },
+    {
+      "key": "22,-3",
+      "lod": 2,
+      "vertices": 7560,
+      "bytes": 362880,
+      "generationMs": 8.333281999999599,
+      "decodeMs": 0.40767700000014884
+    },
+    {
+      "key": "21,0",
+      "lod": 0,
+      "vertices": 5622,
+      "bytes": 269856,
+      "generationMs": 7.674067999999352,
+      "decodeMs": 0.535914000000048
+    },
+    {
+      "key": "21,0",
+      "lod": 2,
+      "vertices": 2040,
+      "bytes": 97920,
+      "generationMs": 1.9847689999996874,
+      "decodeMs": 0.14458900000045105
+    },
+    {
+      "key": "7,3",
+      "lod": 0,
+      "vertices": 6630,
+      "bytes": 318240,
+      "generationMs": 14.080369000000246,
+      "decodeMs": 1.263984000000164
+    },
+    {
+      "key": "7,3",
+      "lod": 2,
+      "vertices": 1710,
+      "bytes": 82080,
+      "generationMs": 1.897103000000243,
+      "decodeMs": 0.41294900000048074
+    },
+    {
+      "key": "12,-3",
+      "lod": 0,
+      "vertices": 14463,
+      "bytes": 694224,
+      "generationMs": 26.237184999999954,
+      "decodeMs": 1.147436999999627
+    },
+    {
+      "key": "12,-3",
+      "lod": 2,
+      "vertices": 4290,
+      "bytes": 205920,
+      "generationMs": 8.300194000000374,
+      "decodeMs": 2.941851999999926
+    },
+    {
+      "key": "25,-1",
+      "lod": 0,
+      "vertices": 11967,
+      "bytes": 574416,
+      "generationMs": 23.454001000000062,
+      "decodeMs": 1.377875000000131
+    },
+    {
+      "key": "25,-1",
+      "lod": 2,
+      "vertices": 3810,
+      "bytes": 182880,
+      "generationMs": 5.1087640000005194,
+      "decodeMs": 0.38304799999968964
+    },
+    {
+      "key": "13,-3",
+      "lod": 0,
+      "vertices": 20124,
+      "bytes": 965952,
+      "generationMs": 34.449532999999974,
+      "decodeMs": 3.694803999999749
+    },
+    {
+      "key": "13,-3",
+      "lod": 2,
+      "vertices": 5580,
+      "bytes": 267840,
+      "generationMs": 9.003260999999839,
+      "decodeMs": 1.0736230000002251
+    },
+    {
+      "key": "14,4",
+      "lod": 0,
+      "vertices": 10509,
+      "bytes": 504432,
+      "generationMs": 16.948711999999432,
+      "decodeMs": 1.315747999999985
+    },
+    {
+      "key": "14,4",
+      "lod": 2,
+      "vertices": 3090,
+      "bytes": 148320,
+      "generationMs": 3.344978000000083,
+      "decodeMs": 0.20837200000005396
+    },
+    {
+      "key": "2,-3",
+      "lod": 0,
+      "vertices": 13431,
+      "bytes": 644688,
+      "generationMs": 27.288257000000158,
+      "decodeMs": 1.5753480000003037
+    },
+    {
+      "key": "2,-3",
+      "lod": 2,
+      "vertices": 5160,
+      "bytes": 247680,
+      "generationMs": 5.928039999999783,
+      "decodeMs": 0.6094739999998637
+    },
+    {
+      "key": "7,1",
+      "lod": 0,
+      "vertices": 6636,
+      "bytes": 318528,
+      "generationMs": 11.97613100000035,
+      "decodeMs": 0.8461559999996098
+    },
+    {
+      "key": "7,1",
+      "lod": 2,
+      "vertices": 2310,
+      "bytes": 110880,
+      "generationMs": 3.049192999999832,
+      "decodeMs": 0.379374000000098
+    },
+    {
+      "key": "7,-5",
+      "lod": 0,
+      "vertices": 7413,
+      "bytes": 355824,
+      "generationMs": 26.009898999999677,
+      "decodeMs": 0.7049200000001292
+    },
+    {
+      "key": "7,-5",
+      "lod": 2,
+      "vertices": 2490,
+      "bytes": 119520,
+      "generationMs": 4.0874189999995,
+      "decodeMs": 0.17167800000061106
+    },
+    {
+      "key": "24,-5",
+      "lod": 0,
+      "vertices": 14004,
+      "bytes": 672192,
+      "generationMs": 40.561037999999826,
+      "decodeMs": 1.2754119999999602
+    },
+    {
+      "key": "24,-5",
+      "lod": 2,
+      "vertices": 4320,
+      "bytes": 207360,
+      "generationMs": 4.697580999999445,
+      "decodeMs": 0.2613129999999728
+    },
+    {
+      "key": "-1,-4",
+      "lod": 0,
+      "vertices": 7221,
+      "bytes": 346608,
+      "generationMs": 12.437472999999954,
+      "decodeMs": 1.5386990000006335
+    },
+    {
+      "key": "-1,-4",
+      "lod": 2,
+      "vertices": 2430,
+      "bytes": 116640,
+      "generationMs": 2.6518040000000838,
+      "decodeMs": 0.17196300000068732
+    },
+    {
+      "key": "9,4",
+      "lod": 0,
+      "vertices": 5499,
+      "bytes": 263952,
+      "generationMs": 11.509522999999717,
+      "decodeMs": 0.5800260000005437
+    },
+    {
+      "key": "9,4",
+      "lod": 2,
+      "vertices": 2430,
+      "bytes": 116640,
+      "generationMs": 3.8284999999996217,
+      "decodeMs": 0.4387639999995372
+    },
+    {
+      "key": "20,3",
+      "lod": 0,
+      "vertices": 10548,
+      "bytes": 506304,
+      "generationMs": 27.28666499999963,
+      "decodeMs": 2.034410000000207
+    },
+    {
+      "key": "20,3",
+      "lod": 2,
+      "vertices": 3360,
+      "bytes": 161280,
+      "generationMs": 4.2646960000001854,
+      "decodeMs": 0.5745499999993626
+    },
+    {
+      "key": "27,1",
+      "lod": 0,
+      "vertices": 5718,
+      "bytes": 274464,
+      "generationMs": 9.478892000000087,
+      "decodeMs": 0.4273320000002059
+    },
+    {
+      "key": "27,1",
+      "lod": 2,
+      "vertices": 2100,
+      "bytes": 100800,
+      "generationMs": 1.855225999999675,
+      "decodeMs": 0.5416199999999662
+    },
+    {
+      "key": "18,4",
+      "lod": 0,
+      "vertices": 8283,
+      "bytes": 397584,
+      "generationMs": 15.043131000000358,
+      "decodeMs": 1.2862059999997655
+    },
+    {
+      "key": "18,4",
+      "lod": 2,
+      "vertices": 4290,
+      "bytes": 205920,
+      "generationMs": 5.253504999999677,
+      "decodeMs": 0.3515690000003815
+    },
+    {
+      "key": "0,-8",
+      "lod": 0,
+      "vertices": 1092,
+      "bytes": 52416,
+      "generationMs": 1.4792239999997037,
+      "decodeMs": 0.12263600000005681
+    },
+    {
+      "key": "0,-8",
+      "lod": 2,
+      "vertices": 330,
+      "bytes": 15840,
+      "generationMs": 0.26687800000036077,
+      "decodeMs": 0.20419000000038068
+    },
+    {
+      "key": "11,-7",
+      "lod": 0,
+      "vertices": 10587,
+      "bytes": 508176,
+      "generationMs": 18.491038000000117,
+      "decodeMs": 1.9136950000001889
+    },
+    {
+      "key": "11,-7",
+      "lod": 2,
+      "vertices": 3510,
+      "bytes": 168480,
+      "generationMs": 8.007524999999987,
+      "decodeMs": 0.49068999999963125
+    },
+    {
+      "key": "23,4",
+      "lod": 0,
+      "vertices": 6798,
+      "bytes": 326304,
+      "generationMs": 19.00920700000006,
+      "decodeMs": 0.9164970000001631
+    },
+    {
+      "key": "23,4",
+      "lod": 2,
+      "vertices": 2670,
+      "bytes": 128160,
+      "generationMs": 4.382626999999957,
+      "decodeMs": 0.384726999999657
+    },
+    {
+      "key": "17,-4",
+      "lod": 0,
+      "vertices": 11781,
+      "bytes": 565488,
+      "generationMs": 17.238005000000157,
+      "decodeMs": 2.9256670000004306
+    },
+    {
+      "key": "17,-4",
+      "lod": 2,
+      "vertices": 2340,
+      "bytes": 112320,
+      "generationMs": 4.375019000000066,
+      "decodeMs": 0.572306000000026
+    },
+    {
+      "key": "15,-4",
+      "lod": 0,
+      "vertices": 23295,
+      "bytes": 1118160,
+      "generationMs": 63.985216999999466,
+      "decodeMs": 3.325591999999233
+    },
+    {
+      "key": "15,-4",
+      "lod": 2,
+      "vertices": 7170,
+      "bytes": 344160,
+      "generationMs": 14.054758999999649,
+      "decodeMs": 1.06003199999941
+    },
+    {
+      "key": "20,-6",
+      "lod": 0,
+      "vertices": 34965,
+      "bytes": 1678320,
+      "generationMs": 87.8255050000007,
+      "decodeMs": 7.882333000000472
+    },
+    {
+      "key": "20,-6",
+      "lod": 2,
+      "vertices": 9930,
+      "bytes": 476640,
+      "generationMs": 16.4095099999995,
+      "decodeMs": 1.7275329999993119
+    },
+    {
+      "key": "11,0",
+      "lod": 0,
+      "vertices": 10632,
+      "bytes": 510336,
+      "generationMs": 34.708654000000024,
+      "decodeMs": 2.5556750000005195
+    },
+    {
+      "key": "11,0",
+      "lod": 2,
+      "vertices": 4110,
+      "bytes": 197280,
+      "generationMs": 7.016717999999855,
+      "decodeMs": 0.2607880000005025
+    },
+    {
+      "key": "21,-6",
+      "lod": 0,
+      "vertices": 31410,
+      "bytes": 1507680,
+      "generationMs": 73.88105300000007,
+      "decodeMs": 3.966972999999598
+    },
+    {
+      "key": "21,-6",
+      "lod": 2,
+      "vertices": 10920,
+      "bytes": 524160,
+      "generationMs": 12.31686499999978,
+      "decodeMs": 0.9931219999998575
+    },
+    {
+      "key": "24,4",
+      "lod": 0,
+      "vertices": 3381,
+      "bytes": 162288,
+      "generationMs": 9.590143000000353,
+      "decodeMs": 0.29136099999959697
+    },
+    {
+      "key": "24,4",
+      "lod": 2,
+      "vertices": 1290,
+      "bytes": 61920,
+      "generationMs": 2.5579250000000684,
+      "decodeMs": 0.4466899999997622
+    },
+    {
+      "key": "15,-2",
+      "lod": 0,
+      "vertices": 23754,
+      "bytes": 1140192,
+      "generationMs": 69.35409400000026,
+      "decodeMs": 4.849296999999751
+    },
+    {
+      "key": "15,-2",
+      "lod": 2,
+      "vertices": 9270,
+      "bytes": 444960,
+      "generationMs": 15.357394999999997,
+      "decodeMs": 0.6503970000003392
+    },
+    {
+      "key": "5,-4",
+      "lod": 0,
+      "vertices": 5499,
+      "bytes": 263952,
+      "generationMs": 22.409442999999555,
+      "decodeMs": 1.14999699999953
+    },
+    {
+      "key": "5,-4",
+      "lod": 2,
+      "vertices": 1710,
+      "bytes": 82080,
+      "generationMs": 3.0522540000001754,
+      "decodeMs": 0.3604160000004413
+    },
+    {
+      "key": "26,-2",
+      "lod": 0,
+      "vertices": 11055,
+      "bytes": 530640,
+      "generationMs": 28.554426000000603,
+      "decodeMs": 1.8764970000001995
+    },
+    {
+      "key": "26,-2",
+      "lod": 2,
+      "vertices": 2790,
+      "bytes": 133920,
+      "generationMs": 4.549667000000227,
+      "decodeMs": 0.22041300000000774
+    },
+    {
+      "key": "20,-8",
+      "lod": 0,
+      "vertices": 7383,
+      "bytes": 354384,
+      "generationMs": 15.710317000000032,
+      "decodeMs": 0.6825410000001284
+    },
+    {
+      "key": "20,-8",
+      "lod": 2,
+      "vertices": 2100,
+      "bytes": 100800,
+      "generationMs": 2.1914059999999154,
+      "decodeMs": 0.1641859999999724
+    },
+    {
+      "key": "12,-1",
+      "lod": 0,
+      "vertices": 7035,
+      "bytes": 337680,
+      "generationMs": 18.194556999999804,
+      "decodeMs": 1.6335440000002563
+    },
+    {
+      "key": "12,-1",
+      "lod": 2,
+      "vertices": 2820,
+      "bytes": 135360,
+      "generationMs": 5.71636799999942,
+      "decodeMs": 0.2866990000002261
+    },
+    {
+      "key": "23,2",
+      "lod": 0,
+      "vertices": 5496,
+      "bytes": 263808,
+      "generationMs": 16.478511999999682,
+      "decodeMs": 0.5833409999995638
+    },
+    {
+      "key": "23,2",
+      "lod": 2,
+      "vertices": 1620,
+      "bytes": 77760,
+      "generationMs": 2.3805249999995794,
+      "decodeMs": 0.28795200000058685
+    },
+    {
+      "key": "6,-1",
+      "lod": 0,
+      "vertices": 8259,
+      "bytes": 396432,
+      "generationMs": 19.240741999999955,
+      "decodeMs": 1.4768439999998009
+    },
+    {
+      "key": "6,-1",
+      "lod": 2,
+      "vertices": 2340,
+      "bytes": 112320,
+      "generationMs": 2.962586999999985,
+      "decodeMs": 0.37444999999934225
+    },
+    {
+      "key": "23,-6",
+      "lod": 0,
+      "vertices": 14385,
+      "bytes": 690480,
+      "generationMs": 32.11869000000024,
+      "decodeMs": 2.526000999999269
+    },
+    {
+      "key": "23,-6",
+      "lod": 2,
+      "vertices": 4350,
+      "bytes": 208800,
+      "generationMs": 6.023887000000286,
+      "decodeMs": 0.2966949999999997
+    },
+    {
+      "key": "22,1",
+      "lod": 0,
+      "vertices": 8310,
+      "bytes": 398880,
+      "generationMs": 15.80493000000024,
+      "decodeMs": 1.1461810000000696
+    },
+    {
+      "key": "22,1",
+      "lod": 2,
+      "vertices": 3900,
+      "bytes": 187200,
+      "generationMs": 10.63176299999941,
+      "decodeMs": 1.131623999999647
+    },
+    {
+      "key": "10,-2",
+      "lod": 0,
+      "vertices": 8928,
+      "bytes": 428544,
+      "generationMs": 24.156638000000385,
+      "decodeMs": 2.0491620000002513
+    },
+    {
+      "key": "10,-2",
+      "lod": 2,
+      "vertices": 3090,
+      "bytes": 148320,
+      "generationMs": 4.556764999999359,
+      "decodeMs": 0.46220699999958015
+    },
+    {
+      "key": "20,-7",
+      "lod": 0,
+      "vertices": 26682,
+      "bytes": 1280736,
+      "generationMs": 59.363674000000174,
+      "decodeMs": 4.285813999999846
+    },
+    {
+      "key": "20,-7",
+      "lod": 2,
+      "vertices": 8640,
+      "bytes": 414720,
+      "generationMs": 14.13369000000057,
+      "decodeMs": 1.7350409999999101
+    },
+    {
+      "key": "4,0",
+      "lod": 0,
+      "vertices": 15093,
+      "bytes": 724464,
+      "generationMs": 39.85511000000042,
+      "decodeMs": 2.2244629999995595
+    },
+    {
+      "key": "4,0",
+      "lod": 2,
+      "vertices": 5880,
+      "bytes": 282240,
+      "generationMs": 6.7426439999999275,
+      "decodeMs": 0.7641530000000785
+    },
+    {
+      "key": "25,0",
+      "lod": 0,
+      "vertices": 7626,
+      "bytes": 366048,
+      "generationMs": 15.310032999999748,
+      "decodeMs": 0.5993089999992662
+    },
+    {
+      "key": "25,0",
+      "lod": 2,
+      "vertices": 2700,
+      "bytes": 129600,
+      "generationMs": 3.634874000000309,
+      "decodeMs": 0.3720400000001973
+    },
+    {
+      "key": "21,-7",
+      "lod": 0,
+      "vertices": 19611,
+      "bytes": 941328,
+      "generationMs": 168.32753700000012,
+      "decodeMs": 3.4583029999994324
+    },
+    {
+      "key": "21,-7",
+      "lod": 2,
+      "vertices": 8610,
+      "bytes": 413280,
+      "generationMs": 13.333246000000145,
+      "decodeMs": 1.1926780000003419
+    },
+    {
+      "key": "15,2",
+      "lod": 0,
+      "vertices": 14106,
+      "bytes": 677088,
+      "generationMs": 41.01224000000002,
+      "decodeMs": 2.1063279999998485
+    },
+    {
+      "key": "15,2",
+      "lod": 2,
+      "vertices": 5400,
+      "bytes": 259200,
+      "generationMs": 9.089780999999675,
+      "decodeMs": 0.5502649999998539
+    },
+    {
+      "key": "14,3",
+      "lod": 0,
+      "vertices": 4524,
+      "bytes": 217152,
+      "generationMs": 11.169998000000305,
+      "decodeMs": 0.3456740000001446
+    },
+    {
+      "key": "14,3",
+      "lod": 2,
+      "vertices": 1080,
+      "bytes": 51840,
+      "generationMs": 7.466903000000457,
+      "decodeMs": 0.20831400000042777
+    },
+    {
+      "key": "12,-4",
+      "lod": 0,
+      "vertices": 16200,
+      "bytes": 777600,
+      "generationMs": 37.425780000000486,
+      "decodeMs": 3.016270999999506
+    },
+    {
+      "key": "12,-4",
+      "lod": 2,
+      "vertices": 4530,
+      "bytes": 217440,
+      "generationMs": 5.0331179999993765,
+      "decodeMs": 1.0114439999997558
+    },
+    {
+      "key": "9,0",
+      "lod": 0,
+      "vertices": 10644,
+      "bytes": 510912,
+      "generationMs": 23.247559999999794,
+      "decodeMs": 4.1991619999998875
+    },
+    {
+      "key": "9,0",
+      "lod": 2,
+      "vertices": 3150,
+      "bytes": 151200,
+      "generationMs": 5.240453999999772,
+      "decodeMs": 0.3995939999995244
+    },
+    {
+      "key": "14,2",
+      "lod": 0,
+      "vertices": 6345,
+      "bytes": 304560,
+      "generationMs": 24.244642999999996,
+      "decodeMs": 2.508281999999781
+    },
+    {
+      "key": "14,2",
+      "lod": 2,
+      "vertices": 2310,
+      "bytes": 110880,
+      "generationMs": 7.4362229999997,
+      "decodeMs": 0.16181199999937235
+    },
+    {
+      "key": "17,0",
+      "lod": 0,
+      "vertices": 14811,
+      "bytes": 710928,
+      "generationMs": 53.83349799999996,
+      "decodeMs": 2.9592380000003686
+    },
+    {
+      "key": "17,0",
+      "lod": 2,
+      "vertices": 5160,
+      "bytes": 247680,
+      "generationMs": 15.574607999999898,
+      "decodeMs": 0.312474000000293
+    },
+    {
+      "key": "19,1",
+      "lod": 0,
+      "vertices": 13509,
+      "bytes": 648432,
+      "generationMs": 43.50170800000069,
+      "decodeMs": 2.176629999999932
+    },
+    {
+      "key": "19,1",
+      "lod": 2,
+      "vertices": 4620,
+      "bytes": 221760,
+      "generationMs": 8.456152000000657,
+      "decodeMs": 0.35645800000020245
+    },
+    {
+      "key": "1,-4",
+      "lod": 0,
+      "vertices": 4212,
+      "bytes": 202176,
+      "generationMs": 7.876234000000295,
+      "decodeMs": 1.236337999999705
+    },
+    {
+      "key": "1,-4",
+      "lod": 2,
+      "vertices": 1830,
+      "bytes": 87840,
+      "generationMs": 2.6877260000001115,
+      "decodeMs": 0.14279400000032183
+    },
+    {
+      "key": "13,-8",
+      "lod": 0,
+      "vertices": 7254,
+      "bytes": 348192,
+      "generationMs": 15.076321999999891,
+      "decodeMs": 1.4631490000001577
+    },
+    {
+      "key": "13,-8",
+      "lod": 2,
+      "vertices": 2310,
+      "bytes": 110880,
+      "generationMs": 4.2751149999994595,
+      "decodeMs": 0.19587400000000343
+    },
+    {
+      "key": "27,-8",
+      "lod": 0,
+      "vertices": 8223,
+      "bytes": 394704,
+      "generationMs": 35.2081419999995,
+      "decodeMs": 1.6727319999999963
+    },
+    {
+      "key": "27,-8",
+      "lod": 2,
+      "vertices": 2790,
+      "bytes": 133920,
+      "generationMs": 9.291932000000088,
+      "decodeMs": 0.18953099999998813
+    },
+    {
+      "key": "15,-8",
+      "lod": 0,
+      "vertices": 6687,
+      "bytes": 320976,
+      "generationMs": 24.91698499999984,
+      "decodeMs": 1.4480990000001839
+    },
+    {
+      "key": "15,-8",
+      "lod": 2,
+      "vertices": 2190,
+      "bytes": 105120,
+      "generationMs": 7.113658000000214,
+      "decodeMs": 0.16531099999974685
+    },
+    {
+      "key": "3,-3",
+      "lod": 0,
+      "vertices": 15393,
+      "bytes": 738864,
+      "generationMs": 36.26033300000017,
+      "decodeMs": 1.624072999999953
+    },
+    {
+      "key": "3,-3",
+      "lod": 2,
+      "vertices": 7230,
+      "bytes": 347040,
+      "generationMs": 21.00680099999954,
+      "decodeMs": 1.1003409999993892
+    },
+    {
+      "key": "19,-6",
+      "lod": 0,
+      "vertices": 28626,
+      "bytes": 1374048,
+      "generationMs": 66.66458800000055,
+      "decodeMs": 5.411957000000257
+    },
+    {
+      "key": "19,-6",
+      "lod": 2,
+      "vertices": 8070,
+      "bytes": 387360,
+      "generationMs": 28.949757000000318,
+      "decodeMs": 1.9956229999997959
+    },
+    {
+      "key": "28,-2",
+      "lod": 0,
+      "vertices": 3510,
+      "bytes": 168480,
+      "generationMs": 12.220209999999497,
+      "decodeMs": 2.524305999999342
+    },
+    {
+      "key": "28,-2",
+      "lod": 2,
+      "vertices": 1590,
+      "bytes": 76320,
+      "generationMs": 1.3262349999995422,
+      "decodeMs": 1.162210999999843
+    },
+    {
+      "key": "23,-2",
+      "lod": 0,
+      "vertices": 9591,
+      "bytes": 460368,
+      "generationMs": 32.42088799999965,
+      "decodeMs": 1.684704000000238
+    },
+    {
+      "key": "23,-2",
+      "lod": 2,
+      "vertices": 3390,
+      "bytes": 162720,
+      "generationMs": 5.149433999999928,
+      "decodeMs": 0.39109300000018266
+    },
+    {
+      "key": "4,1",
+      "lod": 0,
+      "vertices": 1206,
+      "bytes": 57888,
+      "generationMs": 2.3404729999992924,
+      "decodeMs": 0.1306269999995493
+    },
+    {
+      "key": "4,1",
+      "lod": 2,
+      "vertices": 510,
+      "bytes": 24480,
+      "generationMs": 0.9206909999993513,
+      "decodeMs": 0.0730680000006032
+    },
+    {
+      "key": "16,-1",
+      "lod": 0,
+      "vertices": 15570,
+      "bytes": 747360,
+      "generationMs": 33.04960400000073,
+      "decodeMs": 1.56340100000034
+    },
+    {
+      "key": "16,-1",
+      "lod": 2,
+      "vertices": 4770,
+      "bytes": 228960,
+      "generationMs": 10.020398000000569,
+      "decodeMs": 1.1478879999995115
+    },
+    {
+      "key": "23,-7",
+      "lod": 0,
+      "vertices": 15654,
+      "bytes": 751392,
+      "generationMs": 46.13984400000027,
+      "decodeMs": 5.542825999999877
+    },
+    {
+      "key": "23,-7",
+      "lod": 2,
+      "vertices": 3810,
+      "bytes": 182880,
+      "generationMs": 11.440980000000309,
+      "decodeMs": 2.5558209999999235
+    },
+    {
+      "key": "8,-8",
+      "lod": 0,
+      "vertices": 3207,
+      "bytes": 153936,
+      "generationMs": 18.370472000000518,
+      "decodeMs": 0.2770780000000741
+    },
+    {
+      "key": "8,-8",
+      "lod": 2,
+      "vertices": 990,
+      "bytes": 47520,
+      "generationMs": 2.994630000000143,
+      "decodeMs": 0.0979669999996986
+    },
+    {
+      "key": "13,-7",
+      "lod": 0,
+      "vertices": 7737,
+      "bytes": 371376,
+      "generationMs": 27.05167100000017,
+      "decodeMs": 0.6040929999999207
+    },
+    {
+      "key": "13,-7",
+      "lod": 2,
+      "vertices": 3270,
+      "bytes": 156960,
+      "generationMs": 4.415155999999115,
+      "decodeMs": 0.2493960000001607
+    },
+    {
+      "key": "25,-6",
+      "lod": 0,
+      "vertices": 11352,
+      "bytes": 544896,
+      "generationMs": 52.15113399999973,
+      "decodeMs": 3.708889999999883
+    },
+    {
+      "key": "25,-6",
+      "lod": 2,
+      "vertices": 3930,
+      "bytes": 188640,
+      "generationMs": 11.266043000000536,
+      "decodeMs": 0.32062800000039715
+    },
+    {
+      "key": "7,0",
+      "lod": 0,
+      "vertices": 6396,
+      "bytes": 307008,
+      "generationMs": 15.765475000000151,
+      "decodeMs": 2.0779449999999997
+    },
+    {
+      "key": "7,0",
+      "lod": 2,
+      "vertices": 2310,
+      "bytes": 110880,
+      "generationMs": 6.791183000000274,
+      "decodeMs": 0.16587600000002567
+    },
+    {
+      "key": "5,4",
+      "lod": 0,
+      "vertices": 5268,
+      "bytes": 252864,
+      "generationMs": 16.705777999999555,
+      "decodeMs": 0.38009599999986676
+    },
+    {
+      "key": "5,4",
+      "lod": 2,
+      "vertices": 1230,
+      "bytes": 59040,
+      "generationMs": 2.5485319999997955,
+      "decodeMs": 0.10764300000028015
+    },
+    {
+      "key": "18,-5",
+      "lod": 0,
+      "vertices": 32658,
+      "bytes": 1567584,
+      "generationMs": 89.8545210000002,
+      "decodeMs": 5.280899999999747
+    },
+    {
+      "key": "18,-5",
+      "lod": 2,
+      "vertices": 7110,
+      "bytes": 341280,
+      "generationMs": 10.533438000000388,
+      "decodeMs": 2.9076709999999366
+    },
+    {
+      "key": "11,-3",
+      "lod": 0,
+      "vertices": 14313,
+      "bytes": 687024,
+      "generationMs": 60.17843999999968,
+      "decodeMs": 4.410323000000062
+    },
+    {
+      "key": "11,-3",
+      "lod": 2,
+      "vertices": 4860,
+      "bytes": 233280,
+      "generationMs": 15.756653999999799,
+      "decodeMs": 0.29783599999973376
+    },
+    {
+      "key": "17,-8",
+      "lod": 0,
+      "vertices": 7188,
+      "bytes": 345024,
+      "generationMs": 19.182216999999582,
+      "decodeMs": 1.2013440000000628
+    },
+    {
+      "key": "17,-8",
+      "lod": 2,
+      "vertices": 1920,
+      "bytes": 92160,
+      "generationMs": 3.9187569999994594,
+      "decodeMs": 0.14939499999945838
+    },
+    {
+      "key": "22,-7",
+      "lod": 0,
+      "vertices": 17055,
+      "bytes": 818640,
+      "generationMs": 55.62706200000048,
+      "decodeMs": 2.936815000000024
+    },
+    {
+      "key": "22,-7",
+      "lod": 2,
+      "vertices": 6240,
+      "bytes": 299520,
+      "generationMs": 11.90016100000048,
+      "decodeMs": 2.352711999999883
+    },
+    {
+      "key": "22,-6",
+      "lod": 0,
+      "vertices": 25386,
+      "bytes": 1218528,
+      "generationMs": 80.13340400000106,
+      "decodeMs": 4.263430000000881
+    },
+    {
+      "key": "22,-6",
+      "lod": 2,
+      "vertices": 7860,
+      "bytes": 377280,
+      "generationMs": 17.354753999999957,
+      "decodeMs": 1.0162309999996069
+    },
+    {
+      "key": "22,-5",
+      "lod": 0,
+      "vertices": 28032,
+      "bytes": 1345536,
+      "generationMs": 61.48836099999971,
+      "decodeMs": 3.2885189999997237
+    },
+    {
+      "key": "22,-5",
+      "lod": 2,
+      "vertices": 7560,
+      "bytes": 362880,
+      "generationMs": 16.631664000000455,
+      "decodeMs": 1.6416059999992285
+    },
+    {
+      "key": "13,0",
+      "lod": 0,
+      "vertices": 8961,
+      "bytes": 430128,
+      "generationMs": 24.813822000000073,
+      "decodeMs": 4.1599999999998545
+    },
+    {
+      "key": "13,0",
+      "lod": 2,
+      "vertices": 3480,
+      "bytes": 167040,
+      "generationMs": 13.544302999998763,
+      "decodeMs": 2.2588699999996606
+    },
+    {
+      "key": "1,3",
+      "lod": 0,
+      "vertices": 4323,
+      "bytes": 207504,
+      "generationMs": 17.679776000000857,
+      "decodeMs": 3.958995999999388
+    },
+    {
+      "key": "1,3",
+      "lod": 2,
+      "vertices": 750,
+      "bytes": 36000,
+      "generationMs": 2.154904000000897,
+      "decodeMs": 0.08852499999920838
+    },
+    {
+      "key": "6,3",
+      "lod": 0,
+      "vertices": 5250,
+      "bytes": 252000,
+      "generationMs": 24.655225000000428,
+      "decodeMs": 2.862764999999854
+    },
+    {
+      "key": "6,3",
+      "lod": 2,
+      "vertices": 1740,
+      "bytes": 83520,
+      "generationMs": 4.752430000000459,
+      "decodeMs": 0.9194229999993695
+    },
+    {
+      "key": "15,1",
+      "lod": 0,
+      "vertices": 14280,
+      "bytes": 685440,
+      "generationMs": 35.2197070000002,
+      "decodeMs": 2.8588810000001104
+    },
+    {
+      "key": "15,1",
+      "lod": 2,
+      "vertices": 4230,
+      "bytes": 203040,
+      "generationMs": 5.982681000001321,
+      "decodeMs": 0.8408560000007128
+    },
+    {
+      "key": "27,-1",
+      "lod": 0,
+      "vertices": 3576,
+      "bytes": 171648,
+      "generationMs": 10.222076000000015,
+      "decodeMs": 2.055253000000448
+    },
+    {
+      "key": "27,-1",
+      "lod": 2,
+      "vertices": 900,
+      "bytes": 43200,
+      "generationMs": 1.611960000000181,
+      "decodeMs": 0.0951519999998709
+    },
+    {
+      "key": "23,-4",
+      "lod": 0,
+      "vertices": 8892,
+      "bytes": 426816,
+      "generationMs": 25.014359999999215,
+      "decodeMs": 1.2070919999987382
+    },
+    {
+      "key": "23,-4",
+      "lod": 2,
+      "vertices": 2340,
+      "bytes": 112320,
+      "generationMs": 5.360721999999441,
+      "decodeMs": 0.7252499999995052
+    },
+    {
+      "key": "8,-3",
+      "lod": 0,
+      "vertices": 9510,
+      "bytes": 456480,
+      "generationMs": 25.08220799999981,
+      "decodeMs": 1.1346640000010666
+    },
+    {
+      "key": "8,-3",
+      "lod": 2,
+      "vertices": 4230,
+      "bytes": 203040,
+      "generationMs": 5.929426999999123,
+      "decodeMs": 0.2504799999987881
+    },
+    {
+      "key": "2,2",
+      "lod": 0,
+      "vertices": 15447,
+      "bytes": 741456,
+      "generationMs": 45.5409639999998,
+      "decodeMs": 1.2328950000010082
+    },
+    {
+      "key": "2,2",
+      "lod": 2,
+      "vertices": 6930,
+      "bytes": 332640,
+      "generationMs": 16.320851999998922,
+      "decodeMs": 0.455960999999661
+    },
+    {
+      "key": "-2,-4",
+      "lod": 0,
+      "vertices": 534,
+      "bytes": 25632,
+      "generationMs": 1.7510299999994459,
+      "decodeMs": 0.089774000000034
+    },
+    {
+      "key": "-2,-4",
+      "lod": 2,
+      "vertices": 210,
+      "bytes": 10080,
+      "generationMs": 0.5976499999997031,
+      "decodeMs": 0.04868299999907322
+    },
+    {
+      "key": "23,1",
+      "lod": 0,
+      "vertices": 2913,
+      "bytes": 139824,
+      "generationMs": 10.796096999998554,
+      "decodeMs": 0.8162300000003597
+    },
+    {
+      "key": "23,1",
+      "lod": 2,
+      "vertices": 1170,
+      "bytes": 56160,
+      "generationMs": 2.1505570000008447,
+      "decodeMs": 0.13550000000032014
+    },
+    {
+      "key": "-3,-6",
+      "lod": 0,
+      "vertices": 507,
+      "bytes": 24336,
+      "generationMs": 0.9086439999991853,
+      "decodeMs": 0.22433099999943806
+    },
+    {
+      "key": "-3,-6",
+      "lod": 2,
+      "vertices": 150,
+      "bytes": 7200,
+      "generationMs": 0.14928499999950873,
+      "decodeMs": 0.11318399999981921
+    },
+    {
+      "key": "27,4",
+      "lod": 0,
+      "vertices": 1911,
+      "bytes": 91728,
+      "generationMs": 4.64603999999963,
+      "decodeMs": 0.16956299999947078
+    },
+    {
+      "key": "27,4",
+      "lod": 2,
+      "vertices": 810,
+      "bytes": 38880,
+      "generationMs": 4.574356000000989,
+      "decodeMs": 0.16807999999946333
+    },
+    {
+      "key": "14,-2",
+      "lod": 0,
+      "vertices": 18306,
+      "bytes": 878688,
+      "generationMs": 64.13675599999988,
+      "decodeMs": 2.5202620000000024
+    },
+    {
+      "key": "14,-2",
+      "lod": 2,
+      "vertices": 5070,
+      "bytes": 243360,
+      "generationMs": 9.411675000001196,
+      "decodeMs": 0.3180949999987206
+    },
+    {
+      "key": "17,-2",
+      "lod": 0,
+      "vertices": 10962,
+      "bytes": 526176,
+      "generationMs": 30.80127199999879,
+      "decodeMs": 1.4444640000001527
+    },
+    {
+      "key": "17,-2",
+      "lod": 2,
+      "vertices": 3540,
+      "bytes": 169920,
+      "generationMs": 6.431336999999985,
+      "decodeMs": 0.5863809999991645
+    },
+    {
+      "key": "-1,4",
+      "lod": 0,
+      "vertices": 690,
+      "bytes": 33120,
+      "generationMs": 1.354406000000381,
+      "decodeMs": 0.1778730000005453
+    },
+    {
+      "key": "-1,4",
+      "lod": 2,
+      "vertices": 240,
+      "bytes": 11520,
+      "generationMs": 0.5461419999992358,
+      "decodeMs": 0.047608999999283697
+    },
+    {
+      "key": "22,-2",
+      "lod": 0,
+      "vertices": 15879,
+      "bytes": 762192,
+      "generationMs": 60.547341000001325,
+      "decodeMs": 2.42420299999867
+    },
+    {
+      "key": "22,-2",
+      "lod": 2,
+      "vertices": 5940,
+      "bytes": 285120,
+      "generationMs": 7.545380999999907,
+      "decodeMs": 0.6426639999990584
+    },
+    {
+      "key": "24,-4",
+      "lod": 0,
+      "vertices": 6252,
+      "bytes": 300096,
+      "generationMs": 22.67525999999998,
+      "decodeMs": 0.9938660000007076
+    },
+    {
+      "key": "24,-4",
+      "lod": 2,
+      "vertices": 1380,
+      "bytes": 66240,
+      "generationMs": 4.376266999999643,
+      "decodeMs": 0.12034099999982573
+    },
+    {
+      "key": "9,-8",
+      "lod": 0,
+      "vertices": 3378,
+      "bytes": 162144,
+      "generationMs": 9.368369999998322,
+      "decodeMs": 0.4941579999995156
+    },
+    {
+      "key": "9,-8",
+      "lod": 2,
+      "vertices": 1530,
+      "bytes": 73440,
+      "generationMs": 3.049447000001237,
+      "decodeMs": 0.6246109999992768
+    },
+    {
+      "key": "24,-7",
+      "lod": 0,
+      "vertices": 5862,
+      "bytes": 281376,
+      "generationMs": 24.216789000000063,
+      "decodeMs": 1.701148000000103
+    },
+    {
+      "key": "24,-7",
+      "lod": 2,
+      "vertices": 2220,
+      "bytes": 106560,
+      "generationMs": 2.70620499999859,
+      "decodeMs": 0.16142500000023574
+    },
+    {
+      "key": "-1,1",
+      "lod": 0,
+      "vertices": 8322,
+      "bytes": 399456,
+      "generationMs": 24.163682000000335,
+      "decodeMs": 1.1468259999983275
+    },
+    {
+      "key": "-1,1",
+      "lod": 2,
+      "vertices": 3390,
+      "bytes": 162720,
+      "generationMs": 6.568271000000095,
+      "decodeMs": 0.34970999999859487
+    },
+    {
+      "key": "16,1",
+      "lod": 0,
+      "vertices": 7353,
+      "bytes": 352944,
+      "generationMs": 23.213729000000967,
+      "decodeMs": 1.8359809999983554
+    },
+    {
+      "key": "16,1",
+      "lod": 2,
+      "vertices": 3030,
+      "bytes": 145440,
+      "generationMs": 6.254553999999189,
+      "decodeMs": 1.217107999998916
+    },
+    {
+      "key": "8,1",
+      "lod": 0,
+      "vertices": 7302,
+      "bytes": 350496,
+      "generationMs": 21.72319299999981,
+      "decodeMs": 1.387813000001188
+    },
+    {
+      "key": "8,1",
+      "lod": 2,
+      "vertices": 2160,
+      "bytes": 103680,
+      "generationMs": 5.298547999998846,
+      "decodeMs": 0.15424099999836471
+    },
+    {
+      "key": "8,-7",
+      "lod": 0,
+      "vertices": 7020,
+      "bytes": 336960,
+      "generationMs": 17.707753000000594,
+      "decodeMs": 0.775578000000678
+    },
+    {
+      "key": "8,-7",
+      "lod": 2,
+      "vertices": 2640,
+      "bytes": 126720,
+      "generationMs": 5.238121999998839,
+      "decodeMs": 0.18240400000104273
+    },
+    {
+      "key": "8,-6",
+      "lod": 0,
+      "vertices": 4167,
+      "bytes": 200016,
+      "generationMs": 7.109449999999924,
+      "decodeMs": 0.7134360000000015
+    },
+    {
+      "key": "8,-6",
+      "lod": 2,
+      "vertices": 1650,
+      "bytes": 79200,
+      "generationMs": 2.3387210000000778,
+      "decodeMs": 0.13217399999848567
+    },
+    {
+      "key": "10,-5",
+      "lod": 0,
+      "vertices": 3870,
+      "bytes": 185760,
+      "generationMs": 12.925085000000763,
+      "decodeMs": 0.4164469999996072
+    },
+    {
+      "key": "10,-5",
+      "lod": 2,
+      "vertices": 1440,
+      "bytes": 69120,
+      "generationMs": 5.361175000000003,
+      "decodeMs": 0.11969899999894551
+    },
+    {
+      "key": "23,0",
+      "lod": 0,
+      "vertices": 8079,
+      "bytes": 387792,
+      "generationMs": 22.82435499999883,
+      "decodeMs": 1.3779429999995045
+    },
+    {
+      "key": "23,0",
+      "lod": 2,
+      "vertices": 2850,
+      "bytes": 136800,
+      "generationMs": 4.564769000000524,
+      "decodeMs": 0.21645399999943038
+    },
+    {
+      "key": "9,-5",
+      "lod": 0,
+      "vertices": 7542,
+      "bytes": 362016,
+      "generationMs": 15.117691999999806,
+      "decodeMs": 0.7176580000013928
+    },
+    {
+      "key": "9,-5",
+      "lod": 2,
+      "vertices": 2250,
+      "bytes": 108000,
+      "generationMs": 2.527858000001288,
+      "decodeMs": 0.16182000000117114
+    },
+    {
+      "key": "21,-3",
+      "lod": 0,
+      "vertices": 29169,
+      "bytes": 1400112,
+      "generationMs": 82.71635699999933,
+      "decodeMs": 5.213657000000239
+    },
+    {
+      "key": "21,-3",
+      "lod": 2,
+      "vertices": 12060,
+      "bytes": 578880,
+      "generationMs": 16.347293999999238,
+      "decodeMs": 1.0035610000013548
+    },
+    {
+      "key": "26,2",
+      "lod": 0,
+      "vertices": 6279,
+      "bytes": 301392,
+      "generationMs": 12.094325000000026,
+      "decodeMs": 0.8628790000002482
+    },
+    {
+      "key": "26,2",
+      "lod": 2,
+      "vertices": 3030,
+      "bytes": 145440,
+      "generationMs": 4.522388999999748,
+      "decodeMs": 0.2033979999996518
+    },
+    {
+      "key": "27,-5",
+      "lod": 0,
+      "vertices": 8919,
+      "bytes": 428112,
+      "generationMs": 17.49781499999881,
+      "decodeMs": 0.9397740000003978
+    },
+    {
+      "key": "27,-5",
+      "lod": 2,
+      "vertices": 2790,
+      "bytes": 133920,
+      "generationMs": 4.819633999999496,
+      "decodeMs": 0.1765770000001794
+    },
+    {
+      "key": "3,1",
+      "lod": 0,
+      "vertices": 10191,
+      "bytes": 489168,
+      "generationMs": 31.565075999998953,
+      "decodeMs": 1.19861900000069
+    },
+    {
+      "key": "3,1",
+      "lod": 2,
+      "vertices": 4650,
+      "bytes": 223200,
+      "generationMs": 5.372451999999612,
+      "decodeMs": 0.3101779999997234
+    },
+    {
+      "key": "15,-3",
+      "lod": 0,
+      "vertices": 29235,
+      "bytes": 1403280,
+      "generationMs": 41.80196999999862,
+      "decodeMs": 3.1643239999993966
+    },
+    {
+      "key": "15,-3",
+      "lod": 2,
+      "vertices": 8910,
+      "bytes": 427680,
+      "generationMs": 8.247905999998693,
+      "decodeMs": 0.798294000000169
+    },
+    {
+      "key": "5,-5",
+      "lod": 0,
+      "vertices": 4377,
+      "bytes": 210096,
+      "generationMs": 7.296423000001596,
+      "decodeMs": 0.5545970000002853
+    },
+    {
+      "key": "5,-5",
+      "lod": 2,
+      "vertices": 1140,
+      "bytes": 54720,
+      "generationMs": 1.4508609999993496,
+      "decodeMs": 0.15318099999967671
+    },
+    {
+      "key": "12,-6",
+      "lod": 0,
+      "vertices": 6768,
+      "bytes": 324864,
+      "generationMs": 13.140289000000848,
+      "decodeMs": 1.1549350000004779
+    },
+    {
+      "key": "12,-6",
+      "lod": 2,
+      "vertices": 2550,
+      "bytes": 122400,
+      "generationMs": 4.382440999999744,
+      "decodeMs": 0.9179669999994076
+    },
+    {
+      "key": "-4,-1",
+      "lod": 0,
+      "vertices": 6024,
+      "bytes": 289152,
+      "generationMs": 15.618742000000566,
+      "decodeMs": 0.46855799999866576
+    },
+    {
+      "key": "-4,-1",
+      "lod": 2,
+      "vertices": 2550,
+      "bytes": 122400,
+      "generationMs": 2.828574999999546,
+      "decodeMs": 0.3736539999990782
+    },
+    {
+      "key": "8,3",
+      "lod": 0,
+      "vertices": 2814,
+      "bytes": 135072,
+      "generationMs": 4.842183999999179,
+      "decodeMs": 0.3227489999990212
+    },
+    {
+      "key": "8,3",
+      "lod": 2,
+      "vertices": 810,
+      "bytes": 38880,
+      "generationMs": 0.8945650000005116,
+      "decodeMs": 0.15746699999908742
+    },
+    {
+      "key": "5,-7",
+      "lod": 0,
+      "vertices": 5034,
+      "bytes": 241632,
+      "generationMs": 6.594542000000729,
+      "decodeMs": 0.4349180000008346
+    },
+    {
+      "key": "5,-7",
+      "lod": 2,
+      "vertices": 1980,
+      "bytes": 95040,
+      "generationMs": 1.6154289999994944,
+      "decodeMs": 0.15489000000161468
+    },
+    {
+      "key": "25,-4",
+      "lod": 0,
+      "vertices": 8925,
+      "bytes": 428400,
+      "generationMs": 17.119102000000566,
+      "decodeMs": 0.8922959999999875
+    },
+    {
+      "key": "25,-4",
+      "lod": 2,
+      "vertices": 3180,
+      "bytes": 152640,
+      "generationMs": 5.6725769999993645,
+      "decodeMs": 0.20608399999946414
+    },
+    {
+      "key": "14,-4",
+      "lod": 0,
+      "vertices": 11193,
+      "bytes": 537264,
+      "generationMs": 18.624793000000864,
+      "decodeMs": 1.5790599999982078
+    },
+    {
+      "key": "14,-4",
+      "lod": 2,
+      "vertices": 3600,
+      "bytes": 172800,
+      "generationMs": 4.032516000001124,
+      "decodeMs": 0.26508100000137347
+    },
+    {
+      "key": "-3,3",
+      "lod": 0,
+      "vertices": 5811,
+      "bytes": 278928,
+      "generationMs": 14.099283999999898,
+      "decodeMs": 0.43973100000039267
+    },
+    {
+      "key": "-3,3",
+      "lod": 2,
+      "vertices": 2100,
+      "bytes": 100800,
+      "generationMs": 2.6174520000004122,
+      "decodeMs": 0.5962360000012268
+    },
+    {
+      "key": "6,-5",
+      "lod": 0,
+      "vertices": 4236,
+      "bytes": 203328,
+      "generationMs": 8.335220999999365,
+      "decodeMs": 0.8890309999987949
+    },
+    {
+      "key": "6,-5",
+      "lod": 2,
+      "vertices": 1590,
+      "bytes": 76320,
+      "generationMs": 3.122274000001198,
+      "decodeMs": 2.7355119999992894
+    },
+    {
+      "key": "7,-2",
+      "lod": 0,
+      "vertices": 5121,
+      "bytes": 245808,
+      "generationMs": 13.082312999998976,
+      "decodeMs": 0.4766459999991639
+    },
+    {
+      "key": "7,-2",
+      "lod": 2,
+      "vertices": 1920,
+      "bytes": 92160,
+      "generationMs": 1.491559000000052,
+      "decodeMs": 0.1834419999995589
+    },
+    {
+      "key": "23,-5",
+      "lod": 0,
+      "vertices": 18933,
+      "bytes": 908784,
+      "generationMs": 24.049919999999474,
+      "decodeMs": 1.7743810000010853
+    },
+    {
+      "key": "23,-5",
+      "lod": 2,
+      "vertices": 4890,
+      "bytes": 234720,
+      "generationMs": 4.924356000001353,
+      "decodeMs": 0.5299040000008972
+    },
+    {
+      "key": "-1,-3",
+      "lod": 0,
+      "vertices": 9804,
+      "bytes": 470592,
+      "generationMs": 22.45459700000174,
+      "decodeMs": 0.7722169999997277
+    },
+    {
+      "key": "-1,-3",
+      "lod": 2,
+      "vertices": 4110,
+      "bytes": 197280,
+      "generationMs": 5.664887999999337,
+      "decodeMs": 0.24205299999994168
+    },
+    {
+      "key": "16,-5",
+      "lod": 0,
+      "vertices": 29415,
+      "bytes": 1411920,
+      "generationMs": 48.63191300000108,
+      "decodeMs": 2.758562000000893
+    },
+    {
+      "key": "16,-5",
+      "lod": 2,
+      "vertices": 7050,
+      "bytes": 338400,
+      "generationMs": 8.751012000000628,
+      "decodeMs": 0.4343650000009802
+    },
+    {
+      "key": "3,-2",
+      "lod": 0,
+      "vertices": 7041,
+      "bytes": 337968,
+      "generationMs": 19.092862999999852,
+      "decodeMs": 1.2524759999996604
+    },
+    {
+      "key": "3,-2",
+      "lod": 2,
+      "vertices": 3420,
+      "bytes": 164160,
+      "generationMs": 7.672947999999451,
+      "decodeMs": 1.114477999999508
+    },
+    {
+      "key": "19,0",
+      "lod": 0,
+      "vertices": 15918,
+      "bytes": 764064,
+      "generationMs": 31.336161000001084,
+      "decodeMs": 1.6757090000010066
+    },
+    {
+      "key": "19,0",
+      "lod": 2,
+      "vertices": 5790,
+      "bytes": 277920,
+      "generationMs": 6.120500999999422,
+      "decodeMs": 0.45709099999839964
+    },
+    {
+      "key": "10,-3",
+      "lod": 0,
+      "vertices": 9759,
+      "bytes": 468432,
+      "generationMs": 12.427191999999195,
+      "decodeMs": 1.0661880000006931
+    },
+    {
+      "key": "10,-3",
+      "lod": 2,
+      "vertices": 3780,
+      "bytes": 181440,
+      "generationMs": 3.621847999998863,
+      "decodeMs": 0.25580300000001444
+    },
+    {
+      "key": "5,-2",
+      "lod": 0,
+      "vertices": 3933,
+      "bytes": 188784,
+      "generationMs": 4.779325000001336,
+      "decodeMs": 0.29864400000042224
+    },
+    {
+      "key": "5,-2",
+      "lod": 2,
+      "vertices": 1020,
+      "bytes": 48960,
+      "generationMs": 0.9324730000007548,
+      "decodeMs": 0.14709600000060163
+    },
+    {
+      "key": "17,-7",
+      "lod": 0,
+      "vertices": 12486,
+      "bytes": 599328,
+      "generationMs": 17.891109000000142,
+      "decodeMs": 0.9937469999986206
+    },
+    {
+      "key": "17,-7",
+      "lod": 2,
+      "vertices": 4500,
+      "bytes": 216000,
+      "generationMs": 4.3336920000001555,
+      "decodeMs": 0.3854360000004817
+    },
+    {
+      "key": "-3,-3",
+      "lod": 0,
+      "vertices": 2412,
+      "bytes": 115776,
+      "generationMs": 3.54379500000141,
+      "decodeMs": 0.3847960000002786
+    },
+    {
+      "key": "-3,-3",
+      "lod": 2,
+      "vertices": 1170,
+      "bytes": 56160,
+      "generationMs": 1.0011649999996735,
+      "decodeMs": 0.1057249999994383
+    },
+    {
+      "key": "10,-8",
+      "lod": 0,
+      "vertices": 2481,
+      "bytes": 119088,
+      "generationMs": 3.4813559999984136,
+      "decodeMs": 0.2065359999996872
+    },
+    {
+      "key": "10,-8",
+      "lod": 2,
+      "vertices": 930,
+      "bytes": 44640,
+      "generationMs": 0.8506989999987127,
+      "decodeMs": 0.0900419999998121
+    },
+    {
+      "key": "16,3",
+      "lod": 0,
+      "vertices": 12066,
+      "bytes": 579168,
+      "generationMs": 31.8033000000014,
+      "decodeMs": 1.4493440000005648
+    },
+    {
+      "key": "16,3",
+      "lod": 2,
+      "vertices": 3180,
+      "bytes": 152640,
+      "generationMs": 3.1311420000001817,
+      "decodeMs": 0.2351810000000114
+    },
+    {
+      "key": "19,3",
+      "lod": 0,
+      "vertices": 11310,
+      "bytes": 542880,
+      "generationMs": 16.66294200000084,
+      "decodeMs": 1.8434030000007624
+    },
+    {
+      "key": "19,3",
+      "lod": 2,
+      "vertices": 3510,
+      "bytes": 168480,
+      "generationMs": 3.3615800000006857,
+      "decodeMs": 0.2745020000002114
+    },
+    {
+      "key": "25,2",
+      "lod": 0,
+      "vertices": 7632,
+      "bytes": 366336,
+      "generationMs": 12.701333000000886,
+      "decodeMs": 0.8309570000001258
+    },
+    {
+      "key": "25,2",
+      "lod": 2,
+      "vertices": 2310,
+      "bytes": 110880,
+      "generationMs": 3.0272359999999026,
+      "decodeMs": 0.23036799999863433
+    },
+    {
+      "key": "7,2",
+      "lod": 0,
+      "vertices": 8703,
+      "bytes": 417744,
+      "generationMs": 16.337992000000668,
+      "decodeMs": 0.8611709999986488
+    },
+    {
+      "key": "7,2",
+      "lod": 2,
+      "vertices": 2730,
+      "bytes": 131040,
+      "generationMs": 3.818275999999969,
+      "decodeMs": 0.35032800000044517
+    },
+    {
+      "key": "24,-6",
+      "lod": 0,
+      "vertices": 17475,
+      "bytes": 838800,
+      "generationMs": 41.792137000000366,
+      "decodeMs": 1.4619160000002012
+    },
+    {
+      "key": "24,-6",
+      "lod": 2,
+      "vertices": 4680,
+      "bytes": 224640,
+      "generationMs": 3.924284999999145,
+      "decodeMs": 0.4129219999995257
+    },
+    {
+      "key": "1,4",
+      "lod": 0,
+      "vertices": 2811,
+      "bytes": 134928,
+      "generationMs": 3.2609949999987293,
+      "decodeMs": 0.2256730000008247
+    },
+    {
+      "key": "1,4",
+      "lod": 2,
+      "vertices": 1050,
+      "bytes": 50400,
+      "generationMs": 0.7745269999995799,
+      "decodeMs": 0.09640899999976682
+    },
+    {
+      "key": "-2,-1",
+      "lod": 0,
+      "vertices": 2961,
+      "bytes": 142128,
+      "generationMs": 3.8465519999990647,
+      "decodeMs": 0.26093300000138697
+    },
+    {
+      "key": "-2,-1",
+      "lod": 2,
+      "vertices": 1050,
+      "bytes": 50400,
+      "generationMs": 1.4099389999992127,
+      "decodeMs": 0.09694999999919673
+    },
+    {
+      "key": "0,3",
+      "lod": 0,
+      "vertices": 3156,
+      "bytes": 151488,
+      "generationMs": 7.218282999998337,
+      "decodeMs": 0.3431459999992512
+    },
+    {
+      "key": "0,3",
+      "lod": 2,
+      "vertices": 1020,
+      "bytes": 48960,
+      "generationMs": 1.9719340000010561,
+      "decodeMs": 0.16149700000096345
+    },
+    {
+      "key": "3,-4",
+      "lod": 0,
+      "vertices": 4764,
+      "bytes": 228672,
+      "generationMs": 15.705216999998811,
+      "decodeMs": 1.0485589999989315
+    },
+    {
+      "key": "3,-4",
+      "lod": 2,
+      "vertices": 1650,
+      "bytes": 79200,
+      "generationMs": 2.8390070000004926,
+      "decodeMs": 0.13354699999945296
+    },
+    {
+      "key": "-2,-8",
+      "lod": 0,
+      "vertices": 1719,
+      "bytes": 82512,
+      "generationMs": 3.538722000001144,
+      "decodeMs": 0.16826600000058534
+    },
+    {
+      "key": "-2,-8",
+      "lod": 2,
+      "vertices": 630,
+      "bytes": 30240,
+      "generationMs": 1.141754000000219,
+      "decodeMs": 0.08052000000134285
+    },
+    {
+      "key": "17,-1",
+      "lod": 0,
+      "vertices": 11586,
+      "bytes": 556128,
+      "generationMs": 26.34233299999869,
+      "decodeMs": 1.4997700000003533
+    },
+    {
+      "key": "17,-1",
+      "lod": 2,
+      "vertices": 3390,
+      "bytes": 162720,
+      "generationMs": 5.778492000001279,
+      "decodeMs": 0.3330870000008872
+    },
+    {
+      "key": "14,-8",
+      "lod": 0,
+      "vertices": 4734,
+      "bytes": 227232,
+      "generationMs": 12.041650000001027,
+      "decodeMs": 0.48829699999987497
+    },
+    {
+      "key": "14,-8",
+      "lod": 2,
+      "vertices": 1740,
+      "bytes": 83520,
+      "generationMs": 1.4103640000012092,
+      "decodeMs": 0.1356550000000425
+    },
+    {
+      "key": "-2,-6",
+      "lod": 0,
+      "vertices": 5238,
+      "bytes": 251424,
+      "generationMs": 7.587321000000884,
+      "decodeMs": 0.4163009999992937
+    },
+    {
+      "key": "-2,-6",
+      "lod": 2,
+      "vertices": 1800,
+      "bytes": 86400,
+      "generationMs": 1.6790229999987787,
+      "decodeMs": 1.1870099999996455
+    },
+    {
+      "key": "26,-7",
+      "lod": 0,
+      "vertices": 10692,
+      "bytes": 513216,
+      "generationMs": 15.13651100000061,
+      "decodeMs": 1.0837910000009288
+    },
+    {
+      "key": "26,-7",
+      "lod": 2,
+      "vertices": 3780,
+      "bytes": 181440,
+      "generationMs": 3.9988720000001194,
+      "decodeMs": 0.22748700000011013
+    },
+    {
+      "key": "16,0",
+      "lod": 0,
+      "vertices": 13143,
+      "bytes": 630864,
+      "generationMs": 18.546988000000056,
+      "decodeMs": 2.0310460000000603
+    },
+    {
+      "key": "16,0",
+      "lod": 2,
+      "vertices": 3690,
+      "bytes": 177120,
+      "generationMs": 4.094943999998577,
+      "decodeMs": 0.6399739999997109
+    },
+    {
+      "key": "22,-4",
+      "lod": 0,
+      "vertices": 15129,
+      "bytes": 726192,
+      "generationMs": 24.871015000000625,
+      "decodeMs": 1.4124900000006164
+    },
+    {
+      "key": "22,-4",
+      "lod": 2,
+      "vertices": 4440,
+      "bytes": 213120,
+      "generationMs": 4.427421999998842,
+      "decodeMs": 0.47363100000075065
+    },
+    {
+      "key": "9,1",
+      "lod": 0,
+      "vertices": 6891,
+      "bytes": 330768,
+      "generationMs": 13.655445000000327,
+      "decodeMs": 0.524531000000934
+    },
+    {
+      "key": "9,1",
+      "lod": 2,
+      "vertices": 2010,
+      "bytes": 96480,
+      "generationMs": 1.6298769999993965,
+      "decodeMs": 0.1412400000008347
+    },
+    {
+      "key": "-3,4",
+      "lod": 0,
+      "vertices": 3336,
+      "bytes": 160128,
+      "generationMs": 4.212168999998539,
+      "decodeMs": 0.26549900000100024
+    },
+    {
+      "key": "-3,4",
+      "lod": 2,
+      "vertices": 1140,
+      "bytes": 54720,
+      "generationMs": 0.981776999999056,
+      "decodeMs": 0.09696799999983341
+    },
+    {
+      "key": "7,-7",
+      "lod": 0,
+      "vertices": 1893,
+      "bytes": 90864,
+      "generationMs": 2.1448159999999916,
+      "decodeMs": 0.18623800000023039
+    },
+    {
+      "key": "7,-7",
+      "lod": 2,
+      "vertices": 690,
+      "bytes": 33120,
+      "generationMs": 0.7319540000007692,
+      "decodeMs": 0.07715300000018033
+    },
+    {
+      "key": "23,-3",
+      "lod": 0,
+      "vertices": 8448,
+      "bytes": 405504,
+      "generationMs": 10.608056999999462,
+      "decodeMs": 0.7638680000000022
+    },
+    {
+      "key": "23,-3",
+      "lod": 2,
+      "vertices": 2400,
+      "bytes": 115200,
+      "generationMs": 2.723353000001225,
+      "decodeMs": 0.23189300000012736
+    },
+    {
+      "key": "27,-6",
+      "lod": 0,
+      "vertices": 10914,
+      "bytes": 523872,
+      "generationMs": 22.369281999999657,
+      "decodeMs": 0.748383999998623
+    },
+    {
+      "key": "27,-6",
+      "lod": 2,
+      "vertices": 3570,
+      "bytes": 171360,
+      "generationMs": 3.708081000000675,
+      "decodeMs": 0.447652000000744
+    },
+    {
+      "key": "-2,3",
+      "lod": 0,
+      "vertices": 2916,
+      "bytes": 139968,
+      "generationMs": 5.797662000000855,
+      "decodeMs": 0.4021039999988716
+    },
+    {
+      "key": "-2,3",
+      "lod": 2,
+      "vertices": 990,
+      "bytes": 47520,
+      "generationMs": 1.035041999999521,
+      "decodeMs": 0.09876799999983632
+    },
+    {
+      "key": "12,-8",
+      "lod": 0,
+      "vertices": 8844,
+      "bytes": 424512,
+      "generationMs": 14.165832000000592,
+      "decodeMs": 0.6743590000005497
+    },
+    {
+      "key": "12,-8",
+      "lod": 2,
+      "vertices": 2640,
+      "bytes": 126720,
+      "generationMs": 5.395117999998547,
+      "decodeMs": 0.24791799999911746
+    },
+    {
+      "key": "13,-6",
+      "lod": 0,
+      "vertices": 8334,
+      "bytes": 400032,
+      "generationMs": 19.58673799999997,
+      "decodeMs": 0.9554939999998169
+    },
+    {
+      "key": "13,-6",
+      "lod": 2,
+      "vertices": 3330,
+      "bytes": 159840,
+      "generationMs": 3.2225319999997737,
+      "decodeMs": 0.21649600000091596
+    },
+    {
+      "key": "14,0",
+      "lod": 0,
+      "vertices": 10965,
+      "bytes": 526320,
+      "generationMs": 15.869026000000304,
+      "decodeMs": 1.5099879999997938
+    },
+    {
+      "key": "14,0",
+      "lod": 2,
+      "vertices": 3300,
+      "bytes": 158400,
+      "generationMs": 6.6515569999992294,
+      "decodeMs": 0.2564359999996668
+    },
+    {
+      "key": "11,1",
+      "lod": 0,
+      "vertices": 1794,
+      "bytes": 86112,
+      "generationMs": 5.357451999998375,
+      "decodeMs": 0.17995700000028592
+    },
+    {
+      "key": "11,1",
+      "lod": 2,
+      "vertices": 630,
+      "bytes": 30240,
+      "generationMs": 0.5423190000001341,
+      "decodeMs": 0.06708299999991141
+    },
+    {
+      "key": "21,3",
+      "lod": 0,
+      "vertices": 6792,
+      "bytes": 326016,
+      "generationMs": 15.056977000000188,
+      "decodeMs": 1.1718739999996615
+    },
+    {
+      "key": "21,3",
+      "lod": 2,
+      "vertices": 2100,
+      "bytes": 100800,
+      "generationMs": 2.0569540000014968,
+      "decodeMs": 0.14689399999952002
+    },
+    {
+      "key": "25,-2",
+      "lod": 0,
+      "vertices": 10329,
+      "bytes": 495792,
+      "generationMs": 21.283424999999625,
+      "decodeMs": 1.346306999999797
+    },
+    {
+      "key": "25,-2",
+      "lod": 2,
+      "vertices": 3180,
+      "bytes": 152640,
+      "generationMs": 5.830406999999468,
+      "decodeMs": 0.2032550000003539
+    },
+    {
+      "key": "20,1",
+      "lod": 0,
+      "vertices": 7413,
+      "bytes": 355824,
+      "generationMs": 18.158841000000393,
+      "decodeMs": 1.2207780000007915
+    },
+    {
+      "key": "20,1",
+      "lod": 2,
+      "vertices": 2580,
+      "bytes": 123840,
+      "generationMs": 2.5918240000009973,
+      "decodeMs": 0.17721399999936693
+    },
+    {
+      "key": "0,-7",
+      "lod": 0,
+      "vertices": 2265,
+      "bytes": 108720,
+      "generationMs": 3.6173130000006495,
+      "decodeMs": 0.27917799999886483
+    },
+    {
+      "key": "0,-7",
+      "lod": 2,
+      "vertices": 780,
+      "bytes": 37440,
+      "generationMs": 0.6978630000012345,
+      "decodeMs": 0.07748799999899347
+    },
+    {
+      "key": "-1,-6",
+      "lod": 0,
+      "vertices": 8655,
+      "bytes": 415440,
+      "generationMs": 15.18196800000078,
+      "decodeMs": 1.191806999999244
+    },
+    {
+      "key": "-1,-6",
+      "lod": 2,
+      "vertices": 2310,
+      "bytes": 110880,
+      "generationMs": 4.29104499999994,
+      "decodeMs": 0.13954299999932118
+    },
+    {
+      "key": "23,3",
+      "lod": 0,
+      "vertices": 7773,
+      "bytes": 373104,
+      "generationMs": 12.514811000000918,
+      "decodeMs": 0.5665119999994204
+    },
+    {
+      "key": "23,3",
+      "lod": 2,
+      "vertices": 2130,
+      "bytes": 102240,
+      "generationMs": 2.084113000000798,
+      "decodeMs": 0.1440999999995256
+    },
+    {
+      "key": "12,4",
+      "lod": 0,
+      "vertices": 528,
+      "bytes": 25344,
+      "generationMs": 0.856034999998883,
+      "decodeMs": 0.11763499999869964
+    },
+    {
+      "key": "12,4",
+      "lod": 2,
+      "vertices": 210,
+      "bytes": 10080,
+      "generationMs": 0.3103850000006787,
+      "decodeMs": 0.07395899999937683
+    },
+    {
+      "key": "11,-1",
+      "lod": 0,
+      "vertices": 1668,
+      "bytes": 80064,
+      "generationMs": 2.7968700000001263,
+      "decodeMs": 0.15493099999912374
+    },
+    {
+      "key": "11,-1",
+      "lod": 2,
+      "vertices": 630,
+      "bytes": 30240,
+      "generationMs": 0.8736690000005183,
+      "decodeMs": 0.19575199999962933
+    },
+    {
+      "key": "2,-4",
+      "lod": 0,
+      "vertices": 6240,
+      "bytes": 299520,
+      "generationMs": 9.327001999999993,
+      "decodeMs": 0.5440269999999146
+    },
+    {
+      "key": "2,-4",
+      "lod": 2,
+      "vertices": 2040,
+      "bytes": 97920,
+      "generationMs": 1.9611860000004526,
+      "decodeMs": 0.24436599999899045
+    },
+    {
+      "key": "18,-7",
+      "lod": 0,
+      "vertices": 25620,
+      "bytes": 1229760,
+      "generationMs": 45.46659799999907,
+      "decodeMs": 3.0419500000007247
+    },
+    {
+      "key": "18,-7",
+      "lod": 2,
+      "vertices": 7860,
+      "bytes": 377280,
+      "generationMs": 8.598031999999876,
+      "decodeMs": 0.8718570000000909
+    },
+    {
+      "key": "15,-7",
+      "lod": 0,
+      "vertices": 21081,
+      "bytes": 1011888,
+      "generationMs": 35.80527399999846,
+      "decodeMs": 2.7816020000009303
+    },
+    {
+      "key": "15,-7",
+      "lod": 2,
+      "vertices": 8910,
+      "bytes": 427680,
+      "generationMs": 10.16326399999889,
+      "decodeMs": 1.7509529999988445
+    },
+    {
+      "key": "10,-7",
+      "lod": 0,
+      "vertices": 3981,
+      "bytes": 191088,
+      "generationMs": 8.580465999999433,
+      "decodeMs": 0.32390899999882095
+    },
+    {
+      "key": "10,-7",
+      "lod": 2,
+      "vertices": 1770,
+      "bytes": 84960,
+      "generationMs": 2.7115389999999024,
+      "decodeMs": 0.2327789999999368
+    },
+    {
+      "key": "4,-5",
+      "lod": 0,
+      "vertices": 4071,
+      "bytes": 195408,
+      "generationMs": 9.078406000000541,
+      "decodeMs": 0.6669880000008561
+    },
+    {
+      "key": "4,-5",
+      "lod": 2,
+      "vertices": 1260,
+      "bytes": 60480,
+      "generationMs": 1.3745380000000296,
+      "decodeMs": 0.22433300000011513
+    },
+    {
+      "key": "26,-1",
+      "lod": 0,
+      "vertices": 3696,
+      "bytes": 177408,
+      "generationMs": 7.613074999999299,
+      "decodeMs": 0.9457299999994575
+    },
+    {
+      "key": "26,-1",
+      "lod": 2,
+      "vertices": 1020,
+      "bytes": 48960,
+      "generationMs": 1.9318250000014814,
+      "decodeMs": 0.08699700000033772
+    },
+    {
+      "key": "13,4",
+      "lod": 0,
+      "vertices": 5025,
+      "bytes": 241200,
+      "generationMs": 8.152690999999322,
+      "decodeMs": 0.49614800000017567
+    },
+    {
+      "key": "13,4",
+      "lod": 2,
+      "vertices": 1260,
+      "bytes": 60480,
+      "generationMs": 1.0574450000003708,
+      "decodeMs": 0.09577200000057928
+    },
+    {
+      "key": "0,-3",
+      "lod": 0,
+      "vertices": 4350,
+      "bytes": 208800,
+      "generationMs": 6.411143999999695,
+      "decodeMs": 0.3729929999990418
+    },
+    {
+      "key": "0,-3",
+      "lod": 2,
+      "vertices": 1860,
+      "bytes": 89280,
+      "generationMs": 1.8485529999998107,
+      "decodeMs": 1.028027000000293
+    },
+    {
+      "key": "9,-2",
+      "lod": 0,
+      "vertices": 7434,
+      "bytes": 356832,
+      "generationMs": 15.543055999998614,
+      "decodeMs": 1.084063000000242
+    },
+    {
+      "key": "9,-2",
+      "lod": 2,
+      "vertices": 2430,
+      "bytes": 116640,
+      "generationMs": 3.03458800000044,
+      "decodeMs": 0.1596060000010766
+    },
+    {
+      "key": "23,-8",
+      "lod": 0,
+      "vertices": 7821,
+      "bytes": 375408,
+      "generationMs": 15.488372000001618,
+      "decodeMs": 0.7980889999998908
+    },
+    {
+      "key": "23,-8",
+      "lod": 2,
+      "vertices": 2400,
+      "bytes": 115200,
+      "generationMs": 5.2386420000002545,
+      "decodeMs": 0.1561490000003687
+    },
+    {
+      "key": "7,4",
+      "lod": 0,
+      "vertices": 6687,
+      "bytes": 320976,
+      "generationMs": 20.14370400000007,
+      "decodeMs": 1.92902900000081
+    },
+    {
+      "key": "7,4",
+      "lod": 2,
+      "vertices": 1740,
+      "bytes": 83520,
+      "generationMs": 3.399486000000252,
+      "decodeMs": 0.12752500000169675
+    },
+    {
+      "key": "12,-5",
+      "lod": 0,
+      "vertices": 10140,
+      "bytes": 486720,
+      "generationMs": 22.397445000000516,
+      "decodeMs": 0.7872349999997823
+    },
+    {
+      "key": "12,-5",
+      "lod": 2,
+      "vertices": 1680,
+      "bytes": 80640,
+      "generationMs": 2.525201999998899,
+      "decodeMs": 0.1220259999990958
+    },
+    {
+      "key": "18,-2",
+      "lod": 0,
+      "vertices": 13866,
+      "bytes": 665568,
+      "generationMs": 34.4125210000002,
+      "decodeMs": 1.49194400000124
+    },
+    {
+      "key": "18,-2",
+      "lod": 2,
+      "vertices": 5190,
+      "bytes": 249120,
+      "generationMs": 6.580057999999553,
+      "decodeMs": 0.38768200000049546
+    },
+    {
+      "key": "16,-8",
+      "lod": 0,
+      "vertices": 6033,
+      "bytes": 289584,
+      "generationMs": 15.056239999999889,
+      "decodeMs": 4.10063000000082
+    },
+    {
+      "key": "16,-8",
+      "lod": 2,
+      "vertices": 1740,
+      "bytes": 83520,
+      "generationMs": 1.7892809999993915,
+      "decodeMs": 2.122407999999268
+    },
+    {
+      "key": "-4,-3",
+      "lod": 0,
+      "vertices": 1710,
+      "bytes": 82080,
+      "generationMs": 2.418470000000525,
+      "decodeMs": 0.17199799999980314
+    },
+    {
+      "key": "-4,-3",
+      "lod": 2,
+      "vertices": 840,
+      "bytes": 40320,
+      "generationMs": 0.701413999999204,
+      "decodeMs": 0.070783000001029
+    },
+    {
+      "key": "2,-1",
+      "lod": 0,
+      "vertices": 12696,
+      "bytes": 609408,
+      "generationMs": 34.39271700000063,
+      "decodeMs": 1.1572439999999915
+    },
+    {
+      "key": "2,-1",
+      "lod": 2,
+      "vertices": 5070,
+      "bytes": 243360,
+      "generationMs": 9.965040000000954,
+      "decodeMs": 0.2938080000003538
+    },
+    {
+      "key": "-2,2",
+      "lod": 0,
+      "vertices": 1116,
+      "bytes": 53568,
+      "generationMs": 2.437557999999626,
+      "decodeMs": 0.12061499999981606
+    },
+    {
+      "key": "-2,2",
+      "lod": 2,
+      "vertices": 450,
+      "bytes": 21600,
+      "generationMs": 0.4928429999999935,
+      "decodeMs": 0.05526300000019546
+    },
+    {
+      "key": "16,-3",
+      "lod": 0,
+      "vertices": 31320,
+      "bytes": 1503360,
+      "generationMs": 48.35060599999997,
+      "decodeMs": 7.396987000000081
+    },
+    {
+      "key": "16,-3",
+      "lod": 2,
+      "vertices": 7080,
+      "bytes": 339840,
+      "generationMs": 10.68730400000095,
+      "decodeMs": 0.6565229999996518
+    },
+    {
+      "key": "15,0",
+      "lod": 0,
+      "vertices": 10515,
+      "bytes": 504720,
+      "generationMs": 22.41231499999958,
+      "decodeMs": 0.9988499999999476
+    },
+    {
+      "key": "15,0",
+      "lod": 2,
+      "vertices": 3840,
+      "bytes": 184320,
+      "generationMs": 5.13556399999834,
+      "decodeMs": 0.6924190000008821
+    },
+    {
+      "key": "7,-3",
+      "lod": 0,
+      "vertices": 2706,
+      "bytes": 129888,
+      "generationMs": 5.6454610000000685,
+      "decodeMs": 0.40279000000009546
+    },
+    {
+      "key": "7,-3",
+      "lod": 2,
+      "vertices": 1530,
+      "bytes": 73440,
+      "generationMs": 1.9721300000001065,
+      "decodeMs": 0.1094439999997121
+    },
+    {
+      "key": "1,-2",
+      "lod": 0,
+      "vertices": 6168,
+      "bytes": 296064,
+      "generationMs": 14.459958999999799,
+      "decodeMs": 0.5092550000008487
+    },
+    {
+      "key": "1,-2",
+      "lod": 2,
+      "vertices": 2550,
+      "bytes": 122400,
+      "generationMs": 2.4564470000004803,
+      "decodeMs": 0.1911099999997532
+    },
+    {
+      "key": "7,-1",
+      "lod": 0,
+      "vertices": 11019,
+      "bytes": 528912,
+      "generationMs": 25.09436099999948,
+      "decodeMs": 0.9341180000010354
+    },
+    {
+      "key": "7,-1",
+      "lod": 2,
+      "vertices": 3120,
+      "bytes": 149760,
+      "generationMs": 9.760980999999447,
+      "decodeMs": 0.2604490000012447
+    },
+    {
+      "key": "24,-3",
+      "lod": 0,
+      "vertices": 8403,
+      "bytes": 403344,
+      "generationMs": 23.949279000000388,
+      "decodeMs": 1.2082140000002255
+    },
+    {
+      "key": "24,-3",
+      "lod": 2,
+      "vertices": 2580,
+      "bytes": 123840,
+      "generationMs": 5.463105999999243,
+      "decodeMs": 0.1626139999989391
+    },
+    {
+      "key": "5,-3",
+      "lod": 0,
+      "vertices": 4635,
+      "bytes": 222480,
+      "generationMs": 12.021796000000904,
+      "decodeMs": 1.0043750000004366
+    },
+    {
+      "key": "5,-3",
+      "lod": 2,
+      "vertices": 1590,
+      "bytes": 76320,
+      "generationMs": 1.817164000000048,
+      "decodeMs": 0.11593899999934365
+    },
+    {
+      "key": "-4,2",
+      "lod": 0,
+      "vertices": 390,
+      "bytes": 18720,
+      "generationMs": 1.662916999999652,
+      "decodeMs": 0.1955900000011752
+    },
+    {
+      "key": "-4,2",
+      "lod": 2,
+      "vertices": 180,
+      "bytes": 8640,
+      "generationMs": 0.16807800000060524,
+      "decodeMs": 0.02602400000068883
+    },
+    {
+      "key": "-2,4",
+      "lod": 0,
+      "vertices": 2544,
+      "bytes": 122112,
+      "generationMs": 4.159223000000566,
+      "decodeMs": 0.26388499999848136
+    },
+    {
+      "key": "-2,4",
+      "lod": 2,
+      "vertices": 840,
+      "bytes": 40320,
+      "generationMs": 1.6721170000000711,
+      "decodeMs": 0.08790199999930337
+    },
+    {
+      "key": "-4,-5",
+      "lod": 0,
+      "vertices": 1134,
+      "bytes": 54432,
+      "generationMs": 3.0038710000007995,
+      "decodeMs": 0.3743290000002162
+    },
+    {
+      "key": "-4,-5",
+      "lod": 2,
+      "vertices": 360,
+      "bytes": 17280,
+      "generationMs": 0.612264999999752,
+      "decodeMs": 0.0487169999996695
+    },
+    {
+      "key": "6,-2",
+      "lod": 0,
+      "vertices": 1287,
+      "bytes": 61776,
+      "generationMs": 2.5754450000004,
+      "decodeMs": 0.18769199999951525
+    },
+    {
+      "key": "6,-2",
+      "lod": 2,
+      "vertices": 510,
+      "bytes": 24480,
+      "generationMs": 0.8717449999985547,
+      "decodeMs": 0.10250599999926635
+    },
+    {
+      "key": "8,4",
+      "lod": 0,
+      "vertices": 3672,
+      "bytes": 176256,
+      "generationMs": 6.624721000000136,
+      "decodeMs": 0.27386699999988195
+    },
+    {
+      "key": "8,4",
+      "lod": 2,
+      "vertices": 1350,
+      "bytes": 64800,
+      "generationMs": 5.198147999999492,
+      "decodeMs": 0.10379800000009709
+    },
+    {
+      "key": "27,3",
+      "lod": 0,
+      "vertices": 3621,
+      "bytes": 173808,
+      "generationMs": 12.358513999999559,
+      "decodeMs": 0.3286649999990914
+    },
+    {
+      "key": "27,3",
+      "lod": 2,
+      "vertices": 1080,
+      "bytes": 51840,
+      "generationMs": 0.8614390000002459,
+      "decodeMs": 0.08561600000030012
+    },
+    {
+      "key": "17,3",
+      "lod": 0,
+      "vertices": 12306,
+      "bytes": 590688,
+      "generationMs": 32.877590000000055,
+      "decodeMs": 2.7042570000012347
+    },
+    {
+      "key": "17,3",
+      "lod": 2,
+      "vertices": 4890,
+      "bytes": 234720,
+      "generationMs": 7.871304000000237,
+      "decodeMs": 1.903729999999996
+    },
+    {
+      "key": "6,-4",
+      "lod": 0,
+      "vertices": 9297,
+      "bytes": 446256,
+      "generationMs": 20.51278099999945,
+      "decodeMs": 1.9456549999995332
+    },
+    {
+      "key": "6,-4",
+      "lod": 2,
+      "vertices": 1770,
+      "bytes": 84960,
+      "generationMs": 3.4760999999998603,
+      "decodeMs": 0.12283799999931944
+    },
+    {
+      "key": "13,3",
+      "lod": 0,
+      "vertices": 870,
+      "bytes": 41760,
+      "generationMs": 7.242597000000387,
+      "decodeMs": 0.09905000000071595
+    },
+    {
+      "key": "13,3",
+      "lod": 2,
+      "vertices": 330,
+      "bytes": 15840,
+      "generationMs": 2.8526459999993676,
+      "decodeMs": 0.04894400000011956
+    },
+    {
+      "key": "27,-7",
+      "lod": 0,
+      "vertices": 11847,
+      "bytes": 568656,
+      "generationMs": 24.665009000000282,
+      "decodeMs": 0.7775480000000243
+    },
+    {
+      "key": "27,-7",
+      "lod": 2,
+      "vertices": 3690,
+      "bytes": 177120,
+      "generationMs": 3.009976999999708,
+      "decodeMs": 0.25370699999984936
+    },
+    {
+      "key": "25,3",
+      "lod": 0,
+      "vertices": 4035,
+      "bytes": 193680,
+      "generationMs": 8.002351999999519,
+      "decodeMs": 0.4212119999992865
+    },
+    {
+      "key": "25,3",
+      "lod": 2,
+      "vertices": 1110,
+      "bytes": 53280,
+      "generationMs": 2.0992760000008275,
+      "decodeMs": 0.2542250000005879
+    },
+    {
+      "key": "26,1",
+      "lod": 0,
+      "vertices": 8955,
+      "bytes": 429840,
+      "generationMs": 30.428210000000036,
+      "decodeMs": 1.530174999999872
+    },
+    {
+      "key": "26,1",
+      "lod": 2,
+      "vertices": 3600,
+      "bytes": 172800,
+      "generationMs": 4.8461759999991045,
+      "decodeMs": 0.32766000000083295
+    },
+    {
+      "key": "-4,-8",
+      "lod": 0,
+      "vertices": 366,
+      "bytes": 17568,
+      "generationMs": 0.5136329999986629,
+      "decodeMs": 0.05638600000020233
+    },
+    {
+      "key": "-4,-8",
+      "lod": 2,
+      "vertices": 120,
+      "bytes": 5760,
+      "generationMs": 0.15372699999898032,
+      "decodeMs": 0.02151899999989837
+    },
+    {
+      "key": "21,-5",
+      "lod": 0,
+      "vertices": 29898,
+      "bytes": 1435104,
+      "generationMs": 56.89917400000013,
+      "decodeMs": 3.411732000000484
+    },
+    {
+      "key": "21,-5",
+      "lod": 2,
+      "vertices": 6450,
+      "bytes": 309600,
+      "generationMs": 9.607394999999087,
+      "decodeMs": 1.0648410000012518
+    },
+    {
+      "key": "11,-2",
+      "lod": 0,
+      "vertices": 7947,
+      "bytes": 381456,
+      "generationMs": 14.69238200000109,
+      "decodeMs": 1.002966000000015
+    },
+    {
+      "key": "11,-2",
+      "lod": 2,
+      "vertices": 2940,
+      "bytes": 141120,
+      "generationMs": 4.842990000001009,
+      "decodeMs": 0.17950800000107847
+    },
+    {
+      "key": "24,-2",
+      "lod": 0,
+      "vertices": 6057,
+      "bytes": 290736,
+      "generationMs": 10.749021999999968,
+      "decodeMs": 0.7546329999986483
+    },
+    {
+      "key": "24,-2",
+      "lod": 2,
+      "vertices": 2370,
+      "bytes": 113760,
+      "generationMs": 2.1342249999997875,
+      "decodeMs": 0.5518089999986842
+    },
+    {
+      "key": "25,1",
+      "lod": 0,
+      "vertices": 13227,
+      "bytes": 634896,
+      "generationMs": 29.990873000000647,
+      "decodeMs": 1.0304089999990538
+    },
+    {
+      "key": "25,1",
+      "lod": 2,
+      "vertices": 3780,
+      "bytes": 181440,
+      "generationMs": 6.137536000000182,
+      "decodeMs": 0.2538280000007944
+    },
+    {
+      "key": "-1,-2",
+      "lod": 0,
+      "vertices": 2358,
+      "bytes": 113184,
+      "generationMs": 4.006151999999929,
+      "decodeMs": 0.1955889999990177
+    },
+    {
+      "key": "-1,-2",
+      "lod": 2,
+      "vertices": 900,
+      "bytes": 43200,
+      "generationMs": 0.8382670000009966,
+      "decodeMs": 0.1406939999997121
+    },
+    {
+      "key": "0,2",
+      "lod": 0,
+      "vertices": 1869,
+      "bytes": 89712,
+      "generationMs": 2.509689000000435,
+      "decodeMs": 0.1609389999994164
+    },
+    {
+      "key": "0,2",
+      "lod": 2,
+      "vertices": 870,
+      "bytes": 41760,
+      "generationMs": 0.6366419999994832,
+      "decodeMs": 0.07449399999859452
+    },
+    {
+      "key": "13,-1",
+      "lod": 0,
+      "vertices": 3399,
+      "bytes": 163152,
+      "generationMs": 5.089237000000139,
+      "decodeMs": 0.2606500000001688
+    },
+    {
+      "key": "13,-1",
+      "lod": 2,
+      "vertices": 1260,
+      "bytes": 60480,
+      "generationMs": 1.0038320000003296,
+      "decodeMs": 0.09489399999984016
+    },
+    {
+      "key": "22,4",
+      "lod": 0,
+      "vertices": 5076,
+      "bytes": 243648,
+      "generationMs": 11.708278000000064,
+      "decodeMs": 0.35499800000070536
+    },
+    {
+      "key": "22,4",
+      "lod": 2,
+      "vertices": 1410,
+      "bytes": 67680,
+      "generationMs": 2.705022000000099,
+      "decodeMs": 0.10974800000076357
+    },
+    {
+      "key": "20,-5",
+      "lod": 0,
+      "vertices": 29187,
+      "bytes": 1400976,
+      "generationMs": 75.33727799999906,
+      "decodeMs": 3.4989199999999983
+    },
+    {
+      "key": "20,-5",
+      "lod": 2,
+      "vertices": 7020,
+      "bytes": 336960,
+      "generationMs": 6.9671869999983755,
+      "decodeMs": 0.431747999999061
+    },
+    {
+      "key": "15,-5",
+      "lod": 0,
+      "vertices": 25566,
+      "bytes": 1227168,
+      "generationMs": 59.32765699999982,
+      "decodeMs": 6.029255999999805
+    },
+    {
+      "key": "15,-5",
+      "lod": 2,
+      "vertices": 8220,
+      "bytes": 394560,
+      "generationMs": 15.248670999999376,
+      "decodeMs": 1.7282620000005409
+    },
+    {
+      "key": "5,-1",
+      "lod": 0,
+      "vertices": 6972,
+      "bytes": 334656,
+      "generationMs": 21.146428000000014,
+      "decodeMs": 0.5610799999994924
+    },
+    {
+      "key": "5,-1",
+      "lod": 2,
+      "vertices": 2310,
+      "bytes": 110880,
+      "generationMs": 6.777113000000099,
+      "decodeMs": 0.22678199999973003
+    },
+    {
+      "key": "-1,-5",
+      "lod": 0,
+      "vertices": 6744,
+      "bytes": 323712,
+      "generationMs": 13.283870000001116,
+      "decodeMs": 0.8995800000011513
+    },
+    {
+      "key": "-1,-5",
+      "lod": 2,
+      "vertices": 570,
+      "bytes": 27360,
+      "generationMs": 0.7436519999992015,
+      "decodeMs": 0.07533000000148604
+    },
+    {
+      "key": "28,-8",
+      "lod": 0,
+      "vertices": 3582,
+      "bytes": 171936,
+      "generationMs": 7.2667639999999665,
+      "decodeMs": 0.28357599999981176
+    },
+    {
+      "key": "28,-8",
+      "lod": 2,
+      "vertices": 1470,
+      "bytes": 70560,
+      "generationMs": 2.5300379999989673,
+      "decodeMs": 0.14000799999848823
+    },
+    {
+      "key": "22,3",
+      "lod": 0,
+      "vertices": 1386,
+      "bytes": 66528,
+      "generationMs": 2.354244000000108,
+      "decodeMs": 0.13465200000064215
+    },
+    {
+      "key": "22,3",
+      "lod": 2,
+      "vertices": 510,
+      "bytes": 24480,
+      "generationMs": 0.7764169999991282,
+      "decodeMs": 0.06277100000079372
+    },
+    {
+      "key": "14,-6",
+      "lod": 0,
+      "vertices": 16632,
+      "bytes": 798336,
+      "generationMs": 44.462170999999216,
+      "decodeMs": 4.813078000001042
+    },
+    {
+      "key": "14,-6",
+      "lod": 2,
+      "vertices": 5940,
+      "bytes": 285120,
+      "generationMs": 6.659024999999019,
+      "decodeMs": 0.35321400000066205
+    },
+    {
+      "key": "24,0",
+      "lod": 0,
+      "vertices": 7329,
+      "bytes": 351792,
+      "generationMs": 24.701891000000614,
+      "decodeMs": 0.7626330000002781
+    },
+    {
+      "key": "24,0",
+      "lod": 2,
+      "vertices": 2580,
+      "bytes": 123840,
+      "generationMs": 7.227031000000352,
+      "decodeMs": 0.9253099999987171
+    },
+    {
+      "key": "25,-7",
+      "lod": 0,
+      "vertices": 7038,
+      "bytes": 337824,
+      "generationMs": 10.92085699999916,
+      "decodeMs": 0.5998650000001362
+    },
+    {
+      "key": "25,-7",
+      "lod": 2,
+      "vertices": 2220,
+      "bytes": 106560,
+      "generationMs": 3.098986999999397,
+      "decodeMs": 0.1473710000009305
+    },
+    {
+      "key": "21,2",
+      "lod": 0,
+      "vertices": 6480,
+      "bytes": 311040,
+      "generationMs": 11.021357999999964,
+      "decodeMs": 0.8511829999988549
+    },
+    {
+      "key": "21,2",
+      "lod": 2,
+      "vertices": 1980,
+      "bytes": 95040,
+      "generationMs": 2.398803999998563,
+      "decodeMs": 0.19695900000078836
+    },
+    {
+      "key": "20,4",
+      "lod": 0,
+      "vertices": 3747,
+      "bytes": 179856,
+      "generationMs": 7.407803000000058,
+      "decodeMs": 0.3573290000003908
+    },
+    {
+      "key": "20,4",
+      "lod": 2,
+      "vertices": 1380,
+      "bytes": 66240,
+      "generationMs": 1.530337000000145,
+      "decodeMs": 0.6043740000004618
+    },
+    {
+      "key": "2,-5",
+      "lod": 0,
+      "vertices": 4977,
+      "bytes": 238896,
+      "generationMs": 6.531725999999253,
+      "decodeMs": 0.35951200000090466
+    },
+    {
+      "key": "2,-5",
+      "lod": 2,
+      "vertices": 1170,
+      "bytes": 56160,
+      "generationMs": 1.3982170000017504,
+      "decodeMs": 0.10216399999990244
+    },
+    {
+      "key": "9,-6",
+      "lod": 0,
+      "vertices": 4929,
+      "bytes": 236592,
+      "generationMs": 6.421511999998984,
+      "decodeMs": 0.485807000000932
+    },
+    {
+      "key": "9,-6",
+      "lod": 2,
+      "vertices": 1740,
+      "bytes": 83520,
+      "generationMs": 1.981368000000657,
+      "decodeMs": 0.33485600000130944
+    },
+    {
+      "key": "4,-7",
+      "lod": 0,
+      "vertices": 3816,
+      "bytes": 183168,
+      "generationMs": 5.512582000001203,
+      "decodeMs": 0.3475749999997788
+    },
+    {
+      "key": "4,-7",
+      "lod": 2,
+      "vertices": 630,
+      "bytes": 30240,
+      "generationMs": 0.5660269999989396,
+      "decodeMs": 0.06243499999982305
+    },
+    {
+      "key": "11,-6",
+      "lod": 0,
+      "vertices": 10251,
+      "bytes": 492048,
+      "generationMs": 15.494077999999718,
+      "decodeMs": 1.272082000001319
+    },
+    {
+      "key": "11,-6",
+      "lod": 2,
+      "vertices": 3630,
+      "bytes": 174240,
+      "generationMs": 3.8943209999997634,
+      "decodeMs": 0.21231599999919126
+    },
+    {
+      "key": "28,-6",
+      "lod": 0,
+      "vertices": 4959,
+      "bytes": 238032,
+      "generationMs": 6.51512300000104,
+      "decodeMs": 0.3546630000000732
+    },
+    {
+      "key": "28,-6",
+      "lod": 2,
+      "vertices": 1650,
+      "bytes": 79200,
+      "generationMs": 1.3325740000000224,
+      "decodeMs": 0.11815399999977672
+    },
+    {
+      "key": "13,2",
+      "lod": 0,
+      "vertices": 1524,
+      "bytes": 73152,
+      "generationMs": 3.481952000000092,
+      "decodeMs": 0.3167670000002545
+    },
+    {
+      "key": "13,2",
+      "lod": 2,
+      "vertices": 480,
+      "bytes": 23040,
+      "generationMs": 0.6755360000006476,
+      "decodeMs": 0.05877700000019104
+    },
+    {
+      "key": "14,-3",
+      "lod": 0,
+      "vertices": 17292,
+      "bytes": 830016,
+      "generationMs": 22.915487000000212,
+      "decodeMs": 1.3481100000008155
+    },
+    {
+      "key": "14,-3",
+      "lod": 2,
+      "vertices": 4920,
+      "bytes": 236160,
+      "generationMs": 4.673620000001392,
+      "decodeMs": 0.2771260000008624
+    },
+    {
+      "key": "19,-8",
+      "lod": 0,
+      "vertices": 6984,
+      "bytes": 335232,
+      "generationMs": 10.727023999999801,
+      "decodeMs": 0.558058999999048
+    },
+    {
+      "key": "19,-8",
+      "lod": 2,
+      "vertices": 1740,
+      "bytes": 83520,
+      "generationMs": 2.2369330000001355,
+      "decodeMs": 0.1253020000003744
+    },
+    {
+      "key": "28,0",
+      "lod": 0,
+      "vertices": 1272,
+      "bytes": 61056,
+      "generationMs": 2.37316600000122,
+      "decodeMs": 0.1200250000001688
+    },
+    {
+      "key": "28,0",
+      "lod": 2,
+      "vertices": 600,
+      "bytes": 28800,
+      "generationMs": 0.932435999999143,
+      "decodeMs": 0.06437300000106916
+    },
+    {
+      "key": "12,2",
+      "lod": 0,
+      "vertices": 1764,
+      "bytes": 84672,
+      "generationMs": 4.006142000000182,
+      "decodeMs": 0.13938899999993737
+    },
+    {
+      "key": "12,2",
+      "lod": 2,
+      "vertices": 450,
+      "bytes": 21600,
+      "generationMs": 0.5595720000001165,
+      "decodeMs": 0.05219299999953364
+    },
+    {
+      "key": "21,1",
+      "lod": 0,
+      "vertices": 8634,
+      "bytes": 414432,
+      "generationMs": 13.501270000000659,
+      "decodeMs": 0.5812929999992775
+    },
+    {
+      "key": "21,1",
+      "lod": 2,
+      "vertices": 2880,
+      "bytes": 138240,
+      "generationMs": 2.93540799999937,
+      "decodeMs": 0.16811199999938253
+    },
+    {
+      "key": "21,-2",
+      "lod": 0,
+      "vertices": 26019,
+      "bytes": 1248912,
+      "generationMs": 44.17429400000037,
+      "decodeMs": 2.422307999999248
+    },
+    {
+      "key": "21,-2",
+      "lod": 2,
+      "vertices": 9900,
+      "bytes": 475200,
+      "generationMs": 12.497032999999647,
+      "decodeMs": 0.7212920000001759
+    },
+    {
+      "key": "27,2",
+      "lod": 0,
+      "vertices": 2250,
+      "bytes": 108000,
+      "generationMs": 5.903879999999845,
+      "decodeMs": 0.24154499999895052
+    },
+    {
+      "key": "27,2",
+      "lod": 2,
+      "vertices": 1020,
+      "bytes": 48960,
+      "generationMs": 2.6410410000007687,
+      "decodeMs": 0.09142000000065309
+    },
+    {
+      "key": "20,-3",
+      "lod": 0,
+      "vertices": 32955,
+      "bytes": 1581840,
+      "generationMs": 51.83676600000035,
+      "decodeMs": 3.478556000000026
+    },
+    {
+      "key": "20,-3",
+      "lod": 2,
+      "vertices": 10890,
+      "bytes": 522720,
+      "generationMs": 15.811498999999458,
+      "decodeMs": 1.1678229999997711
+    },
+    {
+      "key": "-4,3",
+      "lod": 0,
+      "vertices": 4578,
+      "bytes": 219744,
+      "generationMs": 9.766278000000966,
+      "decodeMs": 0.44512699999904726
+    },
+    {
+      "key": "-4,3",
+      "lod": 2,
+      "vertices": 1980,
+      "bytes": 95040,
+      "generationMs": 4.152384999999413,
+      "decodeMs": 0.37754099999983737
+    },
+    {
+      "key": "27,-3",
+      "lod": 0,
+      "vertices": 5226,
+      "bytes": 250848,
+      "generationMs": 8.125254999999015,
+      "decodeMs": 0.521031000000221
+    },
+    {
+      "key": "27,-3",
+      "lod": 2,
+      "vertices": 2040,
+      "bytes": 97920,
+      "generationMs": 3.8623569999999745,
+      "decodeMs": 0.138755999998466
+    },
+    {
+      "key": "18,3",
+      "lod": 0,
+      "vertices": 4251,
+      "bytes": 204048,
+      "generationMs": 11.726631000001362,
+      "decodeMs": 0.32836800000040967
+    },
+    {
+      "key": "18,3",
+      "lod": 2,
+      "vertices": 1710,
+      "bytes": 82080,
+      "generationMs": 3.526792000000569,
+      "decodeMs": 0.12276700000074925
+    },
+    {
+      "key": "13,-5",
+      "lod": 0,
+      "vertices": 12435,
+      "bytes": 596880,
+      "generationMs": 19.9321230000005,
+      "decodeMs": 1.4230459999998857
+    },
+    {
+      "key": "13,-5",
+      "lod": 2,
+      "vertices": 4170,
+      "bytes": 200160,
+      "generationMs": 4.379821000000447,
+      "decodeMs": 0.2282150000010006
+    },
+    {
+      "key": "0,-1",
+      "lod": 0,
+      "vertices": 3579,
+      "bytes": 171792,
+      "generationMs": 5.758787999999186,
+      "decodeMs": 0.34412999999949534
+    },
+    {
+      "key": "0,-1",
+      "lod": 2,
+      "vertices": 1260,
+      "bytes": 60480,
+      "generationMs": 2.4595050000007177,
+      "decodeMs": 0.10840499999903841
+    },
+    {
+      "key": "-1,-7",
+      "lod": 0,
+      "vertices": 2793,
+      "bytes": 134064,
+      "generationMs": 4.911781999999221,
+      "decodeMs": 0.20321300000068732
+    },
+    {
+      "key": "-1,-7",
+      "lod": 2,
+      "vertices": 900,
+      "bytes": 43200,
+      "generationMs": 1.2139919999990525,
+      "decodeMs": 0.1192190000001574
+    },
+    {
+      "key": "17,-3",
+      "lod": 0,
+      "vertices": 32883,
+      "bytes": 1578384,
+      "generationMs": 45.31600199999957,
+      "decodeMs": 2.553013999999166
+    },
+    {
+      "key": "17,-3",
+      "lod": 2,
+      "vertices": 6540,
+      "bytes": 313920,
+      "generationMs": 6.317820000000211,
+      "decodeMs": 0.8005280000015773
+    },
+    {
+      "key": "6,-6",
+      "lod": 0,
+      "vertices": 5241,
+      "bytes": 251568,
+      "generationMs": 10.34767500000089,
+      "decodeMs": 0.389180000000124
+    },
+    {
+      "key": "6,-6",
+      "lod": 2,
+      "vertices": 1680,
+      "bytes": 80640,
+      "generationMs": 3.176664000000528,
+      "decodeMs": 0.12391800000114017
+    },
+    {
+      "key": "1,-5",
+      "lod": 0,
+      "vertices": 4410,
+      "bytes": 211680,
+      "generationMs": 12.258416999999099,
+      "decodeMs": 0.3195479999994859
+    },
+    {
+      "key": "1,-5",
+      "lod": 2,
+      "vertices": 1440,
+      "bytes": 69120,
+      "generationMs": 5.946488999999929,
+      "decodeMs": 0.13184200000068813
+    },
+    {
+      "key": "22,2",
+      "lod": 0,
+      "vertices": 2106,
+      "bytes": 101088,
+      "generationMs": 4.23342699999921,
+      "decodeMs": 0.25144299999919895
+    },
+    {
+      "key": "22,2",
+      "lod": 2,
+      "vertices": 540,
+      "bytes": 25920,
+      "generationMs": 2.159671999999773,
+      "decodeMs": 0.24603100000058475
+    },
+    {
+      "key": "27,-4",
+      "lod": 0,
+      "vertices": 2616,
+      "bytes": 125568,
+      "generationMs": 4.870278000000326,
+      "decodeMs": 0.3904549999988376
+    },
+    {
+      "key": "27,-4",
+      "lod": 2,
+      "vertices": 1020,
+      "bytes": 48960,
+      "generationMs": 3.0482059999994817,
+      "decodeMs": 0.09255800000028103
+    },
+    {
+      "key": "19,-3",
+      "lod": 0,
+      "vertices": 23172,
+      "bytes": 1112256,
+      "generationMs": 47.011764999999286,
+      "decodeMs": 1.6651470000015252
+    },
+    {
+      "key": "19,-3",
+      "lod": 2,
+      "vertices": 6120,
+      "bytes": 293760,
+      "generationMs": 6.144557999999961,
+      "decodeMs": 0.33258999999998196
+    },
+    {
+      "key": "20,-1",
+      "lod": 0,
+      "vertices": 16578,
+      "bytes": 795744,
+      "generationMs": 26.942026000000624,
+      "decodeMs": 1.6357579999985319
+    },
+    {
+      "key": "20,-1",
+      "lod": 2,
+      "vertices": 5580,
+      "bytes": 267840,
+      "generationMs": 5.515663000000131,
+      "decodeMs": 1.1984140000004118
+    },
+    {
+      "key": "5,3",
+      "lod": 0,
+      "vertices": 2250,
+      "bytes": 108000,
+      "generationMs": 4.769265999999334,
+      "decodeMs": 0.37594799999897077
+    },
+    {
+      "key": "5,3",
+      "lod": 2,
+      "vertices": 600,
+      "bytes": 28800,
+      "generationMs": 1.0532309999998688,
+      "decodeMs": 0.06078199999865319
+    },
+    {
+      "key": "-2,-2",
+      "lod": 0,
+      "vertices": 3831,
+      "bytes": 183888,
+      "generationMs": 5.548424000000523,
+      "decodeMs": 0.28873600000042643
+    },
+    {
+      "key": "-2,-2",
+      "lod": 2,
+      "vertices": 990,
+      "bytes": 47520,
+      "generationMs": 1.131013999998686,
+      "decodeMs": 0.08978899999965506
+    },
+    {
+      "key": "5,2",
+      "lod": 0,
+      "vertices": 2502,
+      "bytes": 120096,
+      "generationMs": 3.6732260000007955,
+      "decodeMs": 0.18096499999955995
+    },
+    {
+      "key": "5,2",
+      "lod": 2,
+      "vertices": 1200,
+      "bytes": 57600,
+      "generationMs": 0.9420309999986785,
+      "decodeMs": 0.09010500000113097
+    },
+    {
+      "key": "28,-7",
+      "lod": 0,
+      "vertices": 5751,
+      "bytes": 276048,
+      "generationMs": 11.054631999999401,
+      "decodeMs": 0.6451649999999063
+    },
+    {
+      "key": "28,-7",
+      "lod": 2,
+      "vertices": 1950,
+      "bytes": 93600,
+      "generationMs": 1.8409580000006827,
+      "decodeMs": 0.12733900000057474
+    },
+    {
+      "key": "12,-2",
+      "lod": 0,
+      "vertices": 7500,
+      "bytes": 360000,
+      "generationMs": 11.09653900000012,
+      "decodeMs": 0.6344810000009602
+    },
+    {
+      "key": "12,-2",
+      "lod": 2,
+      "vertices": 2100,
+      "bytes": 100800,
+      "generationMs": 2.0032680000003893,
+      "decodeMs": 0.13189299999976356
+    },
+    {
+      "key": "-1,-1",
+      "lod": 0,
+      "vertices": 4083,
+      "bytes": 195984,
+      "generationMs": 6.214990000000398,
+      "decodeMs": 0.26306599999952596
+    },
+    {
+      "key": "-1,-1",
+      "lod": 2,
+      "vertices": 1320,
+      "bytes": 63360,
+      "generationMs": 2.2962920000009035,
+      "decodeMs": 0.131930999999895
+    },
+    {
+      "key": "24,3",
+      "lod": 0,
+      "vertices": 7110,
+      "bytes": 341280,
+      "generationMs": 9.212548999999854,
+      "decodeMs": 0.500079999999798
+    },
+    {
+      "key": "24,3",
+      "lod": 2,
+      "vertices": 2550,
+      "bytes": 122400,
+      "generationMs": 1.9414730000007694,
+      "decodeMs": 0.2362859999993816
+    },
+    {
+      "key": "9,3",
+      "lod": 0,
+      "vertices": 1581,
+      "bytes": 75888,
+      "generationMs": 2.0108610000006593,
+      "decodeMs": 0.20573399999921094
+    },
+    {
+      "key": "9,3",
+      "lod": 2,
+      "vertices": 480,
+      "bytes": 23040,
+      "generationMs": 0.4999040000002424,
+      "decodeMs": 0.16267399999924237
+    },
+    {
+      "key": "0,-5",
+      "lod": 0,
+      "vertices": 2703,
+      "bytes": 129744,
+      "generationMs": 6.076297000001432,
+      "decodeMs": 0.2032149999995454
+    },
+    {
+      "key": "0,-5",
+      "lod": 2,
+      "vertices": 570,
+      "bytes": 27360,
+      "generationMs": 0.4478209999997489,
+      "decodeMs": 0.10037799999918207
+    },
+    {
+      "key": "28,3",
+      "lod": 0,
+      "vertices": 888,
+      "bytes": 42624,
+      "generationMs": 1.155548999999155,
+      "decodeMs": 0.09112099999947532
+    },
+    {
+      "key": "28,3",
+      "lod": 2,
+      "vertices": 360,
+      "bytes": 17280,
+      "generationMs": 0.41992800000116404,
+      "decodeMs": 0.04454199999963748
+    },
+    {
+      "key": "-2,0",
+      "lod": 0,
+      "vertices": 8640,
+      "bytes": 414720,
+      "generationMs": 11.524799999999232,
+      "decodeMs": 0.7671549999995477
+    },
+    {
+      "key": "-2,0",
+      "lod": 2,
+      "vertices": 930,
+      "bytes": 44640,
+      "generationMs": 0.764314000000013,
+      "decodeMs": 0.07254900000043563
+    },
+    {
+      "key": "-5,0",
+      "lod": 0,
+      "vertices": 1143,
+      "bytes": 54864,
+      "generationMs": 1.725629000000481,
+      "decodeMs": 0.1472620000004099
+    },
+    {
+      "key": "-5,0",
+      "lod": 2,
+      "vertices": 480,
+      "bytes": 23040,
+      "generationMs": 0.4786079999994399,
+      "decodeMs": 0.055560000000696164
+    },
+    {
+      "key": "3,3",
+      "lod": 0,
+      "vertices": 2781,
+      "bytes": 133488,
+      "generationMs": 3.686991999999009,
+      "decodeMs": 0.22951499999908265
+    },
+    {
+      "key": "3,3",
+      "lod": 2,
+      "vertices": 1320,
+      "bytes": 63360,
+      "generationMs": 1.3241190000007919,
+      "decodeMs": 0.10968599999978323
+    },
+    {
+      "key": "0,-2",
+      "lod": 0,
+      "vertices": 2076,
+      "bytes": 99648,
+      "generationMs": 2.901518999999098,
+      "decodeMs": 0.18064100000083272
+    },
+    {
+      "key": "0,-2",
+      "lod": 2,
+      "vertices": 960,
+      "bytes": 46080,
+      "generationMs": 1.3192479999997886,
+      "decodeMs": 0.562844000000041
+    },
+    {
+      "key": "2,-6",
+      "lod": 0,
+      "vertices": 1935,
+      "bytes": 92880,
+      "generationMs": 2.3613060000006953,
+      "decodeMs": 0.1766299999999319
+    },
+    {
+      "key": "2,-6",
+      "lod": 2,
+      "vertices": 330,
+      "bytes": 15840,
+      "generationMs": 0.2694549999996525,
+      "decodeMs": 0.037773999998535146
+    },
+    {
+      "key": "11,4",
+      "lod": 0,
+      "vertices": 2064,
+      "bytes": 99072,
+      "generationMs": 4.2072210000005725,
+      "decodeMs": 0.16475399999944784
+    },
+    {
+      "key": "11,4",
+      "lod": 2,
+      "vertices": 450,
+      "bytes": 21600,
+      "generationMs": 0.35888300000078743,
+      "decodeMs": 0.043713999999454245
+    },
+    {
+      "key": "2,0",
+      "lod": 0,
+      "vertices": 3903,
+      "bytes": 187344,
+      "generationMs": 6.1886800000011135,
+      "decodeMs": 0.48918199999934586
+    },
+    {
+      "key": "2,0",
+      "lod": 2,
+      "vertices": 1620,
+      "bytes": 77760,
+      "generationMs": 2.911426999999094,
+      "decodeMs": 0.4594309999993129
+    },
+    {
+      "key": "2,-2",
+      "lod": 0,
+      "vertices": 1614,
+      "bytes": 77472,
+      "generationMs": 4.085305000000517,
+      "decodeMs": 0.14583800000036717
+    },
+    {
+      "key": "2,-2",
+      "lod": 2,
+      "vertices": 780,
+      "bytes": 37440,
+      "generationMs": 2.506564999999682,
+      "decodeMs": 0.12660299999879499
+    },
+    {
+      "key": "8,-2",
+      "lod": 0,
+      "vertices": 9276,
+      "bytes": 445248,
+      "generationMs": 18.49138700000003,
+      "decodeMs": 0.7551229999990028
+    },
+    {
+      "key": "8,-2",
+      "lod": 2,
+      "vertices": 3030,
+      "bytes": 145440,
+      "generationMs": 3.355672000001505,
+      "decodeMs": 0.18307800000002317
+    },
+    {
+      "key": "25,4",
+      "lod": 0,
+      "vertices": 3753,
+      "bytes": 180144,
+      "generationMs": 6.547699999999168,
+      "decodeMs": 0.21677199999976438
+    },
+    {
+      "key": "25,4",
+      "lod": 2,
+      "vertices": 720,
+      "bytes": 34560,
+      "generationMs": 0.6018939999994473,
+      "decodeMs": 0.0618849999991653
+    },
+    {
+      "key": "18,-8",
+      "lod": 0,
+      "vertices": 8802,
+      "bytes": 422496,
+      "generationMs": 10.781225000000632,
+      "decodeMs": 0.7036439999992581
+    },
+    {
+      "key": "18,-8",
+      "lod": 2,
+      "vertices": 2520,
+      "bytes": 120960,
+      "generationMs": 3.114650999999867,
+      "decodeMs": 0.6058259999990696
+    },
+    {
+      "key": "4,-8",
+      "lod": 0,
+      "vertices": 1467,
+      "bytes": 70416,
+      "generationMs": 2.6054349999994884,
+      "decodeMs": 0.11804599999959464
+    },
+    {
+      "key": "4,-8",
+      "lod": 2,
+      "vertices": 420,
+      "bytes": 20160,
+      "generationMs": 0.575542000000496,
+      "decodeMs": 0.04731700000047567
+    },
+    {
+      "key": "5,-8",
+      "lod": 0,
+      "vertices": 969,
+      "bytes": 46512,
+      "generationMs": 2.9112979999990785,
+      "decodeMs": 0.09858800000074552
+    },
+    {
+      "key": "5,-8",
+      "lod": 2,
+      "vertices": 360,
+      "bytes": 17280,
+      "generationMs": 0.3788190000013856,
+      "decodeMs": 0.06463199999961944
+    },
+    {
+      "key": "13,-4",
+      "lod": 0,
+      "vertices": 15444,
+      "bytes": 741312,
+      "generationMs": 30.60726000000068,
+      "decodeMs": 2.660638999999719
+    },
+    {
+      "key": "13,-4",
+      "lod": 2,
+      "vertices": 4620,
+      "bytes": 221760,
+      "generationMs": 6.665336000000025,
+      "decodeMs": 0.504930000000968
+    },
+    {
+      "key": "11,3",
+      "lod": 0,
+      "vertices": 3531,
+      "bytes": 169488,
+      "generationMs": 9.80102000000079,
+      "decodeMs": 0.6328260000009323
+    },
+    {
+      "key": "11,3",
+      "lod": 2,
+      "vertices": 1140,
+      "bytes": 54720,
+      "generationMs": 2.030789000000368,
+      "decodeMs": 0.1929259999997157
+    },
+    {
+      "key": "-4,-4",
+      "lod": 0,
+      "vertices": 567,
+      "bytes": 27216,
+      "generationMs": 1.3299369999986084,
+      "decodeMs": 0.1437900000000809
+    },
+    {
+      "key": "-4,-4",
+      "lod": 2,
+      "vertices": 270,
+      "bytes": 12960,
+      "generationMs": 0.29889400000138266,
+      "decodeMs": 0.034285000001545995
+    },
+    {
+      "key": "24,-8",
+      "lod": 0,
+      "vertices": 5169,
+      "bytes": 248112,
+      "generationMs": 11.814113000000361,
+      "decodeMs": 1.3607699999993201
+    },
+    {
+      "key": "24,-8",
+      "lod": 2,
+      "vertices": 1680,
+      "bytes": 80640,
+      "generationMs": 9.677623999999923,
+      "decodeMs": 0.5103220000000874
+    },
+    {
+      "key": "4,4",
+      "lod": 0,
+      "vertices": 2484,
+      "bytes": 119232,
+      "generationMs": 8.992318000000523,
+      "decodeMs": 1.344450999999026
+    },
+    {
+      "key": "4,4",
+      "lod": 2,
+      "vertices": 630,
+      "bytes": 30240,
+      "generationMs": 7.087706000000253,
+      "decodeMs": 0.10392499999943539
+    },
+    {
+      "key": "18,1",
+      "lod": 0,
+      "vertices": 11490,
+      "bytes": 551520,
+      "generationMs": 88.34696099999928,
+      "decodeMs": 1.2802800000008574
+    },
+    {
+      "key": "18,1",
+      "lod": 2,
+      "vertices": 4110,
+      "bytes": 197280,
+      "generationMs": 5.949212999999872,
+      "decodeMs": 0.6404880000009143
+    },
+    {
+      "key": "13,1",
+      "lod": 0,
+      "vertices": 3792,
+      "bytes": 182016,
+      "generationMs": 21.52829699999893,
+      "decodeMs": 0.583796999999322
+    },
+    {
+      "key": "13,1",
+      "lod": 2,
+      "vertices": 1410,
+      "bytes": 67680,
+      "generationMs": 2.448059000000285,
+      "decodeMs": 0.10767099999975471
+    },
+    {
+      "key": "0,-4",
+      "lod": 0,
+      "vertices": 3441,
+      "bytes": 165168,
+      "generationMs": 8.371022000001176,
+      "decodeMs": 0.7611010000000533
+    },
+    {
+      "key": "0,-4",
+      "lod": 2,
+      "vertices": 1230,
+      "bytes": 59040,
+      "generationMs": 2.1035240000001068,
+      "decodeMs": 0.20600999999987835
+    },
+    {
+      "key": "17,-6",
+      "lod": 0,
+      "vertices": 9777,
+      "bytes": 469296,
+      "generationMs": 27.970234999998866,
+      "decodeMs": 1.4390889999995125
+    },
+    {
+      "key": "17,-6",
+      "lod": 2,
+      "vertices": 2160,
+      "bytes": 103680,
+      "generationMs": 5.4724950000018,
+      "decodeMs": 0.6299870000002556
+    },
+    {
+      "key": "-3,0",
+      "lod": 0,
+      "vertices": 1518,
+      "bytes": 72864,
+      "generationMs": 6.648675000000367,
+      "decodeMs": 0.21744000000035157
+    },
+    {
+      "key": "-3,0",
+      "lod": 2,
+      "vertices": 690,
+      "bytes": 33120,
+      "generationMs": 2.6187300000001414,
+      "decodeMs": 0.0732369999986986
+    },
+    {
+      "key": "1,-1",
+      "lod": 0,
+      "vertices": 4776,
+      "bytes": 229248,
+      "generationMs": 15.103229000000283,
+      "decodeMs": 0.3862229999995179
+    },
+    {
+      "key": "1,-1",
+      "lod": 2,
+      "vertices": 2010,
+      "bytes": 96480,
+      "generationMs": 3.6195329999991372,
+      "decodeMs": 0.13932000000022526
+    },
+    {
+      "key": "4,-6",
+      "lod": 0,
+      "vertices": 3756,
+      "bytes": 180288,
+      "generationMs": 13.196909000000232,
+      "decodeMs": 0.43351499999880616
+    },
+    {
+      "key": "4,-6",
+      "lod": 2,
+      "vertices": 1290,
+      "bytes": 61920,
+      "generationMs": 1.055888999999297,
+      "decodeMs": 0.10066499999993539
+    },
+    {
+      "key": "24,-1",
+      "lod": 0,
+      "vertices": 12435,
+      "bytes": 596880,
+      "generationMs": 25.65379800000119,
+      "decodeMs": 1.9060190000000148
+    },
+    {
+      "key": "24,-1",
+      "lod": 2,
+      "vertices": 3720,
+      "bytes": 178560,
+      "generationMs": 3.7084689999992406,
+      "decodeMs": 0.3259719999987283
+    },
+    {
+      "key": "12,1",
+      "lod": 0,
+      "vertices": 9741,
+      "bytes": 467568,
+      "generationMs": 24.08611699999892,
+      "decodeMs": 0.8725190000004659
+    },
+    {
+      "key": "12,1",
+      "lod": 2,
+      "vertices": 2040,
+      "bytes": 97920,
+      "generationMs": 2.2912909999995463,
+      "decodeMs": 2.6181759999999485
+    },
+    {
+      "key": "10,4",
+      "lod": 0,
+      "vertices": 2880,
+      "bytes": 138240,
+      "generationMs": 5.060386000001017,
+      "decodeMs": 0.30476400000043213
+    },
+    {
+      "key": "10,4",
+      "lod": 2,
+      "vertices": 960,
+      "bytes": 46080,
+      "generationMs": 0.7572040000013658,
+      "decodeMs": 0.26016299999901094
+    },
+    {
+      "key": "18,-4",
+      "lod": 0,
+      "vertices": 15177,
+      "bytes": 728496,
+      "generationMs": 15.668236999999863,
+      "decodeMs": 1.0846330000003945
+    },
+    {
+      "key": "18,-4",
+      "lod": 2,
+      "vertices": 3300,
+      "bytes": 158400,
+      "generationMs": 4.093912000000273,
+      "decodeMs": 0.7774420000005193
+    },
+    {
+      "key": "-4,-7",
+      "lod": 0,
+      "vertices": 816,
+      "bytes": 39168,
+      "generationMs": 1.655190000001312,
+      "decodeMs": 0.0967930000006163
+    },
+    {
+      "key": "-4,-7",
+      "lod": 2,
+      "vertices": 270,
+      "bytes": 12960,
+      "generationMs": 0.9560450000008132,
+      "decodeMs": 0.04116699999940465
+    },
+    {
+      "key": "16,-4",
+      "lod": 0,
+      "vertices": 2379,
+      "bytes": 114192,
+      "generationMs": 3.2458759999990434,
+      "decodeMs": 0.37385900000117545
+    },
+    {
+      "key": "16,-4",
+      "lod": 2,
+      "vertices": 780,
+      "bytes": 37440,
+      "generationMs": 0.7290759999996226,
+      "decodeMs": 0.07211400000051071
+    },
+    {
+      "key": "26,4",
+      "lod": 0,
+      "vertices": 1068,
+      "bytes": 51264,
+      "generationMs": 2.279350999999224,
+      "decodeMs": 0.10989599999993516
+    },
+    {
+      "key": "26,4",
+      "lod": 2,
+      "vertices": 390,
+      "bytes": 18720,
+      "generationMs": 0.3434769999985292,
+      "decodeMs": 0.041429999999309075
+    },
+    {
+      "key": "-3,-1",
+      "lod": 0,
+      "vertices": 3342,
+      "bytes": 160416,
+      "generationMs": 6.106787999999142,
+      "decodeMs": 0.4996240000000398
+    },
+    {
+      "key": "-3,-1",
+      "lod": 2,
+      "vertices": 1800,
+      "bytes": 86400,
+      "generationMs": 2.2402409999995143,
+      "decodeMs": 0.3583549999984825
+    },
+    {
+      "key": "-2,1",
+      "lod": 0,
+      "vertices": 4473,
+      "bytes": 214704,
+      "generationMs": 8.369324999999662,
+      "decodeMs": 0.5247779999990598
+    },
+    {
+      "key": "-2,1",
+      "lod": 2,
+      "vertices": 2040,
+      "bytes": 97920,
+      "generationMs": 1.768739999999525,
+      "decodeMs": 0.13982299999952374
+    },
+    {
+      "key": "6,-7",
+      "lod": 0,
+      "vertices": 3162,
+      "bytes": 151776,
+      "generationMs": 5.0114510000003065,
+      "decodeMs": 0.41001300000061747
+    },
+    {
+      "key": "6,-7",
+      "lod": 2,
+      "vertices": 1140,
+      "bytes": 54720,
+      "generationMs": 1.9149039999992965,
+      "decodeMs": 0.25842699999884644
+    },
+    {
+      "key": "28,1",
+      "lod": 0,
+      "vertices": 966,
+      "bytes": 46368,
+      "generationMs": 3.0074139999996987,
+      "decodeMs": 0.09925999999904889
+    },
+    {
+      "key": "28,1",
+      "lod": 2,
+      "vertices": 360,
+      "bytes": 17280,
+      "generationMs": 0.4427400000004127,
+      "decodeMs": 0.04981700000098499
+    },
+    {
+      "key": "0,4",
+      "lod": 0,
+      "vertices": 729,
+      "bytes": 34992,
+      "generationMs": 1.9375159999999596,
+      "decodeMs": 0.08332700000028126
+    },
+    {
+      "key": "0,4",
+      "lod": 2,
+      "vertices": 270,
+      "bytes": 12960,
+      "generationMs": 0.2361719999989873,
+      "decodeMs": 0.03432100000100036
+    },
+    {
+      "key": "11,-8",
+      "lod": 0,
+      "vertices": 3660,
+      "bytes": 175680,
+      "generationMs": 8.564593000000968,
+      "decodeMs": 0.24491699999998673
+    },
+    {
+      "key": "11,-8",
+      "lod": 2,
+      "vertices": 960,
+      "bytes": 46080,
+      "generationMs": 1.0741889999990235,
+      "decodeMs": 0.08381200000076205
+    },
+    {
+      "key": "-4,0",
+      "lod": 0,
+      "vertices": 1398,
+      "bytes": 67104,
+      "generationMs": 3.2724769999986165,
+      "decodeMs": 1.3084020000005694
+    },
+    {
+      "key": "-4,0",
+      "lod": 2,
+      "vertices": 570,
+      "bytes": 27360,
+      "generationMs": 2.272574999999051,
+      "decodeMs": 0.10128400000030524
+    },
+    {
+      "key": "7,-8",
+      "lod": 0,
+      "vertices": 1611,
+      "bytes": 77328,
+      "generationMs": 2.3863110000002052,
+      "decodeMs": 0.12535399999978836
+    },
+    {
+      "key": "7,-8",
+      "lod": 2,
+      "vertices": 480,
+      "bytes": 23040,
+      "generationMs": 0.5545020000008662,
+      "decodeMs": 0.0518130000000383
+    },
+    {
+      "key": "26,3",
+      "lod": 0,
+      "vertices": 3669,
+      "bytes": 176112,
+      "generationMs": 5.795018000000709,
+      "decodeMs": 0.45124700000087614
+    },
+    {
+      "key": "26,3",
+      "lod": 2,
+      "vertices": 1020,
+      "bytes": 48960,
+      "generationMs": 1.096795999999813,
+      "decodeMs": 0.08549899999889021
+    },
+    {
+      "key": "-3,1",
+      "lod": 0,
+      "vertices": 2310,
+      "bytes": 110880,
+      "generationMs": 3.834754999999859,
+      "decodeMs": 0.20349999999962165
+    },
+    {
+      "key": "-3,1",
+      "lod": 2,
+      "vertices": 900,
+      "bytes": 43200,
+      "generationMs": 0.8165790000002744,
+      "decodeMs": 0.080630000000383
+    },
+    {
+      "key": "-2,-5",
+      "lod": 0,
+      "vertices": 2040,
+      "bytes": 97920,
+      "generationMs": 3.1111459999992803,
+      "decodeMs": 0.1669480000000476
+    },
+    {
+      "key": "-2,-5",
+      "lod": 2,
+      "vertices": 780,
+      "bytes": 37440,
+      "generationMs": 0.8629049999999552,
+      "decodeMs": 0.07111199999962992
+    },
+    {
+      "key": "-4,-6",
+      "lod": 0,
+      "vertices": 1071,
+      "bytes": 51408,
+      "generationMs": 1.4926880000002711,
+      "decodeMs": 0.09315999999853375
+    },
+    {
+      "key": "-4,-6",
+      "lod": 2,
+      "vertices": 240,
+      "bytes": 11520,
+      "generationMs": 0.20148000000153843,
+      "decodeMs": 0.025029000000358792
+    },
+    {
+      "key": "6,-3",
+      "lod": 0,
+      "vertices": 522,
+      "bytes": 25056,
+      "generationMs": 0.8233129999989615,
+      "decodeMs": 0.06503700000030221
+    },
+    {
+      "key": "6,-3",
+      "lod": 2,
+      "vertices": 210,
+      "bytes": 10080,
+      "generationMs": 0.16267100000004575,
+      "decodeMs": 0.023944000000483356
+    },
+    {
+      "key": "0,1",
+      "lod": 0,
+      "vertices": 9786,
+      "bytes": 469728,
+      "generationMs": 25.40115500000138,
+      "decodeMs": 0.6567340000001423
+    },
+    {
+      "key": "0,1",
+      "lod": 2,
+      "vertices": 1410,
+      "bytes": 67680,
+      "generationMs": 1.3931489999995392,
+      "decodeMs": 0.09442399999898043
+    },
+    {
+      "key": "6,-8",
+      "lod": 0,
+      "vertices": 2163,
+      "bytes": 103824,
+      "generationMs": 5.260215000000244,
+      "decodeMs": 0.17169900000044436
+    },
+    {
+      "key": "6,-8",
+      "lod": 2,
+      "vertices": 750,
+      "bytes": 36000,
+      "generationMs": 0.8198670000001584,
+      "decodeMs": 0.07256099999904109
+    },
+    {
+      "key": "19,-4",
+      "lod": 0,
+      "vertices": 15021,
+      "bytes": 721008,
+      "generationMs": 20.257598000000144,
+      "decodeMs": 1.1984140000004118
+    },
+    {
+      "key": "19,-4",
+      "lod": 2,
+      "vertices": 3480,
+      "bytes": 167040,
+      "generationMs": 5.276872000000367,
+      "decodeMs": 0.4960479999990639
+    },
+    {
+      "key": "3,-8",
+      "lod": 0,
+      "vertices": 312,
+      "bytes": 14976,
+      "generationMs": 0.4824010000011185,
+      "decodeMs": 0.0408900000002177
+    },
+    {
+      "key": "3,-8",
+      "lod": 2,
+      "vertices": 150,
+      "bytes": 7200,
+      "generationMs": 0.40563099999963015,
+      "decodeMs": 0.03315900000052352
+    },
+    {
+      "key": "3,-6",
+      "lod": 0,
+      "vertices": 4053,
+      "bytes": 194544,
+      "generationMs": 6.851673999999548,
+      "decodeMs": 0.2810170000011567
+    },
+    {
+      "key": "3,-6",
+      "lod": 2,
+      "vertices": 1080,
+      "bytes": 51840,
+      "generationMs": 1.633458000000246,
+      "decodeMs": 0.0915290000011737
+    },
+    {
+      "key": "25,-8",
+      "lod": 0,
+      "vertices": 3435,
+      "bytes": 164880,
+      "generationMs": 9.17039499999919,
+      "decodeMs": 0.3687739999986661
+    },
+    {
+      "key": "25,-8",
+      "lod": 2,
+      "vertices": 1320,
+      "bytes": 63360,
+      "generationMs": 1.7492240000010497,
+      "decodeMs": 0.1057009999985894
+    },
+    {
+      "key": "7,-6",
+      "lod": 0,
+      "vertices": 2346,
+      "bytes": 112608,
+      "generationMs": 4.436416000000463,
+      "decodeMs": 0.666971000000558
+    },
+    {
+      "key": "7,-6",
+      "lod": 2,
+      "vertices": 720,
+      "bytes": 34560,
+      "generationMs": 1.4962479999994684,
+      "decodeMs": 0.7570940000005066
+    },
+    {
+      "key": "2,-8",
+      "lod": 0,
+      "vertices": 612,
+      "bytes": 29376,
+      "generationMs": 1.348943999999392,
+      "decodeMs": 0.07928100000026461
+    },
+    {
+      "key": "2,-8",
+      "lod": 2,
+      "vertices": 180,
+      "bytes": 8640,
+      "generationMs": 0.6139240000011341,
+      "decodeMs": 0.03909699999894656
+    },
+    {
+      "key": "28,2",
+      "lod": 0,
+      "vertices": 498,
+      "bytes": 23904,
+      "generationMs": 1.0005160000000615,
+      "decodeMs": 0.06944500000099652
+    },
+    {
+      "key": "28,2",
+      "lod": 2,
+      "vertices": 240,
+      "bytes": 11520,
+      "generationMs": 0.189606999998432,
+      "decodeMs": 0.02514799999880779
+    },
+    {
+      "key": "-5,3",
+      "lod": 0,
+      "vertices": 447,
+      "bytes": 21456,
+      "generationMs": 0.960399999999936,
+      "decodeMs": 0.18515900000056718
+    },
+    {
+      "key": "-5,3",
+      "lod": 2,
+      "vertices": 270,
+      "bytes": 12960,
+      "generationMs": 0.324110000001383,
+      "decodeMs": 0.03574500000104308
+    },
+    {
+      "key": "28,-3",
+      "lod": 0,
+      "vertices": 1347,
+      "bytes": 64656,
+      "generationMs": 1.9141450000006444,
+      "decodeMs": 0.19136100000105216
+    },
+    {
+      "key": "28,-3",
+      "lod": 2,
+      "vertices": 480,
+      "bytes": 23040,
+      "generationMs": 0.41325399999914225,
+      "decodeMs": 0.05105800000092131
+    },
+    {
+      "key": "-4,4",
+      "lod": 0,
+      "vertices": 1887,
+      "bytes": 90576,
+      "generationMs": 2.8115710000001854,
+      "decodeMs": 0.2148269999997865
+    },
+    {
+      "key": "-4,4",
+      "lod": 2,
+      "vertices": 540,
+      "bytes": 25920,
+      "generationMs": 2.251774000000296,
+      "decodeMs": 0.06214400000135356
+    },
+    {
+      "key": "8,0",
+      "lod": 0,
+      "vertices": 1740,
+      "bytes": 83520,
+      "generationMs": 5.10607600000003,
+      "decodeMs": 0.3241629999993165
+    },
+    {
+      "key": "8,0",
+      "lod": 2,
+      "vertices": 510,
+      "bytes": 24480,
+      "generationMs": 1.3038269999997283,
+      "decodeMs": 0.23323500000151398
+    },
+    {
+      "key": "-5,-4",
+      "lod": 0,
+      "vertices": 153,
+      "bytes": 7344,
+      "generationMs": 0.26020300000163843,
+      "decodeMs": 0.03105900000082329
+    },
+    {
+      "key": "-5,-4",
+      "lod": 2,
+      "vertices": 60,
+      "bytes": 2880,
+      "generationMs": 0.13996899999983725,
+      "decodeMs": 0.017007999998895684
+    },
+    {
+      "key": "3,-7",
+      "lod": 0,
+      "vertices": 282,
+      "bytes": 13536,
+      "generationMs": 0.37668399999893154,
+      "decodeMs": 0.03385600000001432
+    },
+    {
+      "key": "3,-7",
+      "lod": 2,
+      "vertices": 150,
+      "bytes": 7200,
+      "generationMs": 0.12356399999953283,
+      "decodeMs": 0.05591699999968114
+    },
+    {
+      "key": "-5,-1",
+      "lod": 0,
+      "vertices": 246,
+      "bytes": 11808,
+      "generationMs": 0.4576500000002852,
+      "decodeMs": 0.03554499999881955
+    },
+    {
+      "key": "-5,-1",
+      "lod": 2,
+      "vertices": 120,
+      "bytes": 5760,
+      "generationMs": 0.7378920000010112,
+      "decodeMs": 0.029193999998824438
+    },
+    {
+      "key": "9,2",
+      "lod": 0,
+      "vertices": 963,
+      "bytes": 46224,
+      "generationMs": 2.5825479999984964,
+      "decodeMs": 0.11249599999973725
+    },
+    {
+      "key": "9,2",
+      "lod": 2,
+      "vertices": 300,
+      "bytes": 14400,
+      "generationMs": 1.082628999998633,
+      "decodeMs": 0.11379300000044168
+    },
+    {
+      "key": "26,-3",
+      "lod": 0,
+      "vertices": 4845,
+      "bytes": 232560,
+      "generationMs": 10.53679000000011,
+      "decodeMs": 0.4493560000009893
+    },
+    {
+      "key": "26,-3",
+      "lod": 2,
+      "vertices": 1680,
+      "bytes": 80640,
+      "generationMs": 1.901785000000018,
+      "decodeMs": 0.1186680000009801
+    },
+    {
+      "key": "28,-4",
+      "lod": 0,
+      "vertices": 2412,
+      "bytes": 115776,
+      "generationMs": 3.7769760000010137,
+      "decodeMs": 0.25656100000014703
+    },
+    {
+      "key": "28,-4",
+      "lod": 2,
+      "vertices": 1140,
+      "bytes": 54720,
+      "generationMs": 1.4989669999995385,
+      "decodeMs": 0.09941299999991315
+    },
+    {
+      "key": "-3,-4",
+      "lod": 0,
+      "vertices": 1575,
+      "bytes": 75600,
+      "generationMs": 3.135801000000356,
+      "decodeMs": 0.1761449999994511
+    },
+    {
+      "key": "-3,-4",
+      "lod": 2,
+      "vertices": 780,
+      "bytes": 37440,
+      "generationMs": 0.9489079999984824,
+      "decodeMs": 0.07702400000016496
+    },
+    {
+      "key": "-1,0",
+      "lod": 0,
+      "vertices": 3000,
+      "bytes": 144000,
+      "generationMs": 4.310515000001033,
+      "decodeMs": 0.2351650000000518
+    },
+    {
+      "key": "-1,0",
+      "lod": 2,
+      "vertices": 390,
+      "bytes": 18720,
+      "generationMs": 0.4498550000007526,
+      "decodeMs": 0.04649599999902421
+    },
+    {
+      "key": "-4,-2",
+      "lod": 0,
+      "vertices": 975,
+      "bytes": 46800,
+      "generationMs": 2.5074989999993704,
+      "decodeMs": 0.44843500000024505
+    },
+    {
+      "key": "-4,-2",
+      "lod": 2,
+      "vertices": 480,
+      "bytes": 23040,
+      "generationMs": 0.6382749999993393,
+      "decodeMs": 0.09056199999940873
+    },
+    {
+      "key": "0,0",
+      "lod": 0,
+      "vertices": 13302,
+      "bytes": 638496,
+      "generationMs": 17.024249000000054,
+      "decodeMs": 0.95128399999885
+    },
+    {
+      "key": "0,0",
+      "lod": 2,
+      "vertices": 870,
+      "bytes": 41760,
+      "generationMs": 0.6619279999995342,
+      "decodeMs": 0.10365999999885389
+    },
+    {
+      "key": "26,-5",
+      "lod": 0,
+      "vertices": 6939,
+      "bytes": 333072,
+      "generationMs": 14.534351000000242,
+      "decodeMs": 1.1285680000000866
+    },
+    {
+      "key": "26,-5",
+      "lod": 2,
+      "vertices": 2400,
+      "bytes": 115200,
+      "generationMs": 2.884183000000121,
+      "decodeMs": 0.19402400000035414
+    },
+    {
+      "key": "-3,-7",
+      "lod": 0,
+      "vertices": 270,
+      "bytes": 12960,
+      "generationMs": 0.41981899999882444,
+      "decodeMs": 0.04080400000020745
+    },
+    {
+      "key": "-3,-7",
+      "lod": 2,
+      "vertices": 120,
+      "bytes": 5760,
+      "generationMs": 0.10859600000003411,
+      "decodeMs": 0.021033999999417574
+    },
+    {
+      "key": "8,2",
+      "lod": 0,
+      "vertices": 2343,
+      "bytes": 112464,
+      "generationMs": 4.042250000000422,
+      "decodeMs": 0.19180500000038592
+    },
+    {
+      "key": "8,2",
+      "lod": 2,
+      "vertices": 570,
+      "bytes": 27360,
+      "generationMs": 0.4442940000008093,
+      "decodeMs": 0.051627999999254826
+    },
+    {
+      "key": "28,-1",
+      "lod": 0,
+      "vertices": 1212,
+      "bytes": 58176,
+      "generationMs": 1.5112130000015895,
+      "decodeMs": 0.10529599999972561
+    },
+    {
+      "key": "28,-1",
+      "lod": 2,
+      "vertices": 240,
+      "bytes": 11520,
+      "generationMs": 0.2072280000011233,
+      "decodeMs": 0.025708000001031905
+    },
+    {
+      "key": "1,0",
+      "lod": 0,
+      "vertices": 2709,
+      "bytes": 130032,
+      "generationMs": 4.99880900000062,
+      "decodeMs": 0.17434599999978673
+    },
+    {
+      "key": "1,0",
+      "lod": 2,
+      "vertices": 450,
+      "bytes": 21600,
+      "generationMs": 0.6352800000004208,
+      "decodeMs": 0.052303000000392785
+    },
+    {
+      "key": "8,-1",
+      "lod": 0,
+      "vertices": 1566,
+      "bytes": 75168,
+      "generationMs": 2.0996399999985442,
+      "decodeMs": 0.13688399999955436
+    },
+    {
+      "key": "8,-1",
+      "lod": 2,
+      "vertices": 330,
+      "bytes": 15840,
+      "generationMs": 3.395615999999791,
+      "decodeMs": 0.04342499999984284
+    },
+    {
+      "key": "28,4",
+      "lod": 0,
+      "vertices": 648,
+      "bytes": 31104,
+      "generationMs": 1.5125989999996818,
+      "decodeMs": 0.08156299999973271
+    },
+    {
+      "key": "28,4",
+      "lod": 2,
+      "vertices": 210,
+      "bytes": 10080,
+      "generationMs": 0.4884280000005674,
+      "decodeMs": 0.03424300000006042
+    },
+    {
+      "key": "-5,4",
+      "lod": 0,
+      "vertices": 357,
+      "bytes": 17136,
+      "generationMs": 0.9216339999984484,
+      "decodeMs": 0.06588600000031875
+    },
+    {
+      "key": "-5,4",
+      "lod": 2,
+      "vertices": 120,
+      "bytes": 5760,
+      "generationMs": 0.12243600000147126,
+      "decodeMs": 0.021348999998735962
+    },
+    {
+      "key": "28,-5",
+      "lod": 0,
+      "vertices": 1695,
+      "bytes": 81360,
+      "generationMs": 6.399523000000045,
+      "decodeMs": 0.14738000000033935
+    },
+    {
+      "key": "28,-5",
+      "lod": 2,
+      "vertices": 750,
+      "bytes": 36000,
+      "generationMs": 0.6144539999986591,
+      "decodeMs": 0.06353200000012293
+    },
+    {
+      "key": "1,-6",
+      "lod": 0,
+      "vertices": 1917,
+      "bytes": 92016,
+      "generationMs": 3.461122000000614,
+      "decodeMs": 0.16950899999937974
+    },
+    {
+      "key": "1,-6",
+      "lod": 2,
+      "vertices": 450,
+      "bytes": 21600,
+      "generationMs": 0.843181000000186,
+      "decodeMs": 0.051766000000498025
+    },
+    {
+      "key": "-3,-2",
+      "lod": 0,
+      "vertices": 1131,
+      "bytes": 54288,
+      "generationMs": 2.1874079999997775,
+      "decodeMs": 0.11652499999945576
+    },
+    {
+      "key": "-3,-2",
+      "lod": 2,
+      "vertices": 600,
+      "bytes": 28800,
+      "generationMs": 0.5434350000014092,
+      "decodeMs": 0.09418900000127906
+    },
+    {
+      "key": "3,4",
+      "lod": 0,
+      "vertices": 1203,
+      "bytes": 57744,
+      "generationMs": 1.5515939999986585,
+      "decodeMs": 0.10152799999923445
+    },
+    {
+      "key": "3,4",
+      "lod": 2,
+      "vertices": 270,
+      "bytes": 12960,
+      "generationMs": 0.8976760000005015,
+      "decodeMs": 0.0405190000001312
+    },
+    {
+      "key": "-1,-8",
+      "lod": 0,
+      "vertices": 1653,
+      "bytes": 79344,
+      "generationMs": 2.6886859999995067,
+      "decodeMs": 0.19729200000074343
+    },
+    {
+      "key": "-1,-8",
+      "lod": 2,
+      "vertices": 420,
+      "bytes": 20160,
+      "generationMs": 0.46230800000012096,
+      "decodeMs": 0.04726999999911641
+    },
+    {
+      "key": "-5,-2",
+      "lod": 0,
+      "vertices": 459,
+      "bytes": 22032,
+      "generationMs": 0.5686310000000958,
+      "decodeMs": 0.05597999999918102
+    },
+    {
+      "key": "-5,-2",
+      "lod": 2,
+      "vertices": 180,
+      "bytes": 8640,
+      "generationMs": 0.19196999999985565,
+      "decodeMs": 0.025577000000339467
+    },
+    {
+      "key": "-3,-5",
+      "lod": 0,
+      "vertices": 546,
+      "bytes": 26208,
+      "generationMs": 0.9086299999999028,
+      "decodeMs": 0.3042590000004566
+    },
+    {
+      "key": "-3,-5",
+      "lod": 2,
+      "vertices": 150,
+      "bytes": 7200,
+      "generationMs": 0.14592899999843212,
+      "decodeMs": 0.021924000000581145
+    },
+    {
+      "key": "-5,-8",
+      "lod": 0,
+      "vertices": 186,
+      "bytes": 8928,
+      "generationMs": 0.24681799999962095,
+      "decodeMs": 0.023887999999715248
+    },
+    {
+      "key": "-5,-8",
+      "lod": 2,
+      "vertices": 150,
+      "bytes": 7200,
+      "generationMs": 0.16273700000056124,
+      "decodeMs": 0.023973999999725493
+    },
+    {
+      "key": "12,3",
+      "lod": 0,
+      "vertices": 378,
+      "bytes": 18144,
+      "generationMs": 0.42331800000101794,
+      "decodeMs": 0.03913199999988137
+    },
+    {
+      "key": "12,3",
+      "lod": 2,
+      "vertices": 150,
+      "bytes": 7200,
+      "generationMs": 0.12124699999912991,
+      "decodeMs": 0.014877999999953317
+    },
+    {
+      "key": "10,1",
+      "lod": 0,
+      "vertices": 468,
+      "bytes": 22464,
+      "generationMs": 0.5957729999990988,
+      "decodeMs": 0.044020999999702326
+    },
+    {
+      "key": "10,1",
+      "lod": 2,
+      "vertices": 120,
+      "bytes": 5760,
+      "generationMs": 0.10990500000116299,
+      "decodeMs": 0.01254999999946449
+    },
+    {
+      "key": "11,2",
+      "lod": 0,
+      "vertices": 966,
+      "bytes": 46368,
+      "generationMs": 1.5703360000006796,
+      "decodeMs": 0.08167900000080408
+    },
+    {
+      "key": "11,2",
+      "lod": 2,
+      "vertices": 120,
+      "bytes": 5760,
+      "generationMs": 0.11570299999948475,
+      "decodeMs": 0.01536599999963073
+    },
+    {
+      "key": "-5,2",
+      "lod": 0,
+      "vertices": 48,
+      "bytes": 2304,
+      "generationMs": 0.08990799999992305,
+      "decodeMs": 0.00766499999917869
+    },
+    {
+      "key": "-5,2",
+      "lod": 2,
+      "vertices": 30,
+      "bytes": 1440,
+      "generationMs": 0.03906800000004296,
+      "decodeMs": 0.0050760000012815
+    },
+    {
+      "key": "10,3",
+      "lod": 0,
+      "vertices": 192,
+      "bytes": 9216,
+      "generationMs": 0.25159200000052806,
+      "decodeMs": 0.3247000000010303
+    },
+    {
+      "key": "10,3",
+      "lod": 2,
+      "vertices": 60,
+      "bytes": 2880,
+      "generationMs": 0.07796499999858497,
+      "decodeMs": 0.01184099999954924
+    },
+    {
+      "key": "2,-7",
+      "lod": 0,
+      "vertices": 48,
+      "bytes": 2304,
+      "generationMs": 0.08833099999901606,
+      "decodeMs": 0.007617000001118868
+    },
+    {
+      "key": "2,-7",
+      "lod": 2,
+      "vertices": 30,
+      "bytes": 1440,
+      "generationMs": 0.03555600000072445,
+      "decodeMs": 0.009185000000798027
+    }
+  ]
+}

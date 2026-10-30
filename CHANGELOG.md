@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.0-experimental
+
+- Prepare byte-identical London geometry offline with bounded lazy native decompression and runtime fallback.
+- Reuse identical detailed LODs, cache cell/material metadata and remove duplicate streaming work.
+- Retain real elapsed-time physics debt and reset pause/replay clocks without changing the120Hz integrator.
+- Avoid redundant shadow material invalidation and imagery selection work; add bounded diagnostics and churn counters.
+- Add pinned-input paired rendering, visual differences, actual-loop observations and independent Android delivery gates.
+- Physical GalaxyA51 performance remains untested; no graphics-resolution, imagery, landmark or shadow reduction.
+
 ## 0.2.0-experimental — 27 October 2026
 
 - Reject corrupt saved vectors/seed/orientation before world mutation; preserve the previous save when a new candidate is invalid.

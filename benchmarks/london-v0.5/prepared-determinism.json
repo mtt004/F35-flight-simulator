@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "method": "Regenerated all866 tile payloads from pinned vector/height/source bytes. Compared exact manifest bytes and every output SHA256/bytecount.",
+  "outputs": 868,
+  "manifestSha256": "e1d64b8869b7867c617a6ca89fc96e6b957d023119d54474a04455277dd7d077"
+}

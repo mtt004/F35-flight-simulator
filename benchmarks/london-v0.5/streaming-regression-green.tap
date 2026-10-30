@@ -1,0 +1,23 @@
+✔ roof area preserves 0 courtyards with open input rings (5.637081ms)
+✔ roof area preserves 1 courtyards with open input rings (2.108973ms)
+✔ roof area preserves 2 courtyards with open input rings (1.448218ms)
+✔ roof area preserves 0 courtyards with closed input rings (0.492771ms)
+✔ roof area preserves 1 courtyards with closed input rings (1.57055ms)
+✔ roof area preserves 2 courtyards with closed input rings (1.192911ms)
+✔ building work advances in bounded batches between planning updates and ignores duplicate frame calls (145.248402ms)
+✔ reload cancels pending geometry and clears old tile caches (277.705987ms)
+✔ streaming tile cache is bounded and evicts geometry after camera movement (248.633143ms)
+✔ authored landmark exclusions keep generic footprints out of rendering and collision (194.607791ms)
+✔ LOD replacement retains the visible old mesh until all attributes are ready (229.771477ms)
+✔ detailed LOD transitions reuse the exact visible geometry without reconstruction (133.030486ms)
+✔ detailed LOD crossing preserves an in-progress detailed tile job (137.515058ms)
+✔ shared landmark material updates once per call without a scene traversal (387.824029ms)
+✔ camera movement disposes abandoned partial tile geometries (249.927008ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2223.304602

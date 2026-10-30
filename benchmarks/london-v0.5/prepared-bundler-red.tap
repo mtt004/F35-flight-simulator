@@ -1,0 +1,42 @@
+✔ offline bundler refuses a truncated water mask before writing a distributable (112.929494ms)
+✔ verified offline assets produce byte-identical repeated browser builds (279.770339ms)
+✖ offline bundler rejects prepared geometry after generator source changes (151.062994ms)
+✖ offline bundler rejects geometry prepared from different heights (151.800459ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 2
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 837.427451
+
+✖ failing tests:
+
+test at tests/unit/offline-asset-integrity.test.mjs:37:1
+✖ offline bundler rejects prepared geometry after generator source changes (151.062994ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to: 0
+      at TestContext.<anonymous> (file:///workspace/scratch/4b46466283e2/lightning/tests/unit/offline-asset-integrity.test.mjs:38:155)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 0,
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/offline-asset-integrity.test.mjs:40:1
+✖ offline bundler rejects geometry prepared from different heights (151.800459ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to: 0
+      at TestContext.<anonymous> (file:///workspace/scratch/4b46466283e2/lightning/tests/unit/offline-asset-integrity.test.mjs:41:231)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 0,
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }

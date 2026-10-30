@@ -1,0 +1,79 @@
+✔ building work advances in bounded batches between planning updates and ignores duplicate frame calls (156.872388ms)
+✔ reload cancels pending geometry and clears old tile caches (146.455419ms)
+✔ streaming tile cache is bounded and evicts geometry after camera movement (100.835144ms)
+✔ authored landmark exclusions keep generic footprints out of rendering and collision (91.599132ms)
+✔ LOD replacement retains the visible old mesh until all attributes are ready (98.26281ms)
+✖ detailed LOD transitions reuse the exact visible geometry without reconstruction (93.287472ms)
+✖ detailed LOD crossing preserves an in-progress detailed tile job (108.066599ms)
+✖ shared landmark material updates once per call without a scene traversal (131.425754ms)
+✔ camera movement disposes abandoned partial tile geometries (99.506216ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 6
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1177.007757
+
+✖ failing tests:
+
+test at tests/unit/london-streaming.test.mjs:57:1
+✖ detailed LOD transitions reuse the exact visible geometry without reconstruction (93.287472ms)
+  AssertionError [ERR_ASSERTION]: both detailed LODs produce the same attributes
+  
+  40 !== 10
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/4b46466283e2/lightning/tests/unit/london-streaming.test.mjs:61:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 40,
+    expected: 10,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/unit/london-streaming.test.mjs:65:1
+✖ detailed LOD crossing preserves an in-progress detailed tile job (108.066599ms)
+  AssertionError [ERR_ASSERTION]: existing partial attributes advance instead of being discarded
+      at TestContext.<anonymous> (file:///workspace/scratch/4b46466283e2/lightning/tests/unit/london-streaming.test.mjs:68:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/unit/london-streaming.test.mjs:71:1
+✖ shared landmark material updates once per call without a scene traversal (131.425754ms)
+  AssertionError [ERR_ASSERTION]: one shared material needs one uniform update
+  
+  20 !== 1
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/4b46466283e2/lightning/tests/unit/london-streaming.test.mjs:79:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 20,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

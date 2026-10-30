@@ -43,6 +43,9 @@ if source.is_dir():
         shutil.copy2(path, target)
         remaining -= size
 PYTHON
+  # Written by the instrumentation test inside the actual target app. A missing
+  # or failed test leaves no usable file; packaging validates its contents/hash.
+  timeout 20s adb -s emulator-5554 exec-out run-as com.mtt004.lightning cat files/lightning-runtime-evidence.json > "$diagnostics_dir/android-runtime.json" 2> "$diagnostics_dir/android-runtime-retrieval.txt" || true
   timeout 15s adb -s emulator-5554 get-state > "$diagnostics_dir/emulator-final-state.txt" 2>&1 || true
   timeout 20s adb -s emulator-5554 logcat -d -t 1200 > "$diagnostics_dir/android-logcat-final.txt" 2>&1 || true
 }

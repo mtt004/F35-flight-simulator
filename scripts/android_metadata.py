@@ -1,6 +1,7 @@
 """Shared, SDK-independent validation of version badging and raw test evidence."""
 import hashlib
 import json
+import math
 from pathlib import Path
 import re
 import sys
@@ -83,6 +84,71 @@ def validate_instrumentation_xml(reports, installation):
     return {'tests': len(cases), 'rawReportChecksums': hashes, 'liveFlightTestPresent': True}
 
 
+def validate_android_runtime_evidence(content, expected_version=None):
+    """Validate the raw file written by the actual live-flight device test.
+
+    This supplements the required passing instrumentation XML. A reported
+    unsupported decoder is compatible only when dynamic London meshes rendered.
+    Ratios describe the observed host; they are not physical-device acceptance.
+    """
+    if not isinstance(content, bytes) or not 1 <= len(content) <= 262144:
+        raise ValueError('Missing or oversized actual Android runtime evidence')
+    result = json.loads(content)
+    if not isinstance(result, dict) or result.get('schemaVersion') != 1 or result.get('metric') != 'offline_london_runtime':
+        raise ValueError('Unsupported Android runtime evidence schema')
+    if expected_version is not None and result.get('version') != expected_version:
+        raise ValueError('Android runtime version differs from the delivered APK')
+    webview = result.get('webView', {})
+    if not isinstance(webview, dict) or any(not isinstance(webview.get(k), str) or not webview[k].strip()
+                                          for k in ['packageName', 'versionName', 'userAgent']):
+        raise ValueError('Actual WebView package, version and user agent are required')
+    if not isinstance(result.get('deviceModel'), str) or not result['deviceModel'].strip() or type(result.get('androidApi')) is not int or result['androidApi'] < 26:
+        raise ValueError('Actual Android device/API metadata is required')
+    world = result.get('world', {})
+    if not isinstance(world, dict) or world.get('mode') != 'LONDON' or not isinstance(world.get('london'), dict) or type(world['london'].get('buildingTiles')) is not int or world['london']['buildingTiles'] < 1:
+        raise ValueError('Actual offline London building meshes were not observed')
+    prepared = result.get('prepared', {})
+    if not isinstance(prepared, dict) or type(prepared.get('supported')) is not bool:
+        raise ValueError('Prepared geometry support observation is required')
+    for name in ['decoded', 'active', 'queued', 'failures']:
+        if type(prepared.get(name)) is not int or prepared[name] < 0:
+            raise ValueError('Invalid prepared geometry counter: ' + name)
+    expected_path = 'prepared' if prepared['supported'] else 'dynamic-fallback'
+    if result.get('geometryPath') != expected_path or (prepared['supported'] and prepared['decoded'] < 1):
+        raise ValueError('Supported prepared geometry was not actually decoded')
+    pending = result.get('geometryPending', {})
+    if not isinstance(pending, dict) or any(type(pending.get(k)) is not int or pending[k] < 0 for k in ['prepared', 'buildings', 'queuedBuildings']):
+        raise ValueError('Actual London geometry queue counts are required')
+
+    def finite(value):
+        return type(value) in {int, float} and math.isfinite(value)
+
+    initial, later = result.get('initial', {}), result.get('later', {})
+    for state in [initial, later]:
+        if not isinstance(state, dict) or state.get('running') is not True or state.get('paused') is not False or state.get('crashed') is not False:
+            raise ValueError('Runtime evidence lacks an active unpaused flight')
+        if not finite(state.get('simT')) or not finite(state.get('simulationDebtSeconds')) or state['simulationDebtSeconds'] < 0 or type(state.get('stepCount')) is not int:
+            raise ValueError('Runtime evidence lacks actual simulation clock/debt counters')
+        renderer = state.get('renderer', {})
+        if not isinstance(renderer, dict) or type(renderer.get('calls')) is not int or renderer['calls'] < 1:
+            raise ValueError('Runtime evidence lacks actual WebGL scene draw calls')
+        if not isinstance(state.get('position'), list) or len(state['position']) != 3 or not all(finite(v) for v in state['position']):
+            raise ValueError('Runtime evidence has invalid aircraft position')
+    if later['stepCount'] <= initial['stepCount'] or later['simT'] <= initial['simT']:
+        raise ValueError('Runtime physics did not advance between actual observations')
+    observation = result.get('observation', {})
+    if not isinstance(observation, dict) or any(not finite(observation.get(k)) for k in ['wallSeconds', 'simulationSeconds', 'simulationToWallRatio', 'debtSeconds']) or observation['wallSeconds'] <= 0:
+        raise ValueError('Actual simulation/wall-time observation is required')
+    simulated = later['simT'] - initial['simT']
+    for actual, expected in [(observation['simulationSeconds'], simulated),
+                             (observation['simulationToWallRatio'], simulated / observation['wallSeconds']),
+                             (observation['debtSeconds'], later['simulationDebtSeconds']),
+                             ((later['stepCount'] - initial['stepCount']) / 120, simulated)]:
+        if not math.isclose(actual, expected, rel_tol=1e-9, abs_tol=1e-8):
+            raise ValueError('Android runtime timing metadata disagrees with its actual samples')
+    return result
+
+
 def self_test():
     expected = {'version': '0.2.0-experimental', 'versionCode': 2}
     badging = "package: name='com.mtt004.lightning' versionCode='2' versionName='0.2.0-experimental'\nsdkVersion:'26'\ntargetSdkVersion:'35'\n"
@@ -99,6 +165,19 @@ def self_test():
     incomplete = b'<testsuites tests="2">' + xml + b'<testsuite name="incomplete" tests="1" failures="0" errors="0" skipped="0"/></testsuites>'
     aggregate_wrong = b'<testsuites tests="2">' + xml + b'</testsuites>'
     nested_valid = b'<testsuites tests="1"><testsuite tests="1">' + xml + b'</testsuite></testsuites>'
+    runtime = {'schemaVersion': 1, 'metric': 'offline_london_runtime', 'version': expected['version'],
+               'deviceModel': 'Emulator fixture', 'androidApi': 33,
+               'webView': {'packageName': 'com.google.android.webview', 'versionName': '139.0.7258.0', 'userAgent': 'Android WebView fixture'},
+               'world': {'mode': 'LONDON', 'london': {'buildingTiles': 1}},
+               'prepared': {'supported': True, 'decoded': 1, 'active': 0, 'queued': 0, 'failures': 0},
+               'geometryPath': 'prepared', 'geometryPending': {'prepared': 0, 'buildings': 0, 'queuedBuildings': 0},
+               'initial': {'running': True, 'paused': False, 'crashed': False, 'stepCount': 120, 'simT': 1.0,
+                           'simulationDebtSeconds': 0.0, 'renderer': {'calls': 1}, 'position': [0, 2, 0]},
+               'later': {'running': True, 'paused': False, 'crashed': False, 'stepCount': 240, 'simT': 2.0,
+                         'simulationDebtSeconds': 0.0, 'renderer': {'calls': 1}, 'position': [0, 2, 0]},
+               'observation': {'wallSeconds': 1.0, 'simulationSeconds': 1.0, 'simulationToWallRatio': 1.0, 'debtSeconds': 0.0}}
+    def validate_runtime(value=runtime, version=expected['version']):
+        return validate_android_runtime_evidence(json.dumps(value).encode(), version)
     checks = [
         lambda: must_fail(lambda: validate_instrumentation_xml({path: incomplete}, evidence(incomplete))),
         lambda: must_fail(lambda: validate_instrumentation_xml({path: aggregate_wrong}, evidence(aggregate_wrong))),
@@ -113,6 +192,15 @@ def self_test():
         lambda: must_fail(lambda: validate_instrumentation_xml({path: b'corrupt'}, evidence())),
         lambda: must_fail(lambda: validate_instrumentation_xml({path: xml.replace(b'/>', b'><failure/></testcase>')}, evidence(xml.replace(b'/>', b'><failure/></testcase>')))),
         lambda: must_fail(lambda: validate_instrumentation_xml({path: xml.replace(b'tests="1"', b'tests="0"')}, evidence(xml.replace(b'tests="1"', b'tests="0"')))),
+        lambda: validate_runtime(),
+        lambda: validate_runtime({**runtime, 'prepared': {**runtime['prepared'], 'supported': False, 'decoded': 0}, 'geometryPath': 'dynamic-fallback'}),
+        lambda: must_fail(lambda: validate_runtime({**runtime, 'prepared': {**runtime['prepared'], 'decoded': 0}})),
+        lambda: must_fail(lambda: validate_runtime({**runtime, 'webView': {**runtime['webView'], 'versionName': ''}})),
+        lambda: must_fail(lambda: validate_runtime({**runtime, 'world': {'mode': 'LEGACY'}})),
+        lambda: must_fail(lambda: validate_runtime({**runtime, 'later': {**runtime['later'], 'paused': True}})),
+        lambda: must_fail(lambda: validate_runtime({**runtime, 'observation': {**runtime['observation'], 'simulationToWallRatio': 20}})),
+        lambda: must_fail(lambda: validate_runtime({**runtime, 'geometryPath': 'dynamic-fallback'})),
+        lambda: must_fail(lambda: validate_runtime(runtime, '0.5.0-experimental')),
     ]
     for check in checks:
         check()
