@@ -17,6 +17,8 @@ concurrency:
   cancel-in-progress: ${{ startsWith(github.ref, 'refs/heads/release/') }}
 jobs:
   build-and-release:
+    # V0.5 is built and accepted by its dedicated pinned-input validation workflow.
+    if: github.ref != 'refs/tags/v0.5.0-experimental' && github.ref != 'refs/heads/release/v0.5.0-experimental'
     runs-on: ubuntu-24.04
     timeout-minutes: 90
     permissions:

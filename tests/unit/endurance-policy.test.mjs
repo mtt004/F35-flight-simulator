@@ -1,5 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {assessEndurance} from '../../scripts/endurance-policy.mjs';
+import * as policy from '../../scripts/endurance-policy.mjs';
 const state=t=>({flightT:t,simT:t,paused:false,crashed:false,globalPosition:[t*140,900,0],velocity:[140,0,0],quaternion:[0,0,0,1],fuel:6000,world:{mode:'LONDON'},landmarks:9,contextLost:false,contextLosses:0});
 test('live advancing London flight qualifies',()=>assert.deepEqual(assessEndurance([state(0),state(10)]).issues,[]));
 test('paused or frozen physics cannot qualify a rendering-only endurance run',()=>{assert.ok(assessEndurance([state(0),{...state(10),paused:true}]).issues.length);assert.ok(assessEndurance([state(10),state(10)]).issues.length);assert.ok(assessEndurance([state(10),state(9)]).issues.length);});
@@ -11,4 +12,17 @@ test('v0.4 requires the complete nine-landmark scene',()=>{
  const full=t=>({...state(t),landmarks:9});
  assert.deepEqual(assessEndurance([full(0),full(10)]).issues,[]);
  assert.ok(assessEndurance([full(0),{...full(10),landmarks:8}]).issues.includes('Landmarks missing'));
+});
+
+test('endurance timing reports actual simulation/wall ratio, debt and fixed-step agreement',()=>{
+ const first={wall:1000,simT:4,flightT:1,stepCount:480,simulationDebtSeconds:2};
+ const later={wall:11000,simT:9,flightT:6,stepCount:1080,simulationDebtSeconds:7};
+ assert.deepEqual(policy.simulationProgress([first,later]),{wallSeconds:10,simulationSeconds:5,flightSeconds:5,
+  simulationToWallRatio:.5,stepSimulatedSeconds:5,clockErrorSeconds:0,debtSeconds:7,debtChangeSeconds:5});
+});
+
+test('missing or single-observation endurance timing stays unknown',()=>{
+ assert.equal(policy.simulationProgress([]),null);assert.equal(policy.simulationProgress([{wall:0,simT:0}]),null);
+ const report=policy.simulationProgress([{simT:0},{simT:5}]);
+ assert.equal(report.wallSeconds,null);assert.equal(report.simulationToWallRatio,null);assert.equal(report.debtSeconds,null);
 });

@@ -47,15 +47,48 @@ test('authored landmark exclusions keep generic footprints out of rendering and 
 test('LOD replacement retains the visible old mesh until all attributes are ready',()=>{
  const s=setup();for(let i=0;i<10;i++)s.a.update(600,600,100,2,0,i/60);
  const old=s.group.children.at(-1);let removed=0;old.geometry.addEventListener('dispose',()=>removed++);
- s.a.update(3600,600,100,2,0,1);assert.ok(s.a.stats().pendingBuildings>0);
+ s.a.update(8000,600,100,2,0,1);assert.ok(s.a.stats().pendingBuildings>0);
  assert.ok(s.group.children.includes(old));assert.equal(removed,0);
- for(let i=1;i<10;i++)s.a.update(3600,600,100,2,0,1+i/60);
+ for(let i=1;i<10;i++)s.a.update(8000,600,100,2,0,1+i/60);
  assert.ok(!s.group.children.includes(old));assert.equal(removed,1);
  const merged=s.group.children.at(-1).geometry;
  for(const name of ['position','normal','color','uv'])assert.ok([...merged.getAttribute(name).array].every(Number.isFinite));
+});
+test('detailed LOD transitions reuse the exact visible geometry without reconstruction',()=>{
+ const s=setup();for(let i=0;i<10;i++)s.a.update(600,600,100,2,0,i/60);
+ const old=s.group.children.at(-1),calls=s.calls,disposed=s.disposed;
+ for(let i=0;i<20;i++)s.a.update(i%2?600:3600,600,100,2,0,1+i*.25);
+ assert.equal(s.calls,calls,'both detailed LODs produce the same attributes');
+ assert.equal(s.disposed,disposed);assert.equal(s.group.children.at(-1),old);
+ assert.equal(s.a.stats().pendingBuildings,0);
+});
+test('detailed LOD crossing preserves an in-progress detailed tile job',()=>{
+ const s=setup();s.a.update(600,600,100,2,0,0);const pending=s.a.stats().pendingBuildings;
+ s.a.update(3600,600,100,2,0,1);
+ assert.ok(s.a.stats().pendingBuildings<pending,'existing partial attributes advance instead of being discarded');
+ assert.equal(s.disposed,0,'an equivalent LOD must not abandon partial geometries');
+});
+test('shared landmark material updates once per call without a scene traversal',()=>{
+ const s=setup(1),material=new s.T.MeshBasicMaterial();
+ let calls=0,traversals=0;
+ s.c.LightningArchitecture={classify:()=>4,material:()=>new s.T.MeshBasicMaterial(),update:m=>{if(m===material)calls++;}};
+ s.c.LightningLandmarks={build:()=>{const g=new s.T.Group();g.name='LondonLandmarks';for(let i=0;i<20;i++)g.add(new s.T.Mesh(new s.T.BoxGeometry(),material));return g;}};
+ const group=s.a.create(s.T,new s.T.Group()),landmarks=group.getObjectByName('LondonLandmarks'),traverse=landmarks.traverse;
+ landmarks.traverse=function(...args){traversals++;return traverse.apply(this,args);};
+ s.a.update(600,600,100,2,.4,0);
+ assert.equal(calls,1,'one shared material needs one uniform update');
+ assert.equal(traversals,0,'immutable landmark membership is known at creation');
 });
 test('camera movement disposes abandoned partial tile geometries',()=>{
  const s=setup();s.a.update(600,600,100,2,0,0);assert.equal(s.disposed,0);
  s.a.update(-100000,600,100,2,0,1);assert.equal(s.disposed,s.calls);
  assert.equal(s.a.stats().pendingBuildings,0);assert.equal(s.a.stats().buildingTiles,0);
+});
+test('offline preparation visits precisely the renderable building cells in stable order',()=>{
+ const s=setup(2,3),first=[],second=[];
+ s.a.forEachBuildingTile((key,list)=>first.push([key,list.map(b=>b.id)]));
+ s.a.forEachBuildingTile((key,list)=>second.push([key,list.map(b=>b.id)]));
+ assert.deepEqual(first,second);assert.equal(first.length,3);assert.equal(first.flatMap(v=>v[1]).length,6);
+ s.c.LightningLandmarks={excludes:(x)=>x<1200};s.a.load(s.data);
+ const remaining=[];s.a.forEachBuildingTile((key,list)=>remaining.push(...list));assert.equal(remaining.length,4);
 });

@@ -1,0 +1,23 @@
+{
+  "environment": "Node CPU only; exact all-source attribute sizing; gzip level6",
+  "tiles": 433,
+  "variants": {
+    "0": {
+      "bytes": 175753728,
+      "compressed": 25075794,
+      "vertices": 3661536,
+      "maxTileBytes": 1678320,
+      "maxTileCompressed": 231610,
+      "generationMs": 6871.127628000001
+    },
+    "2": {
+      "bytes": 57584160,
+      "compressed": 5406111,
+      "vertices": 1199670,
+      "maxTileBytes": 578880,
+      "maxTileCompressed": 52981,
+      "generationMs": 1447.2871389999782
+    }
+  },
+  "sourceBuildingCount": 40000
+}

@@ -1,0 +1,3003 @@
+{
+  "date": "2026-10-30T10:29:42.734Z",
+  "source": "dist/index.html",
+  "sourceSha256": "6e3e6d9d26a5a8fe3f7ffba5fac73e0814ece8ba6c0d359a1f09005248a9b11b",
+  "referenceMainCommit": "c53506ad59e7aad46904c3a648b0f06d6015dafd",
+  "pilotBudgetSeconds": null,
+  "environment": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+    "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "viewport": [
+      1280,
+      720
+    ],
+    "devicePixelRatio": 1,
+    "drawingBuffer": [
+      1152,
+      648
+    ],
+    "hardware": "Cloud Linux Chromium using SwiftShader software rasterizer; NOT Galaxy A51",
+    "realDevice": false
+  },
+  "segments": [],
+  "checks": [
+    {
+      "name": "normal save → UI respawn → new launch UI Continue restores exact saved state",
+      "status": "PASS",
+      "wallSeconds": 14.293,
+      "details": {
+        "saved": {
+          "worldMode": "LEGACY",
+          "seed": 4201,
+          "pos": [
+            15079.090148371331,
+            431.07129708232776,
+            -9782.870113883597
+          ],
+          "vel": [
+            -70.57142891132656,
+            -7.974613760929745,
+            37.51785496498063
+          ],
+          "quat": [
+            0.003237707349328709,
+            -0.8540286433950087,
+            0.002661916621041882,
+            -0.5202090999895176
+          ],
+          "om": [
+            -0.0028828881008417743,
+            -0.011001959067997091,
+            -0.006701503588832505
+          ],
+          "fuel": 3267.073973301211,
+          "thr": 0.68,
+          "thrT": 0.68,
+          "N1": 82.34729366865757,
+          "N2": 87.84516916221463,
+          "abSpool": 0,
+          "gearD": 0,
+          "gearT": 0,
+          "parkBrake": false,
+          "stolMode": "CONV",
+          "lfDoor": 0,
+          "lfSpool": 0,
+          "nozzle": 0,
+          "simT": 2.041599999999995,
+          "flightT": 1.3249999999999977,
+          "camMode": 1,
+          "wxPreset": "cavok",
+          "simHours": 13.225138333333327
+        },
+        "respawned": {
+          "running": true,
+          "paused": true,
+          "crashed": false,
+          "replayActive": false,
+          "simT": 2.4999333333333267,
+          "flightT": 1.7833333333333294,
+          "stepCount": 214,
+          "pos": [
+            15139.22281639358,
+            437.0711588839427,
+            -9814.865447425267
+          ],
+          "localPos": [
+            -27.655465148710284,
+            437.0711588839427,
+            14.713472396193156
+          ],
+          "vel": [
+            -68.223428692797,
+            -5.642970432796112,
+            36.311669826626144
+          ],
+          "quat": [
+            0.000674834683478879,
+            -0.8565656110992945,
+            0.0007690599215430715,
+            -0.5160371178772696
+          ],
+          "om": [
+            0.0028632960400526556,
+            -0.009704651846999127,
+            -0.007543119068516953
+          ],
+          "fuel": 3267.7652276236827,
+          "thr": 0.68,
+          "thrT": 0.68,
+          "N1": 79.76626057365735,
+          "N2": 84.97870607384755,
+          "abSpool": 0,
+          "gearD": 0,
+          "gearT": 0,
+          "parkBrake": false,
+          "stolMode": "CONV",
+          "lfDoor": 0,
+          "lfSpool": 0,
+          "nozzle": 0,
+          "camMode": 1,
+          "ias": 152.49226706252736,
+          "mach": 0.2366143864151023,
+          "gNz": 0.6432636471292136,
+          "ralt": 107.1877509136101,
+          "pitchDeg": 0.03558188876587076,
+          "rollDeg": 0.11171579976021562,
+          "hdgDeg": 242.13367605108695,
+          "wheelsOn": false,
+          "landings": 0,
+          "replayFrames": 5,
+          "touchdown": {
+            "sink": 0,
+            "score": 0,
+            "grade": "—"
+          },
+          "seed": 4201,
+          "weather": "cavok",
+          "scenario": "FREE FLIGHT",
+          "crashCause": "",
+          "autopilot": {
+            "mode": "OFF",
+            "altitude": 0,
+            "heading": 0,
+            "speed": 100
+          },
+          "bank": 0.0019498085323144542,
+          "basis": {
+            "forward": [
+              -0.8840403364255416,
+              0.0006210210731249126,
+              0.4674102030395159
+            ],
+            "up": [
+              -0.0003623534353141587,
+              0.999997906289974,
+              -0.0020139800535491532
+            ],
+            "right": [
+              -0.4674104751421418,
+              -0.0019498072968661812,
+              -0.8840382604723067
+            ]
+          },
+          "view": {
+            "aircraft": {
+              "position": [
+                -27.655465148710284,
+                437.0711588839427,
+                14.713472396193156
+              ],
+              "quaternion": [
+                0.000674834683478879,
+                -0.8565656110992945,
+                0.0007690599215430715,
+                -0.5160371178772696
+              ],
+              "visible": false
+            },
+            "cockpit": {
+              "position": [
+                -27.655465148710284,
+                437.0711588839427,
+                14.713472396193156
+              ],
+              "quaternion": [
+                0.000674834683478879,
+                -0.8565656110992945,
+                0.0007690599215430715,
+                -0.5160371178772696
+              ],
+              "visible": true
+            },
+            "glassVisible": false,
+            "camera": {
+              "position": [
+                -29.582950410508104,
+                437.8725614101009,
+                15.730839132639813
+              ],
+              "quaternion": [
+                0.0058350861150422975,
+                -0.8565304736466801,
+                -0.0077964918819041305,
+                -0.5160045680020275
+              ],
+              "fov": 65.75716603652833,
+              "trackPosition": [
+                -27.655465148710284,
+                437.0711588839427,
+                14.713472396193156
+              ],
+              "filteredPosition": [
+                -12.468766551536739,
+                441.6711588839427,
+                6.638561516275835
+              ],
+              "lookPosition": [
+                -33.836098298722774,
+                437.6711588839427,
+                17.999773335694393
+              ]
+            },
+            "pauseMenu": {
+              "visible": true,
+              "ariaHidden": "false"
+            },
+            "replayButtonActive": false
+          }
+        },
+        "restored": {
+          "running": true,
+          "paused": false,
+          "crashed": false,
+          "replayActive": false,
+          "simT": 2.041599999999995,
+          "flightT": 1.3249999999999977,
+          "stepCount": 0,
+          "pos": [
+            15079.090148371331,
+            431.07129708232776,
+            -9782.870113883597
+          ],
+          "localPos": [
+            15079.090148371331,
+            431.07129708232776,
+            -9782.870113883597
+          ],
+          "vel": [
+            -70.57142891132656,
+            -7.974613760929745,
+            37.51785496498063
+          ],
+          "quat": [
+            0.003237707349328709,
+            -0.8540286433950087,
+            0.002661916621041882,
+            -0.5202090999895176
+          ],
+          "om": [
+            -0.0028828881008417743,
+            -0.011001959067997091,
+            -0.006701503588832505
+          ],
+          "fuel": 3267.073973301211,
+          "thr": 0.68,
+          "thrT": 0.68,
+          "N1": 82.34729366865757,
+          "N2": 87.84516916221463,
+          "abSpool": 0,
+          "gearD": 0,
+          "gearT": 0,
+          "parkBrake": false,
+          "stolMode": "CONV",
+          "lfDoor": 0,
+          "lfSpool": 0,
+          "nozzle": 0,
+          "camMode": 1,
+          "ias": 0,
+          "mach": 0,
+          "gNz": 1,
+          "ralt": 0,
+          "pitchDeg": 0.06750226068507292,
+          "rollDeg": 0.47554301921600406,
+          "hdgDeg": 242.6934503887262,
+          "wheelsOn": false,
+          "landings": 0,
+          "replayFrames": 0,
+          "touchdown": {
+            "sink": 0,
+            "score": 0,
+            "grade": "—"
+          },
+          "seed": 4201,
+          "weather": "cavok",
+          "scenario": "FREE FLIGHT",
+          "crashCause": "",
+          "autopilot": {
+            "mode": "OFF",
+            "altitude": 0,
+            "heading": 0,
+            "speed": 100
+          },
+          "bank": 0.008299791420193934,
+          "basis": {
+            "forward": [
+              -0.8885641809055868,
+              0.0011781364289505788,
+              0.45875081297599757
+            ],
+            "up": [
+              -0.0027606831311558235,
+              0.9999648629020456,
+              -0.007915275733845515
+            ],
+            "right": [
+              -0.4587440190784326,
+              -0.008299696129873163,
+              -0.8885297068775578
+            ]
+          },
+          "view": {
+            "aircraft": {
+              "position": [
+                15170.236912194974,
+                439.26223426432966,
+                -9831.364892010803
+              ],
+              "quaternion": [
+                0,
+                -0.8571673007021123,
+                0,
+                -0.5150380749100543
+              ],
+              "visible": false
+            },
+            "cockpit": {
+              "position": [
+                15170.236912194974,
+                439.26223426432966,
+                -9831.364892010803
+              ],
+              "quaternion": [
+                0,
+                -0.8571673007021123,
+                0,
+                -0.5150380749100543
+              ],
+              "visible": true
+            },
+            "glassVisible": false,
+            "camera": {
+              "position": [
+                7030.447605833544,
+                65.26881111328568,
+                -5413.212435919719
+              ],
+              "quaternion": [
+                -0.09042297400397759,
+                0.6901676992623007,
+                0.08757441661743319,
+                0.7126169758161636
+              ],
+              "fov": 55,
+              "trackPosition": [
+                15170.236912194974,
+                439.26223426432966,
+                -9831.364892010803
+              ],
+              "filteredPosition": [
+                15185.423610792148,
+                443.8622342643297,
+                -9839.43980289072
+              ],
+              "lookPosition": [
+                15164.056279044962,
+                439.8622342643297,
+                -9828.078591071302
+              ]
+            },
+            "pauseMenu": {
+              "visible": false,
+              "ariaHidden": null
+            },
+            "replayButtonActive": false
+          }
+        },
+        "method": "Saved via actual savePrefs; pause Restart button, separate same-origin page retaining localStorage, actual Continue button click. Captured in same click after restore before physics."
+      }
+    },
+    {
+      "name": "natural replay completion restores paused live flight and every playback-mutated field",
+      "status": "FAIL",
+      "wallSeconds": 30.583,
+      "error": "AssertionError [ERR_ASSERTION]: pitchDeg: 4.31463271971524 != 4.343131030843932",
+      "evidence": null,
+      "state": {
+        "running": true,
+        "paused": true,
+        "crashed": false,
+        "replayActive": false,
+        "simT": 11.691599999999978,
+        "flightT": 11.275,
+        "stepCount": 1353,
+        "pos": [
+          12450.87268040885,
+          2614.7448920457787,
+          -8383.561615455474
+        ],
+        "localPos": [
+          -2713.2284013291646,
+          2614.7448920457787,
+          1444.5406301760697
+        ],
+        "vel": [
+          -229.2747644692902,
+          13.702529424903855,
+          122.34597889139562
+        ],
+        "quat": [
+          -0.02159949368816948,
+          -0.8562735451549696,
+          0.03122628117057962,
+          -0.5151252246827083
+        ],
+        "om": [
+          0.059633026846011905,
+          -0.011209458417577202,
+          -0.003948431159528099
+        ],
+        "fuel": 3261.631727046738,
+        "thr": 0.6166666666666712,
+        "thrT": 0.6166666666666712,
+        "N1": 70.1545682381567,
+        "N2": 81.60094715147129,
+        "abSpool": 0,
+        "gearD": 0.8111111111111088,
+        "gearT": 1,
+        "parkBrake": false,
+        "stolMode": "CONV",
+        "lfDoor": 0,
+        "lfSpool": 0,
+        "nozzle": 0,
+        "camMode": 0,
+        "ias": 453.09759086542533,
+        "mach": 0.8036302218505933,
+        "gNz": 4.913755078100947,
+        "ralt": 2417.569315582802,
+        "pitchDeg": 4.343131030843932,
+        "rollDeg": -0.2761243191962328,
+        "hdgDeg": 242.05085245990566,
+        "wheelsOn": false,
+        "landings": 0,
+        "replayFrames": 135,
+        "touchdown": {
+          "sink": 0,
+          "score": 0,
+          "grade": "—"
+        },
+        "seed": 4201,
+        "weather": "humid",
+        "scenario": "HUMID VAPOUR RUN",
+        "crashCause": "",
+        "autopilot": {
+          "mode": "OFF",
+          "altitude": 2603.652734673186,
+          "heading": 242.2089392789627,
+          "speed": 130
+        },
+        "bank": -0.004819278514802045,
+        "basis": {
+          "forward": [
+            -0.8808272609495278,
+            0.07572936503817826,
+            0.4673418445196903
+          ],
+          "up": [
+            0.06916104027584304,
+            0.997116762473341,
+            -0.031223588881574088
+          ],
+          "right": [
+            -0.4683589295360079,
+            0.004819259859842037,
+            -0.8835251484017235
+          ]
+        },
+        "view": {
+          "aircraft": {
+            "position": [
+              -2713.2284013291646,
+              2614.7448920457787,
+              1444.5406301760697
+            ],
+            "quaternion": [
+              -0.02159949368816948,
+              -0.8562735451549696,
+              0.03122628117057962,
+              -0.5151252246827083
+            ],
+            "visible": true
+          },
+          "cockpit": {
+            "position": [
+              -2713.2284013291646,
+              2614.7448920457787,
+              1444.5406301760697
+            ],
+            "quaternion": [
+              -0.02159949368816948,
+              -0.8562735451549696,
+              0.03122628117057962,
+              -0.5151252246827083
+            ],
+            "visible": false
+          },
+          "glassVisible": true,
+          "camera": {
+            "position": [
+              -2697.760424615583,
+              2618.028864998259,
+              1436.3586023789528
+            ],
+            "quaternion": [
+              -0.02268487834631812,
+              0.8559086155919114,
+              0.03768280019751873,
+              0.5152531849675692
+            ],
+            "fov": 58.51696218359942,
+            "trackPosition": [
+              -2713.2284013291646,
+              2614.7448920457787,
+              1444.5406301760697
+            ],
+            "filteredPosition": [
+              -2697.760031655564,
+              2618.029084074499,
+              1436.3587219414758
+            ],
+            "lookPosition": [
+              -2719.3526955316456,
+              2615.87326765853,
+              1447.7932889343786
+            ]
+          },
+          "pauseMenu": {
+            "visible": true,
+            "ariaHidden": "false"
+          },
+          "replayButtonActive": false
+        }
+      }
+    },
+    {
+      "name": "deliberate save attempt during rendered replay preserves the live-flight record",
+      "status": "PASS",
+      "wallSeconds": 0,
+      "details": {
+        "before": "{\"worldMode\":\"LEGACY\",\"seed\":4201,\"pos\":[12450.87268040885,2614.7448920457787,-8383.561615455474],\"vel\":[-229.2747644692902,13.702529424903855,122.34597889139562],\"quat\":[-0.02159949368816948,-0.8562735451549696,0.03122628117057962,-0.5151252246827083],\"om\":[0.059633026846011905,-0.011209458417577202,-0.003948431159528099],\"fuel\":3261.631727046738,\"thr\":0.6166666666666712,\"thrT\":0.6166666666666712,\"N1\":70.1545682381567,\"N2\":81.60094715147129,\"abSpool\":0,\"gearD\":0.8111111111111088,\"gearT\":1,\"parkBrake\":false,\"stolMode\":\"CONV\",\"lfDoor\":0,\"lfSpool\":0,\"nozzle\":0,\"simT\":11.691599999999978,\"flightT\":11.275,\"camMode\":0,\"wxPreset\":\"humid\",\"simHours\":13.42763722222221}",
+        "after": "{\"worldMode\":\"LEGACY\",\"seed\":4201,\"pos\":[12450.87268040885,2614.7448920457787,-8383.561615455474],\"vel\":[-229.2747644692902,13.702529424903855,122.34597889139562],\"quat\":[-0.02159949368816948,-0.8562735451549696,0.03122628117057962,-0.5151252246827083],\"om\":[0.059633026846011905,-0.011209458417577202,-0.003948431159528099],\"fuel\":3261.631727046738,\"thr\":0.6166666666666712,\"thrT\":0.6166666666666712,\"N1\":70.1545682381567,\"N2\":81.60094715147129,\"abSpool\":0,\"gearD\":0.8111111111111088,\"gearT\":1,\"parkBrake\":false,\"stolMode\":\"CONV\",\"lfDoor\":0,\"lfSpool\":0,\"nozzle\":0,\"simT\":11.691599999999978,\"flightT\":11.275,\"camMode\":0,\"wxPreset\":\"humid\",\"simHours\":13.42763722222221}",
+        "stored": "{\"worldMode\":\"LEGACY\",\"seed\":4201,\"pos\":[12450.87268040885,2614.7448920457787,-8383.561615455474],\"vel\":[-229.2747644692902,13.702529424903855,122.34597889139562],\"quat\":[-0.02159949368816948,-0.8562735451549696,0.03122628117057962,-0.5151252246827083],\"om\":[0.059633026846011905,-0.011209458417577202,-0.003948431159528099],\"fuel\":3261.631727046738,\"thr\":0.6166666666666712,\"thrT\":0.6166666666666712,\"N1\":70.1545682381567,\"N2\":81.60094715147129,\"abSpool\":0,\"gearD\":0.8111111111111088,\"gearT\":1,\"parkBrake\":false,\"stolMode\":\"CONV\",\"lfDoor\":0,\"lfSpool\":0,\"nozzle\":0,\"simT\":11.691599999999978,\"flightT\":11.275,\"camMode\":0,\"wxPreset\":\"humid\",\"simHours\":13.42763722222221}",
+        "replayActive": true,
+        "state": {
+          "running": true,
+          "paused": false,
+          "crashed": false,
+          "replayActive": true,
+          "simT": 11.691599999999978,
+          "flightT": 11.275,
+          "stepCount": 1353,
+          "pos": [
+            15117.142343182659,
+            2600.73329409141,
+            -9803.126982193096
+          ],
+          "localPos": [
+            -46.95873855535578,
+            2600.73329409141,
+            24.975263438447126
+          ],
+          "vel": [
+            -245.2363280115932,
+            5.794901805548861,
+            130.4426664674981
+          ],
+          "quat": [
+            0.008487984800069306,
+            -0.8566744603204798,
+            -0.013125483985062074,
+            -0.5156205434414018
+          ],
+          "om": [
+            0.059633026846011905,
+            -0.011209458417577202,
+            -0.003948431159528099
+          ],
+          "fuel": 3261.631727046738,
+          "thr": 0.88,
+          "thrT": 0.6166666666666712,
+          "N1": 70.1545682381567,
+          "N2": 81.60094715147129,
+          "abSpool": 0,
+          "gearD": 0,
+          "gearT": 1,
+          "parkBrake": false,
+          "stolMode": "CONV",
+          "lfDoor": 0,
+          "lfSpool": 0,
+          "nozzle": 0,
+          "camMode": 0,
+          "ias": 484.01206569930355,
+          "mach": 0.8577075302087025,
+          "gNz": 2.992885173383269,
+          "ralt": 2417.569315582802,
+          "pitchDeg": -1.7903084415080848,
+          "rollDeg": 0.05771641048304702,
+          "hdgDeg": 242.0854077362052,
+          "wheelsOn": false,
+          "landings": 0,
+          "replayFrames": 135,
+          "touchdown": {
+            "sink": 0,
+            "score": 0,
+            "grade": "—"
+          },
+          "seed": 4201,
+          "weather": "humid",
+          "scenario": "HUMID VAPOUR RUN",
+          "crashCause": "",
+          "autopilot": {
+            "mode": "OFF",
+            "altitude": 2603.652734673186,
+            "heading": 242.2089392789627,
+            "speed": 130
+          },
+          "bank": 0.0010073413953617413,
+          "basis": {
+            "forward": [
+              -0.8832150837485133,
+              -0.03124169248936449,
+              0.4679263537027028
+            ],
+            "up": [
+              -0.028078417966233865,
+              0.9995113515683836,
+              0.013735375148028117
+            ],
+            "right": [
+              -0.46812681859045463,
+              -0.0010073412249973716,
+              -0.8836607193827484
+            ]
+          },
+          "view": {
+            "aircraft": {
+              "position": [
+                -46.95873855535578,
+                2600.73329409141,
+                24.975263438447126
+              ],
+              "quaternion": [
+                0.008487984800069306,
+                -0.8566744603204798,
+                -0.013125483985062074,
+                -0.5156205434414018
+              ],
+              "visible": true
+            },
+            "cockpit": {
+              "position": [
+                -46.95873855535578,
+                2600.73329409141,
+                24.975263438447126
+              ],
+              "quaternion": [
+                0.008487984800069306,
+                -0.8566744603204798,
+                -0.013125483985062074,
+                -0.5156205434414018
+              ],
+              "visible": false
+            },
+            "glassVisible": true,
+            "camera": {
+              "position": [
+                -30.43240275625847,
+                2606.5826716996125,
+                14.392682217422012
+              ],
+              "quaternion": [
+                -0.04831372059105029,
+                0.8672823106793467,
+                0.08586948589196158,
+                0.48796886107414
+              ],
+              "fov": 58.71739141614786,
+              "trackPosition": [
+                -46.95873855535578,
+                2600.73329409141,
+                24.975263438447126
+              ],
+              "filteredPosition": [
+                -30.43200979623974,
+                2606.582890775853,
+                14.392801779945053
+              ],
+              "lookPosition": [
+                -53.93157593385608,
+                2601.0844772480923,
+                28.66478688655209
+              ]
+            },
+            "pauseMenu": {
+              "visible": false,
+              "ariaHidden": "false"
+            },
+            "replayButtonActive": true
+          }
+        }
+      }
+    },
+    {
+      "name": "malformed save empty-velocity is rejected before world/state mutation with recovery UI",
+      "status": "PASS",
+      "wallSeconds": 9.949,
+      "details": {
+        "before": {
+          "state": {
+            "running": false,
+            "paused": false,
+            "crashed": false,
+            "replayActive": false,
+            "simT": 0.5165999999999994,
+            "flightT": 0,
+            "stepCount": 0,
+            "pos": [
+              15170.236912194974,
+              439.26223426432966,
+              -9831.364892010803
+            ],
+            "localPos": [
+              15170.236912194974,
+              439.26223426432966,
+              -9831.364892010803
+            ],
+            "vel": [
+              -67.10401705727845,
+              -3.8,
+              35.679838771727695
+            ],
+            "quat": [
+              0,
+              -0.8571673007021123,
+              0,
+              -0.5150380749100543
+            ],
+            "om": [
+              0,
+              0,
+              0
+            ],
+            "fuel": 3268.1000000000004,
+            "thr": 0.68,
+            "thrT": 0.68,
+            "N1": 79,
+            "N2": 82,
+            "abSpool": 0,
+            "gearD": 0,
+            "gearT": 0,
+            "parkBrake": false,
+            "stolMode": "CONV",
+            "lfDoor": 0,
+            "lfSpool": 0,
+            "nozzle": 0,
+            "camMode": 0,
+            "ias": 0,
+            "mach": 0,
+            "gNz": 1,
+            "ralt": 0,
+            "pitchDeg": 0,
+            "rollDeg": 0,
+            "hdgDeg": 0,
+            "wheelsOn": false,
+            "landings": 0,
+            "replayFrames": 0,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "seed": 4201,
+            "weather": "cavok",
+            "scenario": "FREE FLIGHT",
+            "crashCause": "",
+            "autopilot": {
+              "mode": "OFF",
+              "altitude": 0,
+              "heading": 0,
+              "speed": 100
+            },
+            "bank": 0,
+            "basis": {
+              "forward": [
+                0,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                0,
+                0
+              ],
+              "right": [
+                0,
+                0,
+                0
+              ]
+            },
+            "view": {
+              "aircraft": {
+                "position": [
+                  15170.236912194974,
+                  439.26223426432966,
+                  -9831.364892010803
+                ],
+                "quaternion": [
+                  0,
+                  -0.8571673007021123,
+                  0,
+                  -0.5150380749100543
+                ],
+                "visible": true
+              },
+              "cockpit": {
+                "position": [
+                  15170.236912194974,
+                  439.26223426432966,
+                  -9831.364892010803
+                ],
+                "quaternion": [
+                  0,
+                  -0.8571673007021123,
+                  0,
+                  -0.5150380749100543
+                ],
+                "visible": false
+              },
+              "glassVisible": true,
+              "camera": {
+                "position": [
+                  7030.222197121401,
+                  65.52056938565828,
+                  -5408.419833556311
+                ],
+                "quaternion": [
+                  -0.0922588728952622,
+                  0.6793417863341933,
+                  0.08670978321687811,
+                  0.7228170247073911
+                ],
+                "fov": 55,
+                "trackPosition": [
+                  15170.236912194974,
+                  439.26223426432966,
+                  -9831.364892010803
+                ],
+                "filteredPosition": [
+                  15185.423610792148,
+                  443.8622342643297,
+                  -9839.43980289072
+                ],
+                "lookPosition": [
+                  15164.056279044962,
+                  439.8622342643297,
+                  -9828.078591071302
+                ]
+              },
+              "pauseMenu": {
+                "visible": false,
+                "ariaHidden": null
+              },
+              "replayButtonActive": false
+            }
+          },
+          "world": {
+            "mode": "LEGACY",
+            "london": null,
+            "airports": 58,
+            "cities": 48,
+            "kinds": {
+              "MAJOR": 8,
+              "REGIONAL": 33,
+              "STRIP": 12,
+              "STOVL": 5
+            },
+            "regions": 25,
+            "airportBins": 58,
+            "visualAirports": 5
+          },
+          "origin": [
+            0,
+            0
+          ]
+        },
+        "after": {
+          "state": {
+            "running": false,
+            "paused": false,
+            "crashed": false,
+            "replayActive": false,
+            "simT": 0.5165999999999994,
+            "flightT": 0,
+            "stepCount": 0,
+            "pos": [
+              15170.236912194974,
+              439.26223426432966,
+              -9831.364892010803
+            ],
+            "localPos": [
+              15170.236912194974,
+              439.26223426432966,
+              -9831.364892010803
+            ],
+            "vel": [
+              -67.10401705727845,
+              -3.8,
+              35.679838771727695
+            ],
+            "quat": [
+              0,
+              -0.8571673007021123,
+              0,
+              -0.5150380749100543
+            ],
+            "om": [
+              0,
+              0,
+              0
+            ],
+            "fuel": 3268.1000000000004,
+            "thr": 0.68,
+            "thrT": 0.68,
+            "N1": 79,
+            "N2": 82,
+            "abSpool": 0,
+            "gearD": 0,
+            "gearT": 0,
+            "parkBrake": false,
+            "stolMode": "CONV",
+            "lfDoor": 0,
+            "lfSpool": 0,
+            "nozzle": 0,
+            "camMode": 0,
+            "ias": 0,
+            "mach": 0,
+            "gNz": 1,
+            "ralt": 0,
+            "pitchDeg": 0,
+            "rollDeg": 0,
+            "hdgDeg": 0,
+            "wheelsOn": false,
+            "landings": 0,
+            "replayFrames": 0,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "seed": 4201,
+            "weather": "cavok",
+            "scenario": "FREE FLIGHT",
+            "crashCause": "",
+            "autopilot": {
+              "mode": "OFF",
+              "altitude": 0,
+              "heading": 0,
+              "speed": 100
+            },
+            "bank": 0,
+            "basis": {
+              "forward": [
+                0,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                0,
+                0
+              ],
+              "right": [
+                0,
+                0,
+                0
+              ]
+            },
+            "view": {
+              "aircraft": {
+                "position": [
+                  15170.236912194974,
+                  439.26223426432966,
+                  -9831.364892010803
+                ],
+                "quaternion": [
+                  0,
+                  -0.8571673007021123,
+                  0,
+                  -0.5150380749100543
+                ],
+                "visible": true
+              },
+              "cockpit": {
+                "position": [
+                  15170.236912194974,
+                  439.26223426432966,
+                  -9831.364892010803
+                ],
+                "quaternion": [
+                  0,
+                  -0.8571673007021123,
+                  0,
+                  -0.5150380749100543
+                ],
+                "visible": false
+              },
+              "glassVisible": true,
+              "camera": {
+                "position": [
+                  7030.222197121401,
+                  65.52056938565828,
+                  -5408.419833556311
+                ],
+                "quaternion": [
+                  -0.0922588728952622,
+                  0.6793417863341933,
+                  0.08670978321687811,
+                  0.7228170247073911
+                ],
+                "fov": 55,
+                "trackPosition": [
+                  15170.236912194974,
+                  439.26223426432966,
+                  -9831.364892010803
+                ],
+                "filteredPosition": [
+                  15185.423610792148,
+                  443.8622342643297,
+                  -9839.43980289072
+                ],
+                "lookPosition": [
+                  15164.056279044962,
+                  439.8622342643297,
+                  -9828.078591071302
+                ]
+              },
+              "pauseMenu": {
+                "visible": false,
+                "ariaHidden": null
+              },
+              "replayButtonActive": false
+            }
+          },
+          "world": {
+            "mode": "LEGACY",
+            "london": null,
+            "airports": 58,
+            "cities": 48,
+            "kinds": {
+              "MAJOR": 8,
+              "REGIONAL": 33,
+              "STRIP": 12,
+              "STOVL": 5
+            },
+            "regions": 25,
+            "airportBins": 58,
+            "visualAirports": 5
+          },
+          "origin": [
+            0,
+            0
+          ]
+        },
+        "message": "INVALID SAVED FLIGHT — START NEW OR CLEAR SAVED DATA",
+        "recovery": "Actual Start New, then Settings → Reset Saved Data buttons succeeded"
+      }
+    },
+    {
+      "name": "malformed save numeric-string-position is rejected before world/state mutation with recovery UI",
+      "status": "PASS",
+      "wallSeconds": 9.032,
+      "details": {
+        "before": {
+          "state": {
+            "running": false,
+            "paused": false,
+            "crashed": false,
+            "replayActive": false,
+            "simT": 0.4334000000000006,
+            "flightT": 0,
+            "stepCount": 0,
+            "pos": [
+              15170.236912194974,
+              439.26223426432966,
+              -9831.364892010803
+            ],
+            "localPos": [
+              15170.236912194974,
+              439.26223426432966,
+              -9831.364892010803
+            ],
+            "vel": [
+              -67.10401705727845,
+              -3.8,
+              35.679838771727695
+            ],
+            "quat": [
+              0,
+              -0.8571673007021123,
+              0,
+              -0.5150380749100543
+            ],
+            "om": [
+              0,
+              0,
+              0
+            ],
+            "fuel": 3268.1000000000004,
+            "thr": 0.68,
+            "thrT": 0.68,
+            "N1": 79,
+            "N2": 82,
+            "abSpool": 0,
+            "gearD": 0,
+            "gearT": 0,
+            "parkBrake": false,
+            "stolMode": "CONV",
+            "lfDoor": 0,
+            "lfSpool": 0,
+            "nozzle": 0,
+            "camMode": 0,
+            "ias": 0,
+            "mach": 0,
+            "gNz": 1,
+            "ralt": 0,
+            "pitchDeg": 0,
+            "rollDeg": 0,
+            "hdgDeg": 0,
+            "wheelsOn": false,
+            "landings": 0,
+            "replayFrames": 0,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "seed": 4201,
+            "weather": "cavok",
+            "scenario": "FREE FLIGHT",
+            "crashCause": "",
+            "autopilot": {
+              "mode": "OFF",
+              "altitude": 0,
+              "heading": 0,
+              "speed": 100
+            },
+            "bank": 0,
+            "basis": {
+              "forward": [
+                0,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                0,
+                0
+              ],
+              "right": [
+                0,
+                0,
+                0
+              ]
+            },
+            "view": {
+              "aircraft": {
+                "position": [
+                  15170.236912194974,
+                  439.26223426432966,
+                  -9831.364892010803
+                ],
+                "quaternion": [
+                  0,
+                  -0.8571673007021123,
+                  0,
+                  -0.5150380749100543
+                ],
+                "visible": true
+              },
+              "cockpit": {
+                "position": [
+                  15170.236912194974,
+                  439.26223426432966,
+                  -9831.364892010803
+                ],
+                "quaternion": [
+                  0,
+                  -0.8571673007021123,
+                  0,
+                  -0.5150380749100543
+                ],
+                "visible": false
+              },
+              "glassVisible": true,
+              "camera": {
+                "position": [
+                  7030.313201525652,
+                  65.4367707047813,
+                  -5410.014672593627
+                ],
+                "quaternion": [
+                  -0.09164833679491792,
+                  0.6829629783478713,
+                  0.08700167448429373,
+                  0.7194392686014985
+                ],
+                "fov": 55,
+                "trackPosition": [
+                  15170.236912194974,
+                  439.26223426432966,
+                  -9831.364892010803
+                ],
+                "filteredPosition": [
+                  15185.423610792148,
+                  443.8622342643297,
+                  -9839.43980289072
+                ],
+                "lookPosition": [
+                  15164.056279044962,
+                  439.8622342643297,
+                  -9828.078591071302
+                ]
+              },
+              "pauseMenu": {
+                "visible": false,
+                "ariaHidden": null
+              },
+              "replayButtonActive": false
+            }
+          },
+          "world": {
+            "mode": "LEGACY",
+            "london": null,
+            "airports": 58,
+            "cities": 48,
+            "kinds": {
+              "MAJOR": 8,
+              "REGIONAL": 33,
+              "STRIP": 12,
+              "STOVL": 5
+            },
+            "regions": 25,
+            "airportBins": 58,
+            "visualAirports": 5
+          },
+          "origin": [
+            0,
+            0
+          ]
+        },
+        "after": {
+          "state": {
+            "running": false,
+            "paused": false,
+            "crashed": false,
+            "replayActive": false,
+            "simT": 0.4334000000000006,
+            "flightT": 0,
+            "stepCount": 0,
+            "pos": [
+              15170.236912194974,
+              439.26223426432966,
+              -9831.364892010803
+            ],
+            "localPos": [
+              15170.236912194974,
+              439.26223426432966,
+              -9831.364892010803
+            ],
+            "vel": [
+              -67.10401705727845,
+              -3.8,
+              35.679838771727695
+            ],
+            "quat": [
+              0,
+              -0.8571673007021123,
+              0,
+              -0.5150380749100543
+            ],
+            "om": [
+              0,
+              0,
+              0
+            ],
+            "fuel": 3268.1000000000004,
+            "thr": 0.68,
+            "thrT": 0.68,
+            "N1": 79,
+            "N2": 82,
+            "abSpool": 0,
+            "gearD": 0,
+            "gearT": 0,
+            "parkBrake": false,
+            "stolMode": "CONV",
+            "lfDoor": 0,
+            "lfSpool": 0,
+            "nozzle": 0,
+            "camMode": 0,
+            "ias": 0,
+            "mach": 0,
+            "gNz": 1,
+            "ralt": 0,
+            "pitchDeg": 0,
+            "rollDeg": 0,
+            "hdgDeg": 0,
+            "wheelsOn": false,
+            "landings": 0,
+            "replayFrames": 0,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "seed": 4201,
+            "weather": "cavok",
+            "scenario": "FREE FLIGHT",
+            "crashCause": "",
+            "autopilot": {
+              "mode": "OFF",
+              "altitude": 0,
+              "heading": 0,
+              "speed": 100
+            },
+            "bank": 0,
+            "basis": {
+              "forward": [
+                0,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                0,
+                0
+              ],
+              "right": [
+                0,
+                0,
+                0
+              ]
+            },
+            "view": {
+              "aircraft": {
+                "position": [
+                  15170.236912194974,
+                  439.26223426432966,
+                  -9831.364892010803
+                ],
+                "quaternion": [
+                  0,
+                  -0.8571673007021123,
+                  0,
+                  -0.5150380749100543
+                ],
+                "visible": true
+              },
+              "cockpit": {
+                "position": [
+                  15170.236912194974,
+                  439.26223426432966,
+                  -9831.364892010803
+                ],
+                "quaternion": [
+                  0,
+                  -0.8571673007021123,
+                  0,
+                  -0.5150380749100543
+                ],
+                "visible": false
+              },
+              "glassVisible": true,
+              "camera": {
+                "position": [
+                  7030.313201525652,
+                  65.4367707047813,
+                  -5410.014672593627
+                ],
+                "quaternion": [
+                  -0.09164833679491792,
+                  0.6829629783478713,
+                  0.08700167448429373,
+                  0.7194392686014985
+                ],
+                "fov": 55,
+                "trackPosition": [
+                  15170.236912194974,
+                  439.26223426432966,
+                  -9831.364892010803
+                ],
+                "filteredPosition": [
+                  15185.423610792148,
+                  443.8622342643297,
+                  -9839.43980289072
+                ],
+                "lookPosition": [
+                  15164.056279044962,
+                  439.8622342643297,
+                  -9828.078591071302
+                ]
+              },
+              "pauseMenu": {
+                "visible": false,
+                "ariaHidden": null
+              },
+              "replayButtonActive": false
+            }
+          },
+          "world": {
+            "mode": "LEGACY",
+            "london": null,
+            "airports": 58,
+            "cities": 48,
+            "kinds": {
+              "MAJOR": 8,
+              "REGIONAL": 33,
+              "STRIP": 12,
+              "STOVL": 5
+            },
+            "regions": 25,
+            "airportBins": 58,
+            "visualAirports": 5
+          },
+          "origin": [
+            0,
+            0
+          ]
+        },
+        "message": "INVALID SAVED FLIGHT — START NEW OR CLEAR SAVED DATA",
+        "recovery": "Actual Start New, then Settings → Reset Saved Data buttons succeeded"
+      }
+    },
+    {
+      "name": "malformed save zero-quaternion is rejected before world/state mutation with recovery UI",
+      "status": "PASS",
+      "wallSeconds": 11.469,
+      "details": {
+        "before": {
+          "state": {
+            "running": false,
+            "paused": false,
+            "crashed": false,
+            "replayActive": false,
+            "simT": 0.5666999999999999,
+            "flightT": 0,
+            "stepCount": 0,
+            "pos": [
+              15170.236912194974,
+              439.26223426432966,
+              -9831.364892010803
+            ],
+            "localPos": [
+              15170.236912194974,
+              439.26223426432966,
+              -9831.364892010803
+            ],
+            "vel": [
+              -67.10401705727845,
+              -3.8,
+              35.679838771727695
+            ],
+            "quat": [
+              0,
+              -0.8571673007021123,
+              0,
+              -0.5150380749100543
+            ],
+            "om": [
+              0,
+              0,
+              0
+            ],
+            "fuel": 3268.1000000000004,
+            "thr": 0.68,
+            "thrT": 0.68,
+            "N1": 79,
+            "N2": 82,
+            "abSpool": 0,
+            "gearD": 0,
+            "gearT": 0,
+            "parkBrake": false,
+            "stolMode": "CONV",
+            "lfDoor": 0,
+            "lfSpool": 0,
+            "nozzle": 0,
+            "camMode": 0,
+            "ias": 0,
+            "mach": 0,
+            "gNz": 1,
+            "ralt": 0,
+            "pitchDeg": 0,
+            "rollDeg": 0,
+            "hdgDeg": 0,
+            "wheelsOn": false,
+            "landings": 0,
+            "replayFrames": 0,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "seed": 4201,
+            "weather": "cavok",
+            "scenario": "FREE FLIGHT",
+            "crashCause": "",
+            "autopilot": {
+              "mode": "OFF",
+              "altitude": 0,
+              "heading": 0,
+              "speed": 100
+            },
+            "bank": 0,
+            "basis": {
+              "forward": [
+                0,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                0,
+                0
+              ],
+              "right": [
+                0,
+                0,
+                0
+              ]
+            },
+            "view": {
+              "aircraft": {
+                "position": [
+                  15170.236912194974,
+                  439.26223426432966,
+                  -9831.364892010803
+                ],
+                "quaternion": [
+                  0,
+                  -0.8571673007021123,
+                  0,
+                  -0.5150380749100543
+                ],
+                "visible": true
+              },
+              "cockpit": {
+                "position": [
+                  15170.236912194974,
+                  439.26223426432966,
+                  -9831.364892010803
+                ],
+                "quaternion": [
+                  0,
+                  -0.8571673007021123,
+                  0,
+                  -0.5150380749100543
+                ],
+                "visible": false
+              },
+              "glassVisible": true,
+              "camera": {
+                "position": [
+                  7030.159718353852,
+                  65.57101788602313,
+                  -5407.459946217596
+                ],
+                "quaternion": [
+                  -0.09262616076267143,
+                  0.6771531595160111,
+                  0.08653207376025636,
+                  0.7248421849689772
+                ],
+                "fov": 55,
+                "trackPosition": [
+                  15170.236912194974,
+                  439.26223426432966,
+                  -9831.364892010803
+                ],
+                "filteredPosition": [
+                  15185.423610792148,
+                  443.8622342643297,
+                  -9839.43980289072
+                ],
+                "lookPosition": [
+                  15164.056279044962,
+                  439.8622342643297,
+                  -9828.078591071302
+                ]
+              },
+              "pauseMenu": {
+                "visible": false,
+                "ariaHidden": null
+              },
+              "replayButtonActive": false
+            }
+          },
+          "world": {
+            "mode": "LEGACY",
+            "london": null,
+            "airports": 58,
+            "cities": 48,
+            "kinds": {
+              "MAJOR": 8,
+              "REGIONAL": 33,
+              "STRIP": 12,
+              "STOVL": 5
+            },
+            "regions": 25,
+            "airportBins": 58,
+            "visualAirports": 5
+          },
+          "origin": [
+            0,
+            0
+          ]
+        },
+        "after": {
+          "state": {
+            "running": false,
+            "paused": false,
+            "crashed": false,
+            "replayActive": false,
+            "simT": 0.5666999999999999,
+            "flightT": 0,
+            "stepCount": 0,
+            "pos": [
+              15170.236912194974,
+              439.26223426432966,
+              -9831.364892010803
+            ],
+            "localPos": [
+              15170.236912194974,
+              439.26223426432966,
+              -9831.364892010803
+            ],
+            "vel": [
+              -67.10401705727845,
+              -3.8,
+              35.679838771727695
+            ],
+            "quat": [
+              0,
+              -0.8571673007021123,
+              0,
+              -0.5150380749100543
+            ],
+            "om": [
+              0,
+              0,
+              0
+            ],
+            "fuel": 3268.1000000000004,
+            "thr": 0.68,
+            "thrT": 0.68,
+            "N1": 79,
+            "N2": 82,
+            "abSpool": 0,
+            "gearD": 0,
+            "gearT": 0,
+            "parkBrake": false,
+            "stolMode": "CONV",
+            "lfDoor": 0,
+            "lfSpool": 0,
+            "nozzle": 0,
+            "camMode": 0,
+            "ias": 0,
+            "mach": 0,
+            "gNz": 1,
+            "ralt": 0,
+            "pitchDeg": 0,
+            "rollDeg": 0,
+            "hdgDeg": 0,
+            "wheelsOn": false,
+            "landings": 0,
+            "replayFrames": 0,
+            "touchdown": {
+              "sink": 0,
+              "score": 0,
+              "grade": "—"
+            },
+            "seed": 4201,
+            "weather": "cavok",
+            "scenario": "FREE FLIGHT",
+            "crashCause": "",
+            "autopilot": {
+              "mode": "OFF",
+              "altitude": 0,
+              "heading": 0,
+              "speed": 100
+            },
+            "bank": 0,
+            "basis": {
+              "forward": [
+                0,
+                0,
+                0
+              ],
+              "up": [
+                0,
+                0,
+                0
+              ],
+              "right": [
+                0,
+                0,
+                0
+              ]
+            },
+            "view": {
+              "aircraft": {
+                "position": [
+                  15170.236912194974,
+                  439.26223426432966,
+                  -9831.364892010803
+                ],
+                "quaternion": [
+                  0,
+                  -0.8571673007021123,
+                  0,
+                  -0.5150380749100543
+                ],
+                "visible": true
+              },
+              "cockpit": {
+                "position": [
+                  15170.236912194974,
+                  439.26223426432966,
+                  -9831.364892010803
+                ],
+                "quaternion": [
+                  0,
+                  -0.8571673007021123,
+                  0,
+                  -0.5150380749100543
+                ],
+                "visible": false
+              },
+              "glassVisible": true,
+              "camera": {
+                "position": [
+                  7030.159718353852,
+                  65.57101788602313,
+                  -5407.459946217596
+                ],
+                "quaternion": [
+                  -0.09262616076267143,
+                  0.6771531595160111,
+                  0.08653207376025636,
+                  0.7248421849689772
+                ],
+                "fov": 55,
+                "trackPosition": [
+                  15170.236912194974,
+                  439.26223426432966,
+                  -9831.364892010803
+                ],
+                "filteredPosition": [
+                  15185.423610792148,
+                  443.8622342643297,
+                  -9839.43980289072
+                ],
+                "lookPosition": [
+                  15164.056279044962,
+                  439.8622342643297,
+                  -9828.078591071302
+                ]
+              },
+              "pauseMenu": {
+                "visible": false,
+                "ariaHidden": null
+              },
+              "replayButtonActive": false
+            }
+          },
+          "world": {
+            "mode": "LEGACY",
+            "london": null,
+            "airports": 58,
+            "cities": 48,
+            "kinds": {
+              "MAJOR": 8,
+              "REGIONAL": 33,
+              "STRIP": 12,
+              "STOVL": 5
+            },
+            "regions": 25,
+            "airportBins": 58,
+            "visualAirports": 5
+          },
+          "origin": [
+            0,
+            0
+          ]
+        },
+        "message": "INVALID SAVED FLIGHT — START NEW OR CLEAR SAVED DATA",
+        "recovery": "Actual Start New, then Settings → Reset Saved Data buttons succeeded"
+      }
+    },
+    {
+      "name": "complete hover forward-conversion scenario",
+      "status": "NOT TESTED",
+      "reason": "Extended automated flight control is opt-in (--extended); basic save/replay tests do not establish a complete flight lifecycle."
+    },
+    {
+      "name": "conventional runway takeoff",
+      "status": "NOT TESTED",
+      "reason": "Run with --takeoff; no takeoff is inferred from an airborne spawn."
+    },
+    {
+      "name": "vertical landing from hover scenario",
+      "status": "NOT TESTED",
+      "reason": "Run with --hover-landing; a configured hover spawn does not establish a landing."
+    }
+  ],
+  "status": "FAIL",
+  "limitations": [
+    "Cloud Chromium/SwiftShader functional tests; not Galaxy A51 evidence.",
+    "A superseded tab stops GPU draw submission before the replacement launch; its state/storage and the tested tab renderer remain unchanged.",
+    "Normal UI start/scenario selection may position an aircraft at its configured spawn; tests label such starts. No lifecycle is inferred from teleporting aircraft state.",
+    "Replay save protection is tested by a deliberate real savePrefs(true) call after a rendered replay frame, not by firing the natural autosave timer.",
+    "Replay stop is observed synchronously using a wrapper that calls the original function unchanged, before any later live physics step.",
+    "No Android installation, gyro, battery or thermal claim."
+  ],
+  "runSettings": {
+    "viewport": [
+      640,
+      360
+    ],
+    "profile": "BATTERY",
+    "softwareRenderer": true
+  },
+  "simAdvances": [
+    {
+      "requestedSimSeconds": 1,
+      "timeoutMs": 90000,
+      "beforeFlightT": 0.18333333333333332,
+      "targetFlightT": 1.1833333333333333,
+      "wallSeconds": 1.133,
+      "afterFlightT": 1.3249999999999977,
+      "replayFrames": 15,
+      "paused": false,
+      "crashed": false
+    },
+    {
+      "requestedSimSeconds": 0.2,
+      "timeoutMs": 90000,
+      "beforeFlightT": 1.3249999999999977,
+      "targetFlightT": 1.5249999999999977,
+      "wallSeconds": 0.484,
+      "afterFlightT": 1.7833333333333294,
+      "replayFrames": 5,
+      "paused": false,
+      "crashed": false
+    },
+    {
+      "requestedSimSeconds": 8.2,
+      "timeoutMs": 120000,
+      "beforeFlightT": 0.5750000000000004,
+      "targetFlightT": 8.775,
+      "wallSeconds": 8.264,
+      "afterFlightT": 8.841666666666805,
+      "replayFrames": 106,
+      "paused": false,
+      "crashed": false
+    },
+    {
+      "requestedSimSeconds": 1.6,
+      "timeoutMs": 90000,
+      "beforeFlightT": 8.841666666666805,
+      "targetFlightT": 10.441666666666805,
+      "wallSeconds": 1.859,
+      "afterFlightT": 10.708333333333366,
+      "replayFrames": 128,
+      "paused": false,
+      "crashed": false
+    },
+    {
+      "requestedSimSeconds": 0.5,
+      "timeoutMs": 90000,
+      "beforeFlightT": 10.708333333333366,
+      "targetFlightT": 11.208333333333366,
+      "wallSeconds": 1.006,
+      "afterFlightT": 11.275,
+      "replayFrames": 135,
+      "paused": false,
+      "crashed": false
+    },
+    {
+      "requestedSimSeconds": 0.15,
+      "timeoutMs": 90000,
+      "beforeFlightT": 0.4250000000000005,
+      "targetFlightT": 0.5750000000000005,
+      "wallSeconds": 0.152,
+      "afterFlightT": 0.6000000000000003,
+      "replayFrames": 7,
+      "paused": false,
+      "crashed": false
+    },
+    {
+      "requestedSimSeconds": 0.15,
+      "timeoutMs": 90000,
+      "beforeFlightT": 0.4583333333333339,
+      "targetFlightT": 0.608333333333334,
+      "wallSeconds": 0.161,
+      "afterFlightT": 0.6250000000000002,
+      "replayFrames": 7,
+      "paused": false,
+      "crashed": false
+    },
+    {
+      "requestedSimSeconds": 0.15,
+      "timeoutMs": 90000,
+      "beforeFlightT": 0.5250000000000006,
+      "targetFlightT": 0.6750000000000006,
+      "wallSeconds": 0.177,
+      "afterFlightT": 0.7166666666666666,
+      "replayFrames": 8,
+      "paused": false,
+      "crashed": false
+    }
+  ],
+  "validSavedPayload": {
+    "worldMode": "LEGACY",
+    "seed": 4201,
+    "settings": {
+      "fbw": "ASSIST",
+      "fail": "OFF",
+      "sens": 1,
+      "expo": 0.3,
+      "dz": 0.07,
+      "invPitch": false,
+      "coord": true,
+      "hoverAssist": true,
+      "hmds": "FULL",
+      "tOp": 0.85,
+      "tSz": 1,
+      "hand": "R",
+      "rudSlider": false,
+      "gyro": false,
+      "gDz": 0.12,
+      "gThrBtn": true,
+      "quality": "MED",
+      "vapour": "ENHANCED",
+      "volume": 0,
+      "scan": false,
+      "structure": "REAL",
+      "targetMarker": false
+    },
+    "wxPreset": "cavok",
+    "simHours": 13.225138333333327,
+    "startType": "AIR",
+    "scenario": "FREE FLIGHT",
+    "tutorialSeen": true,
+    "fuelLoad": "0.55",
+    "aptIcao": "KGES",
+    "flight": {
+      "worldMode": "LEGACY",
+      "seed": 4201,
+      "pos": [
+        15079.090148371331,
+        431.07129708232776,
+        -9782.870113883597
+      ],
+      "vel": [
+        -70.57142891132656,
+        -7.974613760929745,
+        37.51785496498063
+      ],
+      "quat": [
+        0.003237707349328709,
+        -0.8540286433950087,
+        0.002661916621041882,
+        -0.5202090999895176
+      ],
+      "om": [
+        -0.0028828881008417743,
+        -0.011001959067997091,
+        -0.006701503588832505
+      ],
+      "fuel": 3267.073973301211,
+      "thr": 0.68,
+      "thrT": 0.68,
+      "N1": 82.34729366865757,
+      "N2": 87.84516916221463,
+      "abSpool": 0,
+      "gearD": 0,
+      "gearT": 0,
+      "parkBrake": false,
+      "stolMode": "CONV",
+      "lfDoor": 0,
+      "lfSpool": 0,
+      "nozzle": 0,
+      "simT": 2.041599999999995,
+      "flightT": 1.3249999999999977,
+      "camMode": 1,
+      "wxPreset": "cavok",
+      "simHours": 13.225138333333327
+    }
+  },
+  "replayRecordingFixture": {
+    "state": {
+      "running": true,
+      "paused": false,
+      "crashed": false,
+      "replayActive": false,
+      "simT": 0.9915999999999989,
+      "flightT": 0.5750000000000004,
+      "stepCount": 69,
+      "pos": [
+        15029.212593762893,
+        2603.652734673186,
+        -9756.35823740191
+      ],
+      "localPos": [
+        -134.88848797512074,
+        2603.652734673186,
+        71.74400822963356
+      ],
+      "vel": [
+        -245.25601200299658,
+        9.622294644305676,
+        130.43598900190986
+      ],
+      "quat": [
+        0.01921916276444607,
+        -0.8556628079575546,
+        -0.02986714926483594,
+        -0.5163136026250121
+      ],
+      "om": [
+        -0.01873271140635167,
+        -0.002330226686011969,
+        -0.0014088143344258208
+      ],
+      "fuel": 3267.548014850641,
+      "thr": 0.88,
+      "thrT": 0.88,
+      "N1": 94.79840226080664,
+      "N2": 97.03675393569641,
+      "abSpool": 0,
+      "gearD": 0,
+      "gearT": 0,
+      "parkBrake": false,
+      "stolMode": "CONV",
+      "lfDoor": 0,
+      "lfSpool": 0,
+      "nozzle": 0,
+      "camMode": 0,
+      "ias": 483.89685110996317,
+      "mach": 0.8576593112407728,
+      "gNz": 1.5600426563109928,
+      "ralt": 2290.7098810891544,
+      "pitchDeg": -4.060104159555136,
+      "rollDeg": 0.11678495196962978,
+      "hdgDeg": 242.2089392789627,
+      "wheelsOn": false,
+      "landings": 0,
+      "replayFrames": 6,
+      "touchdown": {
+        "sink": 0,
+        "score": 0,
+        "grade": "—"
+      },
+      "seed": 4201,
+      "weather": "humid",
+      "scenario": "HUMID VAPOUR RUN",
+      "crashCause": "",
+      "autopilot": {
+        "mode": "HDG",
+        "altitude": 2603.652734673186,
+        "heading": 242.2089392789627,
+        "speed": 130
+      },
+      "bank": 0.0020382819286534765,
+      "basis": {
+        "forward": [
+          -0.8824335373592006,
+          -0.07080289530042198,
+          0.4650784903226613
+        ],
+        "up": [
+          -0.06358865119648963,
+          0.9974882432538292,
+          0.031203974256508185
+        ],
+        "right": [
+          -0.466119658009335,
+          -0.0020382805172817226,
+          -0.8847193395816514
+        ]
+      },
+      "view": {
+        "aircraft": {
+          "position": [
+            -134.88848797512074,
+            2603.652734673186,
+            71.74400822963356
+          ],
+          "quaternion": [
+            0.01921916276444607,
+            -0.8556628079575546,
+            -0.02986714926483594,
+            -0.5163136026250121
+          ],
+          "visible": true
+        },
+        "cockpit": {
+          "position": [
+            -134.88848797512074,
+            2603.652734673186,
+            71.74400822963356
+          ],
+          "quaternion": [
+            0.01921916276444607,
+            -0.8556628079575546,
+            -0.02986714926483594,
+            -0.5163136026250121
+          ],
+          "visible": false
+        },
+        "glassVisible": true,
+        "camera": {
+          "position": [
+            -119.04620888722816,
+            2609.175663618108,
+            62.364959723255154
+          ],
+          "quaternion": [
+            -0.04978885304570013,
+            0.8610065519586573,
+            0.08594312677263317,
+            0.4988011292661644
+          ],
+          "fov": 58.71860918206279,
+          "trackPosition": [
+            -134.88848797512074,
+            2603.652734673186,
+            71.74400822963356
+          ],
+          "filteredPosition": [
+            -119.04659389693863,
+            2609.1754574151523,
+            62.36509604327154
+          ],
+          "lookPosition": [
+            -141.55576725392586,
+            2603.943505038413,
+            75.27226352864545
+          ]
+        },
+        "pauseMenu": {
+          "visible": false,
+          "ariaHidden": null
+        },
+        "replayButtonActive": false
+      }
+    },
+    "method": "Fresh normal Start New with HUMID VAPOUR RUN selected in the scenario dropdown, followed by the actual AP toolbar button. Built-in scenario supplies altitude/speed; no rigid-state assignment. This is a replay/restoration fixture, not evidence of a flown takeoff."
+  },
+  "replaySaveEvidence": {
+    "before": "{\"worldMode\":\"LEGACY\",\"seed\":4201,\"pos\":[12450.87268040885,2614.7448920457787,-8383.561615455474],\"vel\":[-229.2747644692902,13.702529424903855,122.34597889139562],\"quat\":[-0.02159949368816948,-0.8562735451549696,0.03122628117057962,-0.5151252246827083],\"om\":[0.059633026846011905,-0.011209458417577202,-0.003948431159528099],\"fuel\":3261.631727046738,\"thr\":0.6166666666666712,\"thrT\":0.6166666666666712,\"N1\":70.1545682381567,\"N2\":81.60094715147129,\"abSpool\":0,\"gearD\":0.8111111111111088,\"gearT\":1,\"parkBrake\":false,\"stolMode\":\"CONV\",\"lfDoor\":0,\"lfSpool\":0,\"nozzle\":0,\"simT\":11.691599999999978,\"flightT\":11.275,\"camMode\":0,\"wxPreset\":\"humid\",\"simHours\":13.42763722222221}",
+    "after": "{\"worldMode\":\"LEGACY\",\"seed\":4201,\"pos\":[12450.87268040885,2614.7448920457787,-8383.561615455474],\"vel\":[-229.2747644692902,13.702529424903855,122.34597889139562],\"quat\":[-0.02159949368816948,-0.8562735451549696,0.03122628117057962,-0.5151252246827083],\"om\":[0.059633026846011905,-0.011209458417577202,-0.003948431159528099],\"fuel\":3261.631727046738,\"thr\":0.6166666666666712,\"thrT\":0.6166666666666712,\"N1\":70.1545682381567,\"N2\":81.60094715147129,\"abSpool\":0,\"gearD\":0.8111111111111088,\"gearT\":1,\"parkBrake\":false,\"stolMode\":\"CONV\",\"lfDoor\":0,\"lfSpool\":0,\"nozzle\":0,\"simT\":11.691599999999978,\"flightT\":11.275,\"camMode\":0,\"wxPreset\":\"humid\",\"simHours\":13.42763722222221}",
+    "stored": "{\"worldMode\":\"LEGACY\",\"seed\":4201,\"pos\":[12450.87268040885,2614.7448920457787,-8383.561615455474],\"vel\":[-229.2747644692902,13.702529424903855,122.34597889139562],\"quat\":[-0.02159949368816948,-0.8562735451549696,0.03122628117057962,-0.5151252246827083],\"om\":[0.059633026846011905,-0.011209458417577202,-0.003948431159528099],\"fuel\":3261.631727046738,\"thr\":0.6166666666666712,\"thrT\":0.6166666666666712,\"N1\":70.1545682381567,\"N2\":81.60094715147129,\"abSpool\":0,\"gearD\":0.8111111111111088,\"gearT\":1,\"parkBrake\":false,\"stolMode\":\"CONV\",\"lfDoor\":0,\"lfSpool\":0,\"nozzle\":0,\"simT\":11.691599999999978,\"flightT\":11.275,\"camMode\":0,\"wxPreset\":\"humid\",\"simHours\":13.42763722222221}",
+    "replayActive": true,
+    "state": {
+      "running": true,
+      "paused": false,
+      "crashed": false,
+      "replayActive": true,
+      "simT": 11.691599999999978,
+      "flightT": 11.275,
+      "stepCount": 1353,
+      "pos": [
+        15117.142343182659,
+        2600.73329409141,
+        -9803.126982193096
+      ],
+      "localPos": [
+        -46.95873855535578,
+        2600.73329409141,
+        24.975263438447126
+      ],
+      "vel": [
+        -245.2363280115932,
+        5.794901805548861,
+        130.4426664674981
+      ],
+      "quat": [
+        0.008487984800069306,
+        -0.8566744603204798,
+        -0.013125483985062074,
+        -0.5156205434414018
+      ],
+      "om": [
+        0.059633026846011905,
+        -0.011209458417577202,
+        -0.003948431159528099
+      ],
+      "fuel": 3261.631727046738,
+      "thr": 0.88,
+      "thrT": 0.6166666666666712,
+      "N1": 70.1545682381567,
+      "N2": 81.60094715147129,
+      "abSpool": 0,
+      "gearD": 0,
+      "gearT": 1,
+      "parkBrake": false,
+      "stolMode": "CONV",
+      "lfDoor": 0,
+      "lfSpool": 0,
+      "nozzle": 0,
+      "camMode": 0,
+      "ias": 484.01206569930355,
+      "mach": 0.8577075302087025,
+      "gNz": 2.992885173383269,
+      "ralt": 2417.569315582802,
+      "pitchDeg": -1.7903084415080848,
+      "rollDeg": 0.05771641048304702,
+      "hdgDeg": 242.0854077362052,
+      "wheelsOn": false,
+      "landings": 0,
+      "replayFrames": 135,
+      "touchdown": {
+        "sink": 0,
+        "score": 0,
+        "grade": "—"
+      },
+      "seed": 4201,
+      "weather": "humid",
+      "scenario": "HUMID VAPOUR RUN",
+      "crashCause": "",
+      "autopilot": {
+        "mode": "OFF",
+        "altitude": 2603.652734673186,
+        "heading": 242.2089392789627,
+        "speed": 130
+      },
+      "bank": 0.0010073413953617413,
+      "basis": {
+        "forward": [
+          -0.8832150837485133,
+          -0.03124169248936449,
+          0.4679263537027028
+        ],
+        "up": [
+          -0.028078417966233865,
+          0.9995113515683836,
+          0.013735375148028117
+        ],
+        "right": [
+          -0.46812681859045463,
+          -0.0010073412249973716,
+          -0.8836607193827484
+        ]
+      },
+      "view": {
+        "aircraft": {
+          "position": [
+            -46.95873855535578,
+            2600.73329409141,
+            24.975263438447126
+          ],
+          "quaternion": [
+            0.008487984800069306,
+            -0.8566744603204798,
+            -0.013125483985062074,
+            -0.5156205434414018
+          ],
+          "visible": true
+        },
+        "cockpit": {
+          "position": [
+            -46.95873855535578,
+            2600.73329409141,
+            24.975263438447126
+          ],
+          "quaternion": [
+            0.008487984800069306,
+            -0.8566744603204798,
+            -0.013125483985062074,
+            -0.5156205434414018
+          ],
+          "visible": false
+        },
+        "glassVisible": true,
+        "camera": {
+          "position": [
+            -30.43240275625847,
+            2606.5826716996125,
+            14.392682217422012
+          ],
+          "quaternion": [
+            -0.04831372059105029,
+            0.8672823106793467,
+            0.08586948589196158,
+            0.48796886107414
+          ],
+          "fov": 58.71739141614786,
+          "trackPosition": [
+            -46.95873855535578,
+            2600.73329409141,
+            24.975263438447126
+          ],
+          "filteredPosition": [
+            -30.43200979623974,
+            2606.582890775853,
+            14.392801779945053
+          ],
+          "lookPosition": [
+            -53.93157593385608,
+            2601.0844772480923,
+            28.66478688655209
+          ]
+        },
+        "pauseMenu": {
+          "visible": false,
+          "ariaHidden": "false"
+        },
+        "replayButtonActive": true
+      }
+    }
+  },
+  "replayDoubleClickEvidence": {
+    "before": {
+      "active": true,
+      "restore": "{\"p\":{\"x\":-2713.2284013291646,\"y\":2614.7448920457787,\"z\":1444.5406301760697},\"q\":{\"_x\":-0.02159949368816948,\"_y\":-0.8562735451549696,\"_z\":0.03122628117057962,\"_w\":-0.5151252246827083},\"v\":{\"x\":-229.2747644692902,\"y\":13.702529424903855,\"z\":122.34597889139562},\"om\":{\"x\":0.059633026846011905,\"y\":-0.011209458417577202,\"z\":-0.003948431159528099},\"cam\":0,\"paused\":true,\"ias\":453.09759086542533,\"mach\":0.8036302218505933,\"gNz\":4.913755078100947,\"nozzle\":0,\"gearD\":0.8111111111111088,\"thr\":0.6166666666666712}",
+      "wall": 18016,
+      "clock": 0.5293999999999651
+    },
+    "after": {
+      "active": true,
+      "restore": "{\"p\":{\"x\":-2713.2284013291646,\"y\":2614.7448920457787,\"z\":1444.5406301760697},\"q\":{\"_x\":-0.02159949368816948,\"_y\":-0.8562735451549696,\"_z\":0.03122628117057962,\"_w\":-0.5151252246827083},\"v\":{\"x\":-229.2747644692902,\"y\":13.702529424903855,\"z\":122.34597889139562},\"om\":{\"x\":0.059633026846011905,\"y\":-0.011209458417577202,\"z\":-0.003948431159528099},\"cam\":0,\"paused\":true,\"ias\":453.09759086542533,\"mach\":0.8036302218505933,\"gNz\":4.913755078100947,\"nozzle\":0,\"gearD\":0.8111111111111088,\"thr\":0.6166666666666712}",
+      "wall": 18016,
+      "clock": 0.5293999999999651
+    },
+    "method": "Capture/bubble listeners bracket the unchanged real UI handler in one event task. An active replay ignores a second request; a request after natural completion may start a new replay."
+  },
+  "replayEvidence": {
+    "prepared": {
+      "running": true,
+      "paused": true,
+      "crashed": false,
+      "replayActive": false,
+      "simT": 11.691599999999978,
+      "flightT": 11.275,
+      "stepCount": 1353,
+      "pos": [
+        12450.87268040885,
+        2614.7448920457787,
+        -8383.561615455474
+      ],
+      "localPos": [
+        -2713.2284013291646,
+        2614.7448920457787,
+        1444.5406301760697
+      ],
+      "vel": [
+        -229.2747644692902,
+        13.702529424903855,
+        122.34597889139562
+      ],
+      "quat": [
+        -0.02159949368816948,
+        -0.8562735451549696,
+        0.03122628117057962,
+        -0.5151252246827083
+      ],
+      "om": [
+        0.059633026846011905,
+        -0.011209458417577202,
+        -0.003948431159528099
+      ],
+      "fuel": 3261.631727046738,
+      "thr": 0.6166666666666712,
+      "thrT": 0.6166666666666712,
+      "N1": 70.1545682381567,
+      "N2": 81.60094715147129,
+      "abSpool": 0,
+      "gearD": 0.8111111111111088,
+      "gearT": 1,
+      "parkBrake": false,
+      "stolMode": "CONV",
+      "lfDoor": 0,
+      "lfSpool": 0,
+      "nozzle": 0,
+      "camMode": 0,
+      "ias": 453.09759086542533,
+      "mach": 0.8036302218505933,
+      "gNz": 4.913755078100947,
+      "ralt": 2417.569315582802,
+      "pitchDeg": 4.31463271971524,
+      "rollDeg": -0.27840816813354297,
+      "hdgDeg": 242.04562366315815,
+      "wheelsOn": false,
+      "landings": 0,
+      "replayFrames": 135,
+      "touchdown": {
+        "sink": 0,
+        "score": 0,
+        "grade": "—"
+      },
+      "seed": 4201,
+      "weather": "humid",
+      "scenario": "HUMID VAPOUR RUN",
+      "crashCause": "",
+      "autopilot": {
+        "mode": "OFF",
+        "altitude": 2603.652734673186,
+        "heading": 242.2089392789627,
+        "speed": 130
+      },
+      "bank": -0.004859139198376281,
+      "basis": {
+        "forward": [
+          -0.880817770883751,
+          0.07523339462959869,
+          0.4674398258898004
+        ],
+        "up": [
+          0.06873873467760655,
+          0.9971541131061875,
+          -0.03096225234594862
+        ],
+        "right": [
+          -0.46843894036501865,
+          0.00485912007668695,
+          -0.8834825114860956
+        ]
+      },
+      "view": {
+        "aircraft": {
+          "position": [
+            -2713.2284013291646,
+            2614.7448920457787,
+            1444.5406301760697
+          ],
+          "quaternion": [
+            -0.02159949368816948,
+            -0.8562735451549696,
+            0.03122628117057962,
+            -0.5151252246827083
+          ],
+          "visible": true
+        },
+        "cockpit": {
+          "position": [
+            -2713.2284013291646,
+            2614.7448920457787,
+            1444.5406301760697
+          ],
+          "quaternion": [
+            -0.02159949368816948,
+            -0.8562735451549696,
+            0.03122628117057962,
+            -0.5151252246827083
+          ],
+          "visible": false
+        },
+        "glassVisible": true,
+        "camera": {
+          "position": [
+            -2696.8069994274338,
+            2620.996686275447,
+            1434.0339636137433
+          ],
+          "quaternion": [
+            -0.05331608730622716,
+            0.8662311769902518,
+            0.09470140025554666,
+            0.48768082557557724
+          ],
+          "fov": 58.516901752769186,
+          "trackPosition": [
+            -2713.2284013291646,
+            2614.7448920457787,
+            1444.5406301760697
+          ],
+          "filteredPosition": [
+            -2696.806606467415,
+            2620.996905351687,
+            1434.0340831762662
+          ],
+          "lookPosition": [
+            -2720.2042675138155,
+            2614.9407639678334,
+            1448.2271451128468
+          ]
+        },
+        "pauseMenu": {
+          "visible": true,
+          "ariaHidden": "false"
+        },
+        "replayButtonActive": false
+      }
+    },
+    "before": {
+      "running": true,
+      "paused": true,
+      "crashed": false,
+      "replayActive": false,
+      "simT": 11.691599999999978,
+      "flightT": 11.275,
+      "stepCount": 1353,
+      "pos": [
+        12450.87268040885,
+        2614.7448920457787,
+        -8383.561615455474
+      ],
+      "localPos": [
+        -2713.2284013291646,
+        2614.7448920457787,
+        1444.5406301760697
+      ],
+      "vel": [
+        -229.2747644692902,
+        13.702529424903855,
+        122.34597889139562
+      ],
+      "quat": [
+        -0.02159949368816948,
+        -0.8562735451549696,
+        0.03122628117057962,
+        -0.5151252246827083
+      ],
+      "om": [
+        0.059633026846011905,
+        -0.011209458417577202,
+        -0.003948431159528099
+      ],
+      "fuel": 3261.631727046738,
+      "thr": 0.6166666666666712,
+      "thrT": 0.6166666666666712,
+      "N1": 70.1545682381567,
+      "N2": 81.60094715147129,
+      "abSpool": 0,
+      "gearD": 0.8111111111111088,
+      "gearT": 1,
+      "parkBrake": false,
+      "stolMode": "CONV",
+      "lfDoor": 0,
+      "lfSpool": 0,
+      "nozzle": 0,
+      "camMode": 0,
+      "ias": 453.09759086542533,
+      "mach": 0.8036302218505933,
+      "gNz": 4.913755078100947,
+      "ralt": 2417.569315582802,
+      "pitchDeg": 4.31463271971524,
+      "rollDeg": -0.27840816813354297,
+      "hdgDeg": 242.04562366315815,
+      "wheelsOn": false,
+      "landings": 0,
+      "replayFrames": 135,
+      "touchdown": {
+        "sink": 0,
+        "score": 0,
+        "grade": "—"
+      },
+      "seed": 4201,
+      "weather": "humid",
+      "scenario": "HUMID VAPOUR RUN",
+      "crashCause": "",
+      "autopilot": {
+        "mode": "OFF",
+        "altitude": 2603.652734673186,
+        "heading": 242.2089392789627,
+        "speed": 130
+      },
+      "bank": -0.004859139198376281,
+      "basis": {
+        "forward": [
+          -0.880817770883751,
+          0.07523339462959869,
+          0.4674398258898004
+        ],
+        "up": [
+          0.06873873467760655,
+          0.9971541131061875,
+          -0.03096225234594862
+        ],
+        "right": [
+          -0.46843894036501865,
+          0.00485912007668695,
+          -0.8834825114860956
+        ]
+      },
+      "view": {
+        "aircraft": {
+          "position": [
+            -2713.2284013291646,
+            2614.7448920457787,
+            1444.5406301760697
+          ],
+          "quaternion": [
+            -0.02159949368816948,
+            -0.8562735451549696,
+            0.03122628117057962,
+            -0.5151252246827083
+          ],
+          "visible": true
+        },
+        "cockpit": {
+          "position": [
+            -2713.2284013291646,
+            2614.7448920457787,
+            1444.5406301760697
+          ],
+          "quaternion": [
+            -0.02159949368816948,
+            -0.8562735451549696,
+            0.03122628117057962,
+            -0.5151252246827083
+          ],
+          "visible": false
+        },
+        "glassVisible": true,
+        "camera": {
+          "position": [
+            -2696.7141402671054,
+            2620.604271398289,
+            1433.9776740834563
+          ],
+          "quaternion": [
+            -0.04832230601948312,
+            0.8671839078701052,
+            0.08584358845795899,
+            0.4881474193240733
+          ],
+          "fov": 58.516901752769186,
+          "trackPosition": [
+            -2713.2284013291646,
+            2614.7448920457787,
+            1444.5406301760697
+          ],
+          "filteredPosition": [
+            -2696.7137473070866,
+            2620.604490474529,
+            1433.9777936459793
+          ],
+          "lookPosition": [
+            -2720.194239812659,
+            2615.112959837729,
+            1448.2250284716638
+          ]
+        },
+        "pauseMenu": {
+          "visible": true,
+          "ariaHidden": "false"
+        },
+        "replayButtonActive": false
+      }
+    },
+    "playback": {
+      "running": true,
+      "paused": false,
+      "crashed": false,
+      "replayActive": true,
+      "simT": 11.691599999999978,
+      "flightT": 11.275,
+      "stepCount": 1353,
+      "pos": [
+        15117.142343182659,
+        2600.73329409141,
+        -9803.126982193096
+      ],
+      "localPos": [
+        -46.95873855535578,
+        2600.73329409141,
+        24.975263438447126
+      ],
+      "vel": [
+        -245.2363280115932,
+        5.794901805548861,
+        130.4426664674981
+      ],
+      "quat": [
+        0.008487984800069306,
+        -0.8566744603204798,
+        -0.013125483985062074,
+        -0.5156205434414018
+      ],
+      "om": [
+        0.059633026846011905,
+        -0.011209458417577202,
+        -0.003948431159528099
+      ],
+      "fuel": 3261.631727046738,
+      "thr": 0.88,
+      "thrT": 0.6166666666666712,
+      "N1": 70.1545682381567,
+      "N2": 81.60094715147129,
+      "abSpool": 0,
+      "gearD": 0,
+      "gearT": 1,
+      "parkBrake": false,
+      "stolMode": "CONV",
+      "lfDoor": 0,
+      "lfSpool": 0,
+      "nozzle": 0,
+      "camMode": 0,
+      "ias": 484.01206569930355,
+      "mach": 0.8577075302087025,
+      "gNz": 2.992885173383269,
+      "ralt": 2417.569315582802,
+      "pitchDeg": -1.7903084415080848,
+      "rollDeg": 0.05771641048304702,
+      "hdgDeg": 242.0854077362052,
+      "wheelsOn": false,
+      "landings": 0,
+      "replayFrames": 135,
+      "touchdown": {
+        "sink": 0,
+        "score": 0,
+        "grade": "—"
+      },
+      "seed": 4201,
+      "weather": "humid",
+      "scenario": "HUMID VAPOUR RUN",
+      "crashCause": "",
+      "autopilot": {
+        "mode": "OFF",
+        "altitude": 2603.652734673186,
+        "heading": 242.2089392789627,
+        "speed": 130
+      },
+      "bank": 0.0010073413953617413,
+      "basis": {
+        "forward": [
+          -0.8832150837485133,
+          -0.03124169248936449,
+          0.4679263537027028
+        ],
+        "up": [
+          -0.028078417966233865,
+          0.9995113515683836,
+          0.013735375148028117
+        ],
+        "right": [
+          -0.46812681859045463,
+          -0.0010073412249973716,
+          -0.8836607193827484
+        ]
+      },
+      "view": {
+        "aircraft": {
+          "position": [
+            -46.95873855535578,
+            2600.73329409141,
+            24.975263438447126
+          ],
+          "quaternion": [
+            0.008487984800069306,
+            -0.8566744603204798,
+            -0.013125483985062074,
+            -0.5156205434414018
+          ],
+          "visible": true
+        },
+        "cockpit": {
+          "position": [
+            -46.95873855535578,
+            2600.73329409141,
+            24.975263438447126
+          ],
+          "quaternion": [
+            0.008487984800069306,
+            -0.8566744603204798,
+            -0.013125483985062074,
+            -0.5156205434414018
+          ],
+          "visible": false
+        },
+        "glassVisible": true,
+        "camera": {
+          "position": [
+            -30.43240275625847,
+            2606.5826716996125,
+            14.392682217422012
+          ],
+          "quaternion": [
+            -0.04831372059105029,
+            0.8672823106793467,
+            0.08586948589196158,
+            0.48796886107414
+          ],
+          "fov": 58.71739141614786,
+          "trackPosition": [
+            -46.95873855535578,
+            2600.73329409141,
+            24.975263438447126
+          ],
+          "filteredPosition": [
+            -30.43200979623974,
+            2606.582890775853,
+            14.392801779945053
+          ],
+          "lookPosition": [
+            -53.93157593385608,
+            2601.0844772480923,
+            28.66478688655209
+          ]
+        },
+        "pauseMenu": {
+          "visible": false,
+          "ariaHidden": "false"
+        },
+        "replayButtonActive": true
+      }
+    },
+    "after": {
+      "running": true,
+      "paused": true,
+      "crashed": false,
+      "replayActive": false,
+      "simT": 11.691599999999978,
+      "flightT": 11.275,
+      "stepCount": 1353,
+      "pos": [
+        12450.87268040885,
+        2614.7448920457787,
+        -8383.561615455474
+      ],
+      "localPos": [
+        -2713.2284013291646,
+        2614.7448920457787,
+        1444.5406301760697
+      ],
+      "vel": [
+        -229.2747644692902,
+        13.702529424903855,
+        122.34597889139562
+      ],
+      "quat": [
+        -0.02159949368816948,
+        -0.8562735451549696,
+        0.03122628117057962,
+        -0.5151252246827083
+      ],
+      "om": [
+        0.059633026846011905,
+        -0.011209458417577202,
+        -0.003948431159528099
+      ],
+      "fuel": 3261.631727046738,
+      "thr": 0.6166666666666712,
+      "thrT": 0.6166666666666712,
+      "N1": 70.1545682381567,
+      "N2": 81.60094715147129,
+      "abSpool": 0,
+      "gearD": 0.8111111111111088,
+      "gearT": 1,
+      "parkBrake": false,
+      "stolMode": "CONV",
+      "lfDoor": 0,
+      "lfSpool": 0,
+      "nozzle": 0,
+      "camMode": 0,
+      "ias": 453.09759086542533,
+      "mach": 0.8036302218505933,
+      "gNz": 4.913755078100947,
+      "ralt": 2417.569315582802,
+      "pitchDeg": 4.343131030843932,
+      "rollDeg": -0.2761243191962328,
+      "hdgDeg": 242.05085245990566,
+      "wheelsOn": false,
+      "landings": 0,
+      "replayFrames": 135,
+      "touchdown": {
+        "sink": 0,
+        "score": 0,
+        "grade": "—"
+      },
+      "seed": 4201,
+      "weather": "humid",
+      "scenario": "HUMID VAPOUR RUN",
+      "crashCause": "",
+      "autopilot": {
+        "mode": "OFF",
+        "altitude": 2603.652734673186,
+        "heading": 242.2089392789627,
+        "speed": 130
+      },
+      "bank": -0.004819278514802045,
+      "basis": {
+        "forward": [
+          -0.8808272609495278,
+          0.07572936503817826,
+          0.4673418445196903
+        ],
+        "up": [
+          0.06916104027584304,
+          0.997116762473341,
+          -0.031223588881574088
+        ],
+        "right": [
+          -0.4683589295360079,
+          0.004819259859842037,
+          -0.8835251484017235
+        ]
+      },
+      "view": {
+        "aircraft": {
+          "position": [
+            -2713.2284013291646,
+            2614.7448920457787,
+            1444.5406301760697
+          ],
+          "quaternion": [
+            -0.02159949368816948,
+            -0.8562735451549696,
+            0.03122628117057962,
+            -0.5151252246827083
+          ],
+          "visible": true
+        },
+        "cockpit": {
+          "position": [
+            -2713.2284013291646,
+            2614.7448920457787,
+            1444.5406301760697
+          ],
+          "quaternion": [
+            -0.02159949368816948,
+            -0.8562735451549696,
+            0.03122628117057962,
+            -0.5151252246827083
+          ],
+          "visible": false
+        },
+        "glassVisible": true,
+        "camera": {
+          "position": [
+            -2697.760424615583,
+            2618.028864998259,
+            1436.3586023789528
+          ],
+          "quaternion": [
+            -0.02268487834631812,
+            0.8559086155919114,
+            0.03768280019751873,
+            0.5152531849675692
+          ],
+          "fov": 58.51696218359942,
+          "trackPosition": [
+            -2713.2284013291646,
+            2614.7448920457787,
+            1444.5406301760697
+          ],
+          "filteredPosition": [
+            -2697.760031655564,
+            2618.029084074499,
+            1436.3587219414758
+          ],
+          "lookPosition": [
+            -2719.3526955316456,
+            2615.87326765853,
+            1447.7932889343786
+          ]
+        },
+        "pauseMenu": {
+          "visible": true,
+          "ariaHidden": "false"
+        },
+        "replayButtonActive": false
+      }
+    },
+    "changed": {
+      "pitchDeg": {
+        "before": 4.31463271971524,
+        "after": 4.343131030843932
+      },
+      "rollDeg": {
+        "before": -0.27840816813354297,
+        "after": -0.2761243191962328
+      },
+      "hdgDeg": {
+        "before": 242.04562366315815,
+        "after": 242.05085245990566
+      }
+    },
+    "method": "Real recorded frames and keyboard pitch input; actual UI replay button; capture-phase Replay UI listener and unchanged-call stop wrapper capture synchronous pre-start and post-stop state. No camera input follows pre-start capture. Natural completion is observed before the next live physics step. Geometry assertions independently rotate canonical axes by the rigid quaternion."
+  },
+  "errors": [],
+  "warnings": []
+}

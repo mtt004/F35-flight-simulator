@@ -1,0 +1,3547 @@
+{
+  "status": "MEASURED",
+  "environment": {
+    "node": "v24.22.1",
+    "renderer": "CPU-only Node VM; no WebGL, GPU, rAF or A51",
+    "method": "Three rounds in alternating order. Both versions yield one setImmediate event-loop turn after each scenery update. Same positions, heights, original renderable data and quality. Update-work times exclude asynchronous completion callbacks; total process CPU includes native gzip and async completion work on all process threads. Convergence wall times include async waits. Not a browser frame-pacing or physical-device claim.",
+    "baselineSourceSha256": "61bd9ef22ef374f0687d4c16ad8368f4857b673a30f2988074841cb246208d6a",
+    "finalSourceSha256": "1ed35fcc8594a944245b25ccfbef9a7576cf89645e178bf123e6df0fc5c70632"
+  },
+  "comparisons": [
+    {
+      "name": "initial-city",
+      "medianProcessCpuRatio": 0.7514686566421089,
+      "medianUpdateWorkRatio": 0.3967606955466675,
+      "medianConvergenceWallRatio": 0.5678218141803137,
+      "pairs": [
+        {
+          "round": 1,
+          "before": {
+            "name": "initial-city",
+            "turns": 381,
+            "convergenceWallMs": 2480.819369,
+            "processCpuMs": {
+              "user": 3459.507,
+              "system": 43.93,
+              "total": 3503.437
+            },
+            "updateWorkMs": {
+              "samples": 381,
+              "total": 2420.205884000004,
+              "p50": 6.521015000000261,
+              "p95": 7.971614999999929,
+              "p99": 9.212568000000374,
+              "max": 9.917115000000194
+            },
+            "generationCalls": 2044,
+            "generationMs": 2220.805672999999,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          },
+          "after": {
+            "name": "initial-city",
+            "turns": 33428,
+            "convergenceWallMs": 1343.9184690000002,
+            "processCpuMs": {
+              "user": 2357.862,
+              "system": 98.831,
+              "total": 2456.693
+            },
+            "updateWorkMs": {
+              "samples": 33428,
+              "total": 953.8320790001017,
+              "p50": 0.000981000001047505,
+              "p95": 0.21991999999954714,
+              "p99": 0.4200669999991078,
+              "max": 16.924457000000984
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 100,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          },
+          "processCpuRatio": 0.7012236840565422,
+          "updateWorkRatio": 0.3941119577081815,
+          "convergenceWallRatio": 0.541723628005099
+        },
+        {
+          "round": 2,
+          "before": {
+            "name": "initial-city",
+            "turns": 369,
+            "convergenceWallMs": 2411.153821,
+            "processCpuMs": {
+              "user": 4178.645,
+              "system": 79.498,
+              "total": 4258.143
+            },
+            "updateWorkMs": {
+              "samples": 369,
+              "total": 2324.8931600000215,
+              "p50": 6.503345000000991,
+              "p95": 8.373794000002817,
+              "p99": 9.772843999999168,
+              "max": 11.420333999998547
+            },
+            "generationCalls": 2044,
+            "generationMs": 2153.513287000038,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          },
+          "after": {
+            "name": "initial-city",
+            "turns": 38968,
+            "convergenceWallMs": 1689.804126000001,
+            "processCpuMs": {
+              "user": 3053.493,
+              "system": 146.368,
+              "total": 3199.861
+            },
+            "updateWorkMs": {
+              "samples": 38968,
+              "total": 1232.7072860000262,
+              "p50": 0.000954999999521533,
+              "p95": 0.2180449999996199,
+              "p99": 0.44700600000032864,
+              "max": 106.8070430000007
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 100,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          },
+          "processCpuRatio": 0.7514686566421089,
+          "updateWorkRatio": 0.5302210472329898,
+          "convergenceWallRatio": 0.7008280066093722
+        },
+        {
+          "round": 3,
+          "before": {
+            "name": "initial-city",
+            "turns": 390,
+            "convergenceWallMs": 2668.420466000003,
+            "processCpuMs": {
+              "user": 4998.142,
+              "system": 95.658,
+              "total": 5093.8
+            },
+            "updateWorkMs": {
+              "samples": 390,
+              "total": 2568.3832810000094,
+              "p50": 6.5207270000028075,
+              "p95": 8.388763000002655,
+              "p99": 11.491070000003674,
+              "max": 57.967711999997846
+            },
+            "generationCalls": 2044,
+            "generationMs": 2384.4065269998027,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          },
+          "after": {
+            "name": "initial-city",
+            "turns": 30245,
+            "convergenceWallMs": 1515.1873500000002,
+            "processCpuMs": {
+              "user": 4222.387,
+              "system": 131.1,
+              "total": 4353.487
+            },
+            "updateWorkMs": {
+              "samples": 30245,
+              "total": 1019.0335369999957,
+              "p50": 0.0010230000043520704,
+              "p95": 0.22802000000228873,
+              "p99": 0.5763369999986026,
+              "max": 11.229616999997234
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 100,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          },
+          "processCpuRatio": 0.8546639051395815,
+          "updateWorkRatio": 0.3967606955466675,
+          "convergenceWallRatio": 0.5678218141803137
+        }
+      ]
+    },
+    {
+      "name": "detailed-crossing-out",
+      "medianProcessCpuRatio": 0.362017124129229,
+      "medianUpdateWorkRatio": 0.26867740680418906,
+      "medianConvergenceWallRatio": 0.33359305601782807,
+      "pairs": [
+        {
+          "round": 1,
+          "before": {
+            "name": "detailed-crossing-out",
+            "turns": 123,
+            "convergenceWallMs": 619.7520519999998,
+            "processCpuMs": {
+              "user": 1051.547,
+              "system": 0,
+              "total": 1051.547
+            },
+            "updateWorkMs": {
+              "samples": 123,
+              "total": 595.5978319999995,
+              "p50": 6.132470999999896,
+              "p95": 7.626126000000113,
+              "p99": 8.19158299999981,
+              "max": 8.25463099999979
+            },
+            "generationCalls": 602,
+            "generationMs": 504.9090400000059,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                83,
+                8
+              ]
+            }
+          },
+          "after": {
+            "name": "detailed-crossing-out",
+            "turns": 2167,
+            "convergenceWallMs": 206.74498099999983,
+            "processCpuMs": {
+              "user": 505.245,
+              "system": 16.078,
+              "total": 521.323
+            },
+            "updateWorkMs": {
+              "samples": 2167,
+              "total": 160.02368099995692,
+              "p50": 0.000984000000244123,
+              "p95": 0.4382260000002134,
+              "p99": 0.8314599999994243,
+              "max": 2.211687000000893
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 129,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                10,
+                82,
+                8
+              ]
+            }
+          },
+          "processCpuRatio": 0.49576766421282165,
+          "updateWorkRatio": 0.26867740680418906,
+          "convergenceWallRatio": 0.33359305601782807
+        },
+        {
+          "round": 2,
+          "before": {
+            "name": "detailed-crossing-out",
+            "turns": 121,
+            "convergenceWallMs": 609.1931079999995,
+            "processCpuMs": {
+              "user": 717.354,
+              "system": 7.004,
+              "total": 724.358
+            },
+            "updateWorkMs": {
+              "samples": 121,
+              "total": 591.5213160000021,
+              "p50": 6.0342970000019704,
+              "p95": 7.514729999998963,
+              "p99": 8.296166000000085,
+              "max": 10.118750000001455
+            },
+            "generationCalls": 602,
+            "generationMs": 497.57723200002874,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                83,
+                8
+              ]
+            }
+          },
+          "after": {
+            "name": "detailed-crossing-out",
+            "turns": 3538,
+            "convergenceWallMs": 208.1743720000013,
+            "processCpuMs": {
+              "user": 258.344,
+              "system": 3.886,
+              "total": 262.23
+            },
+            "updateWorkMs": {
+              "samples": 3538,
+              "total": 168.4820010000367,
+              "p50": 0.000972999998339219,
+              "p95": 0.2766699999992852,
+              "p99": 0.6499790000016219,
+              "max": 2.4982880000025034
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 129,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                10,
+                82,
+                8
+              ]
+            }
+          },
+          "processCpuRatio": 0.362017124129229,
+          "updateWorkRatio": 0.2848282833480105,
+          "convergenceWallRatio": 0.34172148250896084
+        },
+        {
+          "round": 3,
+          "before": {
+            "name": "detailed-crossing-out",
+            "turns": 120,
+            "convergenceWallMs": 570.2495670000062,
+            "processCpuMs": {
+              "user": 674.131,
+              "system": 4.268,
+              "total": 678.399
+            },
+            "updateWorkMs": {
+              "samples": 120,
+              "total": 553.8857279999866,
+              "p50": 6.037406999996165,
+              "p95": 7.140158000001975,
+              "p99": 7.6242200000051525,
+              "max": 10.948960000001534
+            },
+            "generationCalls": 602,
+            "generationMs": 466.90881700001046,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                83,
+                8
+              ]
+            }
+          },
+          "after": {
+            "name": "detailed-crossing-out",
+            "turns": 2292,
+            "convergenceWallMs": 158.99267300000065,
+            "processCpuMs": {
+              "user": 193.608,
+              "system": 9.193,
+              "total": 202.801
+            },
+            "updateWorkMs": {
+              "samples": 2292,
+              "total": 131.57218499977898,
+              "p50": 0.0009580000041751191,
+              "p95": 0.3040320000000065,
+              "p99": 0.64457499999844,
+              "max": 4.029166000000259
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 129,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                10,
+                82,
+                8
+              ]
+            }
+          },
+          "processCpuRatio": 0.29894059395724343,
+          "updateWorkRatio": 0.2375439162783089,
+          "convergenceWallRatio": 0.278812439676958
+        }
+      ]
+    },
+    {
+      "name": "detailed-crossing-back",
+      "medianProcessCpuRatio": 0.5819084724289415,
+      "medianUpdateWorkRatio": 0.3557383386638767,
+      "medianConvergenceWallRatio": 0.4279032505293004,
+      "pairs": [
+        {
+          "round": 1,
+          "before": {
+            "name": "detailed-crossing-back",
+            "turns": 160,
+            "convergenceWallMs": 896.7805290000006,
+            "processCpuMs": {
+              "user": 1644.841,
+              "system": 27.405,
+              "total": 1672.246
+            },
+            "updateWorkMs": {
+              "samples": 160,
+              "total": 809.024526000002,
+              "p50": 6.167685000000347,
+              "p95": 7.763856999999916,
+              "p99": 9.258689000000231,
+              "max": 9.69789000000037
+            },
+            "generationCalls": 786,
+            "generationMs": 689.4540300000072,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                8,
+                85,
+                7
+              ]
+            }
+          },
+          "after": {
+            "name": "detailed-crossing-back",
+            "turns": 6841,
+            "convergenceWallMs": 300.4001559999997,
+            "processCpuMs": {
+              "user": 421.161,
+              "system": 16.379,
+              "total": 437.54
+            },
+            "updateWorkMs": {
+              "samples": 6841,
+              "total": 235.82257300004858,
+              "p50": 0.0009710000013001263,
+              "p95": 0.23264199999903212,
+              "p99": 0.43538600000101724,
+              "max": 4.834521999999197
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 155,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                84,
+                7
+              ]
+            }
+          },
+          "processCpuRatio": 0.2616481067976841,
+          "updateWorkRatio": 0.29149001720134254,
+          "convergenceWallRatio": 0.33497622471238947
+        },
+        {
+          "round": 2,
+          "before": {
+            "name": "detailed-crossing-back",
+            "turns": 155,
+            "convergenceWallMs": 898.8417760000011,
+            "processCpuMs": {
+              "user": 2044.313,
+              "system": 12.935,
+              "total": 2057.248
+            },
+            "updateWorkMs": {
+              "samples": 155,
+              "total": 855.3065480000114,
+              "p50": 6.304251000001386,
+              "p95": 8.338621999999305,
+              "p99": 9.57314199999746,
+              "max": 10.195036000000982
+            },
+            "generationCalls": 786,
+            "generationMs": 731.1789320000171,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                8,
+                85,
+                7
+              ]
+            }
+          },
+          "after": {
+            "name": "detailed-crossing-back",
+            "turns": 7402,
+            "convergenceWallMs": 459.32426999999734,
+            "processCpuMs": {
+              "user": 1339.121,
+              "system": 34.42,
+              "total": 1373.541
+            },
+            "updateWorkMs": {
+              "samples": 7402,
+              "total": 347.49085200008267,
+              "p50": 0.0009700000009615906,
+              "p95": 0.3005139999986568,
+              "p99": 0.7515879999991739,
+              "max": 7.875706999999238
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 155,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                84,
+                7
+              ]
+            }
+          },
+          "processCpuRatio": 0.6676594168520276,
+          "updateWorkRatio": 0.40627638454613824,
+          "convergenceWallRatio": 0.5110179369322023
+        },
+        {
+          "round": 3,
+          "before": {
+            "name": "detailed-crossing-back",
+            "turns": 139,
+            "convergenceWallMs": 701.2840020000003,
+            "processCpuMs": {
+              "user": 776.684,
+              "system": 0,
+              "total": 776.684
+            },
+            "updateWorkMs": {
+              "samples": 139,
+              "total": 676.368968000017,
+              "p50": 6.0781130000032135,
+              "p95": 7.250080000005255,
+              "p99": 7.7522249999965425,
+              "max": 8.174111000000266
+            },
+            "generationCalls": 786,
+            "generationMs": 578.8848849999631,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                8,
+                85,
+                7
+              ]
+            }
+          },
+          "after": {
+            "name": "detailed-crossing-back",
+            "turns": 7218,
+            "convergenceWallMs": 300.08170399999653,
+            "processCpuMs": {
+              "user": 424.473,
+              "system": 27.486,
+              "total": 451.959
+            },
+            "updateWorkMs": {
+              "samples": 7218,
+              "total": 240.61037300012686,
+              "p50": 0.0009289999943575822,
+              "p95": 0.22780600000260165,
+              "p99": 0.436215000001539,
+              "max": 2.5185589999964577
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 155,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                84,
+                7
+              ]
+            }
+          },
+          "processCpuRatio": 0.5819084724289415,
+          "updateWorkRatio": 0.3557383386638767,
+          "convergenceWallRatio": 0.4279032505293004
+        }
+      ]
+    },
+    {
+      "name": "coarse-crossing",
+      "medianProcessCpuRatio": 0.4410949339795059,
+      "medianUpdateWorkRatio": 0.3155650240415308,
+      "medianConvergenceWallRatio": 0.38833925406859165,
+      "pairs": [
+        {
+          "round": 1,
+          "before": {
+            "name": "coarse-crossing",
+            "turns": 137,
+            "convergenceWallMs": 613.0488599999999,
+            "processCpuMs": {
+              "user": 617.489,
+              "system": 15.572,
+              "total": 633.061
+            },
+            "updateWorkMs": {
+              "samples": 137,
+              "total": 600.873263999998,
+              "p50": 5.608618999999635,
+              "p95": 7.149187999999413,
+              "p99": 8.407569999999396,
+              "max": 8.904263000000356
+            },
+            "generationCalls": 852,
+            "generationMs": 488.89547100001164,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                10,
+                69,
+                21
+              ]
+            }
+          },
+          "after": {
+            "name": "coarse-crossing",
+            "turns": 4034,
+            "convergenceWallMs": 238.0709370000004,
+            "processCpuMs": {
+              "user": 270.899,
+              "system": 8.341,
+              "total": 279.24
+            },
+            "updateWorkMs": {
+              "samples": 4034,
+              "total": 189.61458600007245,
+              "p50": 0.0010160000001633307,
+              "p95": 0.28443700000025274,
+              "p99": 0.5940559999999095,
+              "max": 1.5322159999996074
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 201,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                11,
+                68,
+                21
+              ]
+            }
+          },
+          "processCpuRatio": 0.4410949339795059,
+          "updateWorkRatio": 0.3155650240415308,
+          "convergenceWallRatio": 0.38833925406859165
+        },
+        {
+          "round": 2,
+          "before": {
+            "name": "coarse-crossing",
+            "turns": 131,
+            "convergenceWallMs": 615.6291429999983,
+            "processCpuMs": {
+              "user": 623.508,
+              "system": 0,
+              "total": 623.508
+            },
+            "updateWorkMs": {
+              "samples": 131,
+              "total": 602.4175800000303,
+              "p50": 5.838357000000542,
+              "p95": 7.096593999998731,
+              "p99": 7.414369999998598,
+              "max": 7.927345000000059
+            },
+            "generationCalls": 852,
+            "generationMs": 490.5459180000653,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                10,
+                69,
+                21
+              ]
+            }
+          },
+          "after": {
+            "name": "coarse-crossing",
+            "turns": 4752,
+            "convergenceWallMs": 418.60297999999966,
+            "processCpuMs": {
+              "user": 476.946,
+              "system": 14.387,
+              "total": 491.333
+            },
+            "updateWorkMs": {
+              "samples": 4752,
+              "total": 354.1388909999987,
+              "p50": 0.0009429999990970828,
+              "p95": 0.2820350000001781,
+              "p99": 0.8173040000001492,
+              "max": 108.80471199999738
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 201,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                11,
+                68,
+                21
+              ]
+            }
+          },
+          "processCpuRatio": 0.7880139468940254,
+          "updateWorkRatio": 0.5878628093821248,
+          "convergenceWallRatio": 0.6799596555161795
+        },
+        {
+          "round": 3,
+          "before": {
+            "name": "coarse-crossing",
+            "turns": 148,
+            "convergenceWallMs": 795.4962879999948,
+            "processCpuMs": {
+              "user": 1811.683,
+              "system": 16.964,
+              "total": 1828.647
+            },
+            "updateWorkMs": {
+              "samples": 148,
+              "total": 758.7273010000354,
+              "p50": 6.1059669999958714,
+              "p95": 7.531083000001672,
+              "p99": 9.326023000001442,
+              "max": 40.469427000003634
+            },
+            "generationCalls": 852,
+            "generationMs": 637.9590580000804,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                10,
+                69,
+                21
+              ]
+            }
+          },
+          "after": {
+            "name": "coarse-crossing",
+            "turns": 4222,
+            "convergenceWallMs": 225.34707499999786,
+            "processCpuMs": {
+              "user": 224.634,
+              "system": 29.324,
+              "total": 253.958
+            },
+            "updateWorkMs": {
+              "samples": 4222,
+              "total": 184.4190590000726,
+              "p50": 0.0009390000050188974,
+              "p95": 0.25295700000424404,
+              "p99": 0.5365699999965727,
+              "max": 2.5538460000025225
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 201,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                11,
+                68,
+                21
+              ]
+            }
+          },
+          "processCpuRatio": 0.13887754170159686,
+          "updateWorkRatio": 0.2430636919971119,
+          "convergenceWallRatio": 0.283278600289332
+        }
+      ]
+    },
+    {
+      "name": "return-city",
+      "medianProcessCpuRatio": 1.0731034201893483,
+      "medianUpdateWorkRatio": 0.4107467730701861,
+      "medianConvergenceWallRatio": 0.6176347619358838,
+      "pairs": [
+        {
+          "round": 1,
+          "before": {
+            "name": "return-city",
+            "turns": 212,
+            "convergenceWallMs": 1211.2914469999996,
+            "processCpuMs": {
+              "user": 1863.624,
+              "system": 15.137,
+              "total": 1878.761
+            },
+            "updateWorkMs": {
+              "samples": 212,
+              "total": 1163.6142420000024,
+              "p50": 6.166197000000466,
+              "p95": 7.524482999999236,
+              "p99": 8.389650999999503,
+              "max": 8.881269999999859
+            },
+            "generationCalls": 1260,
+            "generationMs": 1014.2126280000166,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                8,
+                85,
+                7
+              ]
+            }
+          },
+          "after": {
+            "name": "return-city",
+            "turns": 14644,
+            "convergenceWallMs": 646.9236189999992,
+            "processCpuMs": {
+              "user": 1196.244,
+              "system": 67.748,
+              "total": 1263.992
+            },
+            "updateWorkMs": {
+              "samples": 14644,
+              "total": 477.95079500001157,
+              "p50": 0.001012000000628177,
+              "p95": 0.23359100000016042,
+              "p99": 0.45931799999925715,
+              "max": 2.004946999999447
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 247,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                84,
+                7
+              ]
+            }
+          },
+          "processCpuRatio": 0.6727795605721004,
+          "updateWorkRatio": 0.4107467730701861,
+          "convergenceWallRatio": 0.5340775918151096
+        },
+        {
+          "round": 2,
+          "before": {
+            "name": "return-city",
+            "turns": 221,
+            "convergenceWallMs": 1312.7236909999992,
+            "processCpuMs": {
+              "user": 2382.187,
+              "system": 24.171,
+              "total": 2406.358
+            },
+            "updateWorkMs": {
+              "samples": 221,
+              "total": 1260.949515999997,
+              "p50": 6.310977000001003,
+              "p95": 7.991899000000558,
+              "p99": 9.859814999999799,
+              "max": 11.350439000001643
+            },
+            "generationCalls": 1260,
+            "generationMs": 1099.4628060000869,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                8,
+                85,
+                7
+              ]
+            }
+          },
+          "after": {
+            "name": "return-city",
+            "turns": 13933,
+            "convergenceWallMs": 845.2749210000002,
+            "processCpuMs": {
+              "user": 2525.454,
+              "system": 56.817,
+              "total": 2582.271
+            },
+            "updateWorkMs": {
+              "samples": 13933,
+              "total": 583.1511909999572,
+              "p50": 0.000968000000284519,
+              "p95": 0.28138899999976275,
+              "p99": 0.6231189999998605,
+              "max": 5.391771999999037
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 247,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                84,
+                7
+              ]
+            }
+          },
+          "processCpuRatio": 1.0731034201893483,
+          "updateWorkRatio": 0.46246989558300333,
+          "convergenceWallRatio": 0.6439092451786952
+        },
+        {
+          "round": 3,
+          "before": {
+            "name": "return-city",
+            "turns": 204,
+            "convergenceWallMs": 1132.737605000002,
+            "processCpuMs": {
+              "user": 1374.492,
+              "system": 5.229,
+              "total": 1379.721
+            },
+            "updateWorkMs": {
+              "samples": 204,
+              "total": 1094.6028950000546,
+              "p50": 6.214865000001737,
+              "p95": 7.46498199999769,
+              "p99": 8.084102000000712,
+              "max": 9.193929000000935
+            },
+            "generationCalls": 1260,
+            "generationMs": 954.1346080000876,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                8,
+                85,
+                7
+              ]
+            }
+          },
+          "after": {
+            "name": "return-city",
+            "turns": 11222,
+            "convergenceWallMs": 699.6181209999995,
+            "processCpuMs": {
+              "user": 2010.963,
+              "system": 84.105,
+              "total": 2095.068
+            },
+            "updateWorkMs": {
+              "samples": 11222,
+              "total": 414.2806270004512,
+              "p50": 0.0009710000013001263,
+              "p95": 0.22993500000302447,
+              "p99": 0.5897559999939403,
+              "max": 2.829051000000618
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 247,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                84,
+                7
+              ]
+            }
+          },
+          "processCpuRatio": 1.5184722128604262,
+          "updateWorkRatio": 0.3784757274924168,
+          "convergenceWallRatio": 0.6176347619358838
+        }
+      ]
+    },
+    {
+      "name": "evict",
+      "medianProcessCpuRatio": 0.3577694235588972,
+      "medianUpdateWorkRatio": 0.48020378510417644,
+      "medianConvergenceWallRatio": 0.5041839192424821,
+      "pairs": [
+        {
+          "round": 1,
+          "before": {
+            "name": "evict",
+            "turns": 20,
+            "convergenceWallMs": 1.1758829999998852,
+            "processCpuMs": {
+              "user": 1.128,
+              "system": 0.036,
+              "total": 1.164
+            },
+            "updateWorkMs": {
+              "samples": 20,
+              "total": 1.0887940000002345,
+              "p50": 0.001750000000356522,
+              "p95": 1.0530300000000352,
+              "p99": 1.0530300000000352,
+              "max": 1.0530300000000352
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 0,
+              "groundTiles": 0,
+              "pendingBuildings": 0,
+              "lods": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "after": {
+            "name": "evict",
+            "turns": 20,
+            "convergenceWallMs": 0.6245060000001104,
+            "processCpuMs": {
+              "user": 0.599,
+              "system": 0.02,
+              "total": 0.619
+            },
+            "updateWorkMs": {
+              "samples": 20,
+              "total": 0.5228429999988293,
+              "p50": 0.0010879999990720535,
+              "p95": 0.3516779999990831,
+              "p99": 0.3516779999990831,
+              "max": 0.3516779999990831
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 247,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 0,
+              "groundTiles": 0,
+              "pendingBuildings": 0,
+              "lods": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "processCpuRatio": 0.531786941580756,
+          "updateWorkRatio": 0.48020378510417644,
+          "convergenceWallRatio": 0.5310953555754878
+        },
+        {
+          "round": 2,
+          "before": {
+            "name": "evict",
+            "turns": 20,
+            "convergenceWallMs": 1.5357609999991837,
+            "processCpuMs": {
+              "user": 3.096,
+              "system": 0.096,
+              "total": 3.192
+            },
+            "updateWorkMs": {
+              "samples": 20,
+              "total": 1.4279749999841442,
+              "p50": 0.0011080000003858004,
+              "p95": 0.8369189999975788,
+              "p99": 0.8369189999975788,
+              "max": 0.8369189999975788
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 0,
+              "groundTiles": 0,
+              "pendingBuildings": 0,
+              "lods": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "after": {
+            "name": "evict",
+            "turns": 20,
+            "convergenceWallMs": 0.774305999999342,
+            "processCpuMs": {
+              "user": 1.105,
+              "system": 0.037,
+              "total": 1.142
+            },
+            "updateWorkMs": {
+              "samples": 20,
+              "total": 0.6654840000155673,
+              "p50": 0.0011359999989508651,
+              "p95": 0.4900270000034652,
+              "p99": 0.4900270000034652,
+              "max": 0.4900270000034652
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 247,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 0,
+              "groundTiles": 0,
+              "pendingBuildings": 0,
+              "lods": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "processCpuRatio": 0.3577694235588972,
+          "updateWorkRatio": 0.4660333689476053,
+          "convergenceWallRatio": 0.5041839192424821
+        },
+        {
+          "round": 3,
+          "before": {
+            "name": "evict",
+            "turns": 20,
+            "convergenceWallMs": 2.251211000002513,
+            "processCpuMs": {
+              "user": 4.891,
+              "system": 0.129,
+              "total": 5.02
+            },
+            "updateWorkMs": {
+              "samples": 20,
+              "total": 0.7617599999866798,
+              "p50": 0.001649999998335261,
+              "p95": 0.7270859999989625,
+              "p99": 0.7270859999989625,
+              "max": 0.7270859999989625
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 0,
+              "groundTiles": 0,
+              "pendingBuildings": 0,
+              "lods": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "after": {
+            "name": "evict",
+            "turns": 20,
+            "convergenceWallMs": 0.8662760000006529,
+            "processCpuMs": {
+              "user": 1.321,
+              "system": 0.035,
+              "total": 1.356
+            },
+            "updateWorkMs": {
+              "samples": 20,
+              "total": 0.7331789999952889,
+              "p50": 0.001171999996586237,
+              "p95": 0.5259339999975055,
+              "p99": 0.5259339999975055,
+              "max": 0.5259339999975055
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 247,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 0,
+              "groundTiles": 0,
+              "pendingBuildings": 0,
+              "lods": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          "processCpuRatio": 0.2701195219123506,
+          "updateWorkRatio": 0.9624803087693097,
+          "convergenceWallRatio": 0.3848044452517715
+        }
+      ]
+    },
+    {
+      "name": "revisit",
+      "medianProcessCpuRatio": 0.8889058695897161,
+      "medianUpdateWorkRatio": 0.508275330173183,
+      "medianConvergenceWallRatio": 0.7033094840554088,
+      "pairs": [
+        {
+          "round": 1,
+          "before": {
+            "name": "revisit",
+            "turns": 313,
+            "convergenceWallMs": 1849.7266690000006,
+            "processCpuMs": {
+              "user": 2272.038,
+              "system": 8.715,
+              "total": 2280.753
+            },
+            "updateWorkMs": {
+              "samples": 313,
+              "total": 1812.0775770000018,
+              "p50": 6.296607999999651,
+              "p95": 7.535554000000047,
+              "p99": 8.495178999999553,
+              "max": 8.97328699999889
+            },
+            "generationCalls": 2044,
+            "generationMs": 1634.9870339999597,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          },
+          "after": {
+            "name": "revisit",
+            "turns": 36532,
+            "convergenceWallMs": 1327.2179430000015,
+            "processCpuMs": {
+              "user": 2561.04,
+              "system": 123.543,
+              "total": 2684.583
+            },
+            "updateWorkMs": {
+              "samples": 36532,
+              "total": 983.0314200001376,
+              "p50": 0.000976999999693362,
+              "p95": 0.21308499999940977,
+              "p99": 0.416983999999502,
+              "max": 2.2233550000000832
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 347,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          },
+          "processCpuRatio": 1.177059944676166,
+          "updateWorkRatio": 0.5424885956745861,
+          "convergenceWallRatio": 0.717521115548127
+        },
+        {
+          "round": 2,
+          "before": {
+            "name": "revisit",
+            "turns": 336,
+            "convergenceWallMs": 2030.1534280000014,
+            "processCpuMs": {
+              "user": 4238.592,
+              "system": 38.256,
+              "total": 4276.848
+            },
+            "updateWorkMs": {
+              "samples": 336,
+              "total": 1941.001285000024,
+              "p50": 6.268852999997762,
+              "p95": 7.834541000000172,
+              "p99": 9.81929400000081,
+              "max": 12.849915999999212
+            },
+            "generationCalls": 2044,
+            "generationMs": 1763.5530590000053,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          },
+          "after": {
+            "name": "revisit",
+            "turns": 34851,
+            "convergenceWallMs": 1427.8261600000005,
+            "processCpuMs": {
+              "user": 2861.715,
+              "system": 121.957,
+              "total": 2983.672
+            },
+            "updateWorkMs": {
+              "samples": 34851,
+              "total": 986.5630689999598,
+              "p50": 0.000985999999102205,
+              "p95": 0.21344200000021374,
+              "p99": 0.4627680000012333,
+              "max": 3.4352669999971113
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 347,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          },
+          "processCpuRatio": 0.6976333973056793,
+          "updateWorkRatio": 0.508275330173183,
+          "convergenceWallRatio": 0.7033094840554088
+        },
+        {
+          "round": 3,
+          "before": {
+            "name": "revisit",
+            "turns": 314,
+            "convergenceWallMs": 1928.7356759999966,
+            "processCpuMs": {
+              "user": 3088.088,
+              "system": 26.559,
+              "total": 3114.647
+            },
+            "updateWorkMs": {
+              "samples": 314,
+              "total": 1841.6290570000347,
+              "p50": 6.297388999999384,
+              "p95": 7.904907999996794,
+              "p99": 8.708798999999999,
+              "max": 10.500475000000733
+            },
+            "generationCalls": 2044,
+            "generationMs": 1664.8875850001132,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          },
+          "after": {
+            "name": "revisit",
+            "turns": 32090,
+            "convergenceWallMs": 1297.124834000002,
+            "processCpuMs": {
+              "user": 2657.765,
+              "system": 110.863,
+              "total": 2768.628
+            },
+            "updateWorkMs": {
+              "samples": 32090,
+              "total": 869.0391580009746,
+              "p50": 0.0009470000004512258,
+              "p95": 0.21403799999825424,
+              "p99": 0.45614300000306685,
+              "max": 4.56246700000338
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 347,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          },
+          "processCpuRatio": 0.8889058695897161,
+          "updateWorkRatio": 0.4718861025230654,
+          "convergenceWallRatio": 0.6725259713607352
+        }
+      ]
+    }
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "order": [
+        "baseline",
+        "prepared"
+      ],
+      "baseline": {
+        "label": "baseline",
+        "loadMs": 922.8824169999999,
+        "createMs": 155.15443700000014,
+        "generationCalls": 7588,
+        "generationMs": 6553.263876,
+        "scenarios": [
+          {
+            "name": "initial-city",
+            "turns": 381,
+            "convergenceWallMs": 2480.819369,
+            "processCpuMs": {
+              "user": 3459.507,
+              "system": 43.93,
+              "total": 3503.437
+            },
+            "updateWorkMs": {
+              "samples": 381,
+              "total": 2420.205884000004,
+              "p50": 6.521015000000261,
+              "p95": 7.971614999999929,
+              "p99": 9.212568000000374,
+              "max": 9.917115000000194
+            },
+            "generationCalls": 2044,
+            "generationMs": 2220.805672999999,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          },
+          {
+            "name": "detailed-crossing-out",
+            "turns": 123,
+            "convergenceWallMs": 619.7520519999998,
+            "processCpuMs": {
+              "user": 1051.547,
+              "system": 0,
+              "total": 1051.547
+            },
+            "updateWorkMs": {
+              "samples": 123,
+              "total": 595.5978319999995,
+              "p50": 6.132470999999896,
+              "p95": 7.626126000000113,
+              "p99": 8.19158299999981,
+              "max": 8.25463099999979
+            },
+            "generationCalls": 602,
+            "generationMs": 504.9090400000059,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                83,
+                8
+              ]
+            }
+          },
+          {
+            "name": "detailed-crossing-back",
+            "turns": 160,
+            "convergenceWallMs": 896.7805290000006,
+            "processCpuMs": {
+              "user": 1644.841,
+              "system": 27.405,
+              "total": 1672.246
+            },
+            "updateWorkMs": {
+              "samples": 160,
+              "total": 809.024526000002,
+              "p50": 6.167685000000347,
+              "p95": 7.763856999999916,
+              "p99": 9.258689000000231,
+              "max": 9.69789000000037
+            },
+            "generationCalls": 786,
+            "generationMs": 689.4540300000072,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                8,
+                85,
+                7
+              ]
+            }
+          },
+          {
+            "name": "coarse-crossing",
+            "turns": 137,
+            "convergenceWallMs": 613.0488599999999,
+            "processCpuMs": {
+              "user": 617.489,
+              "system": 15.572,
+              "total": 633.061
+            },
+            "updateWorkMs": {
+              "samples": 137,
+              "total": 600.873263999998,
+              "p50": 5.608618999999635,
+              "p95": 7.149187999999413,
+              "p99": 8.407569999999396,
+              "max": 8.904263000000356
+            },
+            "generationCalls": 852,
+            "generationMs": 488.89547100001164,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                10,
+                69,
+                21
+              ]
+            }
+          },
+          {
+            "name": "return-city",
+            "turns": 212,
+            "convergenceWallMs": 1211.2914469999996,
+            "processCpuMs": {
+              "user": 1863.624,
+              "system": 15.137,
+              "total": 1878.761
+            },
+            "updateWorkMs": {
+              "samples": 212,
+              "total": 1163.6142420000024,
+              "p50": 6.166197000000466,
+              "p95": 7.524482999999236,
+              "p99": 8.389650999999503,
+              "max": 8.881269999999859
+            },
+            "generationCalls": 1260,
+            "generationMs": 1014.2126280000166,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                8,
+                85,
+                7
+              ]
+            }
+          },
+          {
+            "name": "evict",
+            "turns": 20,
+            "convergenceWallMs": 1.1758829999998852,
+            "processCpuMs": {
+              "user": 1.128,
+              "system": 0.036,
+              "total": 1.164
+            },
+            "updateWorkMs": {
+              "samples": 20,
+              "total": 1.0887940000002345,
+              "p50": 0.001750000000356522,
+              "p95": 1.0530300000000352,
+              "p99": 1.0530300000000352,
+              "max": 1.0530300000000352
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 0,
+              "groundTiles": 0,
+              "pendingBuildings": 0,
+              "lods": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "name": "revisit",
+            "turns": 313,
+            "convergenceWallMs": 1849.7266690000006,
+            "processCpuMs": {
+              "user": 2272.038,
+              "system": 8.715,
+              "total": 2280.753
+            },
+            "updateWorkMs": {
+              "samples": 313,
+              "total": 1812.0775770000018,
+              "p50": 6.296607999999651,
+              "p95": 7.535554000000047,
+              "p99": 8.495178999999553,
+              "max": 8.97328699999889
+            },
+            "generationCalls": 2044,
+            "generationMs": 1634.9870339999597,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          }
+        ]
+      },
+      "prepared": {
+        "label": "prepared",
+        "loadMs": 894.2910759999995,
+        "createMs": 142.7946809999994,
+        "generationCalls": 0,
+        "generationMs": 0,
+        "scenarios": [
+          {
+            "name": "initial-city",
+            "turns": 33428,
+            "convergenceWallMs": 1343.9184690000002,
+            "processCpuMs": {
+              "user": 2357.862,
+              "system": 98.831,
+              "total": 2456.693
+            },
+            "updateWorkMs": {
+              "samples": 33428,
+              "total": 953.8320790001017,
+              "p50": 0.000981000001047505,
+              "p95": 0.21991999999954714,
+              "p99": 0.4200669999991078,
+              "max": 16.924457000000984
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 100,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          },
+          {
+            "name": "detailed-crossing-out",
+            "turns": 2167,
+            "convergenceWallMs": 206.74498099999983,
+            "processCpuMs": {
+              "user": 505.245,
+              "system": 16.078,
+              "total": 521.323
+            },
+            "updateWorkMs": {
+              "samples": 2167,
+              "total": 160.02368099995692,
+              "p50": 0.000984000000244123,
+              "p95": 0.4382260000002134,
+              "p99": 0.8314599999994243,
+              "max": 2.211687000000893
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 129,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                10,
+                82,
+                8
+              ]
+            }
+          },
+          {
+            "name": "detailed-crossing-back",
+            "turns": 6841,
+            "convergenceWallMs": 300.4001559999997,
+            "processCpuMs": {
+              "user": 421.161,
+              "system": 16.379,
+              "total": 437.54
+            },
+            "updateWorkMs": {
+              "samples": 6841,
+              "total": 235.82257300004858,
+              "p50": 0.0009710000013001263,
+              "p95": 0.23264199999903212,
+              "p99": 0.43538600000101724,
+              "max": 4.834521999999197
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 155,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                84,
+                7
+              ]
+            }
+          },
+          {
+            "name": "coarse-crossing",
+            "turns": 4034,
+            "convergenceWallMs": 238.0709370000004,
+            "processCpuMs": {
+              "user": 270.899,
+              "system": 8.341,
+              "total": 279.24
+            },
+            "updateWorkMs": {
+              "samples": 4034,
+              "total": 189.61458600007245,
+              "p50": 0.0010160000001633307,
+              "p95": 0.28443700000025274,
+              "p99": 0.5940559999999095,
+              "max": 1.5322159999996074
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 201,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                11,
+                68,
+                21
+              ]
+            }
+          },
+          {
+            "name": "return-city",
+            "turns": 14644,
+            "convergenceWallMs": 646.9236189999992,
+            "processCpuMs": {
+              "user": 1196.244,
+              "system": 67.748,
+              "total": 1263.992
+            },
+            "updateWorkMs": {
+              "samples": 14644,
+              "total": 477.95079500001157,
+              "p50": 0.001012000000628177,
+              "p95": 0.23359100000016042,
+              "p99": 0.45931799999925715,
+              "max": 2.004946999999447
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 247,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                84,
+                7
+              ]
+            }
+          },
+          {
+            "name": "evict",
+            "turns": 20,
+            "convergenceWallMs": 0.6245060000001104,
+            "processCpuMs": {
+              "user": 0.599,
+              "system": 0.02,
+              "total": 0.619
+            },
+            "updateWorkMs": {
+              "samples": 20,
+              "total": 0.5228429999988293,
+              "p50": 0.0010879999990720535,
+              "p95": 0.3516779999990831,
+              "p99": 0.3516779999990831,
+              "max": 0.3516779999990831
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 247,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 0,
+              "groundTiles": 0,
+              "pendingBuildings": 0,
+              "lods": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "name": "revisit",
+            "turns": 36532,
+            "convergenceWallMs": 1327.2179430000015,
+            "processCpuMs": {
+              "user": 2561.04,
+              "system": 123.543,
+              "total": 2684.583
+            },
+            "updateWorkMs": {
+              "samples": 36532,
+              "total": 983.0314200001376,
+              "p50": 0.000976999999693362,
+              "p95": 0.21308499999940977,
+              "p99": 0.416983999999502,
+              "max": 2.2233550000000832
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 347,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "round": 2,
+      "order": [
+        "prepared",
+        "baseline"
+      ],
+      "prepared": {
+        "label": "prepared",
+        "loadMs": 897.9914540000009,
+        "createMs": 139.80402799999865,
+        "generationCalls": 0,
+        "generationMs": 0,
+        "scenarios": [
+          {
+            "name": "initial-city",
+            "turns": 38968,
+            "convergenceWallMs": 1689.804126000001,
+            "processCpuMs": {
+              "user": 3053.493,
+              "system": 146.368,
+              "total": 3199.861
+            },
+            "updateWorkMs": {
+              "samples": 38968,
+              "total": 1232.7072860000262,
+              "p50": 0.000954999999521533,
+              "p95": 0.2180449999996199,
+              "p99": 0.44700600000032864,
+              "max": 106.8070430000007
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 100,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          },
+          {
+            "name": "detailed-crossing-out",
+            "turns": 3538,
+            "convergenceWallMs": 208.1743720000013,
+            "processCpuMs": {
+              "user": 258.344,
+              "system": 3.886,
+              "total": 262.23
+            },
+            "updateWorkMs": {
+              "samples": 3538,
+              "total": 168.4820010000367,
+              "p50": 0.000972999998339219,
+              "p95": 0.2766699999992852,
+              "p99": 0.6499790000016219,
+              "max": 2.4982880000025034
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 129,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                10,
+                82,
+                8
+              ]
+            }
+          },
+          {
+            "name": "detailed-crossing-back",
+            "turns": 7402,
+            "convergenceWallMs": 459.32426999999734,
+            "processCpuMs": {
+              "user": 1339.121,
+              "system": 34.42,
+              "total": 1373.541
+            },
+            "updateWorkMs": {
+              "samples": 7402,
+              "total": 347.49085200008267,
+              "p50": 0.0009700000009615906,
+              "p95": 0.3005139999986568,
+              "p99": 0.7515879999991739,
+              "max": 7.875706999999238
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 155,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                84,
+                7
+              ]
+            }
+          },
+          {
+            "name": "coarse-crossing",
+            "turns": 4752,
+            "convergenceWallMs": 418.60297999999966,
+            "processCpuMs": {
+              "user": 476.946,
+              "system": 14.387,
+              "total": 491.333
+            },
+            "updateWorkMs": {
+              "samples": 4752,
+              "total": 354.1388909999987,
+              "p50": 0.0009429999990970828,
+              "p95": 0.2820350000001781,
+              "p99": 0.8173040000001492,
+              "max": 108.80471199999738
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 201,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                11,
+                68,
+                21
+              ]
+            }
+          },
+          {
+            "name": "return-city",
+            "turns": 13933,
+            "convergenceWallMs": 845.2749210000002,
+            "processCpuMs": {
+              "user": 2525.454,
+              "system": 56.817,
+              "total": 2582.271
+            },
+            "updateWorkMs": {
+              "samples": 13933,
+              "total": 583.1511909999572,
+              "p50": 0.000968000000284519,
+              "p95": 0.28138899999976275,
+              "p99": 0.6231189999998605,
+              "max": 5.391771999999037
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 247,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                84,
+                7
+              ]
+            }
+          },
+          {
+            "name": "evict",
+            "turns": 20,
+            "convergenceWallMs": 0.774305999999342,
+            "processCpuMs": {
+              "user": 1.105,
+              "system": 0.037,
+              "total": 1.142
+            },
+            "updateWorkMs": {
+              "samples": 20,
+              "total": 0.6654840000155673,
+              "p50": 0.0011359999989508651,
+              "p95": 0.4900270000034652,
+              "p99": 0.4900270000034652,
+              "max": 0.4900270000034652
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 247,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 0,
+              "groundTiles": 0,
+              "pendingBuildings": 0,
+              "lods": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "name": "revisit",
+            "turns": 34851,
+            "convergenceWallMs": 1427.8261600000005,
+            "processCpuMs": {
+              "user": 2861.715,
+              "system": 121.957,
+              "total": 2983.672
+            },
+            "updateWorkMs": {
+              "samples": 34851,
+              "total": 986.5630689999598,
+              "p50": 0.000985999999102205,
+              "p95": 0.21344200000021374,
+              "p99": 0.4627680000012333,
+              "max": 3.4352669999971113
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 347,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          }
+        ]
+      },
+      "baseline": {
+        "label": "baseline",
+        "loadMs": 780.4690869999977,
+        "createMs": 151.02875700000004,
+        "generationCalls": 7588,
+        "generationMs": 6735.831234000241,
+        "scenarios": [
+          {
+            "name": "initial-city",
+            "turns": 369,
+            "convergenceWallMs": 2411.153821,
+            "processCpuMs": {
+              "user": 4178.645,
+              "system": 79.498,
+              "total": 4258.143
+            },
+            "updateWorkMs": {
+              "samples": 369,
+              "total": 2324.8931600000215,
+              "p50": 6.503345000000991,
+              "p95": 8.373794000002817,
+              "p99": 9.772843999999168,
+              "max": 11.420333999998547
+            },
+            "generationCalls": 2044,
+            "generationMs": 2153.513287000038,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          },
+          {
+            "name": "detailed-crossing-out",
+            "turns": 121,
+            "convergenceWallMs": 609.1931079999995,
+            "processCpuMs": {
+              "user": 717.354,
+              "system": 7.004,
+              "total": 724.358
+            },
+            "updateWorkMs": {
+              "samples": 121,
+              "total": 591.5213160000021,
+              "p50": 6.0342970000019704,
+              "p95": 7.514729999998963,
+              "p99": 8.296166000000085,
+              "max": 10.118750000001455
+            },
+            "generationCalls": 602,
+            "generationMs": 497.57723200002874,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                83,
+                8
+              ]
+            }
+          },
+          {
+            "name": "detailed-crossing-back",
+            "turns": 155,
+            "convergenceWallMs": 898.8417760000011,
+            "processCpuMs": {
+              "user": 2044.313,
+              "system": 12.935,
+              "total": 2057.248
+            },
+            "updateWorkMs": {
+              "samples": 155,
+              "total": 855.3065480000114,
+              "p50": 6.304251000001386,
+              "p95": 8.338621999999305,
+              "p99": 9.57314199999746,
+              "max": 10.195036000000982
+            },
+            "generationCalls": 786,
+            "generationMs": 731.1789320000171,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                8,
+                85,
+                7
+              ]
+            }
+          },
+          {
+            "name": "coarse-crossing",
+            "turns": 131,
+            "convergenceWallMs": 615.6291429999983,
+            "processCpuMs": {
+              "user": 623.508,
+              "system": 0,
+              "total": 623.508
+            },
+            "updateWorkMs": {
+              "samples": 131,
+              "total": 602.4175800000303,
+              "p50": 5.838357000000542,
+              "p95": 7.096593999998731,
+              "p99": 7.414369999998598,
+              "max": 7.927345000000059
+            },
+            "generationCalls": 852,
+            "generationMs": 490.5459180000653,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                10,
+                69,
+                21
+              ]
+            }
+          },
+          {
+            "name": "return-city",
+            "turns": 221,
+            "convergenceWallMs": 1312.7236909999992,
+            "processCpuMs": {
+              "user": 2382.187,
+              "system": 24.171,
+              "total": 2406.358
+            },
+            "updateWorkMs": {
+              "samples": 221,
+              "total": 1260.949515999997,
+              "p50": 6.310977000001003,
+              "p95": 7.991899000000558,
+              "p99": 9.859814999999799,
+              "max": 11.350439000001643
+            },
+            "generationCalls": 1260,
+            "generationMs": 1099.4628060000869,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                8,
+                85,
+                7
+              ]
+            }
+          },
+          {
+            "name": "evict",
+            "turns": 20,
+            "convergenceWallMs": 1.5357609999991837,
+            "processCpuMs": {
+              "user": 3.096,
+              "system": 0.096,
+              "total": 3.192
+            },
+            "updateWorkMs": {
+              "samples": 20,
+              "total": 1.4279749999841442,
+              "p50": 0.0011080000003858004,
+              "p95": 0.8369189999975788,
+              "p99": 0.8369189999975788,
+              "max": 0.8369189999975788
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 0,
+              "groundTiles": 0,
+              "pendingBuildings": 0,
+              "lods": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "name": "revisit",
+            "turns": 336,
+            "convergenceWallMs": 2030.1534280000014,
+            "processCpuMs": {
+              "user": 4238.592,
+              "system": 38.256,
+              "total": 4276.848
+            },
+            "updateWorkMs": {
+              "samples": 336,
+              "total": 1941.001285000024,
+              "p50": 6.268852999997762,
+              "p95": 7.834541000000172,
+              "p99": 9.81929400000081,
+              "max": 12.849915999999212
+            },
+            "generationCalls": 2044,
+            "generationMs": 1763.5530590000053,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "round": 3,
+      "order": [
+        "baseline",
+        "prepared"
+      ],
+      "baseline": {
+        "label": "baseline",
+        "loadMs": 3328.955648000003,
+        "createMs": 299.9196459999948,
+        "generationCalls": 7588,
+        "generationMs": 6687.1814800000575,
+        "scenarios": [
+          {
+            "name": "initial-city",
+            "turns": 390,
+            "convergenceWallMs": 2668.420466000003,
+            "processCpuMs": {
+              "user": 4998.142,
+              "system": 95.658,
+              "total": 5093.8
+            },
+            "updateWorkMs": {
+              "samples": 390,
+              "total": 2568.3832810000094,
+              "p50": 6.5207270000028075,
+              "p95": 8.388763000002655,
+              "p99": 11.491070000003674,
+              "max": 57.967711999997846
+            },
+            "generationCalls": 2044,
+            "generationMs": 2384.4065269998027,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          },
+          {
+            "name": "detailed-crossing-out",
+            "turns": 120,
+            "convergenceWallMs": 570.2495670000062,
+            "processCpuMs": {
+              "user": 674.131,
+              "system": 4.268,
+              "total": 678.399
+            },
+            "updateWorkMs": {
+              "samples": 120,
+              "total": 553.8857279999866,
+              "p50": 6.037406999996165,
+              "p95": 7.140158000001975,
+              "p99": 7.6242200000051525,
+              "max": 10.948960000001534
+            },
+            "generationCalls": 602,
+            "generationMs": 466.90881700001046,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                83,
+                8
+              ]
+            }
+          },
+          {
+            "name": "detailed-crossing-back",
+            "turns": 139,
+            "convergenceWallMs": 701.2840020000003,
+            "processCpuMs": {
+              "user": 776.684,
+              "system": 0,
+              "total": 776.684
+            },
+            "updateWorkMs": {
+              "samples": 139,
+              "total": 676.368968000017,
+              "p50": 6.0781130000032135,
+              "p95": 7.250080000005255,
+              "p99": 7.7522249999965425,
+              "max": 8.174111000000266
+            },
+            "generationCalls": 786,
+            "generationMs": 578.8848849999631,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                8,
+                85,
+                7
+              ]
+            }
+          },
+          {
+            "name": "coarse-crossing",
+            "turns": 148,
+            "convergenceWallMs": 795.4962879999948,
+            "processCpuMs": {
+              "user": 1811.683,
+              "system": 16.964,
+              "total": 1828.647
+            },
+            "updateWorkMs": {
+              "samples": 148,
+              "total": 758.7273010000354,
+              "p50": 6.1059669999958714,
+              "p95": 7.531083000001672,
+              "p99": 9.326023000001442,
+              "max": 40.469427000003634
+            },
+            "generationCalls": 852,
+            "generationMs": 637.9590580000804,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                10,
+                69,
+                21
+              ]
+            }
+          },
+          {
+            "name": "return-city",
+            "turns": 204,
+            "convergenceWallMs": 1132.737605000002,
+            "processCpuMs": {
+              "user": 1374.492,
+              "system": 5.229,
+              "total": 1379.721
+            },
+            "updateWorkMs": {
+              "samples": 204,
+              "total": 1094.6028950000546,
+              "p50": 6.214865000001737,
+              "p95": 7.46498199999769,
+              "p99": 8.084102000000712,
+              "max": 9.193929000000935
+            },
+            "generationCalls": 1260,
+            "generationMs": 954.1346080000876,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                8,
+                85,
+                7
+              ]
+            }
+          },
+          {
+            "name": "evict",
+            "turns": 20,
+            "convergenceWallMs": 2.251211000002513,
+            "processCpuMs": {
+              "user": 4.891,
+              "system": 0.129,
+              "total": 5.02
+            },
+            "updateWorkMs": {
+              "samples": 20,
+              "total": 0.7617599999866798,
+              "p50": 0.001649999998335261,
+              "p95": 0.7270859999989625,
+              "p99": 0.7270859999989625,
+              "max": 0.7270859999989625
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 0,
+              "groundTiles": 0,
+              "pendingBuildings": 0,
+              "lods": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "name": "revisit",
+            "turns": 314,
+            "convergenceWallMs": 1928.7356759999966,
+            "processCpuMs": {
+              "user": 3088.088,
+              "system": 26.559,
+              "total": 3114.647
+            },
+            "updateWorkMs": {
+              "samples": 314,
+              "total": 1841.6290570000347,
+              "p50": 6.297388999999384,
+              "p95": 7.904907999996794,
+              "p99": 8.708798999999999,
+              "max": 10.500475000000733
+            },
+            "generationCalls": 2044,
+            "generationMs": 1664.8875850001132,
+            "stats": {
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          }
+        ]
+      },
+      "prepared": {
+        "label": "prepared",
+        "loadMs": 1055.0020240000013,
+        "createMs": 134.72492000000057,
+        "generationCalls": 0,
+        "generationMs": 0,
+        "scenarios": [
+          {
+            "name": "initial-city",
+            "turns": 30245,
+            "convergenceWallMs": 1515.1873500000002,
+            "processCpuMs": {
+              "user": 4222.387,
+              "system": 131.1,
+              "total": 4353.487
+            },
+            "updateWorkMs": {
+              "samples": 30245,
+              "total": 1019.0335369999957,
+              "p50": 0.0010230000043520704,
+              "p95": 0.22802000000228873,
+              "p99": 0.5763369999986026,
+              "max": 11.229616999997234
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 100,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          },
+          {
+            "name": "detailed-crossing-out",
+            "turns": 2292,
+            "convergenceWallMs": 158.99267300000065,
+            "processCpuMs": {
+              "user": 193.608,
+              "system": 9.193,
+              "total": 202.801
+            },
+            "updateWorkMs": {
+              "samples": 2292,
+              "total": 131.57218499977898,
+              "p50": 0.0009580000041751191,
+              "p95": 0.3040320000000065,
+              "p99": 0.64457499999844,
+              "max": 4.029166000000259
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 129,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                10,
+                82,
+                8
+              ]
+            }
+          },
+          {
+            "name": "detailed-crossing-back",
+            "turns": 7218,
+            "convergenceWallMs": 300.08170399999653,
+            "processCpuMs": {
+              "user": 424.473,
+              "system": 27.486,
+              "total": 451.959
+            },
+            "updateWorkMs": {
+              "samples": 7218,
+              "total": 240.61037300012686,
+              "p50": 0.0009289999943575822,
+              "p95": 0.22780600000260165,
+              "p99": 0.436215000001539,
+              "max": 2.5185589999964577
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 155,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                84,
+                7
+              ]
+            }
+          },
+          {
+            "name": "coarse-crossing",
+            "turns": 4222,
+            "convergenceWallMs": 225.34707499999786,
+            "processCpuMs": {
+              "user": 224.634,
+              "system": 29.324,
+              "total": 253.958
+            },
+            "updateWorkMs": {
+              "samples": 4222,
+              "total": 184.4190590000726,
+              "p50": 0.0009390000050188974,
+              "p95": 0.25295700000424404,
+              "p99": 0.5365699999965727,
+              "max": 2.5538460000025225
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 201,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 10,
+              "pendingBuildings": 0,
+              "lods": [
+                11,
+                68,
+                21
+              ]
+            }
+          },
+          {
+            "name": "return-city",
+            "turns": 11222,
+            "convergenceWallMs": 699.6181209999995,
+            "processCpuMs": {
+              "user": 2010.963,
+              "system": 84.105,
+              "total": 2095.068
+            },
+            "updateWorkMs": {
+              "samples": 11222,
+              "total": 414.2806270004512,
+              "p50": 0.0009710000013001263,
+              "p95": 0.22993500000302447,
+              "p99": 0.5897559999939403,
+              "max": 2.829051000000618
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 247,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                84,
+                7
+              ]
+            }
+          },
+          {
+            "name": "evict",
+            "turns": 20,
+            "convergenceWallMs": 0.8662760000006529,
+            "processCpuMs": {
+              "user": 1.321,
+              "system": 0.035,
+              "total": 1.356
+            },
+            "updateWorkMs": {
+              "samples": 20,
+              "total": 0.7331789999952889,
+              "p50": 0.001171999996586237,
+              "p95": 0.5259339999975055,
+              "p99": 0.5259339999975055,
+              "max": 0.5259339999975055
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 247,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 0,
+              "groundTiles": 0,
+              "pendingBuildings": 0,
+              "lods": [
+                0,
+                0,
+                0
+              ]
+            }
+          },
+          {
+            "name": "revisit",
+            "turns": 32090,
+            "convergenceWallMs": 1297.124834000002,
+            "processCpuMs": {
+              "user": 2657.765,
+              "system": 110.863,
+              "total": 2768.628
+            },
+            "updateWorkMs": {
+              "samples": 32090,
+              "total": 869.0391580009746,
+              "p50": 0.0009470000004512258,
+              "p95": 0.21403799999825424,
+              "p99": 0.45614300000306685,
+              "max": 4.56246700000338
+            },
+            "generationCalls": 0,
+            "generationMs": 0,
+            "stats": {
+              "queuedBuildings": 0,
+              "pendingPrepared": 0,
+              "prepared": {
+                "supported": true,
+                "active": 0,
+                "queued": 0,
+                "decoded": 347,
+                "failures": 0,
+                "cancelled": 0,
+                "peakDecodeBytes": 1678320,
+                "decodedCacheBytes": 0
+              },
+              "measuredHeights": 38914,
+              "buildings": 39989,
+              "rawBuildings": 40000,
+              "buildingTiles": 100,
+              "groundTiles": 9,
+              "pendingBuildings": 0,
+              "lods": [
+                9,
+                81,
+                10
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -11,6 +11,8 @@ concurrency:
   cancel-in-progress: true
 jobs:
   browser:
+    # The v0.5 workflow runs these gates against immutable processed inputs.
+    if: github.ref != 'refs/heads/feature/v05-performance-reconstruction' && github.head_ref != 'feature/v05-performance-reconstruction'
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     steps:

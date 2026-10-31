@@ -1,0 +1,13 @@
+✔ prepared geometry restores exact float attributes and bounds without recomputation (52.454002ms)
+✔ prepared requests serialize decompression and cancellation clears queued work (11.268173ms)
+✔ reset abandons an in-progress prepared decode without retaining its output (8.821642ms)
+✔ corrupt prepared bytes reject so the caller can use the runtime geometry path (16.884745ms)
+✔ unsupported decompression and unknown schemas leave runtime fallback available (6.666765ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 316.309134

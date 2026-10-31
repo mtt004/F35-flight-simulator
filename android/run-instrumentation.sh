@@ -43,10 +43,16 @@ if source.is_dir():
         shutil.copy2(path, target)
         remaining -= size
 PYTHON
+  # UTP can uninstall the app before this trap. Keep both actual sources so a
+  # complete validated Log.i record can recover unavailable app-private bytes.
+  timeout 20s adb -s emulator-5554 exec-out run-as com.mtt004.lightning cat files/lightning-runtime-evidence.json > "$diagnostics_dir/android-runtime-app-private.txt" 2> "$diagnostics_dir/android-runtime-retrieval.txt" || true
   timeout 15s adb -s emulator-5554 get-state > "$diagnostics_dir/emulator-final-state.txt" 2>&1 || true
-  timeout 20s adb -s emulator-5554 logcat -d -t 1200 > "$diagnostics_dir/android-logcat-final.txt" 2>&1 || true
+  timeout 20s adb -s emulator-5554 logcat -d -t 5000 > "$diagnostics_dir/android-logcat-final.txt" 2>&1 || true
+  python3 "$project_root/scripts/android_metadata.py" --collect-runtime "$diagnostics_dir" > "$diagnostics_dir/android-runtime-collection.txt" 2>&1 || true
 }
 trap collect_diagnostics EXIT
+# Isolated test-run logs only: stale records cannot satisfy the fallback.
+timeout 15s adb -s emulator-5554 logcat -c > "$diagnostics_dir/android-logcat-reset.txt" 2>&1 || exit "$?"
 cd android
 timeout --signal=TERM --kill-after=20s 10m bash ./gradlew --no-daemon --max-workers=1 connectedDebugAndroidTest
 exit "$?"

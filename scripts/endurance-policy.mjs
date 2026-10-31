@@ -19,3 +19,15 @@ export function assessEndurance(samples){
  return{issues:[...issues],recoveredContextLosses:samples.at(-1)?.contextLost?0:losses};
 }
 
+// Derive clock progress from actual observations. Missing old evidence remains
+// unknown; frame counts alone never substitute for elapsed simulation time.
+export function simulationProgress(samples){
+ if(samples.length<2)return null;
+ const first=samples[0],last=samples.at(-1),delta=(name,scale=1)=>Number.isFinite(first[name])&&Number.isFinite(last[name])?(last[name]-first[name])/scale:null;
+ const wallSeconds=delta('wall',1000),simulationSeconds=delta('simT'),stepSimulatedSeconds=delta('stepCount',120);
+ return{wallSeconds,simulationSeconds,flightSeconds:delta('flightT'),
+  simulationToWallRatio:wallSeconds>0&&simulationSeconds!==null?simulationSeconds/wallSeconds:null,
+  stepSimulatedSeconds,clockErrorSeconds:simulationSeconds!==null&&stepSimulatedSeconds!==null?simulationSeconds-stepSimulatedSeconds:null,
+  debtSeconds:Number.isFinite(last.simulationDebtSeconds)?last.simulationDebtSeconds:null,debtChangeSeconds:delta('simulationDebtSeconds')};
+}
+

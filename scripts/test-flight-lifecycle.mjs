@@ -33,7 +33,9 @@ const readState = () => ({ running, paused, crashed, replayActive, simT, flightT
   fuel, thr, thrT, N1, N2, abSpool, gearD, gearT, parkBrake, stolMode, lfDoor, lfSpool, nozzle,
   camMode, ias, mach, gNz, ralt, pitchDeg, rollDeg, hdgDeg, wheelsOn, landings,
   replayFrames: replayFrames.length, touchdown: { sink: stats.tdVs, score: stats.tdScore, grade: stats.tdGrade },
-  seed: SEED, weather: wxPreset,
+  seed: SEED, weather: wxPreset, scenario,
+  crashCause:document.getElementById('crashCause')?.textContent||'',
+  autopilot:{mode:AP.mode,altitude:AP.alt,heading:AP.hdg,speed:AP.spd},
   bank, basis:{forward:_fwd.toArray(),up:_up.toArray(),right:_rgt.toArray()},
   view:{aircraft:{position:ac.position.toArray(),quaternion:ac.quaternion.toArray(),visible:ac.visible},
     cockpit:{position:cockpitGrp.position.toArray(),quaternion:cockpitGrp.quaternion.toArray(),visible:cockpitGrp.visible},
@@ -129,8 +131,33 @@ try {
     return {saved,respawned,restored,method:'Saved via actual savePrefs; pause Restart button, separate same-origin page retaining localStorage, actual Continue button click. Captured in same click after restore before physics.'};
   });
   await check('natural replay completion restores paused live flight and every playback-mutated field', async () => {
-    if((await state()).paused)await page.keyboard.press('Escape');
-    // Keep the full simulated recording and frame minimum on CPU rasterizers.
+    // The preceding check restores an AIR approach, not a cruise fixture.
+    // Correct real-time progression lets that unattended approach reach terrain
+    // while slow browser/UI actions run. Start an existing high-altitude scenario
+    // through its normal UI and use the existing autopilot for the recording.
+    // No aircraft position, velocity, attitude or physics state is assigned here.
+    const previousPage=page;
+    await previousPage.evaluate(()=>{paused=true;renderer.render=()=>{};});
+    page=await session.context.newPage();await page.setViewportSize({width:640,height:360});
+    await page.goto(previousPage.url(),{waitUntil:'load',timeout:120000});
+    await page.waitForFunction(()=>window.__F35B_SIM__,null,{timeout:120000});await attachObservers(page);
+    await previousPage.close();
+    await page.locator('#lightningProfile').selectOption('BATTERY');
+    await page.locator('#selScen').selectOption('HUMID VAPOUR RUN');
+    await page.locator('#start').click();
+    await page.waitForFunction(()=>running&&!paused,null,{timeout:30000});
+    // The original replay fixture inherited cockpit mode from the save check.
+    // Select it explicitly after the independent boot so this still exercises
+    // the same cockpit-derived attitude and camera restoration assertions.
+    await page.keyboard.press('c');
+    await page.locator('#tbAp').click();
+    await page.waitForFunction(()=>AP.mode==='HDG',null,{timeout:15000});
+    const recordingStart=await state();
+    assert.equal(recordingStart.scenario,'HUMID VAPOUR RUN');
+    assert.equal(recordingStart.camMode,1,'Replay fixture retains its original cockpit context');
+    assert.ok(recordingStart.ralt>1000,'Replay recording fixture must have cruise terrain clearance');
+    report.replayRecordingFixture={state:recordingStart,method:'Fresh normal Start New with HUMID VAPOUR RUN selected in the scenario dropdown, actual C cockpit key and AP toolbar button. Cockpit mode matches the preceding version of this fixture. Built-in scenario supplies altitude/speed; no rigid-state assignment. This is a replay/restoration fixture, not evidence of a flown takeoff.'};
+    // Retain the full simulated recording and frame minimum on CPU rasterizers.
     await advanceSim(8.2,120000); await page.keyboard.press('g');
     await page.keyboard.down('Shift'); await advanceSim(1.6); await page.keyboard.up('Shift');
     await page.keyboard.down('ArrowDown');

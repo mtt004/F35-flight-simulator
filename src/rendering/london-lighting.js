@@ -16,7 +16,10 @@ gl_Position=projectionMatrix*viewMatrix*w;`);
  };
  api.update=function(T,renderer,scene,sun,dir,pos,ground,quality,day,time,isLondon){
   const active=isLondon&&quality>0&&day>.08&&pos.y-ground<1800;
-  if(enabled!==active){enabled=active;renderer.shadowMap.enabled=active;sun.castShadow=active;scene.traverse(o=>{if(o.material)for(const m of[o.material].flat())m.needsUpdate=true;});}
+  // r128 observes the changed shadow-light count through lightsStateVersion and
+  // selects its cached program variant. Invalidating every scene material here
+  // needlessly revalidates unrelated materials, including shared ones repeatedly.
+  if(enabled!==active){enabled=active;renderer.shadowMap.enabled=active;sun.castShadow=active;}
   renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.shadowMap.autoUpdate=false;
   if(!active){sun.target.position.set(0,0,0);sun.target.updateMatrixWorld();sun.position.copy(dir).multiplyScalar(1000);return;}
   if(time>=next||time<next-2){next=time+.25;const span=quality>1?1100:750,step=span*2/1024;

@@ -1,0 +1,180 @@
+name: V0.5 paired performance and offline delivery
+on:
+  push:
+    branches: ['feature/v05-performance-reconstruction']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: v05-validation-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  GH_REPO: mtt004/F35-flight-simulator
+jobs:
+  browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22.16.0'
+      - name: Restore hash-pinned v0.4 scene and exact released browser baseline
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p .tmp/v04-assets
+          gh release download v0.4.0-candidate.1 --dir .tmp/v04-assets --pattern Lightning-London-Scenery.zip --pattern Lightning-F35B-Web.zip
+          python3 scripts/restore-v04-scenery.py .tmp/v04-assets --browser
+      - run: npm ci
+      - name: Install pinned preprocessing and image comparison dependencies
+        run: |
+          python3 -m venv .tmp/v05-venv
+          .tmp/v05-venv/bin/pip install -r scripts/london-requirements.txt scikit-image
+          .tmp/v05-venv/bin/pip freeze > benchmarks/london-v0.5/python-packages.txt
+      - name: Complete source, configuration and LiDAR-estimator regression suites
+        run: |
+          set -o pipefail
+          npm test | tee benchmarks/london-v0.5/unit-tests.tap
+          python3 scripts/test-v05-delivery.py 2>&1 | tee benchmarks/london-v0.5/delivery-guard-tests.txt
+          .tmp/v05-venv/bin/python scripts/test-london-heights.py 2>&1 | tee benchmarks/london-v0.5/height-tests.txt
+      - name: Prepare exact geometry then build self-contained offline simulator
+        run: |
+          node scripts/build-london-geometry.mjs
+          LIGHTNING_BASELINE_REF=ca330131115ee983a6457efa33ff513ac34803ad node scripts/verify-london-geometry.mjs
+          LIGHTNING_BASELINE_REF=ca330131115ee983a6457efa33ff513ac34803ad node scripts/benchmark-london-paired-v05.mjs
+          npm run build
+      - run: npx playwright install --with-deps chromium
+      - name: Browser launch, physical takeoff and scenery recovery
+        run: |
+          node scripts/test-browser.mjs dist/index.html
+          node scripts/test-london.mjs dist/index.html
+      - name: Network-disabled file launch and actual saved-flight/replay UI
+        run: |
+          node scripts/test-offline.mjs dist/index.html
+          node scripts/test-flight-lifecycle.mjs dist/index.html --label=v05-flight-integrity
+      - name: Same-host paired v0.4 versus v0.5 scenarios and matched framebuffer captures
+        run: |
+          node scripts/verify-v05.mjs dist/v04-baseline.html dist/index.html
+          .tmp/v05-venv/bin/python scripts/compare-v05.py --self-test
+          .tmp/v05-venv/bin/python scripts/compare-v05.py
+      - name: Full twenty-minute unmodified flight/streaming observation
+        env:
+          LONDON_ENDURANCE_SECONDS: '1200'
+        run: |
+          node scripts/endurance-london.mjs dist/index.html
+          cp benchmarks/london-v0.3/endurance.json benchmarks/london-v0.5/endurance.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: lightning-v05-browser-${{ github.sha }}
+          retention-days: 90
+          compression-level: 0
+          if-no-files-found: warn
+          path: |
+            dist/Lightning-F35B-Web.zip
+            dist/build-manifest.json
+            benchmarks/
+            screenshots/london-v0.5/
+            scenery-packs/
+  android:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22.16.0'
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with:
+          distribution: temurin
+          java-version: '17.0.15+6'
+      - uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407
+        with:
+          cmdline-tools-version: '12266719'
+          packages: 'platform-tools platforms;android-35 build-tools;35.0.0'
+          log-accepted-android-sdk-licenses: 'false'
+      - name: Restore the same hash-pinned v0.4 processed scene
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p .tmp/v04-assets
+          gh release download v0.4.0-candidate.1 --dir .tmp/v04-assets --pattern Lightning-London-Scenery.zip
+          python3 scripts/restore-v04-scenery.py .tmp/v04-assets
+      - name: Prepare the same geometry and build, lint and verify the real APK
+        run: |
+          node scripts/build-london-geometry.mjs
+          bash scripts/build-android.sh
+          cd android
+          bash ./gradlew --no-daemon --max-workers=2 assembleDebugAndroidTest
+      - name: Free only unused SDK-managed NDK packages on disposable runner
+        run: |
+          python3 - <<'PYTHON'
+          import re, subprocess
+          listing = subprocess.run(['sdkmanager', '--list_installed'], check=True, capture_output=True, text=True).stdout
+          packages = sorted({line.split('|', 1)[0].strip() for line in listing.splitlines()
+                             if re.fullmatch(r'ndk;[0-9]+(?:\.[0-9]+)+', line.split('|', 1)[0].strip())})
+          for package in packages:
+              subprocess.run(['sdkmanager', '--uninstall', package], check=True)
+          PYTHON
+          if [ -e /dev/kvm ]; then sudo chmod a+rw /dev/kvm; fi
+      - name: Install exact APK and launch its offline flight on Android 13
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
+        with:
+          api-level: 33
+          arch: x86_64
+          profile: pixel_2
+          disk-size: 2048M
+          ram-size: 2048M
+          heap-size: 256M
+          disable-animations: true
+          emulator-options: -no-window -gpu lavapipe -no-snapshot -noaudio -no-boot-anim -camera-back none
+          script: bash android/run-instrumentation.sh
+      - name: Validate original instrumentation XML against installed APK and source
+        run: python3 scripts/package-v05.py --record-android
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: lightning-v05-android-${{ github.sha }}
+          retention-days: 90
+          compression-level: 0
+          if-no-files-found: warn
+          path: |
+            dist/Lightning-F35B-Android.apk
+            dist/build-manifest.json
+            dist/android-verification.json
+            dist/android-installation.json
+            dist/android-host-diagnostics/
+            android/app/build/reports/
+            android/app/build/outputs/androidTest-results/
+  package:
+    needs: [browser, android]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: lightning-v05-browser-${{ github.sha }}
+          path: .tmp/browser-evidence
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: lightning-v05-android-${{ github.sha }}
+          path: .tmp/android-evidence
+      - name: Verify source, identical browser/APK bytes, raw installation evidence and package deliverables
+        run: python3 scripts/package-v05.py --browser .tmp/browser-evidence --android .tmp/android-evidence --output delivery --expected-source "$GITHUB_SHA"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: lightning-v05-delivery-${{ github.sha }}
+          path: delivery/
+          retention-days: 90
+          compression-level: 0
+          if-no-files-found: error

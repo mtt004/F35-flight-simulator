@@ -962,7 +962,8 @@ function updateAirportProxies(sorted,range){let n=0;const C=new THREE.Color();
 /* Distance-capped detail streaming. Terrain remains continuous; expensive airport/city meshes are bounded. */
 let visualTimer=0;
 function ensureVisuals(dt){
-  if(worldMode==='LONDON'){LightningLondon.update(P.pos.x+OX,P.pos.z+OZ,P.pos.y,ql(),nightF,performance.now()/1000);return;}
+  // London streaming has one entry point immediately before frame presentation.
+  if(worldMode==='LONDON')return;
   visualTimer-=dt;if(visualTimer>0)return;visualTimer=0.45;
   const x=P.pos.x+OX,z=P.pos.z+OZ,aptIn=[44000,56000,70000,84000][ql()],cityIn=[38000,50000,64000,78000][ql()];
   const aptMax=[5,7,9,11][ql()],cityMax=[4,6,8,10][ql()],sortedA=airports.map(a=>[a,Math.hypot(a.x-x,a.z-z)]).sort((a,b)=>a[1]-b[1]);
@@ -3337,11 +3338,11 @@ function toggleDrawer(){const opening=!$('drawer').classList.contains('on');clos
 function toggleInfoPanel(){const opening=!$('infoPan').classList.contains('on');closeDrawer();$('infoPan').classList.toggle('on',opening);$('infoPan').setAttribute('aria-hidden',String(!opening));$('btnInfo').setAttribute('aria-expanded',String(opening));syncMenuShade();}
 function closeTransientMenus(){closeDrawer();closeInfoPanel();}
 let helpResume=false;
-function showHelp(){closeTransientMenus();helpResume=running&&!paused;if(running)paused=true;$('helpOv').classList.add('on');$('helpOv').setAttribute('aria-hidden','false');$('btnHelp').setAttribute('aria-expanded','true');}
-function closeHelp(){$('helpOv').classList.remove('on');$('helpOv').setAttribute('aria-hidden','true');$('btnHelp').setAttribute('aria-expanded','false');if(helpResume&&running&&!crashed)paused=false;helpResume=false;}
+function showHelp(){closeTransientMenus();helpResume=running&&!paused;if(running){paused=true;physAcc=0;last=performance.now();cadence.reset();}$('helpOv').classList.add('on');$('helpOv').setAttribute('aria-hidden','false');$('btnHelp').setAttribute('aria-expanded','true');}
+function closeHelp(){$('helpOv').classList.remove('on');$('helpOv').setAttribute('aria-hidden','true');$('btnHelp').setAttribute('aria-expanded','false');if(helpResume&&running&&!crashed){paused=false;physAcc=0;last=performance.now();cadence.reset();}helpResume=false;}
 function closeSummary(){$('sumOv').classList.remove('on');$('sumOv').setAttribute('aria-hidden','true');}
 function togglePause(){
-  if(crashed||!running)return;paused=!paused;
+  if(crashed||!running)return;paused=!paused;physAcc=0;last=performance.now();cadence.reset();
   if(paused)closeTransientMenus();
   $('pauseStats').innerHTML=`FLIGHT TIME ${fmtT(flightT)} · LANDINGS ${landings} · FUEL ${Math.round(fuel)} KG · WX ${wxPreset.toUpperCase()}`;
   $('pauseOv').classList.toggle('on',paused);$('pauseOv').setAttribute('aria-hidden',String(!paused));
@@ -3563,11 +3564,11 @@ function startReplay(){
   if(replayFrames.length<REPLAY_HZ*2){toast('NOT ENOUGH FLIGHT DATA FOR REPLAY','warn');return;}
   closeTransientMenus();$('pauseOv').classList.remove('on');$('sumOv').classList.remove('on');
   replayRestore={p:P.pos.clone(),q:P.quat.clone(),v:P.vel.clone(),om:P.om.clone(),cam:camMode,paused,ias,mach,gNz,nozzle,gearD,thr};
-  replayActive=true;paused=false;replayClock=0;replayWall=performance.now();camMode=0;
+  replayActive=true;paused=false;replayClock=0;replayWall=performance.now();camMode=0;physAcc=0;last=replayWall;cadence.reset();
   document.getElementById('btnReplay').classList.add('replay-live');missionBanner('REPLAY — LAST '+Math.round(replayFrames.length/REPLAY_HZ)+' SECONDS','warn');
 }
 function stopReplay(){
-  if(!replayActive)return;replayActive=false;
+  if(!replayActive)return;replayActive=false;physAcc=0;last=performance.now();cadence.reset();
   if(replayRestore){
     P.pos.copy(replayRestore.p);P.quat.copy(replayRestore.q);P.vel.copy(replayRestore.v);P.om.copy(replayRestore.om);
     camMode=replayRestore.cam;paused=replayRestore.paused;
@@ -3593,7 +3594,7 @@ function updateSurfaceEffects(dt){const active=stolMode!=='CONV'&&lfSpool>.35&&r
 /* Lightweight canopy water layer. */
 const rainCanvas=$('canopyRain'),rainCtx=rainCanvas.getContext('2d'),canopyDrops=Array.from({length:52},()=>({x:Math.random(),y:Math.random(),r:1+Math.random()*3,s:.15+Math.random()*.45}));
 function updateCanopyRain(dt){const show=running&&camMode===1&&wx.prec>.12&&!replayActive;document.body.classList.toggle('cockpit-rain',show);if(!show)return;const d=Math.min(devicePixelRatio||1,1.5),w=innerWidth,h=innerHeight;if(rainCanvas.width!==Math.round(w*d)||rainCanvas.height!==Math.round(h*d)){rainCanvas.width=Math.round(w*d);rainCanvas.height=Math.round(h*d);rainCanvas.style.width=w+'px';rainCanvas.style.height=h+'px';rainCtx.setTransform(d,0,0,d,0,0);}rainCtx.clearRect(0,0,w,h);rainCtx.strokeStyle='rgba(205,225,238,.38)';rainCtx.fillStyle='rgba(210,230,242,.14)';rainCtx.lineWidth=1;for(const q of canopyDrops){q.y+=dt*(q.s+ias/1500);q.x+=Math.sin(q.y*18+q.r)*dt*.03;if(q.y>1.05){q.y=-.05;q.x=Math.random();}const x=q.x*w,y=q.y*h,len=(8+ias*.035)*q.r;rainCtx.beginPath();rainCtx.moveTo(x,y);rainCtx.lineTo(x-ias*.004,y+len);rainCtx.stroke();rainCtx.beginPath();rainCtx.arc(x,y,q.r,0,TAU);rainCtx.fill();}}
-function operationsVisualUpdate(dt){if(missionBannerT>0){missionBannerT-=dt;if(missionBannerT<=0)$('missionBanner').classList.remove('on');}updateTrafficAwareness(dt);updateTrafficTargetMarker();updateSurfaceEffects(dt);updateCanopyRain(dt);}
+function operationsVisualUpdate(dt,stateDt=dt){if(missionBannerT>0){missionBannerT-=dt;if(missionBannerT<=0)$('missionBanner').classList.remove('on');}updateTrafficAwareness(stateDt);updateTrafficTargetMarker();updateSurfaceEffects(dt);updateCanopyRain(dt);}
 
 /* ================= [26] DEBUG ================= */
 let dbgT=0;
@@ -3685,7 +3686,7 @@ function runValidation(){
   add('Offline package has no external resources',external.length===0,external);
   const passed=tests.filter(t=>t.pass).length;return{passed,total:tests.length,tests};
 }
-window.__F35B_SIM__={version:globalThis.__LIGHTNING_BUILD__?.version||'0.1.0-experimental',runValidation,get snapshot(){return {running,paused,crashed,simT,flightT,stepCount,position:P.pos.toArray(),velocity:P.vel.toArray(),quaternion:P.quat.toArray(),fuel,stolMode,nozzle,gearD,camMode,profile:L.profile,quality:qlLevel,drawingBuffer:[renderer.domElement.width,renderer.domElement.height],workMs:lastWorkMs,renderer:{...renderer.info.render,...renderer.info.memory}};},get diagnostics(){return SELF_TEST;},
+window.__F35B_SIM__={version:globalThis.__LIGHTNING_BUILD__?.version||'0.1.0-experimental',runValidation,get snapshot(){return {running,paused,crashed,simT,flightT,stepCount,simulationDebtSeconds:physAcc,position:P.pos.toArray(),velocity:P.vel.toArray(),quaternion:P.quat.toArray(),fuel,stolMode,nozzle,gearD,camMode,profile:L.profile,quality:qlLevel,drawingBuffer:[renderer.domElement.width,renderer.domElement.height],workMs:lastWorkMs,renderer:{...renderer.info.render,...renderer.info.memory}};},get diagnostics(){return SELF_TEST;},
   get world(){const kinds={};for(const a of airports)kinds[a.kind]=(kinds[a.kind]||0)+1;return{mode:worldMode,london:worldMode==='LONDON'?LightningLondon.stats():null,airports:airports.length,cities:cities.length,kinds,regions:featureRegions.size,airportBins:airportBins.size,visualAirports:aptGroups.size};},
   get traffic(){let roadVehicles=0,trainConsists=0,trainCars=0;for(const [,g] of roadGroups){if(!g)continue;const r=g.userData.roadTraffic,t=g.userData.train;if(r)roadVehicles+=r.data.length;if(t){trainConsists+=t.consistCount;trainCars+=t.n;}}const lr=localTrafficHub&&localTrafficHub.userData.localCars,lt=localTrafficHub&&localTrafficHub.userData.train;return{ambientAircraft:ambientAir?ambientAir.mesh.count:0,routeAircraft:civAir.length,totalAircraft:civAir.length+(ambientAir?ambientAir.mesh.count:0),roadVehicles,localRoadVehicles:lr?lr.cars.length:0,trainConsists,trainCars,localTrainConsists:lt?lt.consistCount:0,localTrainCars:lt?lt.n:0};},
   get effects(){return{condWing,vortexStrength,condTrans,contrail,particles:vapourCount,vortexNodes:vortNodeCount,setting:S.vapour,wingSheet:!!(wingVapMesh&&wingVapMesh.visible),transonicShell:!!(transVapMesh&&transVapMesh.visible)};},
@@ -3717,33 +3718,49 @@ function loop(now){
   requestAnimationFrame(loop);
   if(contextLost||document.hidden||!cadence.ready(now))return;
   frameStart=performance.now();
-  const wallDt=(now-last)/1000;let dt=Math.min(wallDt,0.05);last=now;
+  const diagnostic=globalThis.LightningDiagnostics,profile=diagnostic?.enabled;
+  if(profile)diagnostic.beginFrame(now,simT);
+  // Camera/effect interpolation keeps its existing stability limit. Active
+  // flight physics consumes the full elapsed interval, with retained debt.
+  const wallDt=Math.max(0,(now-last)/1000),dt=Math.min(wallDt,0.05);last=now;
   frameEMA=lerp(frameEMA,wallDt*1000,0.05);
   if(!running)drawBootBg(now);
   pollGamepad();gyroSample();
   stepsLast=0;
-  if(replayActive){physAcc=0;updateWeather(dt);operationsVisualUpdate(dt);updateReplay(dt);return;}
+  if(replayActive){physAcc=0;updateWeather(dt);operationsVisualUpdate(dt);updateReplay(dt);if(profile){diagnostic.mark('render');diagnostic.endFrame(simT,physAcc,renderer);}return;}
   if(running&&!paused){
     if(!crashed){
-      physAcc=Math.min(physAcc+dt,8*FDT);
+      physAcc+=wallDt;
       /* The epsilon prevents binary rounding from dropping a 120 Hz step when a
          render frame should contain an exact 2× (60 FPS) or 4× (30 FPS) batch. */
-      while(physAcc+1e-12>=FDT){physics(FDT);physAcc-=FDT;if(physAcc<0)physAcc=0;stepsLast++;}
+      // At most one simulated second per presented frame prevents an unbounded
+      // catch-up loop. Remaining active-flight time stays in physAcc; it is never
+      // silently discarded. Lifecycle suspension deliberately resets the clock.
+      while(!crashed&&stepsLast<120&&physAcc+1e-12>=FDT){physics(FDT);physAcc-=FDT;if(physAcc<0)physAcc=0;stepsLast++;}
+      if(crashed)physAcc=0;
       rebaseOrigin();
     } else physAcc=0;
-    updateWeather(dt);ensureRegionalFeatures(dt);
-    chunkBudget=999;ensureChunks(dt);processChunksTimed([3,4.5,6,8][ql()]);
-    ensureVisuals(dt);updateLiving(dt);updateAcSurfaces(dt);vapourCount=updateVapour(dt);
+    if(profile)diagnostic.mark('physics');
+    // Stateful scenery clocks follow completed fixed steps, including catch-up.
+    // A finished crash keeps the existing ambient-world animation behaviour.
+    const stateDt=crashed&&stepsLast===0?dt:stepsLast*FDT;
+    updateWeather(stateDt);ensureRegionalFeatures(stateDt);
+    chunkBudget=999;ensureChunks(stateDt);processChunksTimed([3,4.5,6,8][ql()]);
+    if(profile)diagnostic.mark('terrain');
+    ensureVisuals(stateDt);updateLiving(stateDt);updateAcSurfaces(dt);vapourCount=updateVapour(dt);
     vsFpm=lerp(vsFpm,P.vel.y*FPM,Math.min(1,dt*5));
     syncT-=dt;if(syncT<0){syncT=0.25;syncTouch();updateInfoPan();}
     pcdT-=dt;if(pcdT<0&&camMode===1){pcdT=0.5;drawPCD();}
     saveT-=dt;if(saveT<0){saveT=15;savePrefs(true);}
-    governor(dt);audioUpdate();operationsVisualUpdate(dt);
+    governor(wallDt);audioUpdate();operationsVisualUpdate(dt,stateDt);
+    if(profile)diagnostic.mark('visuals');
   } else if(!running){
-    physAcc=0;simT+=dt;updateWeather(dt);ensureRegionalFeatures(dt);
+    physAcc=0;simT+=dt;if(profile)diagnostic.mark('physics');updateWeather(dt);ensureRegionalFeatures(dt);
     chunkBudget=999;ensureChunks(dt);processChunksTimed([3,4.5,6,8][ql()]);
+    if(profile)diagnostic.mark('terrain');
     ensureVisuals(dt);updateLiving(dt);updateAcSurfaces(dt);vapourCount=updateVapour(dt);
-  } else physAcc=0;
+    if(profile)diagnostic.mark('visuals');
+  } else {physAcc=0;if(profile)diagnostic.mark('physics');}
   updateCamera(dt);
   sky.position.copy(camera.position);
   water.position.x=camera.position.x;water.position.z=camera.position.z;
@@ -3752,15 +3769,20 @@ function loop(now){
   waterMat.uniforms.uFogD.value=scene.fog.density;waterMat.uniforms.uNight.value=nightF;
   terrainMat.uniforms.uOrigin.value.set(OX,OZ);
   terrainMat.uniforms.uSun.value.copy(sunDir);terrainMat.uniforms.uFog.value.copy(scene.fog.color);terrainMat.uniforms.uFogD.value=scene.fog.density;terrainMat.uniforms.uDay.value=dayF;terrainMat.uniforms.uWet.value=wx.wet?1:0;terrainMat.uniforms.uTime.value=simT;
+  if(profile)diagnostic.mark('camera');
   if(worldMode==='LONDON')LightningLondon.update(P.pos.x+OX,P.pos.z+OZ,P.pos.y,ql(),nightF,performance.now()/1000);
+  if(profile)diagnostic.mark('london');
   drawHMDS();
   if($('infoPan').classList.contains('on')&&running)drawInfoMap();
   updateDbg(dt);
   LightningVisuals.updateAircraft({distance:camera.position.distanceTo(P.pos),quality:qlLevel,night:nightF});
   if(camMode===1)LightningVisuals.updateCockpit({roll:ailIn,pitch:elIn,throttle:thr,night:nightF});
+  if(profile)diagnostic.mark('ui');
   renderer.render(scene,camera);
+  if(profile)diagnostic.mark('render');
   lastWorkMs=performance.now()-frameStart;workSamples.push(lastWorkMs);if(workSamples.length>600)workSamples.shift();
   updateLightningMeter(now);
+  if(profile)diagnostic.endFrame(simT,physAcc,renderer);
 }
 const _airP0=new THREE.Vector3(),_airP1=new THREE.Vector3();
 function updateLiving(dt){
