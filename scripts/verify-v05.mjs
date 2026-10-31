@@ -41,7 +41,7 @@ await fs.mkdir(out,{recursive:true});
 const report={schema:1,status:'FAIL',date:new Date().toISOString(),secondsPerRun:seconds,repeats,
  sourceCommit:process.env.GITHUB_SHA||null,baselineSourceCommit:'ca330131115ee983a6457efa33ff513ac34803ad',
  method:'Same Chromium process, separate contexts, sequential rendering (the other page has no animation loop). Fixed poses, seed4201, simulation clock120, profileBALANCED Q1, camera58deg, actual1152x648 drawing buffer. Complete streaming convergence before captures. The local shadow system keeps its existing four-Hz update schedule during timed rendering. AB/BA alternation across repeated paired measurements. Timings exclude shader/resource instrumentation; a separate untimed diagnostic pass records those counters. Physics paused: these are rendering observations, not control or real-time-flight evidence.',
- limits:['SwiftShader software renderer, NOT Mali-G72 or Galaxy A51.','Three repeated runs give descriptive paired variability, not a reliable hardware-performance confidence interval.','CPU submission includes browser/driver overhead; GPU timings are reported only when nonblocking extension results are valid.','Texture residency is an estimate from dimensions and mip flags; not a driver memory measurement.','Long tasks are observable main-thread stalls, not identified garbage collections.','Input latency, Android PSS, thermals, battery and physical-device acceptance remain unavailable.'],
+ limits:['SwiftShader software renderer, NOT Mali-G72 or Galaxy A51.','RAF intervals measure browser callback scheduling; queued GPU work can make this differ substantially from completed or displayed frame rate. Completed WebGL submission throughput includes each run and its nonblocking final GPU drain and is not physical display FPS.','Three repeated runs give descriptive paired variability, not a reliable hardware-performance confidence interval.','CPU submission includes browser/driver overhead; GPU timings are reported only when nonblocking extension results are valid. GPU timer samples are a bounded subset when skipped is nonzero; pending/disjoint/skipped counts are retained.','Texture residency is an estimate from dimensions and mip flags; not a driver memory measurement.','Long tasks are observable main-thread stalls, not identified garbage collections.','Input latency, Android PSS, thermals, battery and physical-device acceptance remain unavailable.'],
  sources:{},environment:null,scenarios:[],shots:[],checks:[],errors:[],warnings:[]};
 for(const[label,file]of Object.entries(files)){const b=await fs.readFile(file);report.sources[label]={file:path.relative(repositoryRoot,file),bytes:b.length,sha256:hash(b)};}
 assert.equal(report.sources.before.sha256,'f1f6a9e9b19c0bc8210b5bab4ef91e9b03c854f0b895cda0c965ae6779a45aad','Baseline must be the exact published v0.4 browser HTML');
@@ -185,7 +185,7 @@ try{
      }
      const elapsedMs=performance.now()-start;
      const gpuBoundary=await __v05WaitForGpuIdle(renderer.getContext());
-     return{intervals,submissions,elapsedMs,gpuBoundary,gpu:__v05Gpu.summary(),state:__v05SceneState()};
+     return{intervals,submissions,elapsedMs,gpuBoundary,completedWebGLSubmissionsPerSecond:submissions.length*1000/(elapsedMs+gpuBoundary.wallMs),gpu:__v05Gpu.summary(),state:__v05SceneState()};
     },seconds);
     assert.ok(raw.intervals.length>=2,label+' insufficient frames');
     assert.deepEqual(raw.state.drawingBuffer,[1152,648]);assert.equal(raw.state.quality,1);
@@ -213,7 +213,8 @@ try{
     while(performance.now()-start<30000){const now=await new Promise(resolve=>requestAnimationFrame(resolve));current={};rendered=false;const begin=performance.now();window.__v05OriginalLoop(now);if(rendered){for(const name of Object.keys(phases))phases[name].push(current[name]||0);frameRows.push({wall:performance.now()-start,simT,flightT,debtSeconds:physAcc,quality:qlLevel,drawingBuffer:[renderer.domElement.width,renderer.domElement.height],cpuWorkMs:performance.now()-begin,position:[P.pos.x+OX,P.pos.y,P.pos.z+OZ],crashed});}}
    }finally{paused=true;for(const fn of restore.reverse())fn();if(globalThis.LightningDiagnostics){diagnostic=LightningDiagnostics.summary();LightningDiagnostics.stop();}updateCamera=()=>{};}
    const elapsedSeconds=(performance.now()-start)/1000;
-   return{elapsedSeconds,simulatedSeconds:simT-simStart,flightSeconds:flightT-flightStart,simulationToWallRatio:(simT-simStart)/elapsedSeconds,debtSeconds:physAcc,phases,callCounts,frameRows,intervals,diagnostic,startState,endState:__v05SceneState(),instrumentation:'Function wrappers and optional bounded v0.5 diagnostics enabled. No overhead-corrected performance claim.'};
+   const gpuBoundary=await __v05WaitForGpuIdle(renderer.getContext());
+   return{elapsedSeconds,gpuBoundary,simulatedSeconds:simT-simStart,flightSeconds:flightT-flightStart,simulationToWallRatio:(simT-simStart)/elapsedSeconds,debtSeconds:physAcc,phases,callCounts,frameRows,intervals,diagnostic,startState,endState:__v05SceneState(),instrumentation:'Function wrappers and optional bounded v0.5 diagnostics enabled. No overhead-corrected performance claim. GPU drained after the observation, outside elapsed simulation/wall interval, before switching contexts.'};
   });
   observation.frameStatistics=frameStatistics(observation.intervals);
   observation.phaseStatistics=Object.fromEntries(Object.entries(observation.phases).map(([name,values])=>[name,{calls:observation.callCounts[name],totalMs:values.reduce((a,b)=>a+b,0),perPresentedFrameMs:durationStatistics(values)}]));
