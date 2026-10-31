@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "baselineSource": "ca330131115ee983a6457efa33ff513ac34803ad",
+  "currentSimulatorSha256": "f1607a9f3056acc7e4569d78a16928bfce2f799d51da405c03d0abdc82627c3c",
+  "method": "Exact extracted production-function bytes, no numerical tolerance. This proves equation/control implementation preservation, not identical real-time trajectory under the corrected clock.",
+  "functions": [
+    {
+      "name": "physics",
+      "byteEquivalent": true,
+      "baselineSha256": "2748c1f9069c71258146e8392c8fb17eb63a79274cc9b5e60f948cae15cc7090",
+      "currentSha256": "2748c1f9069c71258146e8392c8fb17eb63a79274cc9b5e60f948cae15cc7090"
+    },
+    {
+      "name": "fcsUpdate",
+      "byteEquivalent": true,
+      "baselineSha256": "3d5ae745d0f0fdffb1c321f0c6ba3108a80a62e23bb397096df0af7dd39e4b28",
+      "currentSha256": "3d5ae745d0f0fdffb1c321f0c6ba3108a80a62e23bb397096df0af7dd39e4b28"
+    },
+    {
+      "name": "updateSurfaces",
+      "byteEquivalent": true,
+      "baselineSha256": "21ccbf7f1f858e9dd746d44c742e61264eec822b892fa2f8fed286750526e4d3",
+      "currentSha256": "21ccbf7f1f858e9dd746d44c742e61264eec822b892fa2f8fed286750526e4d3"
+    },
+    {
+      "name": "yawSurfaceTarget",
+      "byteEquivalent": true,
+      "baselineSha256": "3aa835f453d3f7459d98f6ad78fdf0716f633751c825d664ca0254022846871c",
+      "currentSha256": "3aa835f453d3f7459d98f6ad78fdf0716f633751c825d664ca0254022846871c"
+    },
+    {
+      "name": "groundContact",
+      "byteEquivalent": true,
+      "baselineSha256": "5266a8f946c1fee32b0b8dc56ffc3702095de0a2f6ce55d00fe0e8859abe0e1b",
+      "currentSha256": "5266a8f946c1fee32b0b8dc56ffc3702095de0a2f6ce55d00fe0e8859abe0e1b"
+    },
+    {
+      "name": "applyFailures",
+      "byteEquivalent": true,
+      "baselineSha256": "b4afc6a7701696fd3ee0fa8c4f6cf8b664be41a03f631cb8b02f97af26a86c03",
+      "currentSha256": "b4afc6a7701696fd3ee0fa8c4f6cf8b664be41a03f631cb8b02f97af26a86c03"
+    },
+    {
+      "name": "checkCollisions",
+      "byteEquivalent": true,
+      "baselineSha256": "c488983c4c9786ff739bab4243bfd24a4eb5eeb111341141d26e99da1c1ba442",
+      "currentSha256": "c488983c4c9786ff739bab4243bfd24a4eb5eeb111341141d26e99da1c1ba442"
+    },
+    {
+      "name": "recordReplay",
+      "byteEquivalent": true,
+      "baselineSha256": "20f3f55860c94a9f3917aea5a4dc863db5a6dd136d4189b902ffae17dd28fed0",
+      "currentSha256": "20f3f55860c94a9f3917aea5a4dc863db5a6dd136d4189b902ffae17dd28fed0"
+    },
+    {
+      "name": "placeAt",
+      "byteEquivalent": true,
+      "baselineSha256": "8fdc25c18623ab5392527145edc45b942406cddd4873dc316d46f89b8f02e5a9",
+      "currentSha256": "8fdc25c18623ab5392527145edc45b942406cddd4873dc316d46f89b8f02e5a9"
+    }
+  ]
+}
