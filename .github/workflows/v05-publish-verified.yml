@@ -1,0 +1,102 @@
+name: Publish verified V0.5 experimental assets
+on:
+  push:
+    branches: ['qa/v05-publish-verified']
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: publish-v05-experimental
+  cancel-in-progress: false
+env:
+  GH_REPO: mtt004/F35-flight-simulator
+  GH_TOKEN: ${{ github.token }}
+  VALIDATED_SOURCE: a931fa33da68160026e2fdc973c4a99e5e7b772d
+  VALIDATED_RUN: '41181412616'
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Require successful exact validation and every delivery job
+        run: |
+          gh api "repos/$GH_REPO/actions/runs/$VALIDATED_RUN" > /tmp/v05-run.json
+          gh api "repos/$GH_REPO/actions/runs/$VALIDATED_RUN/jobs?per_page=100" > /tmp/v05-jobs.json
+          gh api "repos/$GH_REPO/git/ref/heads/feature/v05-performance-reconstruction" > /tmp/v05-head.json
+          python3 - <<'PYTHON'
+          import json,os
+          run=json.load(open('/tmp/v05-run.json'))
+          assert run['head_sha']==os.environ['VALIDATED_SOURCE']
+          assert run['head_branch']=='feature/v05-performance-reconstruction'
+          assert run['path']=='.github/workflows/v05-validation.yml'
+          assert run['event']=='push' and run['status']=='completed' and run['conclusion']=='success'
+          jobs=json.load(open('/tmp/v05-jobs.json'))['jobs']
+          assert {j['name'] for j in jobs}=={'browser','android','package'}
+          assert all(j['conclusion']=='success' for j in jobs)
+          assert json.load(open('/tmp/v05-head.json'))['object']['sha']==os.environ['VALIDATED_SOURCE']
+          PYTHON
+      - name: Download immutable accepted delivery and verify original asset digests
+        run: |
+          gh run download "$VALIDATED_RUN" --name "lightning-v05-delivery-$VALIDATED_SOURCE" --dir delivery
+          cd delivery
+          sha256sum --check SHA256SUMS.txt
+      - name: Recheck source files, package identity and embedded simulator
+        run: |
+          python3 - <<'PYTHON'
+          import hashlib,json,os,zipfile
+          from pathlib import Path
+          d=Path('delivery');m=json.loads((d/'build-manifest.json').read_text());v=json.loads((d/'delivery-verification.json').read_text())
+          assert v['status']=='PASS' and v['sourceCommit']==m['sourceCommit']==os.environ['VALIDATED_SOURCE']
+          assert str(m['workflowRun'])==os.environ['VALIDATED_RUN'] and m['version']=='0.5.0-experimental' and m['versionCode']==5
+          assert m['galaxyA51']==v['galaxyA51']=='NOT TESTED'
+          for name,pin in m['sourceHashes'].items():
+              assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==pin,name
+          with zipfile.ZipFile(d/'Lightning-F35B-Web.zip') as web,zipfile.ZipFile(d/'Lightning-F35B-Android.apk') as apk:
+              html=web.read('Lightning-F35B.html')
+              assert html==apk.read('assets/www/index.html')
+              assert hashlib.sha256(html).hexdigest()==m['sha256']==v['browserHtmlSha256']
+          assert hashlib.sha256((d/'Lightning-F35B-Android.apk').read_bytes()).hexdigest()==v['apkSha256']
+          PYTHON
+      - name: Add reviewed reports and supplementary local evidence with checksums
+        run: |
+          cp reports/Lightning-v0.5-Performance-Report.md reports/Lightning-v0.5-Metrics.json reports/Lightning-v0.5-Visual-Comparisons.png reports/Lightning-v0.5-Local-Endurance.zip delivery/
+          cd delivery
+          sha256sum Lightning-v0.5-Performance-Report.md Lightning-v0.5-Metrics.json Lightning-v0.5-Visual-Comparisons.png Lightning-v0.5-Local-Endurance.zip >> SHA256SUMS.txt
+          sha256sum --check SHA256SUMS.txt
+      - name: Create a new draft prerelease without overwriting any existing release
+        run: |
+          python3 - <<'PYTHON'
+          import json,os,subprocess
+          pages=json.loads(subprocess.check_output(['gh','api','--paginate','--slurp',f"repos/{os.environ['GH_REPO']}/releases?per_page=100"]))
+          assert all(r['tag_name']!='v0.5.0-experimental' for page in pages for r in page),'Release exists; refusing overwrite'
+          PYTHON
+          gh release create v0.5.0-experimental delivery/* --target "$VALIDATED_SOURCE" --draft --prerelease --title 'Project Lightning v0.5.0-experimental' --notes-file reports/Lightning-v0.5-Release-Notes.md
+      - name: Verify uploaded asset names, sizes, digests and source tag before publication
+        run: |
+          python3 - <<'PYTHON'
+          import hashlib,json,os,subprocess
+          from pathlib import Path
+          release=json.loads(subprocess.check_output(['gh','api',f"repos/{os.environ['GH_REPO']}/releases/tags/v0.5.0-experimental"]))
+          assert release['draft'] and release['prerelease']
+          ref=json.loads(subprocess.check_output(['gh','api',f"repos/{os.environ['GH_REPO']}/git/ref/tags/v0.5.0-experimental"]))
+          assert ref['object']['type']=='commit' and ref['object']['sha']==os.environ['VALIDATED_SOURCE']
+          files={p.name:p for p in Path('delivery').iterdir() if p.is_file()}
+          assets={a['name']:a for a in release['assets']}
+          assert set(files)==set(assets),'Uploaded asset names differ'
+          for name,path in files.items():
+              asset=assets[name]
+              assert asset['state']=='uploaded' and asset['size']==path.stat().st_size,name
+              assert asset['digest']=='sha256:'+hashlib.sha256(path.read_bytes()).hexdigest(),name
+          PYTHON
+          gh release edit v0.5.0-experimental --draft=false --prerelease
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: lightning-v05-published-delivery-${{ github.sha }}
+          path: delivery/
+          compression-level: 0
+          retention-days: 90
+
