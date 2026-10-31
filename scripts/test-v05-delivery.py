@@ -43,6 +43,7 @@ class DeliveryGateTests(unittest.TestCase):
             name = 'synthetic-' + str(i)
             state = {'scenery': {'buildings': 1, 'buildingTiles': 1, 'groundTiles': 2, 'lods': [1, 0, 0]},
                      'memory': {'sceneGeometryObjects': 3, 'geometryAttributeBytes': 48, 'indexBytes': 0},
+                     'instruments': dict.fromkeys(['ias', 'mach', 'Vtas', 'alpha', 'beta', 'gNz', 'vsFpm', 'ralt', 'pitchDeg', 'rollDeg', 'hdgDeg', 'pcdPage'], 0),
                      'renderer': {'calls': 3, 'triangles': 1, 'points': 0, 'lines': 0}}
             self.reports['paired-render.json']['scenarios'].append({'name': name,
                 'states': {label: json.loads(json.dumps(state)) for label in ['before', 'after']},
@@ -148,6 +149,12 @@ class DeliveryGateTests(unittest.TestCase):
         self.reports['paired-render.json']['scenarios'][0]['runs']['before'][0]['raw']['gpuBoundary']['signalled'] = False
         self.write_reports()
         with self.assertRaisesRegex(ValueError, 'complete scenarios'):
+            self.validate()
+
+    def test_matched_pose_cannot_hide_different_instrument_inputs(self):
+        self.reports['paired-render.json']['scenarios'][0]['states']['after']['instruments']['ias'] = 233
+        self.write_reports()
+        with self.assertRaisesRegex(ValueError, 'different geometry'):
             self.validate()
 
     def test_android_runtime_requires_matching_raw_webview_and_clock_observations(self):

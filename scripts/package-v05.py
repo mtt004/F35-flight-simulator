@@ -69,7 +69,8 @@ def validate_browser_gates(browser, manifest, expected_source):
             state = states[label]
             return ([state['scenery'][key] for key in ['buildings', 'buildingTiles', 'groundTiles', 'lods']],
                     [state['memory'][key] for key in ['sceneGeometryObjects', 'geometryAttributeBytes', 'indexBytes']],
-                    [state['renderer'][key] for key in ['calls', 'triangles', 'points', 'lines']])
+                    [state['renderer'][key] for key in ['calls', 'triangles', 'points', 'lines']],
+                    [state['instruments'][key] for key in ['ias', 'mach', 'Vtas', 'alpha', 'beta', 'gNz', 'vsFpm', 'ralt', 'pitchDeg', 'rollDeg', 'hdgDeg', 'pcdPage']])
         if signature('before') != signature('after'):
             raise ValueError('Matched scenes contain different geometry or submissions')
     shots = timing.get('shots', [])

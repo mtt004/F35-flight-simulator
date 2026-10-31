@@ -86,6 +86,7 @@ function sceneState(){
  for(const t of textures){const images=Array.isArray(t.image)?t.image:[t.image];for(const i of images){const w=i?.width||i?.videoWidth||0,h=i?.height||i?.videoHeight||0;textureEstimatedRGBABytes+=w*h*4*(t.generateMipmaps?4/3:1);}}
  return{build:globalThis.__LIGHTNING_BUILD__,world:worldMode,position:P.pos.toArray(),camera:camera.position.toArray(),lookDirection:camera.getWorldDirection(new THREE.Vector3()).toArray(),fov:camera.fov,
   simulationTime:simT,flightTime:flightT,simulationHour:simHours,weather:wxPreset,quality:qlLevel,profile:L.profile,governorFrozen:true,
+  instruments:{ias,mach,Vtas,alpha,beta,gNz,vsFpm,ralt,pitchDeg,rollDeg,hdgDeg,pcdPage},
   viewport:[innerWidth,innerHeight],devicePixelRatio,drawingBuffer:[renderer.domElement.width,renderer.domElement.height],
   renderer:{...renderer.info.render,...renderer.info.memory,programs:renderer.info.programs?.length??null},
   memory:{heapBytes:performance.memory?.usedJSHeapSize??null,heapLimitBytes:performance.memory?.jsHeapSizeLimit??null,sceneGeometryObjects:geometry.size,geometryAttributeBytes,indexBytes,sceneTextureObjects:textures.size,textureEstimatedRGBABytes},
@@ -128,10 +129,18 @@ try{
    await p.evaluate(s=>{
     paused=true;window.__v05ResetRandom();L.profile='BALANCED';S.quality='MED';qlLevel=1;applyQl();worldMode='LONDON';startType='AIR';scenario='FREE FLIGHT';newWorld(4201);
     simT=120;simHours=s.hour??13.2;flightT=0;OX=OZ=0;worldGroup.position.set(0,0,0);P.pos.fromArray(s.pos);P.vel.set(120,0,0);P.quat.setFromAxisAngle(new THREE.Vector3(0,1,0),-Math.PI/2);P.om.set(0,0,0);gearD=gearT=0;parkBrake=false;
-    wxPreset=s.weather||'cavok';applyWx();camMode=s.cockpit?1:2;applyVisibility();updateAttitudeData();updateAcSurfaces(0);clearVapour();
-    if(s.cockpit){camera.position.copy(P.pos).add(new THREE.Vector3(0,.8,-2.18).applyQuaternion(P.quat));camera.quaternion.copy(P.quat);drawPCD();}
+    wxPreset=s.weather||'cavok';applyWx();camMode=s.cockpit?1:2;applyVisibility();updateAttitudeData();clearVapour();
+    if(s.cockpit){camera.position.copy(P.pos).add(new THREE.Vector3(0,.8,-2.18).applyQuaternion(P.quat));camera.quaternion.copy(P.quat);}
     else{camera.position.fromArray(s.cam);camera.lookAt(new THREE.Vector3(...s.look));}
     camera.fov=58;camera.updateProjectionMatrix();sky.position.copy(camera.position);water.position.x=camera.position.x;water.position.z=camera.position.z;waterMat.uniforms.uOffset.value.set(water.position.x+OX,water.position.z+OZ);updateWeather(0);
+    // Paused fixed-pose fixtures must refresh derived gauge input as well as
+    // rigid state. newWorld resets systems but inherits prior air-data readings.
+    windAt(P.pos.x,P.pos.y,P.pos.z,_v1);turbulenceAt(P.pos.x,P.pos.y,P.pos.z,_gustV);_v1.add(_gustV);
+    _va.copy(P.vel).sub(_v1);Vtas=_va.length();const atmosphere=atmos(P.pos.y,wx.temp0-15);rho=atmosphere.rho;
+    mach=Vtas/atmosphere.a;ias=Vtas*Math.sqrt(rho/1.225)/KT;
+    _q1.copy(P.quat).invert();_vb.copy(_va).applyQuaternion(_q1);alpha=Math.atan2(-_vb.y,-_vb.z);beta=Math.atan2(_vb.x,-_vb.z);
+    ralt=P.pos.y-surfaceH(P.pos.x,P.pos.z);vsFpm=P.vel.y*FT*60;pcdPage=0;
+    updateAcSurfaces(0);if(s.cockpit)drawPCD();
     // Force the same shadow snapshot rather than depend on startup wall-clock.
     LightningLondonLighting.update(THREE,renderer,scene,sunLight,sunDir,P.pos,heightAt(P.pos.x,P.pos.z),1,dayF,s.warm,true);
     if(!s.aircraft){ac.visible=false;cockpitGrp.visible=false;}else applyVisibility();
@@ -169,7 +178,7 @@ try{
    const png=Buffer.from(capture.png.split(',')[1],'base64'),shotPath=path.resolve('screenshots/london-v0.5',label,settings.name+'.png');await fs.writeFile(shotPath,png);
    report.shots.push({label,name:settings.name,file:path.relative(repositoryRoot,shotPath),sha256:hash(png),bytes:png.length,state:capture.state});
   }
-  const comparable=s=>({drawingBuffer:s.drawingBuffer,quality:s.quality,profile:s.profile,position:s.position,camera:s.camera,lookDirection:s.lookDirection,fov:s.fov,simulationTime:s.simulationTime,simulationHour:s.simulationHour,weather:s.weather,landmarks:s.landmarkCount,shadow:s.shadows,scenery:{buildings:s.scenery.buildings,buildingTiles:s.scenery.buildingTiles,groundTiles:s.scenery.groundTiles,lods:s.scenery.lods},geometry:{objects:s.memory.sceneGeometryObjects,attributes:s.memory.geometryAttributeBytes,indices:s.memory.indexBytes},submission:{calls:s.renderer.calls,triangles:s.renderer.triangles,points:s.renderer.points,lines:s.renderer.lines}});
+  const comparable=s=>({drawingBuffer:s.drawingBuffer,quality:s.quality,profile:s.profile,position:s.position,camera:s.camera,lookDirection:s.lookDirection,fov:s.fov,simulationTime:s.simulationTime,simulationHour:s.simulationHour,weather:s.weather,instruments:s.instruments,landmarks:s.landmarkCount,shadow:s.shadows,scenery:{buildings:s.scenery.buildings,buildingTiles:s.scenery.buildingTiles,groundTiles:s.scenery.groundTiles,lods:s.scenery.lods},geometry:{objects:s.memory.sceneGeometryObjects,attributes:s.memory.geometryAttributeBytes,indices:s.memory.indexBytes},submission:{calls:s.renderer.calls,triangles:s.renderer.triangles,points:s.renderer.points,lines:s.renderer.lines}});
   assert.deepEqual(comparable(sceneReport.states.before),comparable(sceneReport.states.after),settings.name+': uncontrolled rendering settings');
   if(!settings.captureOnly)for(let repeat=0;repeat<repeats;repeat++){
    const order=repeat%2?['after','before']:['before','after'];
