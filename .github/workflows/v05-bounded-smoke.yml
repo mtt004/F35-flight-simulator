@@ -1,0 +1,54 @@
+name: V0.5 bounded GPU diagnostic
+on:
+  push:
+    branches: ['qa/v05-bounded-gpu']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  bounded-smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    env:
+      GH_REPO: mtt004/F35-flight-simulator
+      GH_TOKEN: ${{ github.token }}
+      V05_BENCH_SECONDS: '1'
+      V05_BENCH_REPEATS: '1'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22.16.0'
+      - name: Restore exact already-built HTMLs for a test-only diagnostic
+        run: |
+          gh run download 41177972735 --name lightning-v05-browser-4159f59cb7a1301190244f4cc51507182039220f --dir .tmp/prior
+          mkdir -p .tmp/v04web
+          gh release download v0.4.0-candidate.1 --pattern Lightning-F35B-Web.zip --dir .tmp/v04web
+          python3 - <<'PYTHON'
+          import hashlib,zipfile
+          from pathlib import Path
+          Path('dist').mkdir(exist_ok=True)
+          for archive,out,pin in [('.tmp/prior/dist/Lightning-F35B-Web.zip','dist/index.html','6e3e6d9d26a5a8fe3f7ffba5fac73e0814ece8ba6c0d359a1f09005248a9b11b'),('.tmp/v04web/Lightning-F35B-Web.zip','dist/v04-baseline.html','f1f6a9e9b19c0bc8210b5bab4ef91e9b03c854f0b895cda0c965ae6779a45aad')]:
+              with zipfile.ZipFile(archive) as z:data=z.read('Lightning-F35B.html')
+              assert hashlib.sha256(data).hexdigest()==pin
+              Path(out).write_bytes(data)
+          PYTHON
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Exercise all nineteen captures, twelve short bounded pairs and real production-loop drains
+        run: node scripts/verify-v05.mjs dist/v04-baseline.html dist/index.html
+      - name: Compare native framebuffer output
+        run: |
+          python3 -m venv .tmp/visual-venv
+          .tmp/visual-venv/bin/pip install scikit-image
+          .tmp/visual-venv/bin/python scripts/compare-v05.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: bounded-smoke-${{ github.sha }}
+          path: |
+            benchmarks/london-v0.5/
+            screenshots/london-v0.5/
+          retention-days: 90
