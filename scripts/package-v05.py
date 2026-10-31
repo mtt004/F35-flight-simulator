@@ -48,14 +48,21 @@ def validate_browser_gates(browser, manifest, expected_source):
             or timing.get('sources', {}).get('after', {}).get('sha256') != manifest['sha256']):
         raise ValueError('Paired measurements are missing or describe different baseline/final source bytes')
     repeats = timing.get('repeats', 0)
-    if type(repeats) is not int or repeats < 3 or not timing.get('secondsPerRun', 0) >= 10 or timing.get('errors') != []:
+    if (type(repeats) is not int or repeats < 3 or not timing.get('secondsPerRun', 0) >= 10 or timing.get('errors') != []
+            or timing.get('timingProtocol') != {'name': 'bounded-webgl-throughput-v1', 'maxInFlightSubmissions': 2}):
         raise ValueError('Paired measurements lack complete repeated controlled runs')
     timed = [s for s in timing.get('scenarios', []) if not s.get('settings', {}).get('captureOnly', False)]
     # Capture-only scene entries have no timing samples; twelve actual scenes
     # must each retain every before/after repeat and its raw frame intervals.
     timed = [s for s in timed if s.get('runs', {}).get('before')]
     if len(timed) < 12 or any(len(s.get('runs', {}).get(label, [])) != repeats or
-            any(len(r.get('raw', {}).get('intervals', [])) < 2 or r.get('raw', {}).get('gpuBoundary', {}).get('signalled') is not True for r in s['runs'][label])
+            any(len(r.get('raw', {}).get('intervals', [])) < 2
+                or r['raw'].get('elapsedMs', 0) < timing['secondsPerRun'] * 1000
+                or len(r['raw'].get('submissions', [])) != len(r['raw']['intervals']) + 1
+                or any(type(v) not in (int, float) or not 0 < v < float('inf') for v in r['raw']['intervals'])
+                or r.get('raw', {}).get('gpuBoundary', {}).get('signalled') is not True
+                or r['raw']['gpuBoundary'].get('queueDepth') != 2
+                or not 1 <= r['raw']['gpuBoundary'].get('maxPendingObserved', 0) <= 2 for r in s['runs'][label])
             for s in timed for label in ['before', 'after']):
         raise ValueError('Paired measurements lack twelve complete scenarios')
     for scene in timing.get('scenarios', []):

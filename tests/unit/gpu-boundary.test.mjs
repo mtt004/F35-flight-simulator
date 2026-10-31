@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {waitForGpuIdle} from '../../scripts/gpu-timing.mjs';
+import {waitForGpuIdle,createGpuSubmissionQueue} from '../../scripts/gpu-timing.mjs';
 
 function mock(states){
  const calls=[];
@@ -27,4 +27,31 @@ test('GPU boundary requires an actual usable WebGL2 fence',async()=>{
  await assert.rejects(waitForGpuIdle({}),/WebGL2/);
  const gl=mock([]);gl.fenceSync=()=>null;
  await assert.rejects(waitForGpuIdle(gl),/create benchmark/);
+});
+test('bounded submission pipeline drains oldest work before permitting a third frame',async()=>{
+ const gl=mock([0,3,3,3]),q=createGpuSubmissionQueue(gl);
+ await q.beforeFrame();q.afterFrame();await q.beforeFrame();q.afterFrame();
+ assert.throws(()=>q.afterFrame(),/limit exceeded/);
+ await q.beforeFrame();q.afterFrame();const r=await q.drain();q.dispose();
+ assert.equal(r.queueDepth,2);assert.equal(r.maxPendingObserved,2);assert.equal(r.signalled,true);
+ assert.equal(gl.calls.filter(c=>c[0]==='fence').length,3);
+ assert.equal(gl.calls.filter(c=>c[0]==='delete').length,3);
+ assert.ok(gl.calls.filter(c=>c[0]==='poll').every(c=>c[1]===0&&c[2]===0));
+});
+test('bounded pipeline fails closed on GPU timeout and cleans remaining fences',async()=>{
+ const gl=mock([]),q=createGpuSubmissionQueue(gl,2,0);q.afterFrame();q.afterFrame();
+ await assert.rejects(q.beforeFrame(),/timed out/);q.dispose();q.dispose();
+ assert.equal(gl.calls.filter(c=>c[0]==='delete').length,2);
+ assert.throws(()=>q.afterFrame(),/disposed/);
+});
+test('bounded pipeline rejects unusable hardware and invalid depth',()=>{
+ assert.throws(()=>createGpuSubmissionQueue({}),/WebGL2/);
+ assert.throws(()=>createGpuSubmissionQueue(mock([]),0),/depth/);
+ const gl=mock([]);gl.fenceSync=()=>null;const q=createGpuSubmissionQueue(gl);
+ assert.throws(()=>q.afterFrame(),/create GPU/);q.dispose();
+});
+test('bounded pipeline cleans failed GPU waits without discarding a success claim',async()=>{
+ const gl=mock([4]),q=createGpuSubmissionQueue(gl);q.afterFrame();
+ await assert.rejects(q.drain(),/fence failed/);q.dispose();
+ assert.equal(gl.calls.filter(c=>c[0]==='delete').length,1);
 });

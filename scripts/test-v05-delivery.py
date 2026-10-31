@@ -31,6 +31,7 @@ class DeliveryGateTests(unittest.TestCase):
             'verification.json': {'status': 'PASS', 'scenePairs': 12, 'checks': [
                 {'name': 'paired-render-observations', 'status': 'PASS'}, {'name': 'matched-visual-regression', 'status': 'PASS'}]},
             'paired-render.json': {'status': 'MEASURED', 'sourceCommit': self.source,
+                'timingProtocol': {'name': 'bounded-webgl-throughput-v1', 'maxInFlightSubmissions': 2},
                 'baselineSourceCommit': restore.BASELINE_SOURCE, 'sources': {
                     'before': {'sha256': 'f1f6a9e9b19c0bc8210b5bab4ef91e9b03c854f0b895cda0c965ae6779a45aad'},
                     'after': self.manifest}, 'repeats': 3, 'secondsPerRun': 10, 'errors': [], 'scenarios': [], 'shots': []},
@@ -48,7 +49,7 @@ class DeliveryGateTests(unittest.TestCase):
             self.reports['paired-render.json']['scenarios'].append({'name': name,
                 'states': {label: json.loads(json.dumps(state)) for label in ['before', 'after']},
                 'warm': {label: {'expectedGroundTiles': 2, 'stats': {'groundTiles': 2}} for label in ['before', 'after']}, 'runs': {
-                label: [{'raw': {'intervals': [30, 31], 'gpuBoundary': {'signalled': True}}} for _ in range(3)] for label in ['before', 'after']}})
+                label: [{'raw': {'intervals': [30, 31], 'submissions': [1, 1, 1], 'elapsedMs': 10000, 'gpuBoundary': {'signalled': True, 'queueDepth': 2, 'maxPendingObserved': 2}}} for _ in range(3)] for label in ['before', 'after']}})
             for label in ['before', 'after']:
                 relative = 'screenshots/london-v0.5/' + label + '/' + name + '.png'
                 path = self.browser / relative
@@ -147,6 +148,24 @@ class DeliveryGateTests(unittest.TestCase):
 
     def test_unfinished_gpu_work_cannot_overlap_paired_runs(self):
         self.reports['paired-render.json']['scenarios'][0]['runs']['before'][0]['raw']['gpuBoundary']['signalled'] = False
+        self.write_reports()
+        with self.assertRaisesRegex(ValueError, 'complete scenarios'):
+            self.validate()
+
+    def test_top_level_duration_cannot_hide_short_or_truncated_raw_measurements(self):
+        raw = self.reports['paired-render.json']['scenarios'][0]['runs']['before'][0]['raw']
+        raw['elapsedMs'] = 1000
+        self.write_reports()
+        with self.assertRaisesRegex(ValueError, 'complete scenarios'):
+            self.validate()
+        raw['elapsedMs'] = 10000
+        raw['submissions'].pop()
+        self.write_reports()
+        with self.assertRaisesRegex(ValueError, 'complete scenarios'):
+            self.validate()
+
+    def test_unbounded_benchmark_cannot_satisfy_completed_throughput_gate(self):
+        self.reports['paired-render.json']['scenarios'][0]['runs']['before'][0]['raw']['gpuBoundary']['maxPendingObserved'] = 3
         self.write_reports()
         with self.assertRaisesRegex(ValueError, 'complete scenarios'):
             self.validate()

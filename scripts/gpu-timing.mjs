@@ -18,6 +18,33 @@ export async function waitForGpuIdle(gl,timeoutMs=60000,pollMs=16){
   }
  }finally{gl.deleteSync(sync);}
 }
+// Headless RAF can enqueue far more work than a physical swapchain. A bounded
+// benchmark pipeline measures completed throughput without an arbitrary FPS cap.
+// This is test-only scheduling, not the simulator's production frame loop.
+export function createGpuSubmissionQueue(gl,limit=2,timeoutMs=60000){
+ if(!Number.isInteger(limit)||limit<1||limit>4)throw Error('GPU submission queue depth must be1..4');
+ if(typeof gl.fenceSync!=='function')throw Error('WebGL2 fences required for bounded GPU measurement');
+ const pending=[];let disposed=false,maxPendingObserved=0,polls=0,waitMs=0;
+ async function oldest(){
+  const sync=pending[0],start=performance.now();
+  try{
+   while(true){
+    const state=gl.clientWaitSync(sync,0,0);polls++;
+    if(state===gl.ALREADY_SIGNALED||state===gl.CONDITION_SATISFIED)return;
+    if(state===gl.WAIT_FAILED||gl.isContextLost())throw Error('Benchmark GPU submission fence failed');
+    if(performance.now()-start>=timeoutMs)throw Error('Benchmark GPU submission fence timed out');
+    await new Promise(resolve=>setTimeout(resolve,16));
+   }
+  }finally{waitMs+=performance.now()-start;gl.deleteSync(sync);pending.shift();}
+ }
+ function live(){if(disposed)throw Error('GPU submission queue disposed');}
+ return{
+  async beforeFrame(){live();while(pending.length>=limit)await oldest();},
+  afterFrame(){live();if(pending.length>=limit)throw Error('GPU submission queue limit exceeded');const sync=gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE,0);if(!sync)throw Error('Could not create GPU submission fence');pending.push(sync);maxPendingObserved=Math.max(maxPendingObserved,pending.length);gl.flush();},
+  async drain(){live();const start=performance.now();while(pending.length)await oldest();return{signalled:true,wallMs:performance.now()-start,queueDepth:limit,maxPendingObserved,polls,waitMs};},
+  dispose(){if(disposed)return;disposed=true;for(const sync of pending)gl.deleteSync(sync);pending.length=0;}
+ };
+}
 export function createGpuTimer(gl,limit=16){
  const ext=gl.getExtension('EXT_disjoint_timer_query_webgl2');
  let pending=[],active=null,samples=[],disjointDiscarded=0,skipped=0,disposed=false;
