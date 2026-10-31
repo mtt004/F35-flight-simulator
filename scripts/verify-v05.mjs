@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {browserSession,startFlight} from '../tests/helpers/browser.mjs';
 import {repositoryRoot} from '../tests/helpers/source.mjs';
-import {createGpuTimer} from './gpu-timing.mjs';
+import {createGpuTimer,waitForGpuIdle} from './gpu-timing.mjs';
 import {frameStatistics,pairedChanges} from './v05-statistics.mjs';
 
 const files={before:path.resolve(process.argv[2]||'dist/v04-baseline.html'),after:path.resolve(process.argv[3]||'dist/index.html')};
@@ -112,6 +112,7 @@ try{
   await page.evaluate(()=>{paused=true;window.__v05OriginalLoop=loop;window.__v05OriginalUpdateCamera=updateCamera;loop=()=>{};updateCamera=()=>{};});
   await page.waitForTimeout(100);
   await page.evaluate('window.__v05CreateGpuTimer='+createGpuTimer.toString());
+  await page.evaluate('window.__v05WaitForGpuIdle='+waitForGpuIdle.toString());
   await page.evaluate('window.__v05SceneState='+sceneState.toString());
   await page.evaluate('window.__v05InstallProbe='+installResourceProbe.toString());
   await page.evaluate(()=>{window.__v05Gpu=__v05CreateGpuTimer(renderer.getContext());});
@@ -182,7 +183,9 @@ try{
       await new Promise(resolve=>requestAnimationFrame(resolve));const now=performance.now();if(previous!==null)intervals.push(now-previous);previous=now;
       const begin=performance.now();__v05Gpu.begin();try{LightningLondonLighting.update(THREE,renderer,scene,sunLight,sunDir,P.pos,heightAt(P.pos.x,P.pos.z),1,dayF,performance.now()/1000,true);renderer.render(scene,camera);}finally{__v05Gpu.end();}submissions.push(performance.now()-begin);
      }
-     return{intervals,submissions,elapsedMs:performance.now()-start,gpu:__v05Gpu.summary(),state:__v05SceneState()};
+     const elapsedMs=performance.now()-start;
+     const gpuBoundary=await __v05WaitForGpuIdle(renderer.getContext());
+     return{intervals,submissions,elapsedMs,gpuBoundary,gpu:__v05Gpu.summary(),state:__v05SceneState()};
     },seconds);
     assert.ok(raw.intervals.length>=2,label+' insufficient frames');
     assert.deepEqual(raw.state.drawingBuffer,[1152,648]);assert.equal(raw.state.quality,1);

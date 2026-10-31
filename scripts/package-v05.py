@@ -55,7 +55,7 @@ def validate_browser_gates(browser, manifest, expected_source):
     # must each retain every before/after repeat and its raw frame intervals.
     timed = [s for s in timed if s.get('runs', {}).get('before')]
     if len(timed) < 12 or any(len(s.get('runs', {}).get(label, [])) != repeats or
-            any(len(r.get('raw', {}).get('intervals', [])) < 2 for r in s['runs'][label])
+            any(len(r.get('raw', {}).get('intervals', [])) < 2 or r.get('raw', {}).get('gpuBoundary', {}).get('signalled') is not True for r in s['runs'][label])
             for s in timed for label in ['before', 'after']):
         raise ValueError('Paired measurements lack twelve complete scenarios')
     for scene in timing.get('scenarios', []):

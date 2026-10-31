@@ -47,7 +47,7 @@ class DeliveryGateTests(unittest.TestCase):
             self.reports['paired-render.json']['scenarios'].append({'name': name,
                 'states': {label: json.loads(json.dumps(state)) for label in ['before', 'after']},
                 'warm': {label: {'expectedGroundTiles': 2, 'stats': {'groundTiles': 2}} for label in ['before', 'after']}, 'runs': {
-                label: [{'raw': {'intervals': [30, 31]}} for _ in range(3)] for label in ['before', 'after']}})
+                label: [{'raw': {'intervals': [30, 31], 'gpuBoundary': {'signalled': True}}} for _ in range(3)] for label in ['before', 'after']}})
             for label in ['before', 'after']:
                 relative = 'screenshots/london-v0.5/' + label + '/' + name + '.png'
                 path = self.browser / relative
@@ -137,10 +137,17 @@ class DeliveryGateTests(unittest.TestCase):
         self.write_reports()
         with self.assertRaisesRegex(ValueError, 'incomplete local road'):
             self.validate()
+
         scene['warm']['after']['stats']['groundTiles'] = 2
         scene['states']['after']['renderer']['triangles'] = 0
         self.write_reports()
         with self.assertRaisesRegex(ValueError, 'different geometry'):
+            self.validate()
+
+    def test_unfinished_gpu_work_cannot_overlap_paired_runs(self):
+        self.reports['paired-render.json']['scenarios'][0]['runs']['before'][0]['raw']['gpuBoundary']['signalled'] = False
+        self.write_reports()
+        with self.assertRaisesRegex(ValueError, 'complete scenarios'):
             self.validate()
 
     def test_android_runtime_requires_matching_raw_webview_and_clock_observations(self):
