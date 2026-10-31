@@ -62,7 +62,10 @@ jobs:
           PYTHON
       - name: Add reviewed reports and supplementary local evidence with checksums
         run: |
-          cp reports/Lightning-v0.5-Performance-Report.md reports/Lightning-v0.5-Metrics.json reports/Lightning-v0.5-Visual-Comparisons.png reports/Lightning-v0.5-Local-Endurance.zip delivery/
+          python3 -m venv .tmp/report-venv
+          .tmp/report-venv/bin/pip install Pillow==12.3.0
+          .tmp/report-venv/bin/python scripts/finalize-v05-report.py
+          cp reports/Lightning-v0.5-Local-Endurance.zip delivery/
           cd delivery
           sha256sum Lightning-v0.5-Performance-Report.md Lightning-v0.5-Metrics.json Lightning-v0.5-Visual-Comparisons.png Lightning-v0.5-Local-Endurance.zip >> SHA256SUMS.txt
           sha256sum --check SHA256SUMS.txt
@@ -72,14 +75,19 @@ jobs:
           import json,os,subprocess
           pages=json.loads(subprocess.check_output(['gh','api','--paginate','--slurp',f"repos/{os.environ['GH_REPO']}/releases?per_page=100"]))
           assert all(r['tag_name']!='v0.5.0-experimental' for page in pages for r in page),'Release exists; refusing overwrite'
+          tag=json.loads(subprocess.check_output(['gh','api','--method','POST',f"repos/{os.environ['GH_REPO']}/git/refs",'--input','-'],input=json.dumps({'ref':'refs/tags/v0.5.0-experimental','sha':os.environ['VALIDATED_SOURCE']}).encode()))
+          assert tag['object']['type']=='commit' and tag['object']['sha']==os.environ['VALIDATED_SOURCE']
           PYTHON
-          gh release create v0.5.0-experimental delivery/* --target "$VALIDATED_SOURCE" --draft --prerelease --title 'Project Lightning v0.5.0-experimental' --notes-file reports/Lightning-v0.5-Release-Notes.md
+          gh release create v0.5.0-experimental delivery/* --verify-tag --draft --prerelease --title 'Project Lightning v0.5.0-experimental' --notes-file reports/Lightning-v0.5-Release-Notes.md
       - name: Verify uploaded asset names, sizes, digests and source tag before publication
         run: |
           python3 - <<'PYTHON'
           import hashlib,json,os,subprocess
           from pathlib import Path
-          release=json.loads(subprocess.check_output(['gh','api',f"repos/{os.environ['GH_REPO']}/releases/tags/v0.5.0-experimental"]))
+          pages=json.loads(subprocess.check_output(['gh','api','--paginate','--slurp',f"repos/{os.environ['GH_REPO']}/releases?per_page=100"]))
+          matching=[r for page in pages for r in page if r['tag_name']=='v0.5.0-experimental']
+          assert len(matching)==1,'Expected exactly one newly created draft'
+          release=json.loads(subprocess.check_output(['gh','api',f"repos/{os.environ['GH_REPO']}/releases/{matching[0]['id']}"]))
           assert release['draft'] and release['prerelease']
           ref=json.loads(subprocess.check_output(['gh','api',f"repos/{os.environ['GH_REPO']}/git/ref/tags/v0.5.0-experimental"]))
           assert ref['object']['type']=='commit' and ref['object']['sha']==os.environ['VALIDATED_SOURCE']
@@ -90,8 +98,10 @@ jobs:
               asset=assets[name]
               assert asset['state']=='uploaded' and asset['size']==path.stat().st_size,name
               assert asset['digest']=='sha256:'+hashlib.sha256(path.read_bytes()).hexdigest(),name
+          published=json.loads(subprocess.check_output(['gh','api','--method','PATCH',f"repos/{os.environ['GH_REPO']}/releases/{release['id']}",'--input','-'],input=json.dumps({'draft':False,'prerelease':True}).encode()))
+          assert not published['draft'] and published['prerelease'] and published['published_at']
+          print(published['html_url'])
           PYTHON
-          gh release edit v0.5.0-experimental --draft=false --prerelease
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
