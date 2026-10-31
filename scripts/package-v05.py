@@ -58,6 +58,20 @@ def validate_browser_gates(browser, manifest, expected_source):
             any(len(r.get('raw', {}).get('intervals', [])) < 2 for r in s['runs'][label])
             for s in timed for label in ['before', 'after']):
         raise ValueError('Paired measurements lack twelve complete scenarios')
+    for scene in timing.get('scenarios', []):
+        for label in ['before', 'after']:
+            warm = scene.get('warm', {}).get(label, {})
+            expected = warm.get('expectedGroundTiles')
+            if type(expected) is not int or expected < 0 or warm.get('stats', {}).get('groundTiles') != expected:
+                raise ValueError('Matched scene has incomplete local road geometry')
+        states = scene.get('states', {})
+        def signature(label):
+            state = states[label]
+            return ([state['scenery'][key] for key in ['buildings', 'buildingTiles', 'groundTiles', 'lods']],
+                    [state['memory'][key] for key in ['sceneGeometryObjects', 'geometryAttributeBytes', 'indexBytes']],
+                    [state['renderer'][key] for key in ['calls', 'triangles', 'points', 'lines']])
+        if signature('before') != signature('after'):
+            raise ValueError('Matched scenes contain different geometry or submissions')
     shots = timing.get('shots', [])
     names = {label: [s.get('name') for s in shots if s.get('label') == label] for label in ['before', 'after']}
     if len(names['before']) < 12 or set(names['before']) != set(names['after']) or any(len(v) != len(set(v)) for v in names.values()):

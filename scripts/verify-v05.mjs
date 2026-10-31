@@ -138,12 +138,23 @@ try{
     terrainMat.uniforms.uOrigin.value.set(0,0);terrainMat.uniforms.uSun.value.copy(sunDir);terrainMat.uniforms.uFog.value.copy(scene.fog.color);terrainMat.uniforms.uFogD.value=scene.fog.density;terrainMat.uniforms.uDay.value=dayF;terrainMat.uniforms.uWet.value=wx.wet?1:0;terrainMat.uniforms.uTime.value=simT;
     waterMat.uniforms.uSun.value.copy(sunDir);waterMat.uniforms.uFog.value.copy(scene.fog.color);waterMat.uniforms.uFogD.value=scene.fog.density;waterMat.uniforms.uNight.value=nightF;
     LightningVisuals.updateAircraft({distance:camera.position.distanceTo(P.pos),quality:1,night:nightF});LightningVisuals.updateCockpit({roll:0,pitch:0,throttle:.2,night:nightF});
-    window.__v05Warm={time:s.warm,turns:0,stable:0,lastTiles:-1};
+    // Buildings and road ribbons have independent construction queues. Prepared
+    // buildings can finish first; a stable building count alone is insufficient.
+    // Derive the exact road-cell selection from the immutable published input,
+    // including the same bounds-centre binning, radius and altitude conditions.
+    const roadKeys=new Set();
+    for(const road of __LONDON_DATA__.roads){
+     let x0=Infinity,x1=-Infinity,z0=Infinity,z1=-Infinity;
+     for(const [x,z]of road.p){x0=Math.min(x0,x);x1=Math.max(x1,x);z0=Math.min(z0,z);z1=Math.max(z1,z);}
+     roadKeys.add(Math.floor((x0+x1)/2400)+','+Math.floor((z0+z1)/2400));
+    }
+    const expectedGroundTiles=s.pos[1]>=900?0:Math.min(16,[...roadKeys].filter(key=>{const [i,j]=key.split(',').map(Number);return Math.hypot((i+.5)*1200-s.pos[0],(j+.5)*1200-s.pos[2])<2200;}).length);
+    window.__v05Warm={time:s.warm,turns:0,stable:0,lastTiles:-1,expectedGroundTiles};
    },{...settings,warm:10000+index*1000});
    const warmStart=Date.now();let done=false;
    while(Date.now()-warmStart<120000){
-    const state=await p.evaluate(()=>{const w=__v05Warm;w.time+=.05;w.turns++;LightningLondon.update(P.pos.x,P.pos.z,P.pos.y,1,nightF,w.time);const s=LightningLondon.stats();const quiet=!s.pendingBuildings&&!(s.queuedBuildings||0)&&!(s.pendingPrepared||0)&&!s.imagery?.pending;w.stable=quiet&&s.buildingTiles===w.lastTiles?w.stable+1:0;w.lastTiles=s.buildingTiles;return{done:w.stable>=12,turns:w.turns,stats:s};});
-    if(state.done){sceneReport.warm[label]={wallMs:Date.now()-warmStart,turns:state.turns,stats:state.stats};done=true;break;}
+    const state=await p.evaluate(()=>{const w=__v05Warm;w.time+=.05;w.turns++;LightningLondon.update(P.pos.x,P.pos.z,P.pos.y,1,nightF,w.time);const s=LightningLondon.stats();const quiet=!s.pendingBuildings&&!(s.queuedBuildings||0)&&!(s.pendingPrepared||0)&&!s.imagery?.pending&&s.groundTiles===w.expectedGroundTiles;w.stable=quiet&&s.buildingTiles===w.lastTiles?w.stable+1:0;w.lastTiles=s.buildingTiles;return{done:w.stable>=12,turns:w.turns,expectedGroundTiles:w.expectedGroundTiles,stats:s};});
+    if(state.done){sceneReport.warm[label]={wallMs:Date.now()-warmStart,turns:state.turns,expectedGroundTiles:state.expectedGroundTiles,stats:state.stats};done=true;break;}
     await p.waitForTimeout(5);
    }
    assert.ok(done,`${label} ${settings.name}: scenery did not converge`);
@@ -157,7 +168,7 @@ try{
    const png=Buffer.from(capture.png.split(',')[1],'base64'),shotPath=path.resolve('screenshots/london-v0.5',label,settings.name+'.png');await fs.writeFile(shotPath,png);
    report.shots.push({label,name:settings.name,file:path.relative(repositoryRoot,shotPath),sha256:hash(png),bytes:png.length,state:capture.state});
   }
-  const comparable=s=>({drawingBuffer:s.drawingBuffer,quality:s.quality,profile:s.profile,position:s.position,camera:s.camera,lookDirection:s.lookDirection,fov:s.fov,simulationTime:s.simulationTime,simulationHour:s.simulationHour,weather:s.weather,landmarks:s.landmarkCount,shadow:s.shadows});
+  const comparable=s=>({drawingBuffer:s.drawingBuffer,quality:s.quality,profile:s.profile,position:s.position,camera:s.camera,lookDirection:s.lookDirection,fov:s.fov,simulationTime:s.simulationTime,simulationHour:s.simulationHour,weather:s.weather,landmarks:s.landmarkCount,shadow:s.shadows,scenery:{buildings:s.scenery.buildings,buildingTiles:s.scenery.buildingTiles,groundTiles:s.scenery.groundTiles,lods:s.scenery.lods},geometry:{objects:s.memory.sceneGeometryObjects,attributes:s.memory.geometryAttributeBytes,indices:s.memory.indexBytes},submission:{calls:s.renderer.calls,triangles:s.renderer.triangles,points:s.renderer.points,lines:s.renderer.lines}});
   assert.deepEqual(comparable(sceneReport.states.before),comparable(sceneReport.states.after),settings.name+': uncontrolled rendering settings');
   if(!settings.captureOnly)for(let repeat=0;repeat<repeats;repeat++){
    const order=repeat%2?['after','before']:['before','after'];

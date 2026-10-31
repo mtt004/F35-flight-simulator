@@ -41,7 +41,12 @@ class DeliveryGateTests(unittest.TestCase):
         }
         for i in range(12):
             name = 'synthetic-' + str(i)
-            self.reports['paired-render.json']['scenarios'].append({'name': name, 'runs': {
+            state = {'scenery': {'buildings': 1, 'buildingTiles': 1, 'groundTiles': 2, 'lods': [1, 0, 0]},
+                     'memory': {'sceneGeometryObjects': 3, 'geometryAttributeBytes': 48, 'indexBytes': 0},
+                     'renderer': {'calls': 3, 'triangles': 1, 'points': 0, 'lines': 0}}
+            self.reports['paired-render.json']['scenarios'].append({'name': name,
+                'states': {label: json.loads(json.dumps(state)) for label in ['before', 'after']},
+                'warm': {label: {'expectedGroundTiles': 2, 'stats': {'groundTiles': 2}} for label in ['before', 'after']}, 'runs': {
                 label: [{'raw': {'intervals': [30, 31]}} for _ in range(3)] for label in ['before', 'after']}})
             for label in ['before', 'after']:
                 relative = 'screenshots/london-v0.5/' + label + '/' + name + '.png'
@@ -124,6 +129,18 @@ class DeliveryGateTests(unittest.TestCase):
         self.reports['prepared-equivalence.json']['checked'] = 1
         self.write_reports()
         with self.assertRaisesRegex(ValueError, 'byte-equivalence'):
+            self.validate()
+
+    def test_stable_buildings_cannot_hide_unfinished_road_queue(self):
+        scene = self.reports['paired-render.json']['scenarios'][0]
+        scene['warm']['after']['stats']['groundTiles'] = 1
+        self.write_reports()
+        with self.assertRaisesRegex(ValueError, 'incomplete local road'):
+            self.validate()
+        scene['warm']['after']['stats']['groundTiles'] = 2
+        scene['states']['after']['renderer']['triangles'] = 0
+        self.write_reports()
+        with self.assertRaisesRegex(ValueError, 'different geometry'):
             self.validate()
 
     def test_android_runtime_requires_matching_raw_webview_and_clock_observations(self):

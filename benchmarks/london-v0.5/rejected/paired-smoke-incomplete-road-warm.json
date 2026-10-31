@@ -1,0 +1,4552 @@
+{
+  "schema": 1,
+  "status": "FAIL",
+  "date": "2026-10-31T06:25:00.813Z",
+  "secondsPerRun": 1,
+  "repeats": 1,
+  "sourceCommit": null,
+  "baselineSourceCommit": "ca330131115ee983a6457efa33ff513ac34803ad",
+  "method": "Same Chromium process, separate contexts, sequential rendering (the other page has no animation loop). Fixed poses, seed4201, simulation clock120, profileBALANCED Q1, camera58deg, actual1152x648 drawing buffer. Complete streaming convergence before captures. The local shadow system keeps its existing four-Hz update schedule during timed rendering. AB/BA alternation across repeated paired measurements. Timings exclude shader/resource instrumentation; a separate untimed diagnostic pass records those counters. Physics paused: these are rendering observations, not control or real-time-flight evidence.",
+  "limits": [
+    "SwiftShader software renderer, NOT Mali-G72 or Galaxy A51.",
+    "Three repeated runs give descriptive paired variability, not a reliable hardware-performance confidence interval.",
+    "CPU submission includes browser/driver overhead; GPU timings are reported only when nonblocking extension results are valid.",
+    "Texture residency is an estimate from dimensions and mip flags; not a driver memory measurement.",
+    "Long tasks are observable main-thread stalls, not identified garbage collections.",
+    "Input latency, Android PSS, thermals, battery and physical-device acceptance remain unavailable."
+  ],
+  "sources": {
+    "before": {
+      "file": "dist/v04-baseline.html",
+      "bytes": 46780850,
+      "sha256": "f1f6a9e9b19c0bc8210b5bab4ef91e9b03c854f0b895cda0c965ae6779a45aad"
+    },
+    "after": {
+      "file": "dist/index.html",
+      "bytes": 88081339,
+      "sha256": "6e3e6d9d26a5a8fe3f7ffba5fac73e0814ece8ba6c0d359a1f09005248a9b11b"
+    }
+  },
+  "environment": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+    "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "viewport": [
+      1280,
+      720
+    ],
+    "devicePixelRatio": 1,
+    "drawingBuffer": [
+      1152,
+      648
+    ],
+    "hardware": "Cloud Linux Chromium using SwiftShader software rasterizer; NOT Galaxy A51",
+    "realDevice": false,
+    "browserVersion": "151.0.7922.34",
+    "sameBrowserProcess": true
+  },
+  "scenarios": [
+    {
+      "name": "01-heathrow-runway",
+      "settings": {
+        "name": "01-heathrow-runway",
+        "pos": [
+          -1800,
+          35,
+          -480
+        ],
+        "cam": [
+          -1850,
+          42,
+          -480
+        ],
+        "look": [
+          0,
+          30,
+          -530
+        ],
+        "aircraft": true
+      },
+      "runs": {
+        "before": [
+          {
+            "repeat": 0,
+            "order": "before/after",
+            "samples": 28,
+            "medianFps": 59.88023952091634,
+            "onePercentLowFps": 1.807337791433257,
+            "frameMs": {
+              "p50": 16.70000000001164,
+              "p95": 128.10000000003492,
+              "p99": 553.2999999999884,
+              "max": 553.2999999999884
+            },
+            "stuttersOver100ms": 2,
+            "cpuSubmissionMs": {
+              "p50": 3.099999999976717,
+              "p95": 4.399999999965075,
+              "p99": 11.200000000011642,
+              "max": 11.200000000011642
+            },
+            "raw": {
+              "intervals": [
+                5.100000000034925,
+                16.79999999998836,
+                16.599999999976717,
+                17.5,
+                15.900000000023283,
+                16.599999999976717,
+                25.5,
+                7.800000000046566,
+                16.699999999953434,
+                16.800000000046566,
+                16.599999999976717,
+                16.70000000001164,
+                16.899999999965075,
+                16.300000000046566,
+                16.599999999976717,
+                16.79999999998836,
+                16.79999999998836,
+                16.400000000023283,
+                16.70000000001164,
+                16.899999999965075,
+                20,
+                13.5,
+                16.800000000046566,
+                16.199999999953434,
+                16.70000000001164,
+                16.79999999998836,
+                128.10000000003492,
+                553.2999999999884
+              ],
+              "submissions": [
+                3.2000000000116415,
+                4,
+                2.599999999976717,
+                2.5,
+                11.200000000011642,
+                3.099999999976717,
+                3.300000000046566,
+                3.5,
+                3.8999999999650754,
+                2.800000000046566,
+                2.099999999976717,
+                2.099999999976717,
+                3.3999999999650754,
+                3,
+                2.599999999976717,
+                2.2000000000116415,
+                2.7000000000116415,
+                2.400000000023283,
+                2,
+                2.7000000000116415,
+                2.5,
+                3.1000000000349246,
+                3.2000000000116415,
+                4.399999999965075,
+                3.400000000023283,
+                3.2000000000116415,
+                3.1000000000349246,
+                3.7999999999883585,
+                2.7999999999883585
+              ],
+              "elapsedMs": 1106.5,
+              "gpu": {
+                "supported": true,
+                "samples": [
+                  533.119291
+                ],
+                "pending": 16,
+                "disjointDiscarded": 0,
+                "skipped": 12,
+                "p50Ms": 533.119291,
+                "p95Ms": 533.119291,
+                "p99Ms": 533.119291
+              },
+              "state": {
+                "build": {
+                  "version": "0.4.0-candidate.1",
+                  "versionCode": 4,
+                  "releaseTag": "v0.4.0-candidate.1"
+                },
+                "world": "LONDON",
+                "position": [
+                  -1800,
+                  35,
+                  -480
+                ],
+                "camera": [
+                  -1850,
+                  42,
+                  -480
+                ],
+                "lookDirection": [
+                  0.9996139563112845,
+                  -0.00648398241931644,
+                  -0.027016593413818568
+                ],
+                "fov": 58,
+                "simulationTime": 120,
+                "flightTime": 0,
+                "simulationHour": 13.2,
+                "weather": "cavok",
+                "quality": 1,
+                "profile": "BALANCED",
+                "governorFrozen": true,
+                "viewport": [
+                  1280,
+                  720
+                ],
+                "devicePixelRatio": 1,
+                "drawingBuffer": [
+                  1152,
+                  648
+                ],
+                "renderer": {
+                  "frame": 71,
+                  "calls": 285,
+                  "triangles": 200426,
+                  "points": 2252,
+                  "lines": 36,
+                  "geometries": 289,
+                  "textures": 17,
+                  "programs": 29
+                },
+                "memory": {
+                  "heapBytes": 254000000,
+                  "heapLimitBytes": 3760000000,
+                  "sceneGeometryObjects": 464,
+                  "geometryAttributeBytes": 27778088,
+                  "indexBytes": 331254,
+                  "sceneTextureObjects": 16,
+                  "textureEstimatedRGBABytes": 66721109.33333334
+                },
+                "scenery": {
+                  "imagery": {
+                    "resident": 4,
+                    "pending": 0,
+                    "failed": 0,
+                    "maxResident": 4,
+                    "estimatedRGBABytes": 5592405.333333333,
+                    "source": "london-sentinel-2025",
+                    "overviewReady": true
+                  },
+                  "measuredHeights": 38914,
+                  "buildings": 39989,
+                  "rawBuildings": 40000,
+                  "buildingTiles": 72,
+                  "groundTiles": 9,
+                  "pendingBuildings": 0,
+                  "lods": [
+                    9,
+                    63,
+                    0
+                  ]
+                },
+                "shadows": {
+                  "shadows": true,
+                  "mapSize": 1024,
+                  "updateHz": 4
+                },
+                "landmarkCount": 9,
+                "contextLost": false
+              }
+            }
+          }
+        ],
+        "after": [
+          {
+            "repeat": 0,
+            "order": "before/after",
+            "samples": 2,
+            "medianFps": 91.74311926585908,
+            "onePercentLowFps": 0.38067684342761937,
+            "frameMs": {
+              "p50": 10.900000000023283,
+              "p95": 2626.899999999965,
+              "p99": 2626.899999999965,
+              "max": 2626.899999999965
+            },
+            "stuttersOver100ms": 1,
+            "cpuSubmissionMs": {
+              "p50": 4.300000000046566,
+              "p95": 4.399999999965075,
+              "p99": 4.399999999965075,
+              "max": 4.399999999965075
+            },
+            "raw": {
+              "intervals": [
+                10.900000000023283,
+                2626.899999999965
+              ],
+              "submissions": [
+                3.7000000000116415,
+                4.399999999965075,
+                4.300000000046566
+              ],
+              "elapsedMs": 2642.3000000000466,
+              "gpu": {
+                "supported": true,
+                "samples": [],
+                "pending": 3,
+                "disjointDiscarded": 0,
+                "skipped": 0,
+                "p50Ms": null,
+                "p95Ms": null,
+                "p99Ms": null
+              },
+              "state": {
+                "build": {
+                  "version": "0.5.0-experimental",
+                  "versionCode": 5,
+                  "releaseTag": "v0.5.0-experimental"
+                },
+                "world": "LONDON",
+                "position": [
+                  -1800,
+                  35,
+                  -480
+                ],
+                "camera": [
+                  -1850,
+                  42,
+                  -480
+                ],
+                "lookDirection": [
+                  0.9996139563112845,
+                  -0.00648398241931644,
+                  -0.027016593413818568
+                ],
+                "fov": 58,
+                "simulationTime": 120,
+                "flightTime": 0,
+                "simulationHour": 13.2,
+                "weather": "cavok",
+                "quality": 1,
+                "profile": "BALANCED",
+                "governorFrozen": true,
+                "viewport": [
+                  1280,
+                  720
+                ],
+                "devicePixelRatio": 1,
+                "drawingBuffer": [
+                  1152,
+                  648
+                ],
+                "renderer": {
+                  "frame": 43,
+                  "calls": 285,
+                  "triangles": 200426,
+                  "points": 2252,
+                  "lines": 36,
+                  "geometries": 289,
+                  "textures": 17,
+                  "programs": 29
+                },
+                "memory": {
+                  "heapBytes": 342000000,
+                  "heapLimitBytes": 3760000000,
+                  "sceneGeometryObjects": 464,
+                  "geometryAttributeBytes": 27778088,
+                  "indexBytes": 331254,
+                  "sceneTextureObjects": 16,
+                  "textureEstimatedRGBABytes": 66721109.33333334
+                },
+                "scenery": {
+                  "queuedBuildings": 0,
+                  "pendingPrepared": 0,
+                  "prepared": {
+                    "supported": true,
+                    "active": 0,
+                    "queued": 0,
+                    "decoded": 76,
+                    "failures": 0,
+                    "cancelled": 1,
+                    "peakDecodeBytes": 759744,
+                    "decodedCacheBytes": 0
+                  },
+                  "imagery": {
+                    "resident": 4,
+                    "pending": 0,
+                    "failed": 0,
+                    "maxResident": 4,
+                    "estimatedRGBABytes": 5592405.333333333,
+                    "loads": 8,
+                    "reloads": 4,
+                    "evictions": 4,
+                    "staleDecodes": 0,
+                    "peakPending": 2,
+                    "selectionPasses": 7,
+                    "source": "london-sentinel-2025",
+                    "overviewReady": true
+                  },
+                  "measuredHeights": 38914,
+                  "buildings": 39989,
+                  "rawBuildings": 40000,
+                  "buildingTiles": 72,
+                  "groundTiles": 9,
+                  "pendingBuildings": 0,
+                  "lods": [
+                    9,
+                    63,
+                    0
+                  ]
+                },
+                "shadows": {
+                  "shadows": true,
+                  "mapSize": 1024,
+                  "updateHz": 4
+                },
+                "landmarkCount": 9,
+                "contextLost": false
+              }
+            }
+          }
+        ]
+      },
+      "states": {
+        "before": {
+          "build": {
+            "version": "0.4.0-candidate.1",
+            "versionCode": 4,
+            "releaseTag": "v0.4.0-candidate.1"
+          },
+          "world": "LONDON",
+          "position": [
+            -1800,
+            35,
+            -480
+          ],
+          "camera": [
+            -1850,
+            42,
+            -480
+          ],
+          "lookDirection": [
+            0.9996139563112845,
+            -0.00648398241931644,
+            -0.027016593413818568
+          ],
+          "fov": 58,
+          "simulationTime": 120,
+          "flightTime": 0,
+          "simulationHour": 13.2,
+          "weather": "cavok",
+          "quality": 1,
+          "profile": "BALANCED",
+          "governorFrozen": true,
+          "viewport": [
+            1280,
+            720
+          ],
+          "devicePixelRatio": 1,
+          "drawingBuffer": [
+            1152,
+            648
+          ],
+          "renderer": {
+            "frame": 42,
+            "calls": 285,
+            "triangles": 200426,
+            "points": 2252,
+            "lines": 36,
+            "geometries": 289,
+            "textures": 17,
+            "programs": 29
+          },
+          "memory": {
+            "heapBytes": 254000000,
+            "heapLimitBytes": 3760000000,
+            "sceneGeometryObjects": 464,
+            "geometryAttributeBytes": 27778088,
+            "indexBytes": 331254,
+            "sceneTextureObjects": 16,
+            "textureEstimatedRGBABytes": 66721109.33333334
+          },
+          "scenery": {
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 9,
+            "pendingBuildings": 0,
+            "lods": [
+              9,
+              63,
+              0
+            ]
+          },
+          "shadows": {
+            "shadows": true,
+            "mapSize": 1024,
+            "updateHz": 4
+          },
+          "landmarkCount": 9,
+          "contextLost": false
+        },
+        "after": {
+          "build": {
+            "version": "0.5.0-experimental",
+            "versionCode": 5,
+            "releaseTag": "v0.5.0-experimental"
+          },
+          "world": "LONDON",
+          "position": [
+            -1800,
+            35,
+            -480
+          ],
+          "camera": [
+            -1850,
+            42,
+            -480
+          ],
+          "lookDirection": [
+            0.9996139563112845,
+            -0.00648398241931644,
+            -0.027016593413818568
+          ],
+          "fov": 58,
+          "simulationTime": 120,
+          "flightTime": 0,
+          "simulationHour": 13.2,
+          "weather": "cavok",
+          "quality": 1,
+          "profile": "BALANCED",
+          "governorFrozen": true,
+          "viewport": [
+            1280,
+            720
+          ],
+          "devicePixelRatio": 1,
+          "drawingBuffer": [
+            1152,
+            648
+          ],
+          "renderer": {
+            "frame": 40,
+            "calls": 285,
+            "triangles": 200426,
+            "points": 2252,
+            "lines": 36,
+            "geometries": 289,
+            "textures": 17,
+            "programs": 29
+          },
+          "memory": {
+            "heapBytes": 342000000,
+            "heapLimitBytes": 3760000000,
+            "sceneGeometryObjects": 464,
+            "geometryAttributeBytes": 27778088,
+            "indexBytes": 331254,
+            "sceneTextureObjects": 16,
+            "textureEstimatedRGBABytes": 66721109.33333334
+          },
+          "scenery": {
+            "queuedBuildings": 0,
+            "pendingPrepared": 0,
+            "prepared": {
+              "supported": true,
+              "active": 0,
+              "queued": 0,
+              "decoded": 76,
+              "failures": 0,
+              "cancelled": 1,
+              "peakDecodeBytes": 759744,
+              "decodedCacheBytes": 0
+            },
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "loads": 8,
+              "reloads": 4,
+              "evictions": 4,
+              "staleDecodes": 0,
+              "peakPending": 2,
+              "selectionPasses": 7,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 9,
+            "pendingBuildings": 0,
+            "lods": [
+              9,
+              63,
+              0
+            ]
+          },
+          "shadows": {
+            "shadows": true,
+            "mapSize": 1024,
+            "updateHz": 4
+          },
+          "landmarkCount": 9,
+          "contextLost": false
+        }
+      },
+      "warm": {
+        "before": {
+          "wallMs": 676,
+          "turns": 64,
+          "stats": {
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 9,
+            "pendingBuildings": 0,
+            "lods": [
+              9,
+              63,
+              0
+            ]
+          }
+        },
+        "after": {
+          "wallMs": 641,
+          "turns": 85,
+          "stats": {
+            "queuedBuildings": 0,
+            "pendingPrepared": 0,
+            "prepared": {
+              "supported": true,
+              "active": 0,
+              "queued": 0,
+              "decoded": 76,
+              "failures": 0,
+              "cancelled": 1,
+              "peakDecodeBytes": 759744,
+              "decodedCacheBytes": 0
+            },
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "loads": 8,
+              "reloads": 4,
+              "evictions": 4,
+              "staleDecodes": 0,
+              "peakPending": 2,
+              "selectionPasses": 7,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 9,
+            "pendingBuildings": 0,
+            "lods": [
+              9,
+              63,
+              0
+            ]
+          }
+        }
+      },
+      "resources": {
+        "before": {
+          "counts": {
+            "createShader": 8,
+            "createProgram": 4,
+            "compileShader": 8,
+            "linkProgram": 4,
+            "texImage2D": 9,
+            "texSubImage2D": 0,
+            "bufferData": 503,
+            "bufferSubData": 1,
+            "bufferUploadBytes": 21663892,
+            "textureUploadEstimatedBytes": 21073920,
+            "textureUploadUnknownEvents": 0,
+            "framebufferTexture2D": 0,
+            "bindFramebuffer": 4
+          },
+          "longTasks": [],
+          "longTasksSupported": true
+        },
+        "after": {
+          "counts": {
+            "createShader": 10,
+            "createProgram": 5,
+            "compileShader": 10,
+            "linkProgram": 5,
+            "texImage2D": 9,
+            "texSubImage2D": 0,
+            "bufferData": 503,
+            "bufferSubData": 1,
+            "bufferUploadBytes": 21663892,
+            "textureUploadEstimatedBytes": 21073920,
+            "textureUploadUnknownEvents": 0,
+            "framebufferTexture2D": 0,
+            "bindFramebuffer": 4
+          },
+          "longTasks": [],
+          "longTasksSupported": true
+        }
+      },
+      "paired": {
+        "medianFps": {
+          "pairs": 1,
+          "percentChanges": [
+            53.21100917409147
+          ],
+          "medianPercentChange": 53.21100917409147,
+          "minPercentChange": 53.21100917409147,
+          "maxPercentChange": 53.21100917409147,
+          "inference": "Paired descriptive range; three repeats cannot establish a narrow confidence interval or physical-device speedup."
+        },
+        "p95FrameMs": {
+          "pairs": 1,
+          "percentChanges": [
+            1950.6635441055805
+          ],
+          "medianPercentChange": 1950.6635441055805,
+          "minPercentChange": 1950.6635441055805,
+          "maxPercentChange": 1950.6635441055805,
+          "inference": "Paired descriptive range; three repeats cannot establish a narrow confidence interval or physical-device speedup."
+        }
+      }
+    },
+    {
+      "name": "02-heathrow-departure",
+      "settings": {
+        "name": "02-heathrow-departure",
+        "pos": [
+          -1200,
+          500,
+          2300
+        ],
+        "cam": [
+          -1200,
+          500,
+          2300
+        ],
+        "look": [
+          700,
+          30,
+          200
+        ]
+      },
+      "runs": {
+        "before": [
+          {
+            "repeat": 0,
+            "order": "before/after",
+            "samples": 29,
+            "medianFps": 59.88023952091634,
+            "onePercentLowFps": 2.9472443265547725,
+            "frameMs": {
+              "p50": 16.70000000001164,
+              "p95": 305,
+              "p99": 339.29999999998836,
+              "max": 339.29999999998836
+            },
+            "stuttersOver100ms": 2,
+            "cpuSubmissionMs": {
+              "p50": 1.400000000023283,
+              "p95": 1.8000000000465661,
+              "p99": 2.2000000000116415,
+              "max": 2.2000000000116415
+            },
+            "raw": {
+              "intervals": [
+                9.399999999965075,
+                16.70000000001164,
+                16.600000000034925,
+                16.699999999953434,
+                16.70000000001164,
+                24.70000000001164,
+                8.599999999976717,
+                16.70000000001164,
+                17.79999999998836,
+                15.5,
+                16.70000000001164,
+                24.70000000001164,
+                8.5,
+                16.70000000001164,
+                16.70000000001164,
+                17.5,
+                24.099999999976717,
+                20.099999999976717,
+                8.300000000046566,
+                20.79999999998836,
+                9.599999999976717,
+                16.29999999998836,
+                16.600000000034925,
+                16.70000000001164,
+                17,
+                18.199999999953434,
+                14.800000000046566,
+                305,
+                339.29999999998836
+              ],
+              "submissions": [
+                1.7999999999883585,
+                1.2000000000116415,
+                1.5,
+                1.1999999999534339,
+                1.5,
+                1.2999999999883585,
+                1.2000000000116415,
+                1.7000000000116415,
+                1.5,
+                1.400000000023283,
+                1.400000000023283,
+                1.2999999999883585,
+                1.2000000000116415,
+                1,
+                1.099999999976717,
+                1,
+                1.2999999999883585,
+                1.5,
+                1.8000000000465661,
+                1.3999999999650754,
+                1.7000000000116415,
+                1.6000000000349246,
+                1.6000000000349246,
+                1.599999999976717,
+                1.1999999999534339,
+                1.2999999999883585,
+                1.2000000000116415,
+                1.5,
+                1.599999999976717,
+                2.2000000000116415
+              ],
+              "elapsedMs": 1089.5,
+              "gpu": {
+                "supported": true,
+                "samples": [
+                  402.608046,
+                  325.314453
+                ],
+                "pending": 16,
+                "disjointDiscarded": 0,
+                "skipped": 12,
+                "p50Ms": 402.608046,
+                "p95Ms": 402.608046,
+                "p99Ms": 402.608046
+              },
+              "state": {
+                "build": {
+                  "version": "0.4.0-candidate.1",
+                  "versionCode": 4,
+                  "releaseTag": "v0.4.0-candidate.1"
+                },
+                "world": "LONDON",
+                "position": [
+                  -1200,
+                  500,
+                  2300
+                ],
+                "camera": [
+                  -1200,
+                  500,
+                  2300
+                ],
+                "lookDirection": [
+                  0.6618602192849936,
+                  -0.16372331740207738,
+                  -0.7315297160518353
+                ],
+                "fov": 58,
+                "simulationTime": 120,
+                "flightTime": 0,
+                "simulationHour": 13.2,
+                "weather": "cavok",
+                "quality": 1,
+                "profile": "BALANCED",
+                "governorFrozen": true,
+                "viewport": [
+                  1280,
+                  720
+                ],
+                "devicePixelRatio": 1,
+                "drawingBuffer": [
+                  1152,
+                  648
+                ],
+                "renderer": {
+                  "frame": 105,
+                  "calls": 116,
+                  "triangles": 184580,
+                  "points": 2252,
+                  "lines": 0,
+                  "geometries": 287,
+                  "textures": 17,
+                  "programs": 34
+                },
+                "memory": {
+                  "heapBytes": 254000000,
+                  "heapLimitBytes": 3760000000,
+                  "sceneGeometryObjects": 467,
+                  "geometryAttributeBytes": 27473960,
+                  "indexBytes": 331254,
+                  "sceneTextureObjects": 16,
+                  "textureEstimatedRGBABytes": 66721109.33333334
+                },
+                "scenery": {
+                  "imagery": {
+                    "resident": 4,
+                    "pending": 0,
+                    "failed": 0,
+                    "maxResident": 4,
+                    "estimatedRGBABytes": 5592405.333333333,
+                    "source": "london-sentinel-2025",
+                    "overviewReady": true
+                  },
+                  "measuredHeights": 38914,
+                  "buildings": 39989,
+                  "rawBuildings": 40000,
+                  "buildingTiles": 72,
+                  "groundTiles": 12,
+                  "pendingBuildings": 0,
+                  "lods": [
+                    11,
+                    54,
+                    7
+                  ]
+                },
+                "shadows": {
+                  "shadows": true,
+                  "mapSize": 1024,
+                  "updateHz": 4
+                },
+                "landmarkCount": 9,
+                "contextLost": false
+              }
+            }
+          }
+        ],
+        "after": [
+          {
+            "repeat": 0,
+            "order": "before/after",
+            "samples": 2,
+            "medianFps": 82.64462809893502,
+            "onePercentLowFps": 0.8779631255487269,
+            "frameMs": {
+              "p50": 12.100000000034925,
+              "p95": 1139,
+              "p99": 1139,
+              "max": 1139
+            },
+            "stuttersOver100ms": 1,
+            "cpuSubmissionMs": {
+              "p50": 1.8000000000465661,
+              "p95": 2.2999999999883585,
+              "p99": 2.2999999999883585,
+              "max": 2.2999999999883585
+            },
+            "raw": {
+              "intervals": [
+                12.100000000034925,
+                1139
+              ],
+              "submissions": [
+                1.8000000000465661,
+                1.599999999976717,
+                2.2999999999883585
+              ],
+              "elapsedMs": 1153.7999999999884,
+              "gpu": {
+                "supported": true,
+                "samples": [],
+                "pending": 3,
+                "disjointDiscarded": 0,
+                "skipped": 0,
+                "p50Ms": null,
+                "p95Ms": null,
+                "p99Ms": null
+              },
+              "state": {
+                "build": {
+                  "version": "0.5.0-experimental",
+                  "versionCode": 5,
+                  "releaseTag": "v0.5.0-experimental"
+                },
+                "world": "LONDON",
+                "position": [
+                  -1200,
+                  500,
+                  2300
+                ],
+                "camera": [
+                  -1200,
+                  500,
+                  2300
+                ],
+                "lookDirection": [
+                  0.6618602192849936,
+                  -0.16372331740207738,
+                  -0.7315297160518353
+                ],
+                "fov": 58,
+                "simulationTime": 120,
+                "flightTime": 0,
+                "simulationHour": 13.2,
+                "weather": "cavok",
+                "quality": 1,
+                "profile": "BALANCED",
+                "governorFrozen": true,
+                "viewport": [
+                  1280,
+                  720
+                ],
+                "devicePixelRatio": 1,
+                "drawingBuffer": [
+                  1152,
+                  648
+                ],
+                "renderer": {
+                  "frame": 50,
+                  "calls": 116,
+                  "triangles": 184580,
+                  "points": 2252,
+                  "lines": 0,
+                  "geometries": 287,
+                  "textures": 17,
+                  "programs": 33
+                },
+                "memory": {
+                  "heapBytes": 342000000,
+                  "heapLimitBytes": 3760000000,
+                  "sceneGeometryObjects": 467,
+                  "geometryAttributeBytes": 27473960,
+                  "indexBytes": 331254,
+                  "sceneTextureObjects": 16,
+                  "textureEstimatedRGBABytes": 66721109.33333334
+                },
+                "scenery": {
+                  "queuedBuildings": 0,
+                  "pendingPrepared": 0,
+                  "prepared": {
+                    "supported": true,
+                    "active": 0,
+                    "queued": 0,
+                    "decoded": 148,
+                    "failures": 0,
+                    "cancelled": 1,
+                    "peakDecodeBytes": 759744,
+                    "decodedCacheBytes": 0
+                  },
+                  "imagery": {
+                    "resident": 4,
+                    "pending": 0,
+                    "failed": 0,
+                    "maxResident": 4,
+                    "estimatedRGBABytes": 5592405.333333333,
+                    "loads": 12,
+                    "reloads": 8,
+                    "evictions": 8,
+                    "staleDecodes": 0,
+                    "peakPending": 2,
+                    "selectionPasses": 11,
+                    "source": "london-sentinel-2025",
+                    "overviewReady": true
+                  },
+                  "measuredHeights": 38914,
+                  "buildings": 39989,
+                  "rawBuildings": 40000,
+                  "buildingTiles": 72,
+                  "groundTiles": 12,
+                  "pendingBuildings": 0,
+                  "lods": [
+                    11,
+                    54,
+                    7
+                  ]
+                },
+                "shadows": {
+                  "shadows": true,
+                  "mapSize": 1024,
+                  "updateHz": 4
+                },
+                "landmarkCount": 9,
+                "contextLost": false
+              }
+            }
+          }
+        ]
+      },
+      "states": {
+        "before": {
+          "build": {
+            "version": "0.4.0-candidate.1",
+            "versionCode": 4,
+            "releaseTag": "v0.4.0-candidate.1"
+          },
+          "world": "LONDON",
+          "position": [
+            -1200,
+            500,
+            2300
+          ],
+          "camera": [
+            -1200,
+            500,
+            2300
+          ],
+          "lookDirection": [
+            0.6618602192849936,
+            -0.16372331740207738,
+            -0.7315297160518353
+          ],
+          "fov": 58,
+          "simulationTime": 120,
+          "flightTime": 0,
+          "simulationHour": 13.2,
+          "weather": "cavok",
+          "quality": 1,
+          "profile": "BALANCED",
+          "governorFrozen": true,
+          "viewport": [
+            1280,
+            720
+          ],
+          "devicePixelRatio": 1,
+          "drawingBuffer": [
+            1152,
+            648
+          ],
+          "renderer": {
+            "frame": 75,
+            "calls": 116,
+            "triangles": 184580,
+            "points": 2252,
+            "lines": 0,
+            "geometries": 287,
+            "textures": 17,
+            "programs": 34
+          },
+          "memory": {
+            "heapBytes": 254000000,
+            "heapLimitBytes": 3760000000,
+            "sceneGeometryObjects": 467,
+            "geometryAttributeBytes": 27473960,
+            "indexBytes": 331254,
+            "sceneTextureObjects": 16,
+            "textureEstimatedRGBABytes": 66721109.33333334
+          },
+          "scenery": {
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 12,
+            "pendingBuildings": 0,
+            "lods": [
+              11,
+              54,
+              7
+            ]
+          },
+          "shadows": {
+            "shadows": true,
+            "mapSize": 1024,
+            "updateHz": 4
+          },
+          "landmarkCount": 9,
+          "contextLost": false
+        },
+        "after": {
+          "build": {
+            "version": "0.5.0-experimental",
+            "versionCode": 5,
+            "releaseTag": "v0.5.0-experimental"
+          },
+          "world": "LONDON",
+          "position": [
+            -1200,
+            500,
+            2300
+          ],
+          "camera": [
+            -1200,
+            500,
+            2300
+          ],
+          "lookDirection": [
+            0.6618602192849936,
+            -0.16372331740207738,
+            -0.7315297160518353
+          ],
+          "fov": 58,
+          "simulationTime": 120,
+          "flightTime": 0,
+          "simulationHour": 13.2,
+          "weather": "cavok",
+          "quality": 1,
+          "profile": "BALANCED",
+          "governorFrozen": true,
+          "viewport": [
+            1280,
+            720
+          ],
+          "devicePixelRatio": 1,
+          "drawingBuffer": [
+            1152,
+            648
+          ],
+          "renderer": {
+            "frame": 47,
+            "calls": 116,
+            "triangles": 184580,
+            "points": 2252,
+            "lines": 0,
+            "geometries": 287,
+            "textures": 17,
+            "programs": 33
+          },
+          "memory": {
+            "heapBytes": 342000000,
+            "heapLimitBytes": 3760000000,
+            "sceneGeometryObjects": 467,
+            "geometryAttributeBytes": 27473960,
+            "indexBytes": 331254,
+            "sceneTextureObjects": 16,
+            "textureEstimatedRGBABytes": 66721109.33333334
+          },
+          "scenery": {
+            "queuedBuildings": 0,
+            "pendingPrepared": 0,
+            "prepared": {
+              "supported": true,
+              "active": 0,
+              "queued": 0,
+              "decoded": 148,
+              "failures": 0,
+              "cancelled": 1,
+              "peakDecodeBytes": 759744,
+              "decodedCacheBytes": 0
+            },
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "loads": 12,
+              "reloads": 8,
+              "evictions": 8,
+              "staleDecodes": 0,
+              "peakPending": 2,
+              "selectionPasses": 11,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 12,
+            "pendingBuildings": 0,
+            "lods": [
+              11,
+              54,
+              7
+            ]
+          },
+          "shadows": {
+            "shadows": true,
+            "mapSize": 1024,
+            "updateHz": 4
+          },
+          "landmarkCount": 9,
+          "contextLost": false
+        }
+      },
+      "warm": {
+        "before": {
+          "wallMs": 633,
+          "turns": 71,
+          "stats": {
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 12,
+            "pendingBuildings": 0,
+            "lods": [
+              11,
+              54,
+              7
+            ]
+          }
+        },
+        "after": {
+          "wallMs": 600,
+          "turns": 85,
+          "stats": {
+            "queuedBuildings": 0,
+            "pendingPrepared": 0,
+            "prepared": {
+              "supported": true,
+              "active": 0,
+              "queued": 0,
+              "decoded": 148,
+              "failures": 0,
+              "cancelled": 1,
+              "peakDecodeBytes": 759744,
+              "decodedCacheBytes": 0
+            },
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "loads": 12,
+              "reloads": 8,
+              "evictions": 8,
+              "staleDecodes": 0,
+              "peakPending": 2,
+              "selectionPasses": 11,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 12,
+            "pendingBuildings": 0,
+            "lods": [
+              11,
+              54,
+              7
+            ]
+          }
+        }
+      },
+      "resources": {
+        "before": {
+          "counts": {
+            "createShader": 18,
+            "createProgram": 9,
+            "compileShader": 18,
+            "linkProgram": 9,
+            "texImage2D": 9,
+            "texSubImage2D": 0,
+            "bufferData": 499,
+            "bufferSubData": 1,
+            "bufferUploadBytes": 21421324,
+            "textureUploadEstimatedBytes": 21073920,
+            "textureUploadUnknownEvents": 0,
+            "framebufferTexture2D": 0,
+            "bindFramebuffer": 4
+          },
+          "longTasks": [],
+          "longTasksSupported": true
+        },
+        "after": {
+          "counts": {
+            "createShader": 18,
+            "createProgram": 9,
+            "compileShader": 18,
+            "linkProgram": 9,
+            "texImage2D": 9,
+            "texSubImage2D": 0,
+            "bufferData": 499,
+            "bufferSubData": 1,
+            "bufferUploadBytes": 21421324,
+            "textureUploadEstimatedBytes": 21073920,
+            "textureUploadUnknownEvents": 0,
+            "framebufferTexture2D": 0,
+            "bindFramebuffer": 4
+          },
+          "longTasks": [],
+          "longTasksSupported": true
+        }
+      },
+      "paired": {
+        "medianFps": {
+          "pairs": 1,
+          "percentChanges": [
+            38.01652892531769
+          ],
+          "medianPercentChange": 38.01652892531769,
+          "minPercentChange": 38.01652892531769,
+          "maxPercentChange": 38.01652892531769,
+          "inference": "Paired descriptive range; three repeats cannot establish a narrow confidence interval or physical-device speedup."
+        },
+        "p95FrameMs": {
+          "pairs": 1,
+          "percentChanges": [
+            273.44262295081967
+          ],
+          "medianPercentChange": 273.44262295081967,
+          "minPercentChange": 273.44262295081967,
+          "maxPercentChange": 273.44262295081967,
+          "inference": "Paired descriptive range; three repeats cannot establish a narrow confidence interval or physical-device speedup."
+        }
+      }
+    },
+    {
+      "name": "03-london-skyline",
+      "settings": {
+        "name": "03-london-skyline",
+        "pos": [
+          24000,
+          610,
+          -3600
+        ],
+        "cam": [
+          23600,
+          610,
+          -2400
+        ],
+        "look": [
+          25000,
+          25,
+          -5000
+        ]
+      },
+      "runs": {
+        "before": [
+          {
+            "repeat": 0,
+            "order": "before/after",
+            "samples": 30,
+            "medianFps": 60.24096385529494,
+            "onePercentLowFps": 1.4116318464144086,
+            "frameMs": {
+              "p50": 16.600000000034925,
+              "p95": 427.79999999998836,
+              "p99": 708.4000000000233,
+              "max": 708.4000000000233
+            },
+            "stuttersOver100ms": 2,
+            "cpuSubmissionMs": {
+              "p50": 1.3999999999650754,
+              "p95": 2.099999999976717,
+              "p99": 4,
+              "max": 4
+            },
+            "raw": {
+              "intervals": [
+                4,
+                16.29999999998836,
+                16.600000000034925,
+                20.599999999976717,
+                12.799999999988358,
+                16.5,
+                16.79999999998836,
+                16.600000000034925,
+                16.70000000001164,
+                16.899999999965075,
+                16.400000000023283,
+                19,
+                14.399999999965075,
+                19.600000000034925,
+                14,
+                16.5,
+                16.599999999976717,
+                17,
+                25.29999999998836,
+                7.800000000046566,
+                19.5,
+                13.799999999988358,
+                16.70000000001164,
+                16.5,
+                25.599999999976717,
+                8.200000000011642,
+                16.20000000001164,
+                16.899999999965075,
+                427.79999999998836,
+                708.4000000000233
+              ],
+              "submissions": [
+                1.2999999999883585,
+                4,
+                1.400000000023283,
+                1.7999999999883585,
+                1.2000000000116415,
+                1.2999999999883585,
+                1.2000000000116415,
+                1.2000000000116415,
+                1.099999999976717,
+                1.1999999999534339,
+                1.1000000000349246,
+                1.5,
+                1.8999999999650754,
+                2,
+                2,
+                1.7000000000116415,
+                2.099999999976717,
+                1.7000000000116415,
+                1.900000000023283,
+                1.400000000023283,
+                1.2999999999883585,
+                1.2000000000116415,
+                1.3999999999650754,
+                0.8999999999650754,
+                1,
+                1.599999999976717,
+                1,
+                1.3999999999650754,
+                1.2000000000116415,
+                1.400000000023283,
+                1.599999999976717
+              ],
+              "elapsedMs": 1592,
+              "gpu": {
+                "supported": true,
+                "samples": [
+                  850.011151
+                ],
+                "pending": 16,
+                "disjointDiscarded": 0,
+                "skipped": 14,
+                "p50Ms": 850.011151,
+                "p95Ms": 850.011151,
+                "p99Ms": 850.011151
+              },
+              "state": {
+                "build": {
+                  "version": "0.4.0-candidate.1",
+                  "versionCode": 4,
+                  "releaseTag": "v0.4.0-candidate.1"
+                },
+                "world": "LONDON",
+                "position": [
+                  24000,
+                  610,
+                  -3600
+                ],
+                "camera": [
+                  23600,
+                  610,
+                  -2400
+                ],
+                "lookDirection": [
+                  0.4650617433436831,
+                  -0.19432937132575331,
+                  -0.8636860947811258
+                ],
+                "fov": 58,
+                "simulationTime": 120,
+                "flightTime": 0,
+                "simulationHour": 13.2,
+                "weather": "cavok",
+                "quality": 1,
+                "profile": "BALANCED",
+                "governorFrozen": true,
+                "viewport": [
+                  1280,
+                  720
+                ],
+                "devicePixelRatio": 1,
+                "drawingBuffer": [
+                  1152,
+                  648
+                ],
+                "renderer": {
+                  "frame": 140,
+                  "calls": 108,
+                  "triangles": 356399,
+                  "points": 1158,
+                  "lines": 0,
+                  "geometries": 279,
+                  "textures": 17,
+                  "programs": 32
+                },
+                "memory": {
+                  "heapBytes": 254000000,
+                  "heapLimitBytes": 3760000000,
+                  "sceneGeometryObjects": 467,
+                  "geometryAttributeBytes": 80405624,
+                  "indexBytes": 331254,
+                  "sceneTextureObjects": 16,
+                  "textureEstimatedRGBABytes": 66721109.33333334
+                },
+                "scenery": {
+                  "imagery": {
+                    "resident": 4,
+                    "pending": 0,
+                    "failed": 0,
+                    "maxResident": 4,
+                    "estimatedRGBABytes": 5592405.333333333,
+                    "source": "london-sentinel-2025",
+                    "overviewReady": true
+                  },
+                  "measuredHeights": 38914,
+                  "buildings": 39989,
+                  "rawBuildings": 40000,
+                  "buildingTiles": 72,
+                  "groundTiles": 12,
+                  "pendingBuildings": 0,
+                  "lods": [
+                    12,
+                    60,
+                    0
+                  ]
+                },
+                "shadows": {
+                  "shadows": true,
+                  "mapSize": 1024,
+                  "updateHz": 4
+                },
+                "landmarkCount": 9,
+                "contextLost": false
+              }
+            }
+          }
+        ],
+        "after": [
+          {
+            "repeat": 0,
+            "order": "before/after",
+            "samples": 2,
+            "medianFps": 149.25373134302424,
+            "onePercentLowFps": 0.4003202562049733,
+            "frameMs": {
+              "p50": 6.7000000000116415,
+              "p95": 2497.999999999942,
+              "p99": 2497.999999999942,
+              "max": 2497.999999999942
+            },
+            "stuttersOver100ms": 1,
+            "cpuSubmissionMs": {
+              "p50": 1.5,
+              "p95": 2,
+              "p99": 2,
+              "max": 2
+            },
+            "raw": {
+              "intervals": [
+                6.7000000000116415,
+                2497.999999999942
+              ],
+              "submissions": [
+                1.5,
+                1,
+                2
+              ],
+              "elapsedMs": 2508.0999999999767,
+              "gpu": {
+                "supported": true,
+                "samples": [],
+                "pending": 3,
+                "disjointDiscarded": 0,
+                "skipped": 0,
+                "p50Ms": null,
+                "p95Ms": null,
+                "p99Ms": null
+              },
+              "state": {
+                "build": {
+                  "version": "0.5.0-experimental",
+                  "versionCode": 5,
+                  "releaseTag": "v0.5.0-experimental"
+                },
+                "world": "LONDON",
+                "position": [
+                  24000,
+                  610,
+                  -3600
+                ],
+                "camera": [
+                  23600,
+                  610,
+                  -2400
+                ],
+                "lookDirection": [
+                  0.4650617433436831,
+                  -0.19432937132575331,
+                  -0.8636860947811258
+                ],
+                "fov": 58,
+                "simulationTime": 120,
+                "flightTime": 0,
+                "simulationHour": 13.2,
+                "weather": "cavok",
+                "quality": 1,
+                "profile": "BALANCED",
+                "governorFrozen": true,
+                "viewport": [
+                  1280,
+                  720
+                ],
+                "devicePixelRatio": 1,
+                "drawingBuffer": [
+                  1152,
+                  648
+                ],
+                "renderer": {
+                  "frame": 57,
+                  "calls": 103,
+                  "triangles": 349727,
+                  "points": 1158,
+                  "lines": 0,
+                  "geometries": 274,
+                  "textures": 17,
+                  "programs": 31
+                },
+                "memory": {
+                  "heapBytes": 342000000,
+                  "heapLimitBytes": 3760000000,
+                  "sceneGeometryObjects": 461,
+                  "geometryAttributeBytes": 79236632,
+                  "indexBytes": 331254,
+                  "sceneTextureObjects": 16,
+                  "textureEstimatedRGBABytes": 66721109.33333334
+                },
+                "scenery": {
+                  "queuedBuildings": 0,
+                  "pendingPrepared": 0,
+                  "prepared": {
+                    "supported": true,
+                    "active": 0,
+                    "queued": 0,
+                    "decoded": 220,
+                    "failures": 0,
+                    "cancelled": 1,
+                    "peakDecodeBytes": 1678320,
+                    "decodedCacheBytes": 0
+                  },
+                  "imagery": {
+                    "resident": 4,
+                    "pending": 0,
+                    "failed": 0,
+                    "maxResident": 4,
+                    "estimatedRGBABytes": 5592405.333333333,
+                    "loads": 16,
+                    "reloads": 8,
+                    "evictions": 12,
+                    "staleDecodes": 0,
+                    "peakPending": 2,
+                    "selectionPasses": 15,
+                    "source": "london-sentinel-2025",
+                    "overviewReady": true
+                  },
+                  "measuredHeights": 38914,
+                  "buildings": 39989,
+                  "rawBuildings": 40000,
+                  "buildingTiles": 72,
+                  "groundTiles": 6,
+                  "pendingBuildings": 0,
+                  "lods": [
+                    12,
+                    60,
+                    0
+                  ]
+                },
+                "shadows": {
+                  "shadows": true,
+                  "mapSize": 1024,
+                  "updateHz": 4
+                },
+                "landmarkCount": 9,
+                "contextLost": false
+              }
+            }
+          }
+        ]
+      },
+      "states": {
+        "before": {
+          "build": {
+            "version": "0.4.0-candidate.1",
+            "versionCode": 4,
+            "releaseTag": "v0.4.0-candidate.1"
+          },
+          "world": "LONDON",
+          "position": [
+            24000,
+            610,
+            -3600
+          ],
+          "camera": [
+            23600,
+            610,
+            -2400
+          ],
+          "lookDirection": [
+            0.4650617433436831,
+            -0.19432937132575331,
+            -0.8636860947811258
+          ],
+          "fov": 58,
+          "simulationTime": 120,
+          "flightTime": 0,
+          "simulationHour": 13.2,
+          "weather": "cavok",
+          "quality": 1,
+          "profile": "BALANCED",
+          "governorFrozen": true,
+          "viewport": [
+            1280,
+            720
+          ],
+          "devicePixelRatio": 1,
+          "drawingBuffer": [
+            1152,
+            648
+          ],
+          "renderer": {
+            "frame": 109,
+            "calls": 108,
+            "triangles": 356399,
+            "points": 1158,
+            "lines": 0,
+            "geometries": 279,
+            "textures": 17,
+            "programs": 32
+          },
+          "memory": {
+            "heapBytes": 254000000,
+            "heapLimitBytes": 3760000000,
+            "sceneGeometryObjects": 467,
+            "geometryAttributeBytes": 80405624,
+            "indexBytes": 331254,
+            "sceneTextureObjects": 16,
+            "textureEstimatedRGBABytes": 66721109.33333334
+          },
+          "scenery": {
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 12,
+            "pendingBuildings": 0,
+            "lods": [
+              12,
+              60,
+              0
+            ]
+          },
+          "shadows": {
+            "shadows": true,
+            "mapSize": 1024,
+            "updateHz": 4
+          },
+          "landmarkCount": 9,
+          "contextLost": false
+        },
+        "after": {
+          "build": {
+            "version": "0.5.0-experimental",
+            "versionCode": 5,
+            "releaseTag": "v0.5.0-experimental"
+          },
+          "world": "LONDON",
+          "position": [
+            24000,
+            610,
+            -3600
+          ],
+          "camera": [
+            23600,
+            610,
+            -2400
+          ],
+          "lookDirection": [
+            0.4650617433436831,
+            -0.19432937132575331,
+            -0.8636860947811258
+          ],
+          "fov": 58,
+          "simulationTime": 120,
+          "flightTime": 0,
+          "simulationHour": 13.2,
+          "weather": "cavok",
+          "quality": 1,
+          "profile": "BALANCED",
+          "governorFrozen": true,
+          "viewport": [
+            1280,
+            720
+          ],
+          "devicePixelRatio": 1,
+          "drawingBuffer": [
+            1152,
+            648
+          ],
+          "renderer": {
+            "frame": 54,
+            "calls": 103,
+            "triangles": 349727,
+            "points": 1158,
+            "lines": 0,
+            "geometries": 274,
+            "textures": 17,
+            "programs": 31
+          },
+          "memory": {
+            "heapBytes": 342000000,
+            "heapLimitBytes": 3760000000,
+            "sceneGeometryObjects": 461,
+            "geometryAttributeBytes": 79236632,
+            "indexBytes": 331254,
+            "sceneTextureObjects": 16,
+            "textureEstimatedRGBABytes": 66721109.33333334
+          },
+          "scenery": {
+            "queuedBuildings": 0,
+            "pendingPrepared": 0,
+            "prepared": {
+              "supported": true,
+              "active": 0,
+              "queued": 0,
+              "decoded": 220,
+              "failures": 0,
+              "cancelled": 1,
+              "peakDecodeBytes": 1678320,
+              "decodedCacheBytes": 0
+            },
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "loads": 16,
+              "reloads": 8,
+              "evictions": 12,
+              "staleDecodes": 0,
+              "peakPending": 2,
+              "selectionPasses": 15,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 6,
+            "pendingBuildings": 0,
+            "lods": [
+              12,
+              60,
+              0
+            ]
+          },
+          "shadows": {
+            "shadows": true,
+            "mapSize": 1024,
+            "updateHz": 4
+          },
+          "landmarkCount": 9,
+          "contextLost": false
+        }
+      },
+      "warm": {
+        "before": {
+          "wallMs": 2740,
+          "turns": 215,
+          "stats": {
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 12,
+            "pendingBuildings": 0,
+            "lods": [
+              12,
+              60,
+              0
+            ]
+          }
+        },
+        "after": {
+          "wallMs": 702,
+          "turns": 85,
+          "stats": {
+            "queuedBuildings": 0,
+            "pendingPrepared": 0,
+            "prepared": {
+              "supported": true,
+              "active": 0,
+              "queued": 0,
+              "decoded": 220,
+              "failures": 0,
+              "cancelled": 1,
+              "peakDecodeBytes": 1678320,
+              "decodedCacheBytes": 0
+            },
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "loads": 16,
+              "reloads": 8,
+              "evictions": 12,
+              "staleDecodes": 0,
+              "peakPending": 2,
+              "selectionPasses": 15,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 6,
+            "pendingBuildings": 0,
+            "lods": [
+              12,
+              60,
+              0
+            ]
+          }
+        }
+      },
+      "resources": {
+        "before": {
+          "counts": {
+            "createShader": 12,
+            "createProgram": 6,
+            "compileShader": 12,
+            "linkProgram": 6,
+            "texImage2D": 9,
+            "texSubImage2D": 0,
+            "bufferData": 469,
+            "bufferSubData": 1,
+            "bufferUploadBytes": 46758116,
+            "textureUploadEstimatedBytes": 21073920,
+            "textureUploadUnknownEvents": 0,
+            "framebufferTexture2D": 0,
+            "bindFramebuffer": 4
+          },
+          "longTasks": [],
+          "longTasksSupported": true
+        },
+        "after": {
+          "counts": {
+            "createShader": 12,
+            "createProgram": 6,
+            "compileShader": 12,
+            "linkProgram": 6,
+            "texImage2D": 9,
+            "texSubImage2D": 0,
+            "bufferData": 444,
+            "bufferSubData": 1,
+            "bufferUploadBytes": 45797348,
+            "textureUploadEstimatedBytes": 21073920,
+            "textureUploadUnknownEvents": 0,
+            "framebufferTexture2D": 0,
+            "bindFramebuffer": 4
+          },
+          "longTasks": [],
+          "longTasksSupported": true
+        }
+      },
+      "paired": {
+        "medianFps": {
+          "pairs": 1,
+          "percentChanges": [
+            147.76119402994152
+          ],
+          "medianPercentChange": 147.76119402994152,
+          "minPercentChange": 147.76119402994152,
+          "maxPercentChange": 147.76119402994152,
+          "inference": "Paired descriptive range; three repeats cannot establish a narrow confidence interval or physical-device speedup."
+        },
+        "p95FrameMs": {
+          "pairs": 1,
+          "percentChanges": [
+            483.91771856007705
+          ],
+          "medianPercentChange": 483.91771856007705,
+          "minPercentChange": 483.91771856007705,
+          "maxPercentChange": 483.91771856007705,
+          "inference": "Paired descriptive range; three repeats cannot establish a narrow confidence interval or physical-device speedup."
+        }
+      }
+    },
+    {
+      "name": "04-westminster-low",
+      "settings": {
+        "name": "04-westminster-low",
+        "pos": [
+          23000,
+          180,
+          -3000
+        ],
+        "cam": [
+          22980,
+          180,
+          -3100
+        ],
+        "look": [
+          23280,
+          45,
+          -3507
+        ]
+      },
+      "runs": {
+        "before": [
+          {
+            "repeat": 0,
+            "order": "before/after",
+            "samples": 29,
+            "medianFps": 59.88023952070763,
+            "onePercentLowFps": 1.0993843447669587,
+            "frameMs": {
+              "p50": 16.70000000006985,
+              "p95": 429.5999999999767,
+              "p99": 909.5999999999767,
+              "max": 909.5999999999767
+            },
+            "stuttersOver100ms": 2,
+            "cpuSubmissionMs": {
+              "p50": 0.8000000000465661,
+              "p95": 1.6999999999534339,
+              "p99": 2.099999999976717,
+              "max": 2.099999999976717
+            },
+            "raw": {
+              "intervals": [
+                9.099999999976717,
+                21.099999999976717,
+                11.20000000006985,
+                16.599999999976717,
+                16.699999999953434,
+                17.900000000023283,
+                19.199999999953434,
+                13.400000000023283,
+                18.5,
+                14.400000000023283,
+                16.599999999976717,
+                16.70000000006985,
+                16.699999999953434,
+                16.599999999976717,
+                16.70000000006985,
+                27.599999999976717,
+                5.799999999930151,
+                16.70000000006985,
+                17.29999999993015,
+                15.900000000023283,
+                17,
+                27.300000000046566,
+                5.699999999953434,
+                16.70000000006985,
+                16.699999999953434,
+                17.099999999976717,
+                16.400000000023283,
+                429.5999999999767,
+                909.5999999999767
+              ],
+              "submissions": [
+                1.6999999999534339,
+                0.9000000000232831,
+                1.099999999976717,
+                0.7999999999301508,
+                0.7999999999301508,
+                0.8000000000465661,
+                1.099999999976717,
+                0.7000000000698492,
+                0.8000000000465661,
+                0.8000000000465661,
+                0.6999999999534339,
+                0.7000000000698492,
+                0.7999999999301508,
+                0.6999999999534339,
+                0.9000000000232831,
+                0.7999999999301508,
+                1.5,
+                0.9000000000232831,
+                1.1999999999534339,
+                1,
+                0.9000000000232831,
+                1,
+                0.9000000000232831,
+                0.5999999999767169,
+                0.6999999999534339,
+                0.8000000000465661,
+                0.7000000000698492,
+                0.6999999999534339,
+                2.099999999976717,
+                1.3000000000465661
+              ],
+              "elapsedMs": 1782.8000000000466,
+              "gpu": {
+                "supported": true,
+                "samples": [
+                  840.500507
+                ],
+                "pending": 16,
+                "disjointDiscarded": 0,
+                "skipped": 13,
+                "p50Ms": 840.500507,
+                "p95Ms": 840.500507,
+                "p99Ms": 840.500507
+              },
+              "state": {
+                "build": {
+                  "version": "0.4.0-candidate.1",
+                  "versionCode": 4,
+                  "releaseTag": "v0.4.0-candidate.1"
+                },
+                "world": "LONDON",
+                "position": [
+                  23000,
+                  180,
+                  -3000
+                ],
+                "camera": [
+                  22980,
+                  180,
+                  -3100
+                ],
+                "lookDirection": [
+                  0.573252361281897,
+                  -0.25796356257685366,
+                  -0.7777123701391071
+                ],
+                "fov": 58,
+                "simulationTime": 120,
+                "flightTime": 0,
+                "simulationHour": 13.2,
+                "weather": "cavok",
+                "quality": 1,
+                "profile": "BALANCED",
+                "governorFrozen": true,
+                "viewport": [
+                  1280,
+                  720
+                ],
+                "devicePixelRatio": 1,
+                "drawingBuffer": [
+                  1152,
+                  648
+                ],
+                "renderer": {
+                  "frame": 174,
+                  "calls": 86,
+                  "triangles": 305292,
+                  "points": 1158,
+                  "lines": 0,
+                  "geometries": 259,
+                  "textures": 17,
+                  "programs": 32
+                },
+                "memory": {
+                  "heapBytes": 254000000,
+                  "heapLimitBytes": 3760000000,
+                  "sceneGeometryObjects": 465,
+                  "geometryAttributeBytes": 82283240,
+                  "indexBytes": 331254,
+                  "sceneTextureObjects": 16,
+                  "textureEstimatedRGBABytes": 66721109.33333334
+                },
+                "scenery": {
+                  "imagery": {
+                    "resident": 4,
+                    "pending": 0,
+                    "failed": 0,
+                    "maxResident": 4,
+                    "estimatedRGBABytes": 5592405.333333333,
+                    "source": "london-sentinel-2025",
+                    "overviewReady": true
+                  },
+                  "measuredHeights": 38914,
+                  "buildings": 39989,
+                  "rawBuildings": 40000,
+                  "buildingTiles": 72,
+                  "groundTiles": 10,
+                  "pendingBuildings": 0,
+                  "lods": [
+                    10,
+                    62,
+                    0
+                  ]
+                },
+                "shadows": {
+                  "shadows": true,
+                  "mapSize": 1024,
+                  "updateHz": 4
+                },
+                "landmarkCount": 9,
+                "contextLost": false
+              }
+            }
+          }
+        ],
+        "after": [
+          {
+            "repeat": 0,
+            "order": "before/after",
+            "samples": 2,
+            "medianFps": 163.9344262270053,
+            "onePercentLowFps": 0.3530325496010761,
+            "frameMs": {
+              "p50": 6.100000000093132,
+              "p95": 2832.5999999999767,
+              "p99": 2832.5999999999767,
+              "max": 2832.5999999999767
+            },
+            "stuttersOver100ms": 1,
+            "cpuSubmissionMs": {
+              "p50": 1.5,
+              "p95": 6.199999999953434,
+              "p99": 6.199999999953434,
+              "max": 6.199999999953434
+            },
+            "raw": {
+              "intervals": [
+                6.100000000093132,
+                2832.5999999999767
+              ],
+              "submissions": [
+                1.5,
+                0.8999999999068677,
+                6.199999999953434
+              ],
+              "elapsedMs": 2845.1999999999534,
+              "gpu": {
+                "supported": true,
+                "samples": [],
+                "pending": 3,
+                "disjointDiscarded": 0,
+                "skipped": 0,
+                "p50Ms": null,
+                "p95Ms": null,
+                "p99Ms": null
+              },
+              "state": {
+                "build": {
+                  "version": "0.5.0-experimental",
+                  "versionCode": 5,
+                  "releaseTag": "v0.5.0-experimental"
+                },
+                "world": "LONDON",
+                "position": [
+                  23000,
+                  180,
+                  -3000
+                ],
+                "camera": [
+                  22980,
+                  180,
+                  -3100
+                ],
+                "lookDirection": [
+                  0.573252361281897,
+                  -0.25796356257685366,
+                  -0.7777123701391071
+                ],
+                "fov": 58,
+                "simulationTime": 120,
+                "flightTime": 0,
+                "simulationHour": 13.2,
+                "weather": "cavok",
+                "quality": 1,
+                "profile": "BALANCED",
+                "governorFrozen": true,
+                "viewport": [
+                  1280,
+                  720
+                ],
+                "devicePixelRatio": 1,
+                "drawingBuffer": [
+                  1152,
+                  648
+                ],
+                "renderer": {
+                  "frame": 64,
+                  "calls": 85,
+                  "triangles": 304090,
+                  "points": 1158,
+                  "lines": 0,
+                  "geometries": 258,
+                  "textures": 17,
+                  "programs": 31
+                },
+                "memory": {
+                  "heapBytes": 342000000,
+                  "heapLimitBytes": 3760000000,
+                  "sceneGeometryObjects": 462,
+                  "geometryAttributeBytes": 81699752,
+                  "indexBytes": 331254,
+                  "sceneTextureObjects": 16,
+                  "textureEstimatedRGBABytes": 66721109.33333334
+                },
+                "scenery": {
+                  "queuedBuildings": 0,
+                  "pendingPrepared": 0,
+                  "prepared": {
+                    "supported": true,
+                    "active": 0,
+                    "queued": 0,
+                    "decoded": 292,
+                    "failures": 0,
+                    "cancelled": 1,
+                    "peakDecodeBytes": 1678320,
+                    "decodedCacheBytes": 0
+                  },
+                  "imagery": {
+                    "resident": 4,
+                    "pending": 0,
+                    "failed": 0,
+                    "maxResident": 4,
+                    "estimatedRGBABytes": 5592405.333333333,
+                    "loads": 20,
+                    "reloads": 12,
+                    "evictions": 16,
+                    "staleDecodes": 0,
+                    "peakPending": 2,
+                    "selectionPasses": 19,
+                    "source": "london-sentinel-2025",
+                    "overviewReady": true
+                  },
+                  "measuredHeights": 38914,
+                  "buildings": 39989,
+                  "rawBuildings": 40000,
+                  "buildingTiles": 72,
+                  "groundTiles": 7,
+                  "pendingBuildings": 0,
+                  "lods": [
+                    10,
+                    62,
+                    0
+                  ]
+                },
+                "shadows": {
+                  "shadows": true,
+                  "mapSize": 1024,
+                  "updateHz": 4
+                },
+                "landmarkCount": 9,
+                "contextLost": false
+              }
+            }
+          }
+        ]
+      },
+      "states": {
+        "before": {
+          "build": {
+            "version": "0.4.0-candidate.1",
+            "versionCode": 4,
+            "releaseTag": "v0.4.0-candidate.1"
+          },
+          "world": "LONDON",
+          "position": [
+            23000,
+            180,
+            -3000
+          ],
+          "camera": [
+            22980,
+            180,
+            -3100
+          ],
+          "lookDirection": [
+            0.573252361281897,
+            -0.25796356257685366,
+            -0.7777123701391071
+          ],
+          "fov": 58,
+          "simulationTime": 120,
+          "flightTime": 0,
+          "simulationHour": 13.2,
+          "weather": "cavok",
+          "quality": 1,
+          "profile": "BALANCED",
+          "governorFrozen": true,
+          "viewport": [
+            1280,
+            720
+          ],
+          "devicePixelRatio": 1,
+          "drawingBuffer": [
+            1152,
+            648
+          ],
+          "renderer": {
+            "frame": 144,
+            "calls": 86,
+            "triangles": 305292,
+            "points": 1158,
+            "lines": 0,
+            "geometries": 259,
+            "textures": 17,
+            "programs": 32
+          },
+          "memory": {
+            "heapBytes": 254000000,
+            "heapLimitBytes": 3760000000,
+            "sceneGeometryObjects": 465,
+            "geometryAttributeBytes": 82283240,
+            "indexBytes": 331254,
+            "sceneTextureObjects": 16,
+            "textureEstimatedRGBABytes": 66721109.33333334
+          },
+          "scenery": {
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 10,
+            "pendingBuildings": 0,
+            "lods": [
+              10,
+              62,
+              0
+            ]
+          },
+          "shadows": {
+            "shadows": true,
+            "mapSize": 1024,
+            "updateHz": 4
+          },
+          "landmarkCount": 9,
+          "contextLost": false
+        },
+        "after": {
+          "build": {
+            "version": "0.5.0-experimental",
+            "versionCode": 5,
+            "releaseTag": "v0.5.0-experimental"
+          },
+          "world": "LONDON",
+          "position": [
+            23000,
+            180,
+            -3000
+          ],
+          "camera": [
+            22980,
+            180,
+            -3100
+          ],
+          "lookDirection": [
+            0.573252361281897,
+            -0.25796356257685366,
+            -0.7777123701391071
+          ],
+          "fov": 58,
+          "simulationTime": 120,
+          "flightTime": 0,
+          "simulationHour": 13.2,
+          "weather": "cavok",
+          "quality": 1,
+          "profile": "BALANCED",
+          "governorFrozen": true,
+          "viewport": [
+            1280,
+            720
+          ],
+          "devicePixelRatio": 1,
+          "drawingBuffer": [
+            1152,
+            648
+          ],
+          "renderer": {
+            "frame": 61,
+            "calls": 85,
+            "triangles": 304090,
+            "points": 1158,
+            "lines": 0,
+            "geometries": 258,
+            "textures": 17,
+            "programs": 31
+          },
+          "memory": {
+            "heapBytes": 342000000,
+            "heapLimitBytes": 3760000000,
+            "sceneGeometryObjects": 462,
+            "geometryAttributeBytes": 81699752,
+            "indexBytes": 331254,
+            "sceneTextureObjects": 16,
+            "textureEstimatedRGBABytes": 66721109.33333334
+          },
+          "scenery": {
+            "queuedBuildings": 0,
+            "pendingPrepared": 0,
+            "prepared": {
+              "supported": true,
+              "active": 0,
+              "queued": 0,
+              "decoded": 292,
+              "failures": 0,
+              "cancelled": 1,
+              "peakDecodeBytes": 1678320,
+              "decodedCacheBytes": 0
+            },
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "loads": 20,
+              "reloads": 12,
+              "evictions": 16,
+              "staleDecodes": 0,
+              "peakPending": 2,
+              "selectionPasses": 19,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 7,
+            "pendingBuildings": 0,
+            "lods": [
+              10,
+              62,
+              0
+            ]
+          },
+          "shadows": {
+            "shadows": true,
+            "mapSize": 1024,
+            "updateHz": 4
+          },
+          "landmarkCount": 9,
+          "contextLost": false
+        }
+      },
+      "warm": {
+        "before": {
+          "wallMs": 2285,
+          "turns": 210,
+          "stats": {
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 10,
+            "pendingBuildings": 0,
+            "lods": [
+              10,
+              62,
+              0
+            ]
+          }
+        },
+        "after": {
+          "wallMs": 713,
+          "turns": 85,
+          "stats": {
+            "queuedBuildings": 0,
+            "pendingPrepared": 0,
+            "prepared": {
+              "supported": true,
+              "active": 0,
+              "queued": 0,
+              "decoded": 292,
+              "failures": 0,
+              "cancelled": 1,
+              "peakDecodeBytes": 1678320,
+              "decodedCacheBytes": 0
+            },
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "loads": 20,
+              "reloads": 12,
+              "evictions": 16,
+              "staleDecodes": 0,
+              "peakPending": 2,
+              "selectionPasses": 19,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 7,
+            "pendingBuildings": 0,
+            "lods": [
+              10,
+              62,
+              0
+            ]
+          }
+        }
+      },
+      "resources": {
+        "before": {
+          "counts": {
+            "createShader": 12,
+            "createProgram": 6,
+            "compileShader": 12,
+            "linkProgram": 6,
+            "texImage2D": 9,
+            "texSubImage2D": 0,
+            "bufferData": 376,
+            "bufferSubData": 1,
+            "bufferUploadBytes": 40485224,
+            "textureUploadEstimatedBytes": 21073920,
+            "textureUploadUnknownEvents": 0,
+            "framebufferTexture2D": 0,
+            "bindFramebuffer": 4
+          },
+          "longTasks": [],
+          "longTasksSupported": true
+        },
+        "after": {
+          "counts": {
+            "createShader": 12,
+            "createProgram": 6,
+            "compileShader": 12,
+            "linkProgram": 6,
+            "texImage2D": 9,
+            "texSubImage2D": 0,
+            "bufferData": 371,
+            "bufferSubData": 1,
+            "bufferUploadBytes": 40312136,
+            "textureUploadEstimatedBytes": 21073920,
+            "textureUploadUnknownEvents": 0,
+            "framebufferTexture2D": 0,
+            "bindFramebuffer": 4
+          },
+          "longTasks": [],
+          "longTasksSupported": true
+        }
+      },
+      "paired": {
+        "medianFps": {
+          "pairs": 1,
+          "percentChanges": [
+            173.77049180024392
+          ],
+          "medianPercentChange": 173.77049180024392,
+          "minPercentChange": 173.77049180024392,
+          "maxPercentChange": 173.77049180024392,
+          "inference": "Paired descriptive range; three repeats cannot establish a narrow confidence interval or physical-device speedup."
+        },
+        "p95FrameMs": {
+          "pairs": 1,
+          "percentChanges": [
+            559.3575418994717
+          ],
+          "medianPercentChange": 559.3575418994717,
+          "minPercentChange": 559.3575418994717,
+          "maxPercentChange": 559.3575418994717,
+          "inference": "Paired descriptive range; three repeats cannot establish a narrow confidence interval or physical-device speedup."
+        }
+      }
+    },
+    {
+      "name": "05-tower-bridge",
+      "settings": {
+        "name": "05-tower-bridge",
+        "pos": [
+          26400,
+          220,
+          -3700
+        ],
+        "cam": [
+          26300,
+          220,
+          -3700
+        ],
+        "look": [
+          26670,
+          30,
+          -4260
+        ]
+      },
+      "runs": {
+        "before": [
+          {
+            "repeat": 0,
+            "order": "before/after",
+            "samples": 29,
+            "medianFps": 59.880239521125056,
+            "onePercentLowFps": 1.464343242055888,
+            "frameMs": {
+              "p50": 16.699999999953434,
+              "p95": 204.29999999993015,
+              "p99": 682.9000000000233,
+              "max": 682.9000000000233
+            },
+            "stuttersOver100ms": 2,
+            "cpuSubmissionMs": {
+              "p50": 0.8999999999068677,
+              "p95": 1.7000000000698492,
+              "p99": 4.099999999976717,
+              "max": 4.099999999976717
+            },
+            "raw": {
+              "intervals": [
+                4.800000000046566,
+                15.900000000023283,
+                16.699999999953434,
+                16.699999999953434,
+                16.600000000093132,
+                16.699999999953434,
+                16.599999999976717,
+                17.300000000046566,
+                16.5,
+                16.199999999953434,
+                16.70000000006985,
+                16.699999999953434,
+                16.900000000023283,
+                16.5,
+                16.900000000023283,
+                16.399999999906868,
+                28.70000000006985,
+                5.5,
+                15.900000000023283,
+                17.699999999953434,
+                15.400000000023283,
+                16.79999999993015,
+                28.900000000023283,
+                4.300000000046566,
+                16.699999999953434,
+                17.20000000006985,
+                16.5,
+                204.29999999993015,
+                682.9000000000233
+              ],
+              "submissions": [
+                1.599999999976717,
+                0.5,
+                0.8999999999068677,
+                1.099999999976717,
+                1,
+                0.8999999999068677,
+                0.5999999999767169,
+                0.5999999999767169,
+                0.6999999999534339,
+                4.099999999976717,
+                0.8000000000465661,
+                1.3999999999068677,
+                1,
+                0.9000000000232831,
+                0.7999999999301508,
+                0.6999999999534339,
+                1,
+                1,
+                1,
+                0.6999999999534339,
+                0.6999999999534339,
+                0.6999999999534339,
+                0.9000000000232831,
+                0.7000000000698492,
+                0.5999999999767169,
+                0.7000000000698492,
+                1.5,
+                1.3999999999068677,
+                1.7000000000698492,
+                1.599999999976717
+              ],
+              "elapsedMs": 1326.8999999999069,
+              "gpu": {
+                "supported": true,
+                "samples": [
+                  614.984401
+                ],
+                "pending": 16,
+                "disjointDiscarded": 0,
+                "skipped": 13,
+                "p50Ms": 614.984401,
+                "p95Ms": 614.984401,
+                "p99Ms": 614.984401
+              },
+              "state": {
+                "build": {
+                  "version": "0.4.0-candidate.1",
+                  "versionCode": 4,
+                  "releaseTag": "v0.4.0-candidate.1"
+                },
+                "world": "LONDON",
+                "position": [
+                  26400,
+                  220,
+                  -3700
+                ],
+                "camera": [
+                  26300,
+                  220,
+                  -3700
+                ],
+                "lookDirection": [
+                  0.5304148466781963,
+                  -0.27237519153745204,
+                  -0.8027900382156482
+                ],
+                "fov": 58,
+                "simulationTime": 120,
+                "flightTime": 0,
+                "simulationHour": 13.2,
+                "weather": "cavok",
+                "quality": 1,
+                "profile": "BALANCED",
+                "governorFrozen": true,
+                "viewport": [
+                  1280,
+                  720
+                ],
+                "devicePixelRatio": 1,
+                "drawingBuffer": [
+                  1152,
+                  648
+                ],
+                "renderer": {
+                  "frame": 208,
+                  "calls": 85,
+                  "triangles": 228595,
+                  "points": 1158,
+                  "lines": 0,
+                  "geometries": 259,
+                  "textures": 17,
+                  "programs": 32
+                },
+                "memory": {
+                  "heapBytes": 254000000,
+                  "heapLimitBytes": 3760000000,
+                  "sceneGeometryObjects": 467,
+                  "geometryAttributeBytes": 72757064,
+                  "indexBytes": 331254,
+                  "sceneTextureObjects": 16,
+                  "textureEstimatedRGBABytes": 66721109.33333334
+                },
+                "scenery": {
+                  "imagery": {
+                    "resident": 4,
+                    "pending": 0,
+                    "failed": 0,
+                    "maxResident": 4,
+                    "estimatedRGBABytes": 5592405.333333333,
+                    "source": "london-sentinel-2025",
+                    "overviewReady": true
+                  },
+                  "measuredHeights": 38914,
+                  "buildings": 39989,
+                  "rawBuildings": 40000,
+                  "buildingTiles": 72,
+                  "groundTiles": 12,
+                  "pendingBuildings": 0,
+                  "lods": [
+                    12,
+                    60,
+                    0
+                  ]
+                },
+                "shadows": {
+                  "shadows": true,
+                  "mapSize": 1024,
+                  "updateHz": 4
+                },
+                "landmarkCount": 9,
+                "contextLost": false
+              }
+            }
+          }
+        ],
+        "after": [
+          {
+            "repeat": 0,
+            "order": "before/after",
+            "samples": 2,
+            "medianFps": 181.8181818181818,
+            "onePercentLowFps": 0.8298755186721992,
+            "frameMs": {
+              "p50": 5.5,
+              "p95": 1205,
+              "p99": 1205,
+              "max": 1205
+            },
+            "stuttersOver100ms": 1,
+            "cpuSubmissionMs": {
+              "p50": 1.3000000000465661,
+              "p95": 1.3000000000465661,
+              "p99": 1.3000000000465661,
+              "max": 1.3000000000465661
+            },
+            "raw": {
+              "intervals": [
+                5.5,
+                1205
+              ],
+              "submissions": [
+                1.3000000000465661,
+                1.2000000000698492,
+                1.3000000000465661
+              ],
+              "elapsedMs": 1212.0999999999767,
+              "gpu": {
+                "supported": true,
+                "samples": [],
+                "pending": 3,
+                "disjointDiscarded": 0,
+                "skipped": 0,
+                "p50Ms": null,
+                "p95Ms": null,
+                "p99Ms": null
+              },
+              "state": {
+                "build": {
+                  "version": "0.5.0-experimental",
+                  "versionCode": 5,
+                  "releaseTag": "v0.5.0-experimental"
+                },
+                "world": "LONDON",
+                "position": [
+                  26400,
+                  220,
+                  -3700
+                ],
+                "camera": [
+                  26300,
+                  220,
+                  -3700
+                ],
+                "lookDirection": [
+                  0.5304148466781963,
+                  -0.27237519153745204,
+                  -0.8027900382156482
+                ],
+                "fov": 58,
+                "simulationTime": 120,
+                "flightTime": 0,
+                "simulationHour": 13.2,
+                "weather": "cavok",
+                "quality": 1,
+                "profile": "BALANCED",
+                "governorFrozen": true,
+                "viewport": [
+                  1280,
+                  720
+                ],
+                "devicePixelRatio": 1,
+                "drawingBuffer": [
+                  1152,
+                  648
+                ],
+                "renderer": {
+                  "frame": 71,
+                  "calls": 83,
+                  "triangles": 226161,
+                  "points": 1158,
+                  "lines": 0,
+                  "geometries": 257,
+                  "textures": 17,
+                  "programs": 31
+                },
+                "memory": {
+                  "heapBytes": 342000000,
+                  "heapLimitBytes": 3760000000,
+                  "sceneGeometryObjects": 460,
+                  "geometryAttributeBytes": 71557832,
+                  "indexBytes": 331254,
+                  "sceneTextureObjects": 16,
+                  "textureEstimatedRGBABytes": 66721109.33333334
+                },
+                "scenery": {
+                  "queuedBuildings": 0,
+                  "pendingPrepared": 0,
+                  "prepared": {
+                    "supported": true,
+                    "active": 0,
+                    "queued": 0,
+                    "decoded": 364,
+                    "failures": 0,
+                    "cancelled": 1,
+                    "peakDecodeBytes": 1678320,
+                    "decodedCacheBytes": 0
+                  },
+                  "imagery": {
+                    "resident": 4,
+                    "pending": 0,
+                    "failed": 0,
+                    "maxResident": 4,
+                    "estimatedRGBABytes": 5592405.333333333,
+                    "loads": 24,
+                    "reloads": 16,
+                    "evictions": 20,
+                    "staleDecodes": 0,
+                    "peakPending": 2,
+                    "selectionPasses": 23,
+                    "source": "london-sentinel-2025",
+                    "overviewReady": true
+                  },
+                  "measuredHeights": 38914,
+                  "buildings": 39989,
+                  "rawBuildings": 40000,
+                  "buildingTiles": 72,
+                  "groundTiles": 5,
+                  "pendingBuildings": 0,
+                  "lods": [
+                    12,
+                    60,
+                    0
+                  ]
+                },
+                "shadows": {
+                  "shadows": true,
+                  "mapSize": 1024,
+                  "updateHz": 4
+                },
+                "landmarkCount": 9,
+                "contextLost": false
+              }
+            }
+          }
+        ]
+      },
+      "states": {
+        "before": {
+          "build": {
+            "version": "0.4.0-candidate.1",
+            "versionCode": 4,
+            "releaseTag": "v0.4.0-candidate.1"
+          },
+          "world": "LONDON",
+          "position": [
+            26400,
+            220,
+            -3700
+          ],
+          "camera": [
+            26300,
+            220,
+            -3700
+          ],
+          "lookDirection": [
+            0.5304148466781963,
+            -0.27237519153745204,
+            -0.8027900382156482
+          ],
+          "fov": 58,
+          "simulationTime": 120,
+          "flightTime": 0,
+          "simulationHour": 13.2,
+          "weather": "cavok",
+          "quality": 1,
+          "profile": "BALANCED",
+          "governorFrozen": true,
+          "viewport": [
+            1280,
+            720
+          ],
+          "devicePixelRatio": 1,
+          "drawingBuffer": [
+            1152,
+            648
+          ],
+          "renderer": {
+            "frame": 178,
+            "calls": 85,
+            "triangles": 228595,
+            "points": 1158,
+            "lines": 0,
+            "geometries": 259,
+            "textures": 17,
+            "programs": 32
+          },
+          "memory": {
+            "heapBytes": 254000000,
+            "heapLimitBytes": 3760000000,
+            "sceneGeometryObjects": 467,
+            "geometryAttributeBytes": 72757064,
+            "indexBytes": 331254,
+            "sceneTextureObjects": 16,
+            "textureEstimatedRGBABytes": 66721109.33333334
+          },
+          "scenery": {
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 12,
+            "pendingBuildings": 0,
+            "lods": [
+              12,
+              60,
+              0
+            ]
+          },
+          "shadows": {
+            "shadows": true,
+            "mapSize": 1024,
+            "updateHz": 4
+          },
+          "landmarkCount": 9,
+          "contextLost": false
+        },
+        "after": {
+          "build": {
+            "version": "0.5.0-experimental",
+            "versionCode": 5,
+            "releaseTag": "v0.5.0-experimental"
+          },
+          "world": "LONDON",
+          "position": [
+            26400,
+            220,
+            -3700
+          ],
+          "camera": [
+            26300,
+            220,
+            -3700
+          ],
+          "lookDirection": [
+            0.5304148466781963,
+            -0.27237519153745204,
+            -0.8027900382156482
+          ],
+          "fov": 58,
+          "simulationTime": 120,
+          "flightTime": 0,
+          "simulationHour": 13.2,
+          "weather": "cavok",
+          "quality": 1,
+          "profile": "BALANCED",
+          "governorFrozen": true,
+          "viewport": [
+            1280,
+            720
+          ],
+          "devicePixelRatio": 1,
+          "drawingBuffer": [
+            1152,
+            648
+          ],
+          "renderer": {
+            "frame": 68,
+            "calls": 83,
+            "triangles": 226161,
+            "points": 1158,
+            "lines": 0,
+            "geometries": 257,
+            "textures": 17,
+            "programs": 31
+          },
+          "memory": {
+            "heapBytes": 342000000,
+            "heapLimitBytes": 3760000000,
+            "sceneGeometryObjects": 460,
+            "geometryAttributeBytes": 71557832,
+            "indexBytes": 331254,
+            "sceneTextureObjects": 16,
+            "textureEstimatedRGBABytes": 66721109.33333334
+          },
+          "scenery": {
+            "queuedBuildings": 0,
+            "pendingPrepared": 0,
+            "prepared": {
+              "supported": true,
+              "active": 0,
+              "queued": 0,
+              "decoded": 364,
+              "failures": 0,
+              "cancelled": 1,
+              "peakDecodeBytes": 1678320,
+              "decodedCacheBytes": 0
+            },
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "loads": 24,
+              "reloads": 16,
+              "evictions": 20,
+              "staleDecodes": 0,
+              "peakPending": 2,
+              "selectionPasses": 23,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 5,
+            "pendingBuildings": 0,
+            "lods": [
+              12,
+              60,
+              0
+            ]
+          },
+          "shadows": {
+            "shadows": true,
+            "mapSize": 1024,
+            "updateHz": 4
+          },
+          "landmarkCount": 9,
+          "contextLost": false
+        }
+      },
+      "warm": {
+        "before": {
+          "wallMs": 2036,
+          "turns": 195,
+          "stats": {
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 12,
+            "pendingBuildings": 0,
+            "lods": [
+              12,
+              60,
+              0
+            ]
+          }
+        },
+        "after": {
+          "wallMs": 719,
+          "turns": 85,
+          "stats": {
+            "queuedBuildings": 0,
+            "pendingPrepared": 0,
+            "prepared": {
+              "supported": true,
+              "active": 0,
+              "queued": 0,
+              "decoded": 364,
+              "failures": 0,
+              "cancelled": 1,
+              "peakDecodeBytes": 1678320,
+              "decodedCacheBytes": 0
+            },
+            "imagery": {
+              "resident": 4,
+              "pending": 0,
+              "failed": 0,
+              "maxResident": 4,
+              "estimatedRGBABytes": 5592405.333333333,
+              "loads": 24,
+              "reloads": 16,
+              "evictions": 20,
+              "staleDecodes": 0,
+              "peakPending": 2,
+              "selectionPasses": 23,
+              "source": "london-sentinel-2025",
+              "overviewReady": true
+            },
+            "measuredHeights": 38914,
+            "buildings": 39989,
+            "rawBuildings": 40000,
+            "buildingTiles": 72,
+            "groundTiles": 5,
+            "pendingBuildings": 0,
+            "lods": [
+              12,
+              60,
+              0
+            ]
+          }
+        }
+      },
+      "resources": {
+        "before": {
+          "counts": {
+            "createShader": 12,
+            "createProgram": 6,
+            "compileShader": 12,
+            "linkProgram": 6,
+            "texImage2D": 9,
+            "texSubImage2D": 0,
+            "bufferData": 375,
+            "bufferSubData": 1,
+            "bufferUploadBytes": 29770076,
+            "textureUploadEstimatedBytes": 21073920,
+            "textureUploadUnknownEvents": 0,
+            "framebufferTexture2D": 0,
+            "bindFramebuffer": 4
+          },
+          "longTasks": [],
+          "longTasksSupported": true
+        },
+        "after": {
+          "counts": {
+            "createShader": 12,
+            "createProgram": 6,
+            "compileShader": 12,
+            "linkProgram": 6,
+            "texImage2D": 9,
+            "texSubImage2D": 0,
+            "bufferData": 365,
+            "bufferSubData": 1,
+            "bufferUploadBytes": 29419580,
+            "textureUploadEstimatedBytes": 21073920,
+            "textureUploadUnknownEvents": 0,
+            "framebufferTexture2D": 0,
+            "bindFramebuffer": 4
+          },
+          "longTasks": [],
+          "longTasksSupported": true
+        }
+      },
+      "paired": {
+        "medianFps": {
+          "pairs": 1,
+          "percentChanges": [
+            203.63636363551697
+          ],
+          "medianPercentChange": 203.63636363551697,
+          "minPercentChange": 203.63636363551697,
+          "maxPercentChange": 203.63636363551697,
+          "inference": "Paired descriptive range; three repeats cannot establish a narrow confidence interval or physical-device speedup."
+        },
+        "p95FrameMs": {
+          "pairs": 1,
+          "percentChanges": [
+            489.8188937838531
+          ],
+          "medianPercentChange": 489.8188937838531,
+          "minPercentChange": 489.8188937838531,
+          "maxPercentChange": 489.8188937838531,
+          "inference": "Paired descriptive range; three repeats cannot establish a narrow confidence interval or physical-device speedup."
+        }
+      }
+    }
+  ],
+  "shots": [
+    {
+      "label": "before",
+      "name": "01-heathrow-runway",
+      "file": "screenshots/london-v0.5/before/01-heathrow-runway.png",
+      "sha256": "77b3be30c90c6f763de72ee4b6aa45dec19c5e31ad3c9602684ec32462ba8fef",
+      "bytes": 337853,
+      "state": {
+        "build": {
+          "version": "0.4.0-candidate.1",
+          "versionCode": 4,
+          "releaseTag": "v0.4.0-candidate.1"
+        },
+        "world": "LONDON",
+        "position": [
+          -1800,
+          35,
+          -480
+        ],
+        "camera": [
+          -1850,
+          42,
+          -480
+        ],
+        "lookDirection": [
+          0.9996139563112845,
+          -0.00648398241931644,
+          -0.027016593413818568
+        ],
+        "fov": 58,
+        "simulationTime": 120,
+        "flightTime": 0,
+        "simulationHour": 13.2,
+        "weather": "cavok",
+        "quality": 1,
+        "profile": "BALANCED",
+        "governorFrozen": true,
+        "viewport": [
+          1280,
+          720
+        ],
+        "devicePixelRatio": 1,
+        "drawingBuffer": [
+          1152,
+          648
+        ],
+        "renderer": {
+          "frame": 42,
+          "calls": 285,
+          "triangles": 200426,
+          "points": 2252,
+          "lines": 36,
+          "geometries": 289,
+          "textures": 17,
+          "programs": 29
+        },
+        "memory": {
+          "heapBytes": 254000000,
+          "heapLimitBytes": 3760000000,
+          "sceneGeometryObjects": 464,
+          "geometryAttributeBytes": 27778088,
+          "indexBytes": 331254,
+          "sceneTextureObjects": 16,
+          "textureEstimatedRGBABytes": 66721109.33333334
+        },
+        "scenery": {
+          "imagery": {
+            "resident": 4,
+            "pending": 0,
+            "failed": 0,
+            "maxResident": 4,
+            "estimatedRGBABytes": 5592405.333333333,
+            "source": "london-sentinel-2025",
+            "overviewReady": true
+          },
+          "measuredHeights": 38914,
+          "buildings": 39989,
+          "rawBuildings": 40000,
+          "buildingTiles": 72,
+          "groundTiles": 9,
+          "pendingBuildings": 0,
+          "lods": [
+            9,
+            63,
+            0
+          ]
+        },
+        "shadows": {
+          "shadows": true,
+          "mapSize": 1024,
+          "updateHz": 4
+        },
+        "landmarkCount": 9,
+        "contextLost": false
+      }
+    },
+    {
+      "label": "after",
+      "name": "01-heathrow-runway",
+      "file": "screenshots/london-v0.5/after/01-heathrow-runway.png",
+      "sha256": "b6b539b98f70c086181b7f319b195a4a7bbc38a0cece47a35c91332fd98be2c4",
+      "bytes": 337810,
+      "state": {
+        "build": {
+          "version": "0.5.0-experimental",
+          "versionCode": 5,
+          "releaseTag": "v0.5.0-experimental"
+        },
+        "world": "LONDON",
+        "position": [
+          -1800,
+          35,
+          -480
+        ],
+        "camera": [
+          -1850,
+          42,
+          -480
+        ],
+        "lookDirection": [
+          0.9996139563112845,
+          -0.00648398241931644,
+          -0.027016593413818568
+        ],
+        "fov": 58,
+        "simulationTime": 120,
+        "flightTime": 0,
+        "simulationHour": 13.2,
+        "weather": "cavok",
+        "quality": 1,
+        "profile": "BALANCED",
+        "governorFrozen": true,
+        "viewport": [
+          1280,
+          720
+        ],
+        "devicePixelRatio": 1,
+        "drawingBuffer": [
+          1152,
+          648
+        ],
+        "renderer": {
+          "frame": 40,
+          "calls": 285,
+          "triangles": 200426,
+          "points": 2252,
+          "lines": 36,
+          "geometries": 289,
+          "textures": 17,
+          "programs": 29
+        },
+        "memory": {
+          "heapBytes": 342000000,
+          "heapLimitBytes": 3760000000,
+          "sceneGeometryObjects": 464,
+          "geometryAttributeBytes": 27778088,
+          "indexBytes": 331254,
+          "sceneTextureObjects": 16,
+          "textureEstimatedRGBABytes": 66721109.33333334
+        },
+        "scenery": {
+          "queuedBuildings": 0,
+          "pendingPrepared": 0,
+          "prepared": {
+            "supported": true,
+            "active": 0,
+            "queued": 0,
+            "decoded": 76,
+            "failures": 0,
+            "cancelled": 1,
+            "peakDecodeBytes": 759744,
+            "decodedCacheBytes": 0
+          },
+          "imagery": {
+            "resident": 4,
+            "pending": 0,
+            "failed": 0,
+            "maxResident": 4,
+            "estimatedRGBABytes": 5592405.333333333,
+            "loads": 8,
+            "reloads": 4,
+            "evictions": 4,
+            "staleDecodes": 0,
+            "peakPending": 2,
+            "selectionPasses": 7,
+            "source": "london-sentinel-2025",
+            "overviewReady": true
+          },
+          "measuredHeights": 38914,
+          "buildings": 39989,
+          "rawBuildings": 40000,
+          "buildingTiles": 72,
+          "groundTiles": 9,
+          "pendingBuildings": 0,
+          "lods": [
+            9,
+            63,
+            0
+          ]
+        },
+        "shadows": {
+          "shadows": true,
+          "mapSize": 1024,
+          "updateHz": 4
+        },
+        "landmarkCount": 9,
+        "contextLost": false
+      }
+    },
+    {
+      "label": "before",
+      "name": "02-heathrow-departure",
+      "file": "screenshots/london-v0.5/before/02-heathrow-departure.png",
+      "sha256": "f2100b33e2ccaa0aa5a248354878712b44b08b0c2ebcacda31d46bf2fc1e5f96",
+      "bytes": 1157209,
+      "state": {
+        "build": {
+          "version": "0.4.0-candidate.1",
+          "versionCode": 4,
+          "releaseTag": "v0.4.0-candidate.1"
+        },
+        "world": "LONDON",
+        "position": [
+          -1200,
+          500,
+          2300
+        ],
+        "camera": [
+          -1200,
+          500,
+          2300
+        ],
+        "lookDirection": [
+          0.6618602192849936,
+          -0.16372331740207738,
+          -0.7315297160518353
+        ],
+        "fov": 58,
+        "simulationTime": 120,
+        "flightTime": 0,
+        "simulationHour": 13.2,
+        "weather": "cavok",
+        "quality": 1,
+        "profile": "BALANCED",
+        "governorFrozen": true,
+        "viewport": [
+          1280,
+          720
+        ],
+        "devicePixelRatio": 1,
+        "drawingBuffer": [
+          1152,
+          648
+        ],
+        "renderer": {
+          "frame": 75,
+          "calls": 116,
+          "triangles": 184580,
+          "points": 2252,
+          "lines": 0,
+          "geometries": 287,
+          "textures": 17,
+          "programs": 34
+        },
+        "memory": {
+          "heapBytes": 254000000,
+          "heapLimitBytes": 3760000000,
+          "sceneGeometryObjects": 467,
+          "geometryAttributeBytes": 27473960,
+          "indexBytes": 331254,
+          "sceneTextureObjects": 16,
+          "textureEstimatedRGBABytes": 66721109.33333334
+        },
+        "scenery": {
+          "imagery": {
+            "resident": 4,
+            "pending": 0,
+            "failed": 0,
+            "maxResident": 4,
+            "estimatedRGBABytes": 5592405.333333333,
+            "source": "london-sentinel-2025",
+            "overviewReady": true
+          },
+          "measuredHeights": 38914,
+          "buildings": 39989,
+          "rawBuildings": 40000,
+          "buildingTiles": 72,
+          "groundTiles": 12,
+          "pendingBuildings": 0,
+          "lods": [
+            11,
+            54,
+            7
+          ]
+        },
+        "shadows": {
+          "shadows": true,
+          "mapSize": 1024,
+          "updateHz": 4
+        },
+        "landmarkCount": 9,
+        "contextLost": false
+      }
+    },
+    {
+      "label": "after",
+      "name": "02-heathrow-departure",
+      "file": "screenshots/london-v0.5/after/02-heathrow-departure.png",
+      "sha256": "f2100b33e2ccaa0aa5a248354878712b44b08b0c2ebcacda31d46bf2fc1e5f96",
+      "bytes": 1157209,
+      "state": {
+        "build": {
+          "version": "0.5.0-experimental",
+          "versionCode": 5,
+          "releaseTag": "v0.5.0-experimental"
+        },
+        "world": "LONDON",
+        "position": [
+          -1200,
+          500,
+          2300
+        ],
+        "camera": [
+          -1200,
+          500,
+          2300
+        ],
+        "lookDirection": [
+          0.6618602192849936,
+          -0.16372331740207738,
+          -0.7315297160518353
+        ],
+        "fov": 58,
+        "simulationTime": 120,
+        "flightTime": 0,
+        "simulationHour": 13.2,
+        "weather": "cavok",
+        "quality": 1,
+        "profile": "BALANCED",
+        "governorFrozen": true,
+        "viewport": [
+          1280,
+          720
+        ],
+        "devicePixelRatio": 1,
+        "drawingBuffer": [
+          1152,
+          648
+        ],
+        "renderer": {
+          "frame": 47,
+          "calls": 116,
+          "triangles": 184580,
+          "points": 2252,
+          "lines": 0,
+          "geometries": 287,
+          "textures": 17,
+          "programs": 33
+        },
+        "memory": {
+          "heapBytes": 342000000,
+          "heapLimitBytes": 3760000000,
+          "sceneGeometryObjects": 467,
+          "geometryAttributeBytes": 27473960,
+          "indexBytes": 331254,
+          "sceneTextureObjects": 16,
+          "textureEstimatedRGBABytes": 66721109.33333334
+        },
+        "scenery": {
+          "queuedBuildings": 0,
+          "pendingPrepared": 0,
+          "prepared": {
+            "supported": true,
+            "active": 0,
+            "queued": 0,
+            "decoded": 148,
+            "failures": 0,
+            "cancelled": 1,
+            "peakDecodeBytes": 759744,
+            "decodedCacheBytes": 0
+          },
+          "imagery": {
+            "resident": 4,
+            "pending": 0,
+            "failed": 0,
+            "maxResident": 4,
+            "estimatedRGBABytes": 5592405.333333333,
+            "loads": 12,
+            "reloads": 8,
+            "evictions": 8,
+            "staleDecodes": 0,
+            "peakPending": 2,
+            "selectionPasses": 11,
+            "source": "london-sentinel-2025",
+            "overviewReady": true
+          },
+          "measuredHeights": 38914,
+          "buildings": 39989,
+          "rawBuildings": 40000,
+          "buildingTiles": 72,
+          "groundTiles": 12,
+          "pendingBuildings": 0,
+          "lods": [
+            11,
+            54,
+            7
+          ]
+        },
+        "shadows": {
+          "shadows": true,
+          "mapSize": 1024,
+          "updateHz": 4
+        },
+        "landmarkCount": 9,
+        "contextLost": false
+      }
+    },
+    {
+      "label": "before",
+      "name": "03-london-skyline",
+      "file": "screenshots/london-v0.5/before/03-london-skyline.png",
+      "sha256": "4c54870ce575929386db503412182a62e525ca1e35b48e4dc5b2dbd05f8cb245",
+      "bytes": 1194357,
+      "state": {
+        "build": {
+          "version": "0.4.0-candidate.1",
+          "versionCode": 4,
+          "releaseTag": "v0.4.0-candidate.1"
+        },
+        "world": "LONDON",
+        "position": [
+          24000,
+          610,
+          -3600
+        ],
+        "camera": [
+          23600,
+          610,
+          -2400
+        ],
+        "lookDirection": [
+          0.4650617433436831,
+          -0.19432937132575331,
+          -0.8636860947811258
+        ],
+        "fov": 58,
+        "simulationTime": 120,
+        "flightTime": 0,
+        "simulationHour": 13.2,
+        "weather": "cavok",
+        "quality": 1,
+        "profile": "BALANCED",
+        "governorFrozen": true,
+        "viewport": [
+          1280,
+          720
+        ],
+        "devicePixelRatio": 1,
+        "drawingBuffer": [
+          1152,
+          648
+        ],
+        "renderer": {
+          "frame": 109,
+          "calls": 108,
+          "triangles": 356399,
+          "points": 1158,
+          "lines": 0,
+          "geometries": 279,
+          "textures": 17,
+          "programs": 32
+        },
+        "memory": {
+          "heapBytes": 254000000,
+          "heapLimitBytes": 3760000000,
+          "sceneGeometryObjects": 467,
+          "geometryAttributeBytes": 80405624,
+          "indexBytes": 331254,
+          "sceneTextureObjects": 16,
+          "textureEstimatedRGBABytes": 66721109.33333334
+        },
+        "scenery": {
+          "imagery": {
+            "resident": 4,
+            "pending": 0,
+            "failed": 0,
+            "maxResident": 4,
+            "estimatedRGBABytes": 5592405.333333333,
+            "source": "london-sentinel-2025",
+            "overviewReady": true
+          },
+          "measuredHeights": 38914,
+          "buildings": 39989,
+          "rawBuildings": 40000,
+          "buildingTiles": 72,
+          "groundTiles": 12,
+          "pendingBuildings": 0,
+          "lods": [
+            12,
+            60,
+            0
+          ]
+        },
+        "shadows": {
+          "shadows": true,
+          "mapSize": 1024,
+          "updateHz": 4
+        },
+        "landmarkCount": 9,
+        "contextLost": false
+      }
+    },
+    {
+      "label": "after",
+      "name": "03-london-skyline",
+      "file": "screenshots/london-v0.5/after/03-london-skyline.png",
+      "sha256": "6f7da96899dd4ca533ab5b66442f33f46ec149621f72483d18b06b39b95297c1",
+      "bytes": 1194198,
+      "state": {
+        "build": {
+          "version": "0.5.0-experimental",
+          "versionCode": 5,
+          "releaseTag": "v0.5.0-experimental"
+        },
+        "world": "LONDON",
+        "position": [
+          24000,
+          610,
+          -3600
+        ],
+        "camera": [
+          23600,
+          610,
+          -2400
+        ],
+        "lookDirection": [
+          0.4650617433436831,
+          -0.19432937132575331,
+          -0.8636860947811258
+        ],
+        "fov": 58,
+        "simulationTime": 120,
+        "flightTime": 0,
+        "simulationHour": 13.2,
+        "weather": "cavok",
+        "quality": 1,
+        "profile": "BALANCED",
+        "governorFrozen": true,
+        "viewport": [
+          1280,
+          720
+        ],
+        "devicePixelRatio": 1,
+        "drawingBuffer": [
+          1152,
+          648
+        ],
+        "renderer": {
+          "frame": 54,
+          "calls": 103,
+          "triangles": 349727,
+          "points": 1158,
+          "lines": 0,
+          "geometries": 274,
+          "textures": 17,
+          "programs": 31
+        },
+        "memory": {
+          "heapBytes": 342000000,
+          "heapLimitBytes": 3760000000,
+          "sceneGeometryObjects": 461,
+          "geometryAttributeBytes": 79236632,
+          "indexBytes": 331254,
+          "sceneTextureObjects": 16,
+          "textureEstimatedRGBABytes": 66721109.33333334
+        },
+        "scenery": {
+          "queuedBuildings": 0,
+          "pendingPrepared": 0,
+          "prepared": {
+            "supported": true,
+            "active": 0,
+            "queued": 0,
+            "decoded": 220,
+            "failures": 0,
+            "cancelled": 1,
+            "peakDecodeBytes": 1678320,
+            "decodedCacheBytes": 0
+          },
+          "imagery": {
+            "resident": 4,
+            "pending": 0,
+            "failed": 0,
+            "maxResident": 4,
+            "estimatedRGBABytes": 5592405.333333333,
+            "loads": 16,
+            "reloads": 8,
+            "evictions": 12,
+            "staleDecodes": 0,
+            "peakPending": 2,
+            "selectionPasses": 15,
+            "source": "london-sentinel-2025",
+            "overviewReady": true
+          },
+          "measuredHeights": 38914,
+          "buildings": 39989,
+          "rawBuildings": 40000,
+          "buildingTiles": 72,
+          "groundTiles": 6,
+          "pendingBuildings": 0,
+          "lods": [
+            12,
+            60,
+            0
+          ]
+        },
+        "shadows": {
+          "shadows": true,
+          "mapSize": 1024,
+          "updateHz": 4
+        },
+        "landmarkCount": 9,
+        "contextLost": false
+      }
+    },
+    {
+      "label": "before",
+      "name": "04-westminster-low",
+      "file": "screenshots/london-v0.5/before/04-westminster-low.png",
+      "sha256": "6b713ca89d55faa6fc380e56937c7869806af25943bdf34e2736c65ff928786e",
+      "bytes": 1112131,
+      "state": {
+        "build": {
+          "version": "0.4.0-candidate.1",
+          "versionCode": 4,
+          "releaseTag": "v0.4.0-candidate.1"
+        },
+        "world": "LONDON",
+        "position": [
+          23000,
+          180,
+          -3000
+        ],
+        "camera": [
+          22980,
+          180,
+          -3100
+        ],
+        "lookDirection": [
+          0.573252361281897,
+          -0.25796356257685366,
+          -0.7777123701391071
+        ],
+        "fov": 58,
+        "simulationTime": 120,
+        "flightTime": 0,
+        "simulationHour": 13.2,
+        "weather": "cavok",
+        "quality": 1,
+        "profile": "BALANCED",
+        "governorFrozen": true,
+        "viewport": [
+          1280,
+          720
+        ],
+        "devicePixelRatio": 1,
+        "drawingBuffer": [
+          1152,
+          648
+        ],
+        "renderer": {
+          "frame": 144,
+          "calls": 86,
+          "triangles": 305292,
+          "points": 1158,
+          "lines": 0,
+          "geometries": 259,
+          "textures": 17,
+          "programs": 32
+        },
+        "memory": {
+          "heapBytes": 254000000,
+          "heapLimitBytes": 3760000000,
+          "sceneGeometryObjects": 465,
+          "geometryAttributeBytes": 82283240,
+          "indexBytes": 331254,
+          "sceneTextureObjects": 16,
+          "textureEstimatedRGBABytes": 66721109.33333334
+        },
+        "scenery": {
+          "imagery": {
+            "resident": 4,
+            "pending": 0,
+            "failed": 0,
+            "maxResident": 4,
+            "estimatedRGBABytes": 5592405.333333333,
+            "source": "london-sentinel-2025",
+            "overviewReady": true
+          },
+          "measuredHeights": 38914,
+          "buildings": 39989,
+          "rawBuildings": 40000,
+          "buildingTiles": 72,
+          "groundTiles": 10,
+          "pendingBuildings": 0,
+          "lods": [
+            10,
+            62,
+            0
+          ]
+        },
+        "shadows": {
+          "shadows": true,
+          "mapSize": 1024,
+          "updateHz": 4
+        },
+        "landmarkCount": 9,
+        "contextLost": false
+      }
+    },
+    {
+      "label": "after",
+      "name": "04-westminster-low",
+      "file": "screenshots/london-v0.5/after/04-westminster-low.png",
+      "sha256": "837c3c434edd3985ba9b675e501dc5ee03495aec1053ee9ff929a16d1a970ce3",
+      "bytes": 1112157,
+      "state": {
+        "build": {
+          "version": "0.5.0-experimental",
+          "versionCode": 5,
+          "releaseTag": "v0.5.0-experimental"
+        },
+        "world": "LONDON",
+        "position": [
+          23000,
+          180,
+          -3000
+        ],
+        "camera": [
+          22980,
+          180,
+          -3100
+        ],
+        "lookDirection": [
+          0.573252361281897,
+          -0.25796356257685366,
+          -0.7777123701391071
+        ],
+        "fov": 58,
+        "simulationTime": 120,
+        "flightTime": 0,
+        "simulationHour": 13.2,
+        "weather": "cavok",
+        "quality": 1,
+        "profile": "BALANCED",
+        "governorFrozen": true,
+        "viewport": [
+          1280,
+          720
+        ],
+        "devicePixelRatio": 1,
+        "drawingBuffer": [
+          1152,
+          648
+        ],
+        "renderer": {
+          "frame": 61,
+          "calls": 85,
+          "triangles": 304090,
+          "points": 1158,
+          "lines": 0,
+          "geometries": 258,
+          "textures": 17,
+          "programs": 31
+        },
+        "memory": {
+          "heapBytes": 342000000,
+          "heapLimitBytes": 3760000000,
+          "sceneGeometryObjects": 462,
+          "geometryAttributeBytes": 81699752,
+          "indexBytes": 331254,
+          "sceneTextureObjects": 16,
+          "textureEstimatedRGBABytes": 66721109.33333334
+        },
+        "scenery": {
+          "queuedBuildings": 0,
+          "pendingPrepared": 0,
+          "prepared": {
+            "supported": true,
+            "active": 0,
+            "queued": 0,
+            "decoded": 292,
+            "failures": 0,
+            "cancelled": 1,
+            "peakDecodeBytes": 1678320,
+            "decodedCacheBytes": 0
+          },
+          "imagery": {
+            "resident": 4,
+            "pending": 0,
+            "failed": 0,
+            "maxResident": 4,
+            "estimatedRGBABytes": 5592405.333333333,
+            "loads": 20,
+            "reloads": 12,
+            "evictions": 16,
+            "staleDecodes": 0,
+            "peakPending": 2,
+            "selectionPasses": 19,
+            "source": "london-sentinel-2025",
+            "overviewReady": true
+          },
+          "measuredHeights": 38914,
+          "buildings": 39989,
+          "rawBuildings": 40000,
+          "buildingTiles": 72,
+          "groundTiles": 7,
+          "pendingBuildings": 0,
+          "lods": [
+            10,
+            62,
+            0
+          ]
+        },
+        "shadows": {
+          "shadows": true,
+          "mapSize": 1024,
+          "updateHz": 4
+        },
+        "landmarkCount": 9,
+        "contextLost": false
+      }
+    },
+    {
+      "label": "before",
+      "name": "05-tower-bridge",
+      "file": "screenshots/london-v0.5/before/05-tower-bridge.png",
+      "sha256": "86eddd24703342444e68f5651b5b183d96e38d82ce526f379c1bfb2186163440",
+      "bytes": 1228564,
+      "state": {
+        "build": {
+          "version": "0.4.0-candidate.1",
+          "versionCode": 4,
+          "releaseTag": "v0.4.0-candidate.1"
+        },
+        "world": "LONDON",
+        "position": [
+          26400,
+          220,
+          -3700
+        ],
+        "camera": [
+          26300,
+          220,
+          -3700
+        ],
+        "lookDirection": [
+          0.5304148466781963,
+          -0.27237519153745204,
+          -0.8027900382156482
+        ],
+        "fov": 58,
+        "simulationTime": 120,
+        "flightTime": 0,
+        "simulationHour": 13.2,
+        "weather": "cavok",
+        "quality": 1,
+        "profile": "BALANCED",
+        "governorFrozen": true,
+        "viewport": [
+          1280,
+          720
+        ],
+        "devicePixelRatio": 1,
+        "drawingBuffer": [
+          1152,
+          648
+        ],
+        "renderer": {
+          "frame": 178,
+          "calls": 85,
+          "triangles": 228595,
+          "points": 1158,
+          "lines": 0,
+          "geometries": 259,
+          "textures": 17,
+          "programs": 32
+        },
+        "memory": {
+          "heapBytes": 254000000,
+          "heapLimitBytes": 3760000000,
+          "sceneGeometryObjects": 467,
+          "geometryAttributeBytes": 72757064,
+          "indexBytes": 331254,
+          "sceneTextureObjects": 16,
+          "textureEstimatedRGBABytes": 66721109.33333334
+        },
+        "scenery": {
+          "imagery": {
+            "resident": 4,
+            "pending": 0,
+            "failed": 0,
+            "maxResident": 4,
+            "estimatedRGBABytes": 5592405.333333333,
+            "source": "london-sentinel-2025",
+            "overviewReady": true
+          },
+          "measuredHeights": 38914,
+          "buildings": 39989,
+          "rawBuildings": 40000,
+          "buildingTiles": 72,
+          "groundTiles": 12,
+          "pendingBuildings": 0,
+          "lods": [
+            12,
+            60,
+            0
+          ]
+        },
+        "shadows": {
+          "shadows": true,
+          "mapSize": 1024,
+          "updateHz": 4
+        },
+        "landmarkCount": 9,
+        "contextLost": false
+      }
+    },
+    {
+      "label": "after",
+      "name": "05-tower-bridge",
+      "file": "screenshots/london-v0.5/after/05-tower-bridge.png",
+      "sha256": "698396267d539285b497ff2f0de1e87ef58be339cd96b248f82a58f6232f2fc8",
+      "bytes": 1228320,
+      "state": {
+        "build": {
+          "version": "0.5.0-experimental",
+          "versionCode": 5,
+          "releaseTag": "v0.5.0-experimental"
+        },
+        "world": "LONDON",
+        "position": [
+          26400,
+          220,
+          -3700
+        ],
+        "camera": [
+          26300,
+          220,
+          -3700
+        ],
+        "lookDirection": [
+          0.5304148466781963,
+          -0.27237519153745204,
+          -0.8027900382156482
+        ],
+        "fov": 58,
+        "simulationTime": 120,
+        "flightTime": 0,
+        "simulationHour": 13.2,
+        "weather": "cavok",
+        "quality": 1,
+        "profile": "BALANCED",
+        "governorFrozen": true,
+        "viewport": [
+          1280,
+          720
+        ],
+        "devicePixelRatio": 1,
+        "drawingBuffer": [
+          1152,
+          648
+        ],
+        "renderer": {
+          "frame": 68,
+          "calls": 83,
+          "triangles": 226161,
+          "points": 1158,
+          "lines": 0,
+          "geometries": 257,
+          "textures": 17,
+          "programs": 31
+        },
+        "memory": {
+          "heapBytes": 342000000,
+          "heapLimitBytes": 3760000000,
+          "sceneGeometryObjects": 460,
+          "geometryAttributeBytes": 71557832,
+          "indexBytes": 331254,
+          "sceneTextureObjects": 16,
+          "textureEstimatedRGBABytes": 66721109.33333334
+        },
+        "scenery": {
+          "queuedBuildings": 0,
+          "pendingPrepared": 0,
+          "prepared": {
+            "supported": true,
+            "active": 0,
+            "queued": 0,
+            "decoded": 364,
+            "failures": 0,
+            "cancelled": 1,
+            "peakDecodeBytes": 1678320,
+            "decodedCacheBytes": 0
+          },
+          "imagery": {
+            "resident": 4,
+            "pending": 0,
+            "failed": 0,
+            "maxResident": 4,
+            "estimatedRGBABytes": 5592405.333333333,
+            "loads": 24,
+            "reloads": 16,
+            "evictions": 20,
+            "staleDecodes": 0,
+            "peakPending": 2,
+            "selectionPasses": 23,
+            "source": "london-sentinel-2025",
+            "overviewReady": true
+          },
+          "measuredHeights": 38914,
+          "buildings": 39989,
+          "rawBuildings": 40000,
+          "buildingTiles": 72,
+          "groundTiles": 5,
+          "pendingBuildings": 0,
+          "lods": [
+            12,
+            60,
+            0
+          ]
+        },
+        "shadows": {
+          "shadows": true,
+          "mapSize": 1024,
+          "updateHz": 4
+        },
+        "landmarkCount": 9,
+        "contextLost": false
+      }
+    }
+  ],
+  "checks": [],
+  "errors": [],
+  "warnings": []
+}
